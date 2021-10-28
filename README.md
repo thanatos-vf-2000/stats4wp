@@ -80,30 +80,6 @@ Source: https://opensource.org/licenses/MIT
 
 ## Changelog
 
-### 1.1.0 (2021-10-08)
-
-* fixed file inc/Ui/Post.php line 22 & 28 add test is_array
-* Added management of the .htaccess file
-* .htaccess: Disable display of directory contents
-* .htaccess: Hide server information
-* .htaccess: Protect .htaccess and .htpasswds files
-* .htaccess: Enable Force download
-* .htaccess: Enable cache expires
-* .htaccess: Compressing static files
-
-### 1.0.0 (2020-10-01)
-
-* fixed style login message
-* fixed style ct4gg
-* Add option to delete Wordpress logo in dashboard administration
-* Add option to redirect to home page after logout
-* Add option to hide login errors
-* Add option for no admin user to go back home
-* Add option, if the result of search return one post, display them
-* Add option to force the minimum comment lenght
-* Add option hide meta generator (Wordpress Version)
-* Add option to display message on old post 
-
 ### 1.0.0 (2021-10-23)
 * Initial version
 
