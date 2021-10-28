@@ -1,0 +1,185 @@
+<?php
+/**
+ * @package  STATS4WPPlugin
+ * @Version 1.0.0
+ */
+namespace STATS4WP\Stats;
+
+use STATS4WP\Api\TimeZone;
+use STATS4WP\Api\IP;
+use STATS4WP\Api\UserAgent;
+use STATS4WP\Api\Referred;
+use STATS4WP\Api\GeoIP;
+use STATS4WP\Api\User;
+
+use STATS4WP\Core\DB;
+use STATS4WP\Core\Options;
+
+class UserOnline
+{
+    /**
+     * Default User Reset Time User Online
+     *
+     * @var int
+     */
+    public static $reset_user_time = 120; # Second
+
+
+    public function register()
+    {
+        if (Options::get_option('version') == STATS4WP_VERSION) {
+            # Reset User Online Count
+            add_action('wp_loaded', array($this, 'reset_user_online'));
+            add_action('init', array( $this,'useronline')); 
+        }
+    }
+
+    /**
+     * Reset Online User Process By Option time
+     *
+     * @return string
+     */
+    public function reset_user_online()
+    {
+        global $wpdb;
+
+        //Get Not timestamp
+        $now = TimeZone::getCurrentTimestamp();
+
+        
+
+        // Get the user set value for seconds to check for users online.
+        if (Options::get_option('check_online')) {
+            $reset_time = Options::get_option('check_online');
+        } else {
+            // Set the default seconds a user needs to visit the site before they are considered offline.
+            $reset_time = self::$reset_user_time;
+        }
+
+        // We want to delete users that are over the number of seconds set by the admin.
+        $time_diff = $now - $reset_time;
+
+        // Call the deletion query.
+        $wpdb->query("DELETE FROM `" . DB::table('useronline') . "` WHERE timestamp < {$time_diff}");
+
+    }
+
+    /**
+     * Record Users Online
+     *
+     * @param array $args
+     * @throws \Exception
+     */
+    public static function useronline()
+    {
+        // Get User IP
+        $user_ip = IP::StoreIP();
+
+        # Check Current Use Exist online list
+        $user_online = self::is_ip_online($user_ip);
+
+        # Check Users Exist in Online list
+        if ($user_online === false) {
+
+            # Added New Online User
+            self::add_user_online();
+
+        } else {
+
+            # Update current User Time
+            self::update_user_online();
+        }
+    }
+
+    /**
+     * Check IP is online
+     *
+     * @param bool $user_ip
+     * @return bool
+     */
+    public static function is_ip_online($user_ip = false)
+    {
+        global $wpdb;
+        $user_online = $wpdb->query("SELECT * FROM `" . DB::table('useronline') . "` WHERE `ip` = '{$user_ip}'");
+        return (!$user_online ? false : $user_online);
+    }
+
+
+    /**
+     * Add User Online to Database
+     *
+     * @param array $args
+     * @throws \Exception
+     */
+    public static function add_user_online($args = array())
+    {
+        global $wpdb;
+
+        // Get Current Page
+        $current_page = Page::get_page_type();
+
+        // Get User Agent
+        $user_agent = UserAgent::getUserAgent();
+
+        //Prepare User online Data
+        $user_online = array(
+            'ip'        => IP::StoreIP(),
+            'timestamp' => TimeZone::getCurrentTimestamp(),
+            'created'   => TimeZone::getCurrentTimestamp(),
+            'date'      => TimeZone::getCurrentDate(),
+            'referred'  => Referred::get(),
+            'agent'     => $user_agent['browser'],
+            'platform'  => $user_agent['platform'],
+            'version'   => $user_agent['b-version'],
+            'location'  => GeoIP::getCountry(IP::getIP()),
+            'user_id'   => User::get_user_id(),
+            'page_id'   => $current_page['id'],
+            'type'      => $current_page['type']
+        );
+        $user_online = apply_filters('stats4wp_user_online_information', $user_online);
+
+        # Insert the user in to the database.
+        $insert = $wpdb->insert(
+            DB::table('useronline'),
+            $user_online
+        );
+        if (!$insert) {
+            if (!empty($wpdb->last_error) && WP_DEBUG) {
+                error_log($wpdb->last_error);
+            }
+        }
+
+        # Get User Online ID
+        $user_online_id = $wpdb->insert_id;
+
+    }
+
+    /**
+     * Update User Online
+     */
+    public static function update_user_online()
+    {
+        global $wpdb;
+
+        // Get Current Page
+        $current_page = Page::get_page_type();
+
+        // Get Current User ID
+        $user_id = User::get_user_id();
+
+        //Prepare User online Update data
+        $user_online = array(
+            'timestamp' => TimeZone::getCurrentTimestamp(),
+            'date'      => TimeZone::getCurrentDate(),
+            'referred'  => Referred::get(),
+            'user_id'   => $user_id,
+            'page_id'   => $current_page['id'],
+            'type'      => $current_page['type']
+        );
+        $user_online = apply_filters('stats4wp_update_user_online_data', $user_online);
+
+        # Update the database with the new information.
+        $wpdb->update(DB::table('useronline'), $user_online, array('ip' => IP::StoreIP()));
+
+    }
+}

@@ -1,0 +1,388 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: stats4wp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-10-21 12:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.5.4; wp-5.8.1\n"
+"X-Domain: stats4wp"
+
+#: assets/defaults.php:42
+msgid "(default 10)."
+msgstr ""
+
+#: templates/settings.php:18 templates/settings.php:59
+msgid "About"
+msgstr ""
+
+#: assets/defaults.php:28
+msgid "Add search words"
+msgstr ""
+
+#: templates-part/visitor/agent.php:22
+msgid "Agents per days"
+msgstr ""
+
+#: templates-part/visitor/agent.php:30
+msgid "Agents per months"
+msgstr ""
+
+#: templates-part/visitor/agent.php:26
+msgid "Agents per weeks"
+msgstr ""
+
+#: templates-part/pages/dashboard.php:29
+#: templates-part/visitor/dashboard.php:29
+#: templates-part/visitor/dashboard.php:45
+#: templates-part/visitor/dashboard.php:61
+#: templates-part/visitor/dashboard.php:79
+#: templates-part/visitor/dashboard.php:95
+msgid "All"
+msgstr ""
+
+#: templates-part/visitor/os.php:131
+msgid "Android"
+msgstr ""
+
+#: assets/defaults.php:8
+msgid "Anonymize IP."
+msgstr ""
+
+#: inc/Ui/DashboardWidgetAdmin.php:50
+msgid "Anonymous"
+msgstr ""
+
+#: templates-part/visitor/dashboard.php:101
+msgid "Bot"
+msgstr ""
+
+#: inc/Api/UserAgent.php:36
+msgctxt "Browser"
+msgid "Unknown"
+msgstr ""
+
+#: templates-part/pages/top.php:30
+msgid "Call"
+msgstr ""
+
+#: assets/defaults.php:13
+msgid "chose $_SERVER."
+msgstr ""
+
+#: templates-part/visitor/agent.php:92
+msgid "Chrome"
+msgstr ""
+
+#: templates-part/visitor/os.php:124
+msgid "Chrome OS"
+msgstr ""
+
+#: templates-part/visitor/location.php:41
+msgid "Country"
+msgstr ""
+
+#: templates/settings.php:61
+msgid "Credit"
+msgstr ""
+
+#: inc/Api/AdminGraph.php:61
+msgid "Day interval"
+msgstr ""
+
+#: assets/defaults.php:37
+msgid "Delete user in table useronile after xxx seconds (default 120)."
+msgstr ""
+
+#: templates-part/visitor/device.php:60
+msgid "Desktop"
+msgstr ""
+
+#: templates-part/visitor/dashboard.php:49 templates-part/visitor/bare.php:4
+msgid "Device"
+msgstr ""
+
+#: inc/Api/UserAgent.php:42 inc/Api/UserAgent.php:43 inc/Api/UserAgent.php:44
+msgctxt "Device"
+msgid "Unknown"
+msgstr ""
+
+#: templates-part/visitor/device.php:22
+msgid "Device per days"
+msgstr ""
+
+#: templates-part/visitor/device.php:30
+msgid "Device per months"
+msgstr ""
+
+#: templates-part/visitor/device.php:26
+msgid "Device per weeks"
+msgstr ""
+
+#: templates-part/visitor/agent.php:85
+msgid "Edge"
+msgstr ""
+
+#: templates-part/visitor/agent.php:71
+msgid "Firefox"
+msgstr ""
+
+#. Author of the plugin
+msgid "Franck VANHOUCKE"
+msgstr ""
+
+#: inc/Api/AdminGraph.php:49 inc/Api/AdminGraph.php:51
+msgid "From: "
+msgstr ""
+
+#: assets/defaults.php:18
+msgid "HTTP_CLIENT_IP"
+msgstr ""
+
+#: assets/defaults.php:22
+msgid "HTTP_FORWARDED"
+msgstr ""
+
+#: assets/defaults.php:21
+msgid "HTTP_FORWARDED_FOR"
+msgstr ""
+
+#: assets/defaults.php:24
+msgid "HTTP_X_CLUSTER_CLIENT_IP"
+msgstr ""
+
+#: assets/defaults.php:20
+msgid "HTTP_X_FORWARDED"
+msgstr ""
+
+#: assets/defaults.php:19
+msgid "HTTP_X_FORWARDED_FOR"
+msgstr ""
+
+#: assets/defaults.php:23
+msgid "HTTP_X_REAL_IP"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://ginkgos.net/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://ginkgos.net/plugin/stats4wp/"
+msgstr ""
+
+#: templates-part/visitor/agent.php:64
+msgid "Internet Explorer"
+msgstr ""
+
+#: templates-part/visitor/os.php:117
+msgid "iOS"
+msgstr ""
+
+#: assets/defaults.php:12
+msgid "IP methode"
+msgstr ""
+
+#: templates-part/visitor/dashboard.php:83 templates-part/visitor/bare.php:6
+msgid "Language"
+msgstr ""
+
+#: templates-part/visitor/lang.php:51
+msgid "Language TOP 10"
+msgstr ""
+
+#: templates-part/visitor/lang.php:41
+msgid "Languages"
+msgstr ""
+
+#: templates-part/visitor/os.php:110
+msgid "Linux"
+msgstr ""
+
+#: templates-part/visitor/dashboard.php:67 templates-part/visitor/bare.php:5
+msgid "Location"
+msgstr ""
+
+#: templates-part/visitor/location.php:51
+msgid "Location TOP 10"
+msgstr ""
+
+#: templates/settings.php:16
+msgid "Manage Settings"
+msgstr ""
+
+#: assets/defaults.php:36
+msgid "Max time user Online check"
+msgstr ""
+
+#: templates-part/visitor/device.php:67
+msgid "Mobile"
+msgstr ""
+
+#: templates-part/visitor/dashboard.php:17 templates-part/visitor/bare.php:2
+msgid "Navigator"
+msgstr ""
+
+#: templates-part/dashboard/header.php:9
+msgid "No data found to visitor."
+msgstr ""
+
+#: inc/Ui/DashboardWidgetAdmin.php:39
+msgid "No data found."
+msgstr ""
+
+#: inc/Ui/DashboardWidgetAdmin.php:59
+msgid "No Users."
+msgstr ""
+
+#: assets/defaults.php:41
+msgid "Number of result in top pages"
+msgstr ""
+
+#: templates-part/visitor/nb-users.php:51
+msgid "number of user"
+msgstr ""
+
+#: templates-part/visitor/nb-users.php:25
+msgid "Number of user per days"
+msgstr ""
+
+#: templates-part/visitor/nb-users.php:33
+msgid "Number of user per months"
+msgstr ""
+
+#: templates-part/visitor/nb-users.php:29
+msgid "Number of user per weeks"
+msgstr ""
+
+#: templates-part/visitor/bare.php:7
+msgid "Number of users"
+msgstr ""
+
+#: templates-part/visitor/dashboard.php:33 templates-part/visitor/bare.php:3
+msgid "Operating system"
+msgstr ""
+
+#: templates-part/visitor/os.php:43
+msgid "OS per days"
+msgstr ""
+
+#: templates-part/visitor/os.php:51
+msgid "OS per months"
+msgstr ""
+
+#: templates-part/visitor/os.php:47
+msgid "OS per weeks"
+msgstr ""
+
+#: templates-part/visitor/os.php:103
+msgid "osx"
+msgstr ""
+
+#: templates-part/visitor/os.php:138 templates-part/visitor/agent.php:99
+#: templates-part/visitor/device.php:81
+msgid "Other"
+msgstr ""
+
+#: inc/Api/UserAgent.php:38 inc/Api/UserAgent.php:40
+msgctxt "Platform"
+msgid "Unknown"
+msgstr ""
+
+#: inc/Api/AdminGraph.php:80
+msgid "Refresh"
+msgstr ""
+
+#: assets/defaults.php:17
+msgid "REMOTE_ADDR"
+msgstr ""
+
+#: templates-part/visitor/agent.php:78
+msgid "Safari"
+msgstr ""
+
+#: inc/Ui/DashBoard.php:82
+msgid "Settings Manager"
+msgstr ""
+
+#: templates-part/dashboard/header.php:2
+msgid "Statistics"
+msgstr ""
+
+#: inc/Ui/DashboardWidgetAdmin.php:23
+msgid "Statistics For Wordpress"
+msgstr ""
+
+#. Description of the plugin
+msgid "Statistics For WorPress."
+msgstr ""
+
+#. Name of the plugin
+msgid "stats4wp"
+msgstr ""
+
+#: assets/defaults.php:32
+msgid "Store User Agent."
+msgstr ""
+
+#: inc/Ui/DashboardWidgetAdmin.php:32
+msgid "Tables:"
+msgstr ""
+
+#: templates-part/visitor/device.php:74
+msgid "Tablet"
+msgstr ""
+
+#: inc/Api/AdminGraph.php:55 inc/Api/AdminGraph.php:57
+msgid "To: "
+msgstr ""
+
+#: templates-part/pages/bare.php:2
+msgid "Top Pages"
+msgstr ""
+
+#: templates-part/pages/dashboard.php:17 templates-part/pages/type.php:41
+#: templates-part/pages/top.php:28 templates-part/pages/bare.php:3
+msgid "Type"
+msgstr ""
+
+#: templates-part/pages/type.php:51
+msgid "Type TOP 10"
+msgstr ""
+
+#: templates-part/visitor/os.php:96
+msgid "Ubuntu"
+msgstr ""
+
+#: templates/settings.php:17 templates/settings.php:35
+msgid "Updates"
+msgstr ""
+
+#: templates-part/pages/top.php:29
+msgid "URI"
+msgstr ""
+
+#: inc/Ui/DashboardWidgetAdmin.php:44
+msgid "User connected:"
+msgstr ""
+
+#: templates/settings.php:68
+msgid "Version"
+msgstr ""
+
+#: inc/Api/UserAgent.php:37 inc/Api/UserAgent.php:39 inc/Api/UserAgent.php:41
+msgctxt "Version"
+msgid "Unknown"
+msgstr ""
+
+#: templates-part/visitor/os.php:89
+msgid "Windows"
+msgstr ""
