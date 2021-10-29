@@ -1,4 +1,11 @@
-# ct4gg
+<img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/banner772x250.png" width="400">
+
+# stats4wp
+
+[![Latest Stable Version](http://poser.pugx.org/thanatos-vf-2000/stats4wp/v)](https://packagist.org/packages/thanatos-vf-2000/stats4wp)
+[![License](http://poser.pugx.org/thanatos-vf-2000/stats4wp/license)](https://packagist.org/packages/thanatos-vf-2000/stats4wp)
+[![PHP Version Require](http://poser.pugx.org/thanatos-vf-2000/stats4wp/require/php)](https://packagist.org/packages/thanatos-vf-2000/stats4wp)
+
 Contributors: vanhoucke
 Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, chart, browser, today, yesterday, week, month, year, total, post, page, sidebar, google, live visit, search word, agent, google analytics, webmasters, google webmasters, geoip, location
 Requires at least: 5.7
