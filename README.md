@@ -2,7 +2,7 @@
 
 # stats4wp
 
-[![Latest Stable Version](http://poser.pugx.org/thanatos-vf-2000/stats4wp/v)](https://packagist.org/packages/thanatos-vf-2000/stats4wp)
+[![GitHub version](https://badge.fury.io/gh/thanatos-vf-2000%2Fstats4wp.svg)](https://badge.fury.io/gh/thanatos-vf-2000%2Fstats4wp)
 [![License](http://poser.pugx.org/thanatos-vf-2000/stats4wp/license)](https://packagist.org/packages/thanatos-vf-2000/stats4wp)
 [![PHP Version Require](http://poser.pugx.org/thanatos-vf-2000/stats4wp/require/php)](https://packagist.org/packages/thanatos-vf-2000/stats4wp)
 
