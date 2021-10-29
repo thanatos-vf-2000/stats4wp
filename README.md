@@ -50,6 +50,10 @@ his plugin doesn't require technical knowledge or to be a web developer. The act
 4. Exemple Operating System
 5. Options
 
+
+<img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-1.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-2.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-3.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-4.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-5.png" width="30%"></img> 
+
+
 ## Frequently Asked Questions
 
 ### Installation Instructions
