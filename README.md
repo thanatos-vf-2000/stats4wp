@@ -91,6 +91,18 @@ Source: https://opensource.org/licenses/MIT
 
 ## Changelog
 
+### 1.1.0 (2021-11-13)
+
+* Correction Navigator chart
+* Correction settings tabs
+* Color active menu
+* Add chart Bots, Visitors by hours, Hits and referred
+* Add delete data in settings menu
+* New Dashboard
+* Change of the colors of the graphics
+* Update of translations
+* Update GeoIP Database 20211109
+
 ### 1.0.0 (2021-10-23)
 * Initial version
 

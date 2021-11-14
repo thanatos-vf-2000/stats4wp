@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @Version 1.1.0
  */
 
 namespace STATS4WP;
@@ -19,8 +19,8 @@ final class Init
 		return [
 			Core\SettingsLinks::class,
 			Core\Enqueue::class,
-			Stats\Visitor::class,
 			Stats\Page::class,
+			Stats\Visitor::class,
 			Stats\UserOnline::class,
 			Ui\DashBoard::class,
 			Ui\Visitors::class,

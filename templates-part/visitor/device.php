@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package  STATS4WPPlugin
+ * @Version 1.1.0
+ */
+
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
@@ -59,28 +64,28 @@ if (DB::ExistRow('visitor')) {
                         datasets: [{
                                 label: "'. esc_html(__('Desktop', 'stats4wp')) .'",
                                 backgroundColor: [
-                                "#05419ad6"
+                                "#36a2eb"
                                 ],
                                 data:'. json_encode($desktop). ',
                             },
                             {
                                 label: "'. esc_html(__('Mobile', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#9a0505d6"
+                                   "#f67019"
                                 ],
                                 data:'. json_encode($mobile). ',
                             },
                             {
                                 label: "'. esc_html(__('Tablet', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#9a8805d6"
+                                   "#f53794"
                                 ],
                                 data:'. json_encode($tablet). ',
                             },
                             {
                                 label: "'. esc_html(__('Other', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#d4ec0cd6"
+                                   "#537bc4"
                                 ],
                                 data:'. json_encode($other). ',
                             }

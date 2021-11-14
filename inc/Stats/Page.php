@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @Version 1.1.0
  */
 namespace STATS4WP\Stats;
 
@@ -106,6 +106,11 @@ class Page
         // Add WordPress Login Page
         if (CoreHelper::is_login_page()) {
             $current_page['type'] = "loginpage";
+        }
+
+        // Add admin URL
+        if (strpos(self::get_page_uri(), parse_url(admin_url(), PHP_URL_PATH)) !== false ){
+            $current_page['type'] = "admin";
         }
 
         if ($current_page['type'] == 'unknown') {

@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package  STATS4WPPlugin
+ * @Version 1.1.0
+ */
+
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
@@ -88,56 +93,56 @@ if (DB::ExistRow('visitor')) {
                         datasets: [{
                                 label: "'. esc_html(__('Windows', 'stats4wp')) .'",
                                 backgroundColor: [
-                                "#05419ad6"
+                                "#36a2eb"
                                 ],
                                 data:'. json_encode($windows). ',
                             },
                             {
                                 label: "'. esc_html(__('Ubuntu', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#9a0505d6"
+                                   "#f67019"
                                 ],
                                 data:'. json_encode($ubuntu). ',
                             },
                             {
                                 label: "'. esc_html(__('osx', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#9a8805d6"
+                                   "#f53794"
                                 ],
                                 data:'. json_encode($osx). ',
                             },
                             {
                                 label: "'. esc_html(__('Linux', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#059a1ed6"
+                                   "#537bc4"
                                 ],
                                 data:'. json_encode($linux). ',
                             },
                             {
                                 label: "'. esc_html(__('iOS', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#9a0588d6"
+                                   "#acc236"
                                 ],
                                 data:'. json_encode($ios). ',
                             },
                             {
                                 label: "'. esc_html(__('Chrome OS', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#05864a"
+                                   "#166a8f"
                                 ],
                                 data:'. json_encode($chromeos). ',
                             },
                             {
                                 label: "'. esc_html(__('Android', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#052186"
+                                   "#00a950"
                                 ],
                                 data:'. json_encode($android). ',
                             },
                             {
                                 label: "'. esc_html(__('Other', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#d4ec0cd6"
+                                   "#58595b"
                                 ],
                                 data:'. json_encode($other). ',
                             }

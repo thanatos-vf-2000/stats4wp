@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: stats4wp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-17 16:15+0000\n"
-"PO-Revision-Date: 2021-10-21 12:37+0000\n"
+"PO-Revision-Date: 2021-11-13 23:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -12,20 +12,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.5.4; wp-5.8.1\n"
+"X-Loco-Version: 2.5.5; wp-5.8.2\n"
 "X-Domain: stats4wp"
 
 #: assets/defaults.php:42
 msgid "(default 10)."
 msgstr "(par défaut 10)."
 
-#: templates/settings.php:18 templates/settings.php:59
+#: templates-part/settings/options.php:15
+#: templates-part/settings/options.php:58
 msgid "About"
 msgstr "À propos de"
 
 #: assets/defaults.php:28
 msgid "Add search words"
 msgstr "Ajouter des mots de recherche"
+
+#: templates-part/dashboard/summary.php:173
+msgid "Adjustment"
+msgstr "Réglage"
 
 #: templates-part/visitor/agent.php:22
 msgid "Agents per days"
@@ -48,6 +53,15 @@ msgstr "Agents par semaine"
 msgid "All"
 msgstr "Tous"
 
+#: templates-part/visitor/bots.php:15 templates-part/visitor/bots.php:26
+msgid "All Bots"
+msgstr "Tous les bots"
+
+#: templates-part/visitor/referred.php:13
+#: templates-part/visitor/referred.php:27
+msgid "All Referred"
+msgstr "Tous les référents"
+
 #: templates-part/visitor/os.php:131
 msgid "Android"
 msgstr "Android"
@@ -60,14 +74,35 @@ msgstr "Anonymiser l'IP."
 msgid "Anonymous"
 msgstr "Anonyme"
 
+#: templates-part/settings/tables.php:64
+msgid "Before: "
+msgstr "Avant : "
+
 #: templates-part/visitor/dashboard.php:101
 msgid "Bot"
 msgstr "Moteur de recherche"
+
+#: templates-part/visitor/bots.php:53 templates-part/visitor/bare.php:11
+msgid "Bots"
+msgstr "Bots"
+
+#: templates-part/dashboard/recent-visitors.php:20
+#: templates-part/dashboard/top-10-visitors-today.php:23
+msgid "Browser"
+msgstr "Navigateur"
 
 #: inc/Api/UserAgent.php:36
 msgctxt "Browser"
 msgid "Unknown"
 msgstr "Inconnu"
+
+#: templates-part/dashboard/top-10-browsers.php:47
+msgid "Browser TOP 10"
+msgstr "TOP 10 des navigateurs"
+
+#: templates-part/dashboard/top-10-browsers.php:37
+msgid "Browsers"
+msgstr "Navigateurs"
 
 #: templates-part/pages/top.php:30
 msgid "Call"
@@ -89,11 +124,31 @@ msgstr "Chrome OS"
 msgid "Country"
 msgstr "Pays"
 
-#: templates/settings.php:61
+#: templates-part/settings/options.php:60
 msgid "Credit"
 msgstr "Crédit"
 
-#: inc/Api/AdminGraph.php:61
+#: templates-part/dashboard/summary.php:172
+msgid "Current time and date"
+msgstr "Heure et date actuelles"
+
+#: templates-part/dashboard/summary.php:154
+msgid "Daily Total"
+msgstr "Total quotidien"
+
+#: inc/Api/AdminGraph.php:210
+msgid "Data last"
+msgstr "Dernières données"
+
+#: templates-part/dashboard/summary.php:178
+msgid "Dated"
+msgstr "Daté"
+
+#: templates-part/dashboard/recent-visitors.php:21
+msgid "Day"
+msgstr "Jour"
+
+#: inc/Api/AdminGraph.php:81
 msgid "Day interval"
 msgstr "Intervalle entre les jours"
 
@@ -128,6 +183,16 @@ msgstr "Appareil par mois"
 msgid "Device per weeks"
 msgstr "Appareil par semaines"
 
+#: templates-part/dashboard/top-10-devices.php:12
+#: templates-part/dashboard/top-10-devices.php:37
+#: templates-part/dashboard/top-10-devices.php:47
+msgid "Devices"
+msgstr "Appareils"
+
+#: inc/Api/AdminGraph.php:226
+msgid "Display by"
+msgstr "Afficher par"
+
 #: templates-part/visitor/agent.php:85
 msgid "Edge"
 msgstr "Edge"
@@ -140,9 +205,19 @@ msgstr "Firefox"
 msgid "Franck VANHOUCKE"
 msgstr "Franck VANHOUCKE"
 
-#: inc/Api/AdminGraph.php:49 inc/Api/AdminGraph.php:51
+#: inc/Api/AdminGraph.php:69
+msgid "From"
+msgstr "De"
+
+#: inc/Api/AdminGraph.php:71
 msgid "From: "
 msgstr "De : "
+
+#: templates-part/dashboard/nb-users-hits.php:72
+#: templates-part/visitor/bare.php:8 templates-part/visitor/hits.php:51
+#: templates-part/visitor/by-hours.php:38
+msgid "Hits"
+msgstr "Hits"
 
 #: assets/defaults.php:18
 msgid "HTTP_CLIENT_IP"
@@ -180,6 +255,11 @@ msgstr "https://ginkgos.net/"
 msgid "https://ginkgos.net/plugin/stats4wp/"
 msgstr "https://ginkgos.net/plugin/stats4wp/"
 
+#: templates-part/dashboard/top-10-visitors-today.php:20
+#: templates-part/dashboard/top-10-pages.php:19
+msgid "ID"
+msgstr "ID"
+
 #: templates-part/visitor/agent.php:64
 msgid "Internet Explorer"
 msgstr "Internet Explorer"
@@ -187,6 +267,11 @@ msgstr "Internet Explorer"
 #: templates-part/visitor/os.php:117
 msgid "iOS"
 msgstr "iOS"
+
+#: templates-part/dashboard/recent-visitors.php:22
+#: templates-part/dashboard/top-10-visitors-today.php:22
+msgid "IP"
+msgstr "IP"
 
 #: assets/defaults.php:12
 msgid "IP methode"
@@ -204,6 +289,22 @@ msgstr "TOP 10 des langues"
 msgid "Languages"
 msgstr "Langues"
 
+#: templates-part/dashboard/summary.php:51
+msgid "Last 30 Days (Month)"
+msgstr "30 derniers jours (Mois)"
+
+#: templates-part/dashboard/summary.php:56
+msgid "Last 365 Days (Year)"
+msgstr "365 derniers jours (Année)"
+
+#: templates-part/dashboard/summary.php:46
+msgid "Last 7 Days (Week)"
+msgstr "7 derniers jours (Semaine)"
+
+#: templates-part/dashboard/top-10-pages.php:21
+msgid "Link"
+msgstr "Lien"
+
 #: templates-part/visitor/os.php:110
 msgid "Linux"
 msgstr "Linux"
@@ -216,13 +317,17 @@ msgstr "Localisation"
 msgid "Location TOP 10"
 msgstr "TOP 10 Localisation"
 
-#: templates/settings.php:16
+#: templates-part/settings/options.php:13
 msgid "Manage Settings"
 msgstr "Gérer les paramètres"
 
 #: assets/defaults.php:36
 msgid "Max time user Online check"
 msgstr "Durée maximale du contrôle en ligne de l'utilisateur"
+
+#: templates-part/settings/tables.php:41
+msgid "Min day"
+msgstr "Jour min."
 
 #: templates-part/visitor/device.php:67
 msgid "Mobile"
@@ -232,7 +337,7 @@ msgstr "Mobile"
 msgid "Navigator"
 msgstr "Navigateur"
 
-#: templates-part/dashboard/header.php:9
+#: templates-part/dashboard/header.php:22
 msgid "No data found to visitor."
 msgstr "Aucune donnée trouvée pour les visiteurs."
 
@@ -244,23 +349,35 @@ msgstr "Aucune donnée trouvée."
 msgid "No Users."
 msgstr "Aucun utilisateur."
 
+#: templates-part/dashboard/recent-visitors.php:34
+#: templates-part/dashboard/top-10-visitors-today.php:36
+#: templates-part/dashboard/users-online.php:28
+#: templates-part/dashboard/users-online.php:35
+#: templates-part/dashboard/users-online.php:36
+msgid "None"
+msgstr "Aucun"
+
 #: assets/defaults.php:41
 msgid "Number of result in top pages"
 msgstr "Nombre de résultats dans les premières pages"
+
+#: templates-part/settings/tables.php:40
+msgid "Number of rows"
+msgstr "Nombre d'enregistrement"
 
 #: templates-part/visitor/nb-users.php:51
 msgid "number of user"
 msgstr "nombre d'utilisateurs"
 
-#: templates-part/visitor/nb-users.php:25
+#: templates-part/visitor/hits.php:25 templates-part/visitor/nb-users.php:25
 msgid "Number of user per days"
 msgstr "Nombre d'utilisateurs par jour"
 
-#: templates-part/visitor/nb-users.php:33
+#: templates-part/visitor/hits.php:33 templates-part/visitor/nb-users.php:33
 msgid "Number of user per months"
 msgstr "Nombre d'utilisateurs par mois"
 
-#: templates-part/visitor/nb-users.php:29
+#: templates-part/visitor/hits.php:29 templates-part/visitor/nb-users.php:29
 msgid "Number of user per weeks"
 msgstr "Nombre d'utilisateurs par semaine"
 
@@ -268,9 +385,41 @@ msgstr "Nombre d'utilisateurs par semaine"
 msgid "Number of users"
 msgstr "Nombre d'utilisateurs"
 
+#: templates-part/dashboard/nb-users-hits.php:13
+msgid "Number of Users and Hits"
+msgstr "Nombre d'utilisateurs et de visites"
+
+#: templates-part/dashboard/nb-users-hits.php:25
+msgid "Number of users and Hits per days"
+msgstr "Nombre d'utilisateurs et Hits par jour"
+
+#: templates-part/dashboard/nb-users-hits.php:33
+msgid "Number of users and Hits per months"
+msgstr "Nombre d'utilisateurs et Hits par mois"
+
+#: templates-part/dashboard/nb-users-hits.php:37
+msgid "Number of users and Hits per quarter"
+msgstr "Nombre d'utilisateurs et Hits par trimestre"
+
+#: templates-part/dashboard/nb-users-hits.php:29
+msgid "Number of users and Hits per weeks"
+msgstr "Nombre d'utilisateurs et Hits par semaine"
+
+#: templates-part/dashboard/nb-users-hits.php:41
+msgid "Number of users and Hits per Years"
+msgstr "Nombre d'utilisateurs et de visites par an"
+
+#: templates-part/dashboard/summary.php:21
+msgid "Online users"
+msgstr "Utilisateurs en ligne"
+
 #: templates-part/visitor/dashboard.php:33 templates-part/visitor/bare.php:3
 msgid "Operating system"
 msgstr "Système d'exploitation"
+
+#: templates-part/dashboard/top-10-visitors-today.php:24
+msgid "OS"
+msgstr "OS"
 
 #: templates-part/visitor/os.php:43
 msgid "OS per days"
@@ -293,12 +442,48 @@ msgstr "osx"
 msgid "Other"
 msgstr "Autre"
 
+#: templates-part/settings/tables.php:51
+msgid "Pages"
+msgstr "Pages"
+
 #: inc/Api/UserAgent.php:38 inc/Api/UserAgent.php:40
 msgctxt "Platform"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: inc/Api/AdminGraph.php:80
+#: templates-part/dashboard/top-platforms.php:36
+msgid "Platforms"
+msgstr "Plateformes"
+
+#: templates-part/dashboard/top-platforms.php:46
+msgid "Platforms TOP 10"
+msgstr "TOP 10 des Plateformes"
+
+#: templates-part/settings/tables.php:21 templates-part/settings/tables.php:67
+msgid "Purge tables"
+msgstr "Purger les tables"
+
+#: templates-part/settings/tables.php:24
+msgid "Purged tables with succes."
+msgstr "tables purgées avec succès."
+
+#: templates-part/dashboard/recent-visitors.php:14
+msgid "Recent visitors"
+msgstr "Visiteurs récents"
+
+#: templates-part/visitor/referred.php:57 templates-part/visitor/bare.php:9
+msgid "Referred"
+msgstr "référent"
+
+#: templates-part/visitor/referred.php:16
+msgid "Referred TOP 10"
+msgstr "TOP 10 Référé"
+
+#: templates-part/dashboard/recent-visitors.php:23
+msgid "Referring"
+msgstr "Référence"
+
+#: inc/Api/AdminGraph.php:100 inc/Api/AdminGraph.php:242
 msgid "Refresh"
 msgstr "Rafraîchir"
 
@@ -310,11 +495,15 @@ msgstr "REMOTE_ADDR"
 msgid "Safari"
 msgstr "Safari"
 
+#: templates-part/dashboard/summary.php:84
+msgid "Search engine redirects"
+msgstr "Redirections des moteurs de recherche"
+
 #: inc/Ui/DashBoard.php:82
 msgid "Settings Manager"
 msgstr "Gestionnaire des paramètres"
 
-#: templates-part/dashboard/header.php:2
+#: templates-part/dashboard/header.php:14
 msgid "Statistics"
 msgstr "Statistiques"
 
@@ -334,6 +523,14 @@ msgstr "stats4wp"
 msgid "Store User Agent."
 msgstr "Sauvegarder le User Agent"
 
+#: templates-part/dashboard/summary.php:15
+msgid "Summary"
+msgstr "Résumé"
+
+#: templates-part/settings/tables.php:39
+msgid "Tables"
+msgstr "Tableaux"
+
 #: inc/Ui/DashboardWidgetAdmin.php:32
 msgid "Tables:"
 msgstr "Les tables :"
@@ -342,14 +539,61 @@ msgstr "Les tables :"
 msgid "Tablet"
 msgstr "Tablette"
 
-#: inc/Api/AdminGraph.php:55 inc/Api/AdminGraph.php:57
+#: templates-part/dashboard/summary.php:181
+msgid "Time"
+msgstr "Heure"
+
+#: templates-part/dashboard/top-10-pages.php:20
+msgid "Title"
+msgstr "Titre"
+
+#: inc/Api/AdminGraph.php:75
+msgid "To"
+msgstr "A"
+
+#: inc/Api/AdminGraph.php:77
 msgid "To: "
 msgstr "A : "
+
+#: templates-part/dashboard/summary.php:37
+#: templates-part/dashboard/summary.php:88
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: templates-part/visitor/bots.php:18 templates-part/visitor/bots.php:27
+msgid "TOP 10 Bots"
+msgstr "TOP 10 Bots"
+
+#: templates-part/dashboard/top-10-browsers.php:12
+msgid "Top 10 Browsers"
+msgstr "Les 10 Navigateurs"
+
+#: templates-part/dashboard/top-10-pages.php:13
+msgid "Top 10 Pages today"
+msgstr "Top 10 des pages aujourd'hui"
+
+#: templates-part/visitor/referred.php:28
+msgid "TOP 10 Referred"
+msgstr "TOP 10 référencés"
+
+#: templates-part/dashboard/top-10-visitors-today.php:14
+msgid "Top 10 visitors today"
+msgstr "TOP 10 visiteurs d'aujourd'hui"
 
 #: templates-part/pages/bare.php:2
 msgid "Top Pages"
 msgstr "Top Pages"
 
+#: templates-part/dashboard/top-platforms.php:12
+msgid "Top Platforms"
+msgstr "Top plates-formes"
+
+#: templates-part/dashboard/summary.php:61
+#: templates-part/dashboard/summary.php:163
+msgid "Total"
+msgstr "Total"
+
+#: templates-part/dashboard/top-10-visitors-today.php:25
 #: templates-part/pages/dashboard.php:17 templates-part/pages/type.php:41
 #: templates-part/pages/top.php:28 templates-part/pages/bare.php:3
 msgid "Type"
@@ -363,7 +607,12 @@ msgstr "Type TOP 10"
 msgid "Ubuntu"
 msgstr "Ubuntu"
 
-#: templates/settings.php:17 templates/settings.php:35
+#: templates-part/dashboard/top-10-devices.php:28
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: templates-part/settings/options.php:14
+#: templates-part/settings/options.php:34
 msgid "Updates"
 msgstr "Mises à jour"
 
@@ -375,7 +624,15 @@ msgstr "URI"
 msgid "User connected:"
 msgstr "Utilisateurs connectés :"
 
-#: templates/settings.php:68
+#: templates-part/dashboard/nb-users-hits.php:61
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: templates-part/dashboard/users-online.php:14
+msgid "Users Online"
+msgstr "Utilisateurs en ligne"
+
+#: templates-part/settings/options.php:67
 msgid "Version"
 msgstr "Version"
 
@@ -384,6 +641,36 @@ msgctxt "Version"
 msgid "Unknown"
 msgstr "Inconnu"
 
+#: templates-part/dashboard/top-10-visitors-today.php:21
+msgid "Views"
+msgstr "Vues"
+
+#: templates-part/settings/tables.php:46
+msgid "Visitor"
+msgstr "Visiteur"
+
+#: templates-part/dashboard/summary.php:28
+msgid "Visitors"
+msgstr "Visiteurs"
+
+#: templates-part/visitor/by-hours.php:54
+msgid "Visitors by hour"
+msgstr "Visiteurs par heure"
+
+#: templates-part/visitor/bare.php:10
+msgid "Visitors by hours"
+msgstr "Visiteurs par heures"
+
+#: templates-part/dashboard/summary.php:29
+#: templates-part/dashboard/top-10-pages.php:22
+msgid "Visits"
+msgstr "Visites"
+
 #: templates-part/visitor/os.php:89
 msgid "Windows"
 msgstr "Windows"
+
+#: templates-part/dashboard/summary.php:41
+#: templates-part/dashboard/summary.php:89
+msgid "Yesterday"
+msgstr "Hier"

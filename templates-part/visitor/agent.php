@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package  STATS4WPPlugin
+ * @Version 1.1.0
+ */
+
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
@@ -18,19 +23,19 @@ if (DB::ExistRow('visitor')) {
                 <?php
                 switch($param['interval']) {
                     case 'days':
-                        $select = 'last_counter as d';
+                        $select = 'last_counter as z';
                         $char_title = __('Agents per days', 'stats4wp');
                         break;
                     case 'weeks':
-                        $select = 'WEEK(last_counter) as d';
+                        $select = 'WEEK(last_counter) as z';
                         $char_title = __('Agents per weeks', 'stats4wp');
                         break;
                     case 'month':
-                        $select = 'MONTH(last_counter) as d';
+                        $select = 'MONTH(last_counter) as z';
                         $char_title = __('Agents per months', 'stats4wp');
                         break;
                 }
-                $agents = $wpdb->get_results("SELECT ". $select .',
+                $agents = $wpdb->get_results('SELECT z as d,
                 SUM(CASE WHEN agent =  "Internet Explorer" THEN nb END) ie,
                 SUM(CASE WHEN agent =  "Firefox " THEN nb END) firefox ,
                 SUM(CASE WHEN agent =  "Safari " THEN nb END) safari ,
@@ -38,13 +43,13 @@ if (DB::ExistRow('visitor')) {
                 SUM(CASE WHEN agent =  "Chrome" THEN nb END) chrome,
                 SUM(CASE WHEN agent NOT IN  ("Internet Explorer","Firefox","Safari","Edge","Chrome") THEN nb END) other
                 FROM (
-                select last_counter, agent, COUNT(*) as nb
+                select '. $select .', agent, COUNT(*) as nb
                   from '. DB::table('visitor') ." 
                   WHERE device !='bot' 
                   AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
                   GROUP BY  1, 2
                 ) all_data
-                group by last_counter");
+                group by 1");
                 foreach ( $agents as $agent ) {
                     $day[]  = $agent->d ;
                     $ie[] = ($agent->ie == null) ? 0 : $agent->ie;
@@ -63,42 +68,42 @@ if (DB::ExistRow('visitor')) {
                         datasets: [{
                                 label: "'. esc_html(__('Internet Explorer', 'stats4wp')) .'",
                                 backgroundColor: [
-                                "#05419ad6"
+                                "#36a2eb"
                                 ],
                                 data:'. json_encode($ie). ',
                             },
                             {
                                 label: "'. esc_html(__('Firefox', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#9a0505d6"
+                                   "#f67019"
                                 ],
                                 data:'. json_encode($firefox). ',
                             },
                             {
                                 label: "'. esc_html(__('Safari', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#9a8805d6"
+                                   "#f53794"
                                 ],
                                 data:'. json_encode($safari). ',
                             },
                             {
                                 label: "'. esc_html(__('Edge', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#059a1ed6"
+                                   "#537bc4"
                                 ],
                                 data:'. json_encode($edge). ',
                             },
                             {
                                 label: "'. esc_html(__('Chrome', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#9a0588d6"
+                                   "#acc236"
                                 ],
                                 data:'. json_encode($chrome). ',
                             },
                             {
                                 label: "'. esc_html(__('Other', 'stats4wp')) .'",
                                 backgroundColor: [
-                                   "#d4ec0cd6"
+                                   "#166a8f"
                                 ],
                                 data:'. json_encode($other). ',
                             }

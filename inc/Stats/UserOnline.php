@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @Version 1.1.0
  */
 namespace STATS4WP\Stats;
 
@@ -116,7 +116,8 @@ class UserOnline
         global $wpdb;
 
         // Get Current Page
-        $current_page = Page::get_page_type();
+        //$current_page = Page::get_page_type();
+        $current_page = self::get_page_info();
 
         // Get User Agent
         $user_agent = UserAgent::getUserAgent();
@@ -141,7 +142,8 @@ class UserOnline
         # Insert the user in to the database.
         $insert = $wpdb->insert(
             DB::table('useronline'),
-            $user_online
+            $user_online,
+            array('%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s')
         );
         if (!$insert) {
             if (!empty($wpdb->last_error) && WP_DEBUG) {
@@ -162,7 +164,8 @@ class UserOnline
         global $wpdb;
 
         // Get Current Page
-        $current_page = Page::get_page_type();
+        //$current_page = Page::get_page_type();
+        $current_page = self::get_page_info();
 
         // Get Current User ID
         $user_id = User::get_user_id();
@@ -179,7 +182,28 @@ class UserOnline
         $user_online = apply_filters('stats4wp_update_user_online_data', $user_online);
 
         # Update the database with the new information.
-        $wpdb->update(DB::table('useronline'), $user_online, array('ip' => IP::StoreIP()));
+        $wpdb->update(DB::table('useronline'), 
+            $user_online, 
+            array('ip' => IP::StoreIP()),
+            array( '%d', '%s', '%s', '%d', '%d', '%s' ),
+            array( '%s' ));
+    }
 
+    /**
+     * Search Page info
+     */
+    public static function get_page_info()
+    {
+        global $wpdb;
+
+        $current_page = array("type" => "unknown", "id" => 0);
+
+        $page_info = $wpdb->get_row("SELECT page_id, type  
+            FROM ". DB::table('pages') . " 
+            WHERE date='" . TimeZone::getCurrentDate('Y-m-d') . "' 
+            AND uri='" . parse_url(Page::get_page_uri(), PHP_URL_PATH) . "' ");
+        $current_page['type'] = (isset($page_info->type)) ? $page_info->type : $current_page['type'];
+        $current_page['id'] = (isset($page_info->page_id)) ? $page_info->page_id : $current_page['id'];
+        return $current_page;
     }
 }

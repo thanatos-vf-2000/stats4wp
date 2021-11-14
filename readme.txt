@@ -4,7 +4,7 @@ Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, 
 Requires at least: 5.7
 Tested up to: 5.8
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -77,10 +77,18 @@ Source: https://opensource.org/licenses/MIT
 
 == Changelog ==
 
-= 1.0.0 (2110) =
-*Release Date - 23 october 2021*
+= 1.1.0 (2111) =
+*Release Date - 13 november 2021*
 
-* Initial version
+* Correction Navigator chart
+* Correction settings tabs
+* Color active menu
+* Add chart Bots, Visitors by hours, Hits and referred
+* Add delete data in settings menu
+* New Dashboard
+* Change of the colors of the graphics
+* Update of translations
+* Update GeoIP Database 20211109
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 
