@@ -5,6 +5,10 @@
 This file contains older changelog entries, so we can keep the size of the standard WordPress readme.txt file reasonable.
 For the latest changes, please see the "Changelog" section of the [readme.txt file](https://plugins.svn.wordpress.org/stats4wp/trunk/readme.txt).
 
+= 1.1.1 (2111-SFP2) =
+*Release Date - 16 november 2021*
+
+* Correction Dashboard Recent visotors
 = 1.1.0 (2111) =
 *Release Date - 13 november 2021*
 
@@ -17,8 +21,6 @@ For the latest changes, please see the "Changelog" section of the [readme.txt fi
 * Change of the colors of the graphics
 * Update of translations
 * Update GeoIP Database 20211109
-
-
 
 = 1.0.0 (2110) =
 *Release Date - 23 October 2021*

@@ -91,6 +91,11 @@ Source: https://opensource.org/licenses/MIT
 
 ## Changelog
 
+### 1.1.1 (2021-11-16)
+2111-SFP2
+
+* Correction Dashboard Recent visotors
+
 ### 1.1.0 (2021-11-13)
 
 * Correction Navigator chart

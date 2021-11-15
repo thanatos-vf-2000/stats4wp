@@ -47,14 +47,6 @@ use STATS4WP\Core\Options;
             }
             unset($recent_visitors, $i, $browser, $day, $ip, $referred_txt, $referred);
             ?>
-            <tr>
-                <td style="text-align: left">
-                    <a href="http://dev-ginkgos.net.test/wp-admin/admin.php?page=stats4wp_overview_page&amp;agent=Chrome" title="Chrome"><img src="http://dev-ginkgos.net.test/apps/wp-statistics/assets/images/browser/Chrome.png" alt="Chrome" class="log-tools" title="Chrome"></a>
-                </td>
-                <td style="text-align: left">11 novembre 2021</td>
-                <td style="text-align: left"><a href="http://dev-ginkgos.net.test/wp-admin/admin.php?page=stats4wp_visitors_page&amp;ip=172.20.64.1">172.20.64.1</a></td>
-                <td style="text-align: left"><a href="http://dev-ginkgos.net.test" title="http://dev-ginkgos.net.test">dev-ginkgos.net.test</a></td>
-            </tr>
         </tbody>
     </table>
     </div>
