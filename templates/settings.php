@@ -7,7 +7,7 @@
  */
 
 
-self::get_template(array('header', 'settings/options', 'settings/tables', 'footer'));
+self::get_template(array('header', 'settings/options', 'footer'));
 
 ?>
 

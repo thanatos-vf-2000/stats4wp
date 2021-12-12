@@ -26,7 +26,8 @@ final class Init
 			Ui\Visitors::class,
 			Ui\Pages::class,
 			Ui\Settings::class,
-			Ui\DashboardWidgetAdmin::class
+			Ui\DashboardWidgetAdmin::class,
+			Widgets\CptVisitors::class
 		];
 	}
 

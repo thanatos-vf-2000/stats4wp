@@ -38,6 +38,8 @@ if (DB::ExistRow('visitor')) {
                             label: "'. esc_html(__('Hits', 'stats4wp')) .'",
                             borderColor: "#05419ad6",
                             fill: false,
+                            pointRadius: [0],
+                            pointHitRadius: [0],
                             cubicInterpolationMode: "monotone",
                             tension: 0.4,
                             backgroundColor: [

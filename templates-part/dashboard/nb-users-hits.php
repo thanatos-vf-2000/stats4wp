@@ -61,6 +61,8 @@ if (DB::ExistRow('visitor')) {
                             label: "'. esc_html(__('Users', 'stats4wp')) .'",
                             borderColor: "#FF6384",
                             fill: false,
+                            pointRadius: [0],
+                            pointHitRadius: [0],
                             cubicInterpolationMode: "monotone",
                             tension: 0.4,
                             backgroundColor: [
@@ -72,6 +74,8 @@ if (DB::ExistRow('visitor')) {
                             label: "'. esc_html(__('Hits', 'stats4wp')) .'",
                             borderColor: "#36A2EB",
                             fill: false,
+                            pointRadius: [0],
+                            pointHitRadius: [0],
                             cubicInterpolationMode: "monotone",
                             tension: 0.4,
                             backgroundColor: [

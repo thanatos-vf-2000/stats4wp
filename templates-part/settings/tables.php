@@ -44,13 +44,13 @@ echo '<table class="widefat striped health-check-table">
     <tbody>
         <tr>
             <td>'. __( 'Visitor' , 'stats4wp') .'</td>
-            <td class="notice notice-alt">'. esc_html($nb_visitors) .'</td>
-            <td class="notice notice-alt">'. esc_html($min_visitors) .'</td>
+            <td>'. esc_html($nb_visitors) .'</td>
+            <td>'. esc_html($min_visitors) .'</td>
         </tr>
         <tr>
             <td>'. __( 'Pages' , 'stats4wp') .'</td>
-            <td class="notice notice-alt">'. esc_html($nb_pages) .'</td>
-            <td class="notice notice-alt">'. esc_html($min_pages) .'</td>
+            <td>'. esc_html($nb_pages) .'</td>
+            <td>'. esc_html($min_pages) .'</td>
         </tr>
     </tbody>
     </table>';

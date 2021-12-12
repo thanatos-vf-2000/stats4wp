@@ -23,9 +23,12 @@ Base
       border: 1px solid #434343;
       border-radius: 4px 4px 0 0;
       float: left;
-      text-decoration: none; }
+      text-decoration: none;
+      color: #434343; }
       .stats4wp-nav-tabs > li > a:hover {
         border-color: #eee #eee #ddd; }
+      .stats4wp-nav-tabs > li > a:focus {
+        box-shadow: 0 0 0 1px #434343, 0 0 2px 1px #767676; }
     .stats4wp-nav-tabs > li.active > a, .stats4wp-nav-tabs > li.active > a:hover, .stats4wp-nav-tabs > li.active > a:active, .stats4wp-nav-tabs > li.active > a:focus {
       color: #fff;
       cursor: default;
@@ -298,3 +301,27 @@ ul#stats4wp-menu {
 #stats4wp-menu li a:hover, #stats4wp-menu li a:focus, #stats4wp-menu li a:active {
   background: #434343;
   text-decoration: underline; }
+
+.stats4wp-infos .form-table th {
+  width: 40%; }
+
+.stats4wp-infos {
+  box-sizing: border-box;
+  width: 70%;
+  float: left;
+  padding-right: 30px;
+  padding-top: 25px; }
+
+.stats4wp-advertise {
+  float: right;
+  max-width: 335px;
+  width: 30%; }
+
+.stats4wp-support {
+  background-color: #f0f0f1;
+  padding: 13px;
+  margin-top: 25px;
+  box-shadow: 8px 8px 12px #767676; }
+
+.stats4wp-support h3 {
+  margin-bottom: 0; }

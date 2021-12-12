@@ -4,7 +4,7 @@ Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, 
 Requires at least: 5.7
 Tested up to: 5.8
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -39,6 +39,8 @@ This plugin doesn't require technical knowledge or to be a web developer. The ac
 3. Visitors,
 4. Exemple Operating System
 5. Options
+6. Widget Number of visitors - parameters
+7. Widget Number of visitors - display
 
 
 == Frequently Asked Questions ==
@@ -77,10 +79,16 @@ Source: https://opensource.org/licenses/MIT
 
 == Changelog ==
 
-= 1.1.1 (2111-SFP2) =
-*Release Date - 16 november 2021*
+= 1.2.0 (2112-SFP1) =
+*Release Date - 13 december 2021*
 
-* Correction Dashboard Recent visotors
+* Update GeoIP Database 20211207,
+* Add Support information,
+* Add Tab into settings for delete data,
+* Fixed CSS style errors,
+* Update Chart.jv v3.6.2,
+* Delete plot into Line graphs,
+* Add widget Visitors comptors.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 

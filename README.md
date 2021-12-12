@@ -11,7 +11,7 @@ Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, 
 Requires at least: 5.7
 Tested up to: 5.8
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -49,9 +49,11 @@ his plugin doesn't require technical knowledge or to be a web developer. The act
 3. Visitors,
 4. Exemple Operating System
 5. Options
+6. Widget Number of visitors - parameters
+7. Widget Number of visitors - display
 
 
-<img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-1.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-2.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-3.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-4.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-5.png" width="30%"></img> 
+<img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-1.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-2.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-3.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-4.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-5.png" width="30%"></img><img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-6.png" 0width="30%"></img><img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-7.png" width="30%"></img> 
 
 
 ## Frequently Asked Questions
@@ -91,10 +93,19 @@ Source: https://opensource.org/licenses/MIT
 
 ## Changelog
 
-### 1.1.1 (2021-11-16)
-2111-SFP2
+### 1.2.0 (2021-12-13) =
 
-* Correction Dashboard Recent visotors
+* Update GeoIP Database 20211207,
+* Add Support information,
+* Add Tab into settings for delete data,
+* Fixed CSS style errors,
+* Update Chart.jv v3.6.2,
+* Delete plot into Line graphs,
+* Add widget Visitors comptors.
+
+### 1.1.1 (2021-11-16)
+
+* Correction Dashboard Recent visitors
 
 ### 1.1.0 (2021-11-13)
 
