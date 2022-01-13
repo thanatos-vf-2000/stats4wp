@@ -92,35 +92,17 @@ License: MIT license
 Source: https://opensource.org/licenses/MIT
 
 ## Changelog
+### 1.3.0 (2201-SFP1)
+*Release Date - 13 January 2022*
 
-### 1.2.0 (2021-12-13) =
-
-* Update GeoIP Database 20211207,
-* Add Support information,
-* Add Tab into settings for delete data,
-* Fixed CSS style errors,
-* Update Chart.jv v3.6.2,
-* Delete plot into Line graphs,
-* Add widget Visitors comptors.
-
-### 1.1.1 (2021-11-16)
-
-* Correction Dashboard Recent visitors
-
-### 1.1.0 (2021-11-13)
-
-* Correction Navigator chart
-* Correction settings tabs
-* Color active menu
-* Add chart Bots, Visitors by hours, Hits and referred
-* Add delete data in settings menu
-* New Dashboard
-* Change of the colors of the graphics
-* Update of translations
-* Update GeoIP Database 20211109
-
-### 1.0.0 (2021-10-23)
-* Initial version
+* Update GeoIP Database 20220111,
+* Add enjoyed message on setting tabs,
+* Change graph type to bar for top device in dashboard,
+* Change Summary informations to dashboard,
+* Dashboard Add Total and Realtime views,
+* Dashboard Add users informations,
+* Change display information un sub type,
+* Test up to 5.8.3.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 

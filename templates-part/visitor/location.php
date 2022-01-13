@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.0
  */
 
 use STATS4WP\Core\DB;
@@ -26,17 +26,28 @@ if (DB::ExistRow('visitor')) {
                 AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
                 GROUP BY location
                 ORDER by nb DESC");
+                $pays_total = array_sum(array_column($locations, 'nb'));
                 $pays_nb=0;
-                $pays_list='';
+                $pays_list='<table class="widefat table-stats stats4wp-report-table">
+                <tbody>
+                    <tr>
+                        <td style="width: 1%;"></td>
+                        <td>' .  esc_html(__('Languages', 'stats4wp')) . '</td>
+                        <td style="width: 20%;">' .  esc_html(__('Users', 'stats4wp')) . '</td>
+                        <td style="width: 20%;">' .  esc_html(__('% Users', 'stats4wp')) . '</td>
+                    </tr>';
                 foreach ( $locations as $location ) {
                     if ($pays_nb <10) {
                         $pay[]  = $location->location ;
                         $nb[] = ($location->nb == null) ? 0 : $location->nb;
                     }
-                    if ($pays_list != '') $pays_list .= ' - ';
-                    $pays_list .=  esc_html($location->location) . ': '. esc_html($location->nb) ;                 
                     $pays_nb++;
+                    $tr_class = ($pays_nb % 2 == 0) ? "stats4wp-bg" : '';
+                    $percent = round($location->nb * 100 / $pays_total, 2);
+                    $pays_list .=  '<tr class="' . esc_attr($tr_class) . '"><td>' . $pays_nb . '</td><td>' . esc_html(substr($location->location,0,50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($location->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                 }
+                $pays_list .= '</tbody>
+                    </table>';
                 $script_js = ' var ctx = document.getElementById("chartjs_location").getContext("2d");
                 var myChart = new Chart(ctx, {
                     type: "doughnut",
@@ -72,9 +83,9 @@ if (DB::ExistRow('visitor')) {
                 unset($pay, $nb);
                 ?>
             </div>
-            <div class="stats4wp-inline width46 border">
-                <div classs="stats4wp-location">
-                    <p><?php echo esc_html($pays_list); ?></p>
+            <div class="stats4wp-inline width46 ">
+                <div class="stats4wp-location">
+                    <?php echo $pays_list; ?>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.0
  */
 
 use STATS4WP\Core\DB;
@@ -18,25 +18,37 @@ if (DB::ExistRow('visitor')) {
     ?>
     <div class="stats4wp-dashboard">
         <div class="stats4wp-rows">
-            <div class="stats4wp-inline width46 border">
-                <div id="accordion-os">
+            <div class="stats4wp-inline width46 ">
+                <div class="stats4wp-os">
                     <?php
                     $os_versions = $wpdb->get_results("SELECT platform, platform_v as version, count(*) as nb
                         FROM ". DB::table('visitor') ."
                         WHERE device !='bot' 
                         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
                         GROUP BY 1,2 ORDER BY 1,2 ASC ");
+                    $os_total = array_sum(array_column($os_versions, 'nb'));
+                    $os_nb=1;
                     $os_local='';
+                    echo '<table class="widefat table-stats stats4wp-report-table">
+                        <tbody>
+                            <tr>
+                                <td style="width: 1%;"></td>
+                                <td>' .  esc_html(__('Os', 'stats4wp')) . '</td>
+                                <td style="width: 10%;"></td>
+                            </tr>';
                     foreach ( $os_versions as $os_version ) {
                         if ($os_local != $os_version->platform) {
-                            if ($os_local != '') echo '</div>';
-                            echo '<button class="stats4wp-accordion">'. esc_html($os_version->platform).'</button><div class="panel">';
+                            $os_nb = 1;
+                            echo  '<tr><th colspan="3">'. esc_html($os_version->platform).'</th></tr>';
                         }
-                        echo '<p>' . esc_html($os_version->version) . ': '. esc_html($os_version->nb) .'</p>';
+                        $percent = round($os_version->nb * 100 / $os_total, 2);
+                        echo '<tr><td>' . $os_nb . '</td><td>' . esc_html(substr($os_version->version,0,50))  . '</td><td>' . esc_html($percent) . '%</td><td>' .  esc_html(number_format($os_version->nb, 0, ',', ' ')). '</td></tr>' ;
                         $os_local = $os_version->platform;
+                        $os_nb++;
                     }
+                    echo  '</tbody>
+                    </table>';
                     ?>
-                    </div>
                 </div>
             </div>
             <div class="stats4wp-inline width46 ">

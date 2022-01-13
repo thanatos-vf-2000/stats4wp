@@ -13,7 +13,12 @@ if ($page == 'stats4wp_plugin') {
 ?>
 <div class="stats4wp-dashboard">
     <div class="stats4wp-rows">
-        <canvas  id="chartjs_by_hours" height="300vw" width="400vw"></canvas> 
+        <div class="stats4wp-inline width46 ">
+            <canvas  id="chartjs_by_hours" height="300vw" width="400vw"></canvas> 
+        </div>
+        <div class="stats4wp-inline width46 ">
+        <canvas  id="chartjs_by_hours_days" height="300vw" width="400vw"></canvas> 
+        </div>
     </div>
 </div>
 <?php
@@ -69,6 +74,15 @@ if (DB::ExistRow('visitor')) {
                 }
                 );';
     wp_add_inline_script('chart-js',$script_js);
-    unset($day, $nb);
+    unset($day, $nb,$script_js);
+    $by_hours_days = $wpdb->get_results("SELECT DAYOFWEEK(last_counter) as d, HOUR(hour) as hour, COUNT(*) AS nb 
+        FROM ". DB::table('visitor') ." 
+        where device!='bot' 
+        AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."' 
+        GROUP BY 1,1 ORDER by 1 ASC");
+    foreach ( $by_hours_days as $by_hour_day ) {
+        $hour[]  = $by_hour_day->hour ;
+        $nb[] = $by_hour_day->nb;
+    }
 
 }

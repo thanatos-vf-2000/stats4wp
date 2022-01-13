@@ -2,7 +2,7 @@
 Plugin Name: stats4wp
 Author: Franck VANHOUCKE
 Author URI: https://ginkgos.net/
-Version: 1.2.0
+Version: 1.3.0
 */
 /*
 Variables global
@@ -17,7 +17,7 @@ Import Core
 Plugin Name: stats4wp
 Author: Franck VANHOUCKE
 Author URI: https://ginkgos.net/
-Version: 1.2.0
+Version: 1.3.0
 */
 .stats4wp-summary-stats {
   font-size: 13px; }
@@ -31,6 +31,58 @@ Version: 1.2.0
 .stats4wp-summary-stats span {
   font-size: 13px !important; }
 
+/*
+* Dashboard Header Total Stats
+*/
+.stats4wp-db-container {
+  background: #2e363f;
+  color: #fff;
+  padding: 24px;
+  margin-bottom: 12px;
+  display: flex;
+  border-radius: 6px; }
+
+.stats4wp-db-box {
+  display: block;
+  margin-right: 48px; }
+
+.fade {
+  animation: fadein .4s; }
+
+.stats4wp-db-label {
+  color: #eee;
+  margin-bottom: 6px;
+  font-size: 14px; }
+
+.stats4wp-db-amount {
+  display: block;
+  line-height: 48px;
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin-bottom: 6px; }
+
+.stats4wp-db-amount span {
+  font-size: .4em;
+  font-weight: normal;
+  vertical-align: top;
+  letter-spacing: normal; }
+
+.stats4wp-db-compare {
+  color: #eee; }
+
+.neutral {
+  color: #aaa; }
+
+.up {
+  color: #32cd32; }
+
+.down {
+  color: #fb7272; }
+
+/*
+* Dashboard next
+*/
 p.stats4wp-min {
   font-size: 18px !important; }
 

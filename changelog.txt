@@ -5,6 +5,18 @@
 This file contains older changelog entries, so we can keep the size of the standard WordPress readme.txt file reasonable.
 For the latest changes, please see the "Changelog" section of the [readme.txt file](https://plugins.svn.wordpress.org/stats4wp/trunk/readme.txt).
 
+= 1.3.0 (2201-SFP1) =
+*Release Date - 13 January 2022*
+
+* Update GeoIP Database 20220111,
+* Add enjoyed message on setting tabs,
+* Change graph type to bar for top device in dashboard,
+* Change Summary informations to dashboard,
+* Dashboard Add Total and Realtime views,
+* Dashboard Add users informations,
+* Change display information un sub type,
+* Test up to 5.8.3.
+
 = 1.2.0 (2112-SFP1) =
 *Release Date - 13 december 2021*
 

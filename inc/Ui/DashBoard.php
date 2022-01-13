@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @Version 1.3.0
  */
 
 namespace STATS4WP\Ui;
@@ -39,6 +39,8 @@ class DashBoard extends BaseController
         $this->setFields();
 
         $this->settings->addPages( $this->pages )->withSubPage( 'Dashboard' )->register();
+
+		add_filter( 'admin_footer_text', array( $this, 'admin_footer_text' ) );
     }
 
     public function setPages() 
@@ -202,12 +204,41 @@ class DashBoard extends BaseController
 	}
 
 	private function loadPHPConfig($path)
-        {
-            if ( ! file_exists($path)) {
-                return array();
-            }
-            $content = require $path;
-            return $content;
-        }
+	{
+		if ( ! file_exists($path)) {
+			return array();
+		}
+		$content = require $path;
+		return $content;
+	}
 
+	/**
+	 * Admin footer text.
+	 *
+	 * Modifies the "Thank you" text displayed in the admin footer.
+	 *
+	 * Fired by `admin_footer_text` filter.
+	 *
+	 * @since 1.3.0
+	 * @access public
+	 *
+	 * @param string $footer_text The content that will be printed.
+	 *
+	 * @return string The content that will be printed.
+	 */
+	public function admin_footer_text( $footer_text ) {
+		$current_screen = get_current_screen();
+		$is_ct4gg_screen = ( $current_screen && false !== strpos( $current_screen->id, 'stats4wp' ) );
+
+		if ( $is_ct4gg_screen ) {
+			$footer_text = sprintf(
+				/* translators: 1: Elementor, 2: Link to plugin review */
+				__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'stats4wp' ),
+				'<strong>' . esc_html__( 'Stats4WP', 'stats4wp' ) . '</strong>',
+				'<a href="https://wordpress.org/support/plugin/stats4wp/reviews/#new-post" target="_blank" class ="stats4wp-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</a>'
+			);
+		}
+
+		return $footer_text;
+	}
 }

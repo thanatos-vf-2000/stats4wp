@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.0
  */
 
 use STATS4WP\Core\DB;
@@ -123,25 +123,39 @@ if (DB::ExistRow('visitor')) {
                 unset($day, $desktop, $mobile, $tablet, $other);
                 ?>
             </div>
-            <div class="stats4wp-inline width46 border">
-                <div id="accordion-device">
+            <div class="stats4wp-inline width46 ">
+                <div class="stats4wp-device">
                     <?php
                     $devices_version = $wpdb->get_results("SELECT device, manufacturer as version, count(*) as nb
                         FROM ". DB::table('visitor') ."
                         WHERE device NOT in ('bot','') 
                         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
                         GROUP BY 1,2 ORDER BY 1,2 ASC ");
+                    $device_total = array_sum(array_column($devices_version, 'nb'));
+                    $device_nb=1;
                     $device_local='';
+                    echo '<table class="widefat table-stats stats4wp-report-table">
+                        <tbody>
+                            <tr>
+                                <td style="width: 1%;"></td>
+                                <td>' .  esc_html(__('Devices', 'stats4wp')) . '</td>
+                                <td style="width: 20%;">' .  esc_html(__('Users', 'stats4wp')) . '</td>
+                                <td style="width: 20%;">' .  esc_html(__('% Users', 'stats4wp')) . '</td>
+                            </tr>';
                     foreach ( $devices_version as $device_version ) {
                         if ($device_local != $device_version->device) {
-                            if ($device_local != '') echo '</div>';
-                            echo '<button class="stats4wp-accordion">'. esc_html($device_version->device).'</button><div class="panel">';
+                            $device_nb = 1;
+                            echo  '<tr><th colspan="4">'. esc_html($device_version->device).'</th></tr>';
                         }
-                        echo '<p>' . esc_html($device_version->version) . ': '. esc_html($device_version->nb) .'</p>';
+                        $tr_class = ($device_nb % 2 == 0) ? "stats4wp-bg" : '';
+                        $percent = round($device_version->nb * 100 / $device_total, 2);
+                        echo '<tr class="' . esc_attr($tr_class) . '"><td>' . $device_nb . '</td><td>' . esc_html(substr($device_version->version,0,50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($device_version->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                         $device_local = $device_version->device;
+                        $device_nb++;
                     }
+                    echo  '</tbody>
+                    </table>';
                     ?>
-                    </div>
                 </div>
             </div>
         </div>

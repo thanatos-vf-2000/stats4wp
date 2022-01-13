@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package  STATS4WPPlugin
+ * @Version 1.3.0
+ */
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
@@ -22,15 +26,15 @@ if (DB::ExistRow('visitor')) {
     switch($param['interval']) {
         case 'days':
             $select = 'last_counter as d';
-            $char_title = __('Number of user per days', 'stats4wp');
+            $char_title = __('Number of hits per days', 'stats4wp');
             break;
         case 'weeks':
             $select = 'WEEK(last_counter) as d';
-            $char_title = __('Number of user per weeks', 'stats4wp');
+            $char_title = __('Number of hits per weeks', 'stats4wp');
             break;
         case 'month':
             $select = 'MONTH(last_counter) as d';
-            $char_title = __('Number of user per months', 'stats4wp');
+            $char_title = __('Number of hits per months', 'stats4wp');
             break;
     }
     $hits = $wpdb->get_results("SELECT ".  $select .",AVG(hits) nb 

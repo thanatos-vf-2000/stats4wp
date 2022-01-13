@@ -1,6 +1,7 @@
 <?php 
 /**
  * @package  STATS4WPPlugin
+ * @Version 1.3.0
  */
 namespace STATS4WP\Api\Callbacks;
 
@@ -26,6 +27,11 @@ class AdminCallbacks extends BaseController
 	public function adminPages()
 	{
 		return require_once( "$this->plugin_path/templates/pages.php" );
+	}
+
+	public function adminCSVExport()
+	{
+		return require_once( "$this->plugin_path/templates/cvs-export.php" );
 	}
 
 }

@@ -7,6 +7,34 @@ Variables global
 /*
 Base
 */
+.stats4wp-report-table tr.stats4wp-bg td {
+  background-color: #f8f8f8; }
+
+.stats4wp-percent {
+  background-color: #058dc7;
+  display: inline;
+  float: left;
+  height: 1.17em;
+  margin: 0 10px 0 0;
+  min-width: 1px;
+  -webkit-print-color-adjust: exact; }
+
+.stats4wp-nowrap {
+  white-space: nowrap; }
+
+.stats4wp-left {
+  text-align: left;
+  width: 150px;
+  padding-left: 8px;
+  padding-right: 8px; }
+
+.stats4wp-right {
+  max-width: 200px;
+  padding-left: 8px;
+  padding-right: 8px;
+  text-align: right;
+  width: 100px; }
+
 .stats4wp-nav-tabs {
   float: left;
   width: 100%;
@@ -96,6 +124,58 @@ div.ui-toggle {
 .stats4wp-footer-copyright p {
   text-align: right; }
 
+/*
+* Dashboard Header Total Stats
+*/
+.stats4wp-db-container {
+  background: #2e363f;
+  color: #fff;
+  padding: 24px;
+  margin-bottom: 12px;
+  display: flex;
+  border-radius: 6px; }
+
+.stats4wp-db-box {
+  display: block;
+  margin-right: 48px; }
+
+.fade {
+  animation: fadein .4s; }
+
+.stats4wp-db-label {
+  color: #eee;
+  margin-bottom: 6px;
+  font-size: 14px; }
+
+.stats4wp-db-amount {
+  display: block;
+  line-height: 48px;
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  margin-bottom: 6px; }
+
+.stats4wp-db-amount span {
+  font-size: .4em;
+  font-weight: normal;
+  vertical-align: top;
+  letter-spacing: normal; }
+
+.stats4wp-db-compare {
+  color: #eee; }
+
+.neutral {
+  color: #aaa; }
+
+.up {
+  color: #32cd32; }
+
+.down {
+  color: #fb7272; }
+
+/*
+* Dashboard next
+*/
 p.stats4wp-min {
   font-size: 18px !important; }
 
@@ -236,6 +316,57 @@ table.stats4wp-table-fixed {
 .stats4wp-engine-logo {
   vertical-align: -3px; }
 
+._S4WPt {
+  width: 100%; }
+
+._S4WPtr {
+  vertical-align: top; }
+
+._S4WPc0 {
+  margin: 10px 0 30px;
+  text-align: left; }
+
+._S4WPb-_S4WPci-_S4WPhi {
+  position: relative;
+  display: -moz-inline-box;
+  display: inline-block; }
+
+._S4WPYd {
+  margin: 15px 0 10px 10px;
+  width: 180px; }
+
+._S4WPYd {
+  border-bottom: 0 none;
+  border-right: 1px solid #cbcbcb;
+  text-align: left; }
+
+._S4WPYd ._S4WPYs {
+  color: #222;
+  display: block;
+  font-size: 13px;
+  font-weight: normal; }
+
+._S4WPgmb {
+  cursor: pointer; }
+
+._S4WPYs {
+  font-size: 17px;
+  margin: 0; }
+
+._S4WPYd ._S4WPvo, ._S4WPYd ._S4WPBh {
+  display: inline-block; }
+
+._S4WPvo, ._S4WPBh {
+  margin: 5px auto;
+  text-align: left; }
+
+._S4WPGu {
+  color: #222;
+  font-size: 24px;
+  max-width: 160px;
+  min-width: 65px;
+  word-wrap: break-word; }
+
 canvas {
   background-color: #fff;
   box-shadow: 12px 12px 2px 1px #aaa;
@@ -245,6 +376,9 @@ canvas {
 .stats4wp-top {
   background-color: #fff;
   padding: 20px 10px; }
+
+.stats4wp-width {
+  width: 100%; }
 
 /* Style the buttons that are used to open and close the accordion panel */
 .stats4wp-accordion {
@@ -325,3 +459,8 @@ ul#stats4wp-menu {
 
 .stats4wp-support h3 {
   margin-bottom: 0; }
+
+a.stats4wp-stars {
+  color: #ffb900;
+  text-decoration: none;
+  font-size: large; }

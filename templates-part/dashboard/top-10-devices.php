@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.0
  */
 global $wpdb;
 use STATS4WP\Core\DB;
@@ -30,7 +30,7 @@ if (DB::ExistRow('visitor')) {
     }
     $script_js = ' var ctx = document.getElementById("chartjs_top_devices").getContext("2d");
                 var myChart = new Chart(ctx, {
-                    type: "doughnut",
+                    type: "bar",
                     data: {
                         labels:'.json_encode($type). ',
                         datasets: [{

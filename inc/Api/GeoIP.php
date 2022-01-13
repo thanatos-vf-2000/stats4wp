@@ -15,7 +15,7 @@ class GeoIP
      *
      * @var string
      */
-    public static $geoip_date = '20211207';
+    public static $geoip_date = '20220111';
 
     /**
      * Date of database GeoIpLitle User IP

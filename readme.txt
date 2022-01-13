@@ -4,7 +4,7 @@ Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, 
 Requires at least: 5.7
 Tested up to: 5.8
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -22,6 +22,23 @@ With Statistics  For WordPress you can know your website statistics without any 
 * The number of Referrals from each Referring Site
 * Top 10 common browsers; Top 10 countries with most visitors; Top most-visited pages
 * And much more information represented in graphs & charts along with data filtering
+
+### Features
+
+- **Plug and play**: After installing and activating the plugin, stats will automatically be collected.
+- **Data ownership**: No external services are used. Data about visits to your website is yours and yours alone.
+- **Performance**. Handles sudden bursts of traffic without breaking a sweat.
+- **Metrics**: All the essentials: visitors, pageviews and referrers.
+- **Cookies**: not use any cookies.
+
+### Contributing
+
+You can contribute toStats4wp in many different ways. For example:
+
+- Write about the plugin on your blog or share it on social media.
+- [Vote on features in the GitHub issue list](https://github.com/thanatos-vf-2000/stats4wp/issues?q=is%3Aopen+is%3Aissue+label%3A%22feature+suggestion%22).
+- [Translate the plugin into your language](https://translate.wordpress.org/projects/wp-plugins/stats4wp/stable/) using your WordPress.org account.
+
 
 = Please Note =
 Adding an additional customization option to help us personalize our sites is a help for everyone. We all seek to hide or personalize options or displays; that's why your feedback is important to me. Thank you for helping me make WordPress the best blogging platform in the world.
@@ -79,16 +96,18 @@ Source: https://opensource.org/licenses/MIT
 
 == Changelog ==
 
-= 1.2.0 (2112-SFP1) =
-*Release Date - 13 december 2021*
+= 1.3.0 (2201-SFP1) =
+*Release Date - 13 January 2022*
 
-* Update GeoIP Database 20211207,
-* Add Support information,
-* Add Tab into settings for delete data,
-* Fixed CSS style errors,
-* Update Chart.jv v3.6.2,
-* Delete plot into Line graphs,
-* Add widget Visitors comptors.
+* Update GeoIP Database 20220111,
+* Add enjoyed message on setting tabs,
+* Change graph type to bar for top device in dashboard,
+* Change Summary informations to dashboard,
+* Dashboard Add Total and Realtime views,
+* Dashboard Add users informations,
+* Change display information un sub type,
+* Test up to 5.8.3.
+
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.0
  */
 
 use STATS4WP\Core\DB;
@@ -26,17 +26,28 @@ if (DB::ExistRow('pages')) {
                 AND type!='unknown'
                 GROUP BY type
                 ORDER by nb DESC");
+                $type_total = array_sum(array_column($types, 'nb'));
                 $type_nb=0;
-                $type_list='';
+                $type_list='<table class="widefat table-stats stats4wp-report-table">
+                    <tbody>
+                        <tr>
+                            <td style="width: 1%;"></td>
+                            <td>' .  esc_html(__('Type', 'stats4wp')) . '</td>
+                            <td style="width: 20%;"></td>
+                            <td style="width: 20%;"></td>
+                        </tr>';
                 foreach ( $types as $type ) {
                     if ($type_nb <10) {
                         $t[]  = $type->type ;
                         $nb[] = ($type->nb == null) ? 0 : $type->nb;
                     }
-                    if ($type_list != '') $type_list .= ' - ';
-                    $type_list .=  esc_html($type->type) . ': '. esc_html($type->nb) ;                 
                     $type_nb++;
+                    $tr_class = ($type_nb % 2 == 0) ? "stats4wp-bg" : '';
+                    $percent = round($type->nb * 100 / $type_total, 2);
+                    $type_list .=  '<tr class="' . esc_attr($tr_class) . '"><td>' . $type_nb . '</td><td>' . esc_html($type->type)  . '</td><td class="stats4wp-right">' .  esc_html(number_format($type->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                 }
+                $type_list .= '</tbody>
+                    </table>';
                 $script_js = ' var ctx = document.getElementById("chartjs_type").getContext("2d");
                 var myChart = new Chart(ctx, {
                     type: "doughnut",
@@ -72,9 +83,9 @@ if (DB::ExistRow('pages')) {
                 unset($t, $nb);
                 ?>
             </div>
-            <div class="stats4wp-inline width46 border">
-                <div classs="stats4wp-type">
-                    <p><?php echo esc_html($type_list); ?></p>
+            <div class="stats4wp-inline width46">
+                <div class="stats4wp-type">
+                    <?php echo $type_list; ?>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.0
  */
 
 use STATS4WP\Core\DB;
@@ -42,17 +42,29 @@ if (DB::ExistRow('visitor')) {
                 AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
                 GROUP BY referred
                 ORDER by nb DESC ". $all_data);
+                $referred_total = array_sum(array_column($referreds, 'nb'));
                 $referred_nb=0;
-                $referred_list='';
+                $referred_list='<table class="widefat table-stats stats4wp-report-table">
+                <tbody>
+                    <tr>
+                        <td style="width: 1%;"></td>
+                        <td>' .  esc_html(__('Referred', 'stats4wp')) . '</td>
+                        <td style="width: 20%;"></td>
+                        <td style="width: 20%;"></td>
+                    </tr>';
                 foreach ( $referreds as $referred ) {
                     if ($referred_nb <10) {
                         $src[]  = $referred->referred ;
                         $nb[] = ($referred->nb == null) ? 0 : $referred->nb;
                     }
-                    if ($referred_list != '') $referred_list .= ' - ';
-                    $referred_list .=  esc_html($referred->referred) . ': '. esc_html($referred->nb) ;                 
                     $referred_nb++;
+                    $tr_class = ($referred_nb % 2 == 0) ? "stats4wp-bg" : '';
+                    $percent = round($referred->nb * 100 / $referred_total, 2);
+                    $referred_list .=  '<tr class="' . esc_attr($tr_class) . '"><td>' . $referred_nb . '</td><td>' . esc_html(substr($referred->referred,0,50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($referred->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;               
+                    
                 }
+                $referred_list .= '</tbody>
+                    </table>';
                 $script_js = ' var ctx = document.getElementById("chartjs_referred").getContext("2d");
                 var myChart = new Chart(ctx, {
                     type: "doughnut",
@@ -88,9 +100,9 @@ if (DB::ExistRow('visitor')) {
                 unset($src, $nb);
                 ?>
             </div>
-            <div class="stats4wp-inline width46 border">
-                <div classs="stats4wp-referred">
-                    <p><?php echo esc_html($referred_list); ?></p>
+            <div class="stats4wp-inline width46 ">
+                <div class="stats4wp-referred">
+                    <?php echo $referred_list; ?>
                 </div>
             </div>
             </div>

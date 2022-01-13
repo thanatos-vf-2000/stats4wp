@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.0
  */
 
 namespace STATS4WP;
@@ -27,6 +27,7 @@ final class Init
 			Ui\Pages::class,
 			Ui\Settings::class,
 			Ui\DashboardWidgetAdmin::class,
+			Ui\CSVExport::class,
 			Widgets\CptVisitors::class
 		];
 	}

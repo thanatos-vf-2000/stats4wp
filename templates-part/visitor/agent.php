@@ -141,25 +141,37 @@ if (DB::ExistRow('visitor')) {
                 unset($day, $ie, $firefox, $safari, $edge, $chrome, $other);
                 ?>
             </div>
-            <div class="stats4wp-inline width46 border">
-                <div id="accordion-agents">
+            <div class="stats4wp-inline width46 ">
+                <div class="stats4wp-agents">
                     <?php
                     $agents_version = $wpdb->get_results("SELECT agent, agent_v as version, count(*) as nb
                         FROM ". DB::table('visitor') ."
                         WHERE device !='bot' 
                         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
                         GROUP BY 1,2 ORDER BY 1,2 ASC ");
+                    $agents_total = array_sum(array_column($agents_version, 'nb'));
+                    $agents_nb=1;
                     $agent_local='';
+                    echo '<table class="widefat table-stats stats4wp-report-table">
+                        <tbody>
+                            <tr>
+                                <td style="width: 1%;"></td>
+                                <td>' .  esc_html(__('Os', 'stats4wp')) . '</td>
+                                <td style="width: 10%;"></td>
+                            </tr>';
                     foreach ( $agents_version as $agent_version ) {
                         if ($agent_local != $agent_version->agent) {
-                            if ($agent_local != '') echo '</div>';
-                            echo '<button class="stats4wp-accordion">'. esc_html($agent_version->agent).'</button><div class="panel">';
+                            $agents_nb = 1;
+                            echo  '<tr><th colspan="3">'. esc_html($agent_version->agent).'</th></tr>';
                         }
-                        echo '<p>' . esc_html($agent_version->version) . ': '. esc_html($agent_version->nb) .'</p>';
+                        $percent = round($agent_version->nb * 100 / $agents_total, 2);
+                        echo '<tr><td>' . $agents_nb . '</td><td>' . esc_html(substr($agent_version->version,0,50))  . '</td><td>' . esc_html($percent) . '%</td><td>' .  esc_html(number_format($agent_version->nb, 0, ',', ' ')). '</td></tr>' ;
                         $agent_local = $agent_version->agent;
+                        $agents_nb++;
                     }
+                    echo  '</tbody>
+                    </table>';
                     ?>
-                    </div>
                 </div>
             </div>
         </div>

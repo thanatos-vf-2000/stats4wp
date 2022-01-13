@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.0
  */
 
 use STATS4WP\Core\DB;
@@ -26,17 +26,28 @@ if (DB::ExistRow('visitor')) {
                 AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
                 GROUP BY language
                 ORDER by nb DESC");
+                $language_total = array_sum(array_column($languages, 'nb'));
                 $language_nb=0;
-                $language_list='';
+                $language_list='<table class="widefat table-stats stats4wp-report-table">
+                <tbody>
+                    <tr>
+                        <td style="width: 1%;"></td>
+                        <td>' .  esc_html(__('Languages', 'stats4wp')) . '</td>
+                        <td style="width: 20%;">' .  esc_html(__('Users', 'stats4wp')) . '</td>
+                        <td style="width: 20%;">' .  esc_html(__('% Users', 'stats4wp')) . '</td>
+                    </tr>';
                 foreach ( $languages as $language ) {
                     if ($language_nb <10) {
                         $lang[]  = $language->language ;
                         $nb[] = ($language->nb == null) ? 0 : $language->nb;
                     }
-                    if ($language_list != '') $language_list .= ' - ';
-                    $language_list .=  esc_html($language->language) . ': '. esc_html($language->nb) ;                 
                     $language_nb++;
+                    $tr_class = ($language_nb % 2 == 0) ? "stats4wp-bg" : '';
+                    $percent = round($language->nb * 100 / $language_total, 2);
+                    $language_list .=  '<tr class="' . esc_attr($tr_class) . '"><td>' . $language_nb . '</td><td>' . esc_html(substr($language->language,0,50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($language->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                 }
+                $language_list .= '</tbody>
+                    </table>';
                 $script_js = ' var ctx = document.getElementById("chartjs_lang").getContext("2d");
                 var myChart = new Chart(ctx, {
                     type: "doughnut",
@@ -72,9 +83,9 @@ if (DB::ExistRow('visitor')) {
                 unset($lang, $nb);
                 ?>
             </div>
-            <div class="stats4wp-inline width46 border">
-                <div classs="stats4wp-language">
-                    <p><?php echo esc_html($language_list); ?></p>
+            <div class="stats4wp-inline width46">
+                <div class="stats4wp-language">
+                    <?php echo $language_list; ?>
                 </div>
             </div>
         </div>
