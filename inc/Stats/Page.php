@@ -255,6 +255,11 @@ class Page
         }
 */
 
+        // Check if admin page and page stats disable
+        if (strpos(self::get_page_uri(), parse_url(admin_url(), PHP_URL_PATH)) !== false && Options::get_option('disableadminstat') == true) {
+            return false;
+        }
+
         // Get Page uri
         $page_uri = self::sanitize_page_uri();
         // Check if we have already been to this page today.

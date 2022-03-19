@@ -1,10 +1,10 @@
 === stats4wp ===
 Contributors: vanhoucke
 Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, chart, browser, today, yesterday, week, month, year, total, post, page, sidebar, google, live visit, search word, agent, google analytics, webmasters, google webmasters, geoip, location
-Requires at least: 5.7
-Tested up to: 5.8
+Requires at least: 5.2
+Tested up to: 5.9
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -96,17 +96,13 @@ Source: https://opensource.org/licenses/MIT
 
 == Changelog ==
 
-= 1.3.0 (2201-SFP1) =
-*Release Date - 13 January 2022*
+= 1.3.1 (2203-SFP1) =
+*Release Date - 19 March 2022*
 
-* Update GeoIP Database 20220111,
-* Add enjoyed message on setting tabs,
-* Change graph type to bar for top device in dashboard,
-* Change Summary informations to dashboard,
-* Dashboard Add Total and Realtime views,
-* Dashboard Add users informations,
-* Change display information un sub type,
-* Test up to 5.8.3.
+* Update GeoIP Database 20220315,
+* Update ChartJS 3.6.2 to 3.7.1,
+* Test up to 5.9,
+* Add option to disable statistics on admin pages.
 
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog

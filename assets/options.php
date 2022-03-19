@@ -11,4 +11,5 @@ return array(
     'store_ua'                  => true,
     'check_online'              => 120,
     'top_page'                  => 10,
+    'disableadminstat'          => false,
 );

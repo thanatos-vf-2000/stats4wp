@@ -41,5 +41,9 @@ return array(
         'title'     => __('Number of result in top pages','stats4wp'),
         'message'   => __('(default 10).', 'stats4wp'),
         'section'   => STATS4WP_NAME.'_admin_index',
-        'type'      => 'TextField')
+        'type'      => 'TextField'),
+    'disableadminstat' => array(
+        'title'     => __('Disabled statistics for the administration part (/wp-admin/).','stats4wp'),
+        'section'   => STATS4WP_NAME.'_admin_index',
+        'type'      => 'checkboxField')
 );
