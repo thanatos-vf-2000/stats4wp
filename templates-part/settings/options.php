@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.2
  * 
  * Desciption: Settings options
  */
@@ -89,6 +89,9 @@ settings_errors();
 					<dd><?php echo esc_html(STATS4WP\Api\GeoIP::$geoip_file); ?></dd>
 					<dt><b>Chart.js</b> (<a href="https://www.chartjs.org/" target="_blank">www.chartjs.org</a>)</dt>
 					<dd><?php echo esc_html(STATS4WP_CHARTJS_VERSION); ?></dd>
+					<dt><b>GeoChart</b> (<a href="https://developers.google.com/chart/interactive/docs/gallery/geochart" target="_blank">developers.google.com</a>)</dt>
+					<dd>Updated 3 mai 2021</dd>
+
 				</dl>
 			</div>
 			<div class="stats4wp-advertise">

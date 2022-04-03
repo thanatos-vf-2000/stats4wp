@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  CT4GGPlugin
- * @Version 1.0.0
+ * @Version 1.3.2
  */
 return array(
     'install'                   => '0',
@@ -12,4 +12,5 @@ return array(
     'check_online'              => 120,
     'top_page'                  => 10,
     'disableadminstat'          => false,
+    'geochart'                  => false,
 );

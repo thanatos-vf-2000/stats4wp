@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: stats4wp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-17 16:15+0000\n"
-"PO-Revision-Date: 2022-01-13 21:59+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2022-04-03 12:01+0000\n"
+"Last-Translator: Franck VANHOUCKE\n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
@@ -12,13 +12,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.5.5; wp-5.8.2\n"
+"X-Loco-Version: 2.6.1; wp-5.9.2\n"
 "X-Domain: stats4wp"
 
 #: templates-part/visitor/lang.php:37 templates-part/visitor/location.php:37
 #: templates-part/visitor/device.php:143
 msgid "% Users"
 msgstr "% Utilisateurs"
+
+#: inc/Ui/GeoChart.php:47
+#, php-format
+msgid "%1$s v1.3.2 add a map feature using Google Geochart, see %2$s."
+msgstr ""
+"%1$s v1.3.2 ajoute une fonctionnalité de carte utilisant Google Geochart, "
+"voir %2$s."
 
 #: assets/defaults.php:42
 msgid "(default 10)."
@@ -88,8 +95,13 @@ msgid "Bot"
 msgstr "Moteur de recherche"
 
 #: templates-part/visitor/bots.php:53 templates-part/visitor/bare.php:11
+#: templates-part/visitor/bots-maps.php:36
 msgid "Bots"
 msgstr "Bots"
+
+#: templates-part/visitor/bots-maps.php:24
+msgid "Bots location map"
+msgstr "Carte de localisation des moteurs de recherche"
 
 #: templates-part/dashboard/visitors.php:85
 msgid "Bounce rate"
@@ -131,6 +143,10 @@ msgstr "Chrome"
 msgid "Chrome OS"
 msgstr "Chrome OS"
 
+#: inc/Api/Callbacks/ManagerCallbacks.php:95
+msgid "Color:"
+msgstr "Couleur :"
+
 #: templates-part/visitor/location.php:57
 msgid "Country"
 msgstr "Pays"
@@ -151,7 +167,7 @@ msgstr "Total quotidien"
 msgid "Data"
 msgstr "Data"
 
-#: inc/Api/AdminGraph.php:210
+#: inc/Api/AdminGraph.php:211
 msgid "Data last"
 msgstr "Dernières données"
 
@@ -163,7 +179,7 @@ msgstr "Daté"
 msgid "Day"
 msgstr "Jour"
 
-#: inc/Api/AdminGraph.php:81
+#: inc/Api/AdminGraph.php:82
 msgid "Day interval"
 msgstr "Intervalle entre les jours"
 
@@ -209,7 +225,11 @@ msgstr "Appareil par semaines"
 msgid "Devices"
 msgstr "Appareils"
 
-#: inc/Api/AdminGraph.php:226
+#: assets/defaults.php:46
+msgid "Disabled statistics for the administration part (/wp-admin/)."
+msgstr "Statistiques désactivées pour la partie administration (/wp-admin/)."
+
+#: inc/Api/AdminGraph.php:227
 msgid "Display by"
 msgstr "Afficher par"
 
@@ -221,8 +241,12 @@ msgstr "Afficher le nombre de visiteurs"
 msgid "Edge"
 msgstr "Edge"
 
+#: assets/defaults.php:50
+msgid "Enable Google GeoChart"
+msgstr "Activer Google GeoChart"
+
 #. 1: Elementor, 2: Link to plugin review
-#: inc/Ui/DashBoard.php:236
+#: inc/Ui/DashBoard.php:238
 #, php-format
 msgid ""
 "Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your "
@@ -231,7 +255,7 @@ msgstr ""
 "Vous avez apprécié %1$s ? Veuillez nous laisser une note de %2$s. Nous "
 "apprécions vraiment votre soutien !"
 
-#: templates/cvs-export.php:32
+#: templates/cvs-export.php:42
 msgid "Export All"
 msgstr "Exporter tout"
 
@@ -243,11 +267,11 @@ msgstr "Firefox"
 msgid "Franck VANHOUCKE"
 msgstr "Franck VANHOUCKE"
 
-#: inc/Api/AdminGraph.php:69
+#: inc/Api/AdminGraph.php:70
 msgid "From"
 msgstr "De"
 
-#: inc/Api/AdminGraph.php:71
+#: inc/Api/AdminGraph.php:72
 msgid "From: "
 msgstr "De : "
 
@@ -360,6 +384,7 @@ msgid "less than previous period"
 msgstr "moins que la période précédente"
 
 #: templates-part/dashboard/top-10-pages.php:21
+#: inc/Api/Callbacks/ManagerCallbacks.php:50
 msgid "Link"
 msgstr "Lien"
 
@@ -371,13 +396,36 @@ msgstr "Linux"
 msgid "Location"
 msgstr "Localisation"
 
+#: templates-part/visitor/location-maps.php:24
+msgid "Location map"
+msgstr "Carte de localisation"
+
 #: templates-part/visitor/location.php:67
 msgid "Location TOP 10"
 msgstr "TOP 10 Localisation"
 
+#: assets/defaults.php:53
+msgid ""
+"Locations are geocoded by Google Maps. Any data that does not require "
+"geocoding is not sent to any server. Please see the Google Maps Terms of "
+"Service for more information on their data policy."
+msgstr ""
+"Les emplacements sont géocodés par Google Maps. Toutes les données qui ne "
+"nécessitent pas de géocodage ne sont pas envoyées à un serveur. Veuillez "
+"consulter les conditions de service de Google Maps pour plus d'informations "
+"sur leur politique en matière de données."
+
 #: templates-part/settings/options.php:13
 msgid "Manage Settings"
 msgstr "Gérer les paramètres"
+
+#: inc/Api/Callbacks/ManagerCallbacks.php:34
+msgid ""
+"Manage the Sections and Features of this Plugin by activating the checkboxes "
+"from the following list."
+msgstr ""
+"Gérez les sections et les fonctionnalités de ce plugin en activant les cases "
+"à cocher de la liste suivante."
 
 #: assets/defaults.php:36
 msgid "Max time user Online check"
@@ -460,19 +508,19 @@ msgstr "Nombre d'enregistrement"
 msgid "Number of sessions per user"
 msgstr "Nombre de sessions par utilisateur"
 
-#: templates-part/visitor/nb-users.php:51
+#: templates-part/visitor/nb-users.php:55
 msgid "number of user"
 msgstr "nombre d'utilisateurs"
 
-#: templates-part/visitor/nb-users.php:25
+#: templates-part/visitor/nb-users.php:29
 msgid "Number of user per days"
 msgstr "Nombre d'utilisateurs par jour"
 
-#: templates-part/visitor/nb-users.php:33
+#: templates-part/visitor/nb-users.php:37
 msgid "Number of user per months"
 msgstr "Nombre d'utilisateurs par mois"
 
-#: templates-part/visitor/nb-users.php:29
+#: templates-part/visitor/nb-users.php:33
 msgid "Number of user per weeks"
 msgstr "Nombre d'utilisateurs par semaine"
 
@@ -611,7 +659,7 @@ msgstr "TOP 10 Référé"
 msgid "Referring"
 msgstr "Référence"
 
-#: inc/Api/AdminGraph.php:100 inc/Api/AdminGraph.php:242
+#: inc/Api/AdminGraph.php:101 inc/Api/AdminGraph.php:243
 msgid "Refresh"
 msgstr "Rafraîchir"
 
@@ -651,7 +699,7 @@ msgstr "Statistiques pour Wordpress"
 msgid "Statistics For WorPress."
 msgstr "Statistiques pour WorPress."
 
-#: inc/Ui/DashBoard.php:237
+#: inc/Ui/DashBoard.php:239
 msgid "Stats4WP"
 msgstr "Stats4WP"
 
@@ -691,11 +739,11 @@ msgstr "Heure"
 msgid "Title"
 msgstr "Titre"
 
-#: inc/Api/AdminGraph.php:75
+#: inc/Api/AdminGraph.php:76
 msgid "To"
 msgstr "A"
 
-#: inc/Api/AdminGraph.php:77
+#: inc/Api/AdminGraph.php:78
 msgid "To: "
 msgstr "A : "
 
@@ -768,6 +816,10 @@ msgstr "Inconnu"
 msgid "Updates"
 msgstr "Mises à jour"
 
+#: inc/Api/Callbacks/ManagerCallbacks.php:83
+msgid "Upload Menu"
+msgstr "Menu de téléchargement"
+
 #: templates-part/pages/top.php:34
 msgid "URI"
 msgstr "URI"
@@ -777,11 +829,22 @@ msgid "User connected:"
 msgstr "Utilisateurs connectés :"
 
 #: templates-part/dashboard/nb-users-hits.php:61
+#: templates-part/dashboard/country-maps.php:35
 #: templates-part/dashboard/visitors.php:40
-#: templates-part/dashboard/visitors.php:49 templates-part/visitor/lang.php:36
+#: templates-part/dashboard/visitors.php:49
+#: templates-part/visitor/lang-maps.php:36 templates-part/visitor/lang.php:36
 #: templates-part/visitor/location.php:36 templates-part/visitor/device.php:142
+#: templates-part/visitor/location-maps.php:36
 msgid "Users"
 msgstr "Utilisateurs"
+
+#: templates-part/dashboard/country-maps.php:23
+msgid "Users country maps for last year"
+msgstr "Cartes de pays des utilisateurs pour l'année dernière"
+
+#: templates-part/visitor/lang-maps.php:24
+msgid "Users language"
+msgstr "Users language"
 
 #: templates-part/dashboard/users-online.php:14
 msgid "Users Online"

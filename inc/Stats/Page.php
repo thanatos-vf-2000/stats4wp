@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.1
  */
 namespace STATS4WP\Stats;
 

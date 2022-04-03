@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @Version 1.3.2
  */
 return array(
     'anonymize_ips' => array(
@@ -45,5 +45,11 @@ return array(
     'disableadminstat' => array(
         'title'     => __('Disabled statistics for the administration part (/wp-admin/).','stats4wp'),
         'section'   => STATS4WP_NAME.'_admin_index',
-        'type'      => 'checkboxField')
+        'type'      => 'checkboxField'),
+    'geochart' => array(
+        'title'     => __('Enable Google GeoChart','stats4wp'),
+        'section'   => STATS4WP_NAME.'_admin_index',
+        'type'      => 'checkboxField',
+        'message'   => __('Locations are geocoded by Google Maps. Any data that does not require geocoding is not sent to any server. Please see the Google Maps Terms of Service for more information on their data policy.','stats4wp'),
+        'link'      => 'https://developers.google.com/maps/terms')
 );

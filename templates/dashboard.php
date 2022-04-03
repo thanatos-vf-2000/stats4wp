@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.0
+ * @Version 1.3.2
  * 
  * Desciption: Admin Page
  */
@@ -23,7 +23,7 @@ self::get_template(array('header', 'dashboard/header'));
     <div class="postbox-container" id="stats4wp-postbox-container-2">
         <div id="normal-sortables" class="meta-box-sortables ui-sortable">
         <?php 
-            self::get_template(array('dashboard/nb-users-hits','dashboard/visitors', 'dashboard/top-10-pages', 'dashboard/top-10-visitors-today', 'dashboard/recent-visitors'));
+            self::get_template(array('dashboard/country-maps','dashboard/nb-users-hits','dashboard/visitors', 'dashboard/top-10-pages', 'dashboard/top-10-visitors-today', 'dashboard/recent-visitors'));
         ?>
         </div>
     </div>

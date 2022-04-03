@@ -464,3 +464,17 @@ a.stats4wp-stars {
   color: #ffb900;
   text-decoration: none;
   font-size: large; }
+
+div#stats4wp-dismiss-geochart {
+  display: flex; }
+
+.stats4wp-geochart-img {
+  margin-right: 1em;
+  margin-left: 1em; }
+
+.stats4wp-geochart-txt {
+  margin-top: inherit; }
+
+.stats4wp-maps {
+  margin: auto;
+  width: 50%; }

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.0
+ * @Version 1.3.2
  */
 
 use STATS4WP\Core\DB;
@@ -27,11 +27,11 @@ if (DB::ExistRow('visitor')) {
                         $char_title = __('Device per days', 'stats4wp');
                         break;
                     case 'weeks':
-                        $select = 'WEEK(last_counter) as z';
+                        $select = 'CONCAT(YEAR(last_counter),".",WEEK(last_counter)) as z';
                         $char_title = __('Device per weeks', 'stats4wp');
                         break;
                     case 'month':
-                        $select = 'MONTH(last_counter) as z';
+                        $select = 'CONCAT(YEAR(last_counter),".",MONTH(last_counter)) as z';
                         $char_title = __('Device per months', 'stats4wp');
                         break;
                 }

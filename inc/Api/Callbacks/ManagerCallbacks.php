@@ -1,7 +1,7 @@
 <?php 
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @Version 1.3.2
  */
 namespace STATS4WP\Api\Callbacks;
 
@@ -31,7 +31,7 @@ class ManagerCallbacks extends BaseController
 
 	public function adminIndexSectionManager()
 	{
-		echo __('Manage the Sections and Features of this Plugin by activating the checkboxes from the following list.','ct4gg');
+		echo __('Manage the Sections and Features of this Plugin by activating the checkboxes from the following list.','stats4wp');
 	}
 
 
@@ -45,7 +45,13 @@ class ManagerCallbacks extends BaseController
 
 		echo '<div class="' . esc_attr($classes) . '"><input type="checkbox" id="' . esc_attr($name) . '" name="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" value="1" class="" ' . ( esc_attr($checked) ? 'checked' : '') . '><label for="' . esc_attr($name) . '"><div></div></label></div>';
 
-		if ($args['message'] <> '') {echo '<p class="description">' . esc_html($args['message']) . '</p>';}
+		if ($args['message'] <> '') {
+			if ($args['link'] <> '') {
+				echo '<p class="description">' . esc_html($args['message']) . ' <a href="' . esc_url($args['link']) .'" target="_blank">' . __('Link','stats4wp').'</a></p>';
+			} else {
+				echo '<p class="description">' . esc_html($args['message']) . '</p>';
+			}
+		}
 	}
 
 	public function listField($args)
@@ -74,7 +80,7 @@ class ManagerCallbacks extends BaseController
 		$option_name = $args['option_name'];
 		echo '<div class="' . esc_attr($classes) . '">
 				<input id="upload_image" type="text" size="36" name="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" value="' . esc_attr($args['value']) . '" /> 
-				<input id="upload_image_button" for="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" class="button" type="button" value="' . __('Upload Menu', 'ct4gg') . '" />
+				<input id="upload_image_button" for="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" class="button" type="button" value="' . __('Upload Menu', 'stats4wp') . '" />
 				<br>
 				<img id="imageBox" name="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" style="height: ' . $args['height'] . '; width: ' . $args['width'] . ';" src="' . esc_url($args['value']) . '">
 			</div>';
@@ -86,7 +92,7 @@ class ManagerCallbacks extends BaseController
 		$classes = $args['class'];
 		$option_name = $args['option_name'];
 		echo '<p>
-			<label for="' . $option_name . '[' . $name . ']" style="display:block;">' . __( 'Color:', 'ct4gg' ) .'</label> 
+			<label for="' . $option_name . '[' . $name . ']" style="display:block;">' . __( 'Color:', 'stats4wp' ) .'</label> 
 			<input class="color-picker" id="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" name="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" type="text" value="' . esc_attr($args['value']) . '" />
 		</p>';
 	}

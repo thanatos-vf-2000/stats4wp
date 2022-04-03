@@ -11,7 +11,7 @@ Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, 
 Requires at least: 5.7
 Tested up to: 5.8
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.3
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -51,9 +51,10 @@ his plugin doesn't require technical knowledge or to be a web developer. The act
 5. Options
 6. Widget Number of visitors - parameters
 7. Widget Number of visitors - display
+8. Maps - Users Location
 
 
-<img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-1.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-2.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-3.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-4.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-5.png" width="30%"></img><img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-6.png" width="30%"></img><img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-7.png" width="30%"></img> 
+<img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-1.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-2.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-3.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-4.png" width="30%"></img> <img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-5.png" width="30%"></img><img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-6.png" width="30%"></img><img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-7.png" width="30%"></img><img src="https://github.com/thanatos-vf-2000/stats4wp/blob/master/assets/images/screenshot-8.png" width="30%"></img> 
 
 
 ## Frequently Asked Questions
@@ -91,18 +92,20 @@ Chart.js
 License: MIT license
 Source: https://opensource.org/licenses/MIT
 
-## Changelog
-### 1.3.0 (2201-SFP1)
-*Release Date - 13 January 2022*
+GeoChart
+Source: https://developers.google.com/chart/interactive/docs/gallery/geochart
 
-* Update GeoIP Database 20220111,
-* Add enjoyed message on setting tabs,
-* Change graph type to bar for top device in dashboard,
-* Change Summary informations to dashboard,
-* Dashboard Add Total and Realtime views,
-* Dashboard Add users informations,
-* Change display information un sub type,
-* Test up to 5.8.3.
+## Changelog
+### 1.3.3 (2204-SFP2)
+*Release Date - 03 April 2022*
+
+* Error SVN update
+* Update GeoIP Database 20220329,
+* Add new icones for browsers,
+* Update translations,
+* Add Region GeoCharts,
+* Fixed Graph display Month/Weeks,
+* Add Export data by years.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 

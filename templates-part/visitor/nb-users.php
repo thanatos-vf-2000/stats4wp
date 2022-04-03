@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package  STATS4WPPlugin
+ * @Version 1.3.2
+ */
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
@@ -25,11 +29,11 @@ if (DB::ExistRow('visitor')) {
             $char_title = __('Number of user per days', 'stats4wp');
             break;
         case 'weeks':
-            $select = 'WEEK(last_counter) as d';
+            $select = 'CONCAT(YEAR(last_counter),".",WEEK(last_counter)) as d';
             $char_title = __('Number of user per weeks', 'stats4wp');
             break;
         case 'month':
-            $select = 'MONTH(last_counter) as d';
+            $select = 'CONCAT(YEAR(last_counter),".",MONTH(last_counter)) as d';
             $char_title = __('Number of user per months', 'stats4wp');
             break;
     }

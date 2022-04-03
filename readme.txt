@@ -1,17 +1,17 @@
 === stats4wp ===
 Contributors: vanhoucke
-Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, chart, browser, today, yesterday, week, month, year, total, post, page, sidebar, google, live visit, search word, agent, google analytics, webmasters, google webmasters, geoip, location
+Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, chart, browser, today, yesterday, week, month, year, total, post, page, sidebar, google, live visit, search word, agent, google analytics, webmasters, google webmasters, geoip, location, maps, map
 Requires at least: 5.2
 Tested up to: 5.9
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.3.3
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
 
 == Description ==
 = Statistics for Wordpress: =
-With Statistics  For WordPress you can know your website statistics without any need to send your users’ data anywhere. You can know how many people visit your personal or business website, where they’re coming from, what browsers and search engines they use, and which of your contents and users get more visits.
+With Statistics  For WordPress you can know your website statistics without any need to send your users data anywhere. You can know how many people visit your personal or business website, where they’re coming from, what browsers and search engines they use, and which of your contents and users get more visits.
 
 
 = ACT BETTER  BY KNOWING WHAT YOUR USERS ARE LOOKING FOR =
@@ -22,6 +22,7 @@ With Statistics  For WordPress you can know your website statistics without any 
 * The number of Referrals from each Referring Site
 * Top 10 common browsers; Top 10 countries with most visitors; Top most-visited pages
 * And much more information represented in graphs & charts along with data filtering
+* Maps: Users location, users language, Bots location
 
 ### Features
 
@@ -58,6 +59,7 @@ This plugin doesn't require technical knowledge or to be a web developer. The ac
 5. Options
 6. Widget Number of visitors - parameters
 7. Widget Number of visitors - display
+8. Maps - Users Location
 
 
 == Frequently Asked Questions ==
@@ -94,15 +96,21 @@ Chart.js
 License: MIT license
 Source: https://opensource.org/licenses/MIT
 
+GeoChart
+Source: https://developers.google.com/chart/interactive/docs/gallery/geochart
+
 == Changelog ==
 
-= 1.3.1 (2203-SFP1) =
-*Release Date - 19 March 2022*
+= 1.3.3 (2204-SFP2) =
+*Release Date - 03 April 2022*
 
-* Update GeoIP Database 20220315,
-* Update ChartJS 3.6.2 to 3.7.1,
-* Test up to 5.9,
-* Add option to disable statistics on admin pages.
+* Error SVN update
+* Update GeoIP Database 20220329,
+* Add new icones for browsers,
+* Update translations,
+* Add Region GeoCharts,
+* Fixed Graph display Month/Weeks,
+* Add Export data by years.
 
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog

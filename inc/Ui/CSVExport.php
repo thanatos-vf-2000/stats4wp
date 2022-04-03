@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.0
+ * @Version 1.3.2
  */
 
 namespace STATS4WP\Ui;
@@ -32,12 +32,17 @@ class CSVExport extends BaseController
 		$this->separator = ';';
 		if (isset($_GET['report'])) {
 			$csv = $this->generate_csv($_GET['report']);
+
 			header("Pragma: public");
 			header("Expires: 0");
 			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 			header("Cache-Control: private", false);
 			header("Content-Type: application/octet-stream");
-			header("Content-Disposition: attachment; filename=\"Export_" . $_GET['report'] . ".csv\";");
+			if (isset($_GET['year'])) {
+				header("Content-Disposition: attachment; filename=\"Export_" . $_GET['report'] . "_" . $_GET['year'] . ".csv\";");
+			} else {
+				header("Content-Disposition: attachment; filename=\"Export_" . $_GET['report'] . ".csv\";");
+			}
 			header("Content-Transfer-Encoding: binary");
 
       echo $csv;
@@ -64,6 +69,16 @@ class CSVExport extends BaseController
 	 */
 	public function generate_csv($table) {
 		global $wpdb;
+
+		switch ($table) {
+			case 'visitor';
+				$field = 'last_counter';
+				break;
+			case 'pages':
+				$field = 'date';
+				break;
+		}
+
 		$table = DB::table($table);
 		$csv_output = '';                                           //Assigning the variable to store all future CSV file's data
 
@@ -79,7 +94,13 @@ class CSVExport extends BaseController
 		}
 		$csv_output .= "\n";
 
-		$values = $wpdb->get_results("SELECT * FROM " . $table . "");       //This here
+		if (isset($_GET['year'])) {
+			$y = " where YEAR(" . $field . ")=".$_GET['year'];
+		} else {
+			$y="";
+		}
+
+		$values = $wpdb->get_results("SELECT * FROM " . $table . " ". $y);       //This here
 
 		foreach ($values as $rowr) {
 			$fields = array_values((array) $rowr);                  //Getting rid of the keys and using numeric array to get values

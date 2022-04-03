@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.0
+ * @Version 1.3.2
  */
 
 namespace STATS4WP\Ui;
@@ -111,6 +111,7 @@ class DashBoard extends BaseController
 								'label_for' => $key,
 								'value'	=> $value,
 								'message'	=> $config['message'],
+								'link'	=> $config['link'],
 								'class' => 'ui-toggle'
 							)
 						);
@@ -198,7 +199,8 @@ class DashBoard extends BaseController
 				'message'	=> '',
 				'section' 	=> STATS4WP_NAME.'_admin_index',
 				'height'	=> null,
-				'width'		=> null
+				'width'		=> null,
+				'link'		=> '',
 			)
 		);
 	}
@@ -228,9 +230,9 @@ class DashBoard extends BaseController
 	 */
 	public function admin_footer_text( $footer_text ) {
 		$current_screen = get_current_screen();
-		$is_ct4gg_screen = ( $current_screen && false !== strpos( $current_screen->id, 'stats4wp' ) );
+		$is_stats4wp_screen = ( $current_screen && false !== strpos( $current_screen->id, 'stats4wp' ) );
 
-		if ( $is_ct4gg_screen ) {
+		if ( $is_stats4wp_screen ) {
 			$footer_text = sprintf(
 				/* translators: 1: Elementor, 2: Link to plugin review */
 				__( 'Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!', 'stats4wp' ),

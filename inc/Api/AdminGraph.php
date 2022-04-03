@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.2
  */
 
 namespace STATS4WP\Api;
@@ -29,7 +29,8 @@ class AdminGraph
         90  => '3 Months',
         180 => '6 Months',
         270 => '9 Months',
-        365 => '1 Year'
+        365 => '1 Year',
+        730 => '2 Years'
     );
 
     public static $date_dashboard = array(

@@ -80,3 +80,20 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+
+jQuery(document).ready(function () {
+  // Send recommendations dismiss request.
+  jQuery('#stats4wp-dismiss-geochart .notice-dismiss').on('click', function () {
+      jQuery.ajax({
+          method: 'GET',
+          url: ajaxurl,
+          data: { action: 'stats4wp_remove_geochart' },
+          dataType: 'json'
+      }).always(function (response) {
+          if (!response.hasOwnProperty('data') || !response.data.notice_removed) {
+              console.log(response);
+              console.error('Can not remove notice. Please contact WPES support.');
+          }
+      });
+  });
+});
