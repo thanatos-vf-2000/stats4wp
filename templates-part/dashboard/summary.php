@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.0
+ * @Version 1.3.4
  */
 global $wpdb;
 use STATS4WP\Core\DB;
@@ -139,6 +139,10 @@ $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronli
                     case 8:
                         $search='qwant';
                         $title = "Qwant";
+                        break;
+                    case 9:
+                        $search='ecosia';
+                        $title = "Ecosia";
                         break;
                 }
                 $bot_today = $wpdb->get_row("SELECT count(*) as nb 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.2
+ * @Version 1.3.4
  * 
  * Desciption: Location Maps
  */
@@ -10,6 +10,12 @@ use STATS4WP\Core\Options;
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 
+$page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
+if ($page == 'stats4wp_plugin') {
+  $data = 'all';
+} else {
+  $data ='';
+}
 if (Options::get_option('geochart') == true ) {
   $param = AdminGraph::getdate($data);
   $locations = $wpdb->get_results("SELECT location, count(*) as nb FROM ". DB::table('visitor') ." 

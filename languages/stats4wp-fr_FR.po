@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: stats4wp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-17 16:15+0000\n"
-"PO-Revision-Date: 2022-04-03 12:01+0000\n"
+"PO-Revision-Date: 2022-05-23 22:20+0000\n"
 "Last-Translator: Franck VANHOUCKE\n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -40,7 +40,7 @@ msgstr "À propos de"
 msgid "Add search words"
 msgstr "Ajouter des mots de recherche"
 
-#: templates-part/dashboard/summary.php:203
+#: templates-part/dashboard/summary.php:207
 msgid "Adjustment"
 msgstr "Réglage"
 
@@ -95,11 +95,11 @@ msgid "Bot"
 msgstr "Moteur de recherche"
 
 #: templates-part/visitor/bots.php:53 templates-part/visitor/bare.php:11
-#: templates-part/visitor/bots-maps.php:36
+#: templates-part/visitor/bots-maps.php:43
 msgid "Bots"
 msgstr "Bots"
 
-#: templates-part/visitor/bots-maps.php:24
+#: templates-part/visitor/bots-maps.php:31
 msgid "Bots location map"
 msgstr "Carte de localisation des moteurs de recherche"
 
@@ -155,11 +155,11 @@ msgstr "Pays"
 msgid "Credit"
 msgstr "Crédit"
 
-#: templates-part/dashboard/summary.php:202
+#: templates-part/dashboard/summary.php:206
 msgid "Current time and date"
 msgstr "Heure et date actuelles"
 
-#: templates-part/dashboard/summary.php:182
+#: templates-part/dashboard/summary.php:186
 msgid "Daily Total"
 msgstr "Total quotidien"
 
@@ -171,7 +171,7 @@ msgstr "Data"
 msgid "Data last"
 msgstr "Dernières données"
 
-#: templates-part/dashboard/summary.php:208
+#: templates-part/dashboard/summary.php:212
 msgid "Dated"
 msgstr "Daté"
 
@@ -267,6 +267,10 @@ msgstr "Firefox"
 msgid "Franck VANHOUCKE"
 msgstr "Franck VANHOUCKE"
 
+#: templates-part/visitor/by-hours.php:106
+msgid "Friday"
+msgstr "Vendredi"
+
 #: inc/Api/AdminGraph.php:70
 msgid "From"
 msgstr "De"
@@ -281,7 +285,8 @@ msgstr "Vous avez une question, une idée ou un problème ?"
 
 #: templates-part/dashboard/nb-users-hits.php:74
 #: templates-part/visitor/bare.php:8 templates-part/visitor/hits.php:55
-#: templates-part/visitor/by-hours.php:43
+#: templates-part/visitor/by-hours.php:48
+#: templates-part/visitor/by-hours.php:122
 msgid "Hits"
 msgstr "Hits"
 
@@ -396,7 +401,7 @@ msgstr "Linux"
 msgid "Location"
 msgstr "Localisation"
 
-#: templates-part/visitor/location-maps.php:24
+#: templates-part/visitor/location-maps.php:30
 msgid "Location map"
 msgstr "Carte de localisation"
 
@@ -439,6 +444,10 @@ msgstr "Jour min."
 msgid "Mobile"
 msgstr "Mobile"
 
+#: templates-part/visitor/by-hours.php:94
+msgid "Monday"
+msgstr "Lundi"
+
 #: templates-part/dashboard/summary.php:103
 msgid "Monthly"
 msgstr "Mensuel"
@@ -468,7 +477,7 @@ msgstr "Aucune donnée trouvée pour les visiteurs."
 msgid "No data found."
 msgstr "Aucune donnée trouvée."
 
-#: templates-part/dashboard/summary.php:195
+#: templates-part/dashboard/summary.php:199
 msgid "No data."
 msgstr "Aucune donnée."
 
@@ -649,7 +658,7 @@ msgstr "Visiteurs récents"
 #: templates-part/visitor/referred.php:51
 #: templates-part/visitor/referred.php:74 templates-part/visitor/bare.php:9
 msgid "Referred"
-msgstr "référent"
+msgstr "Référent"
 
 #: templates-part/visitor/referred.php:21
 msgid "Referred TOP 10"
@@ -674,6 +683,10 @@ msgstr "Visiteur de retour"
 #: templates-part/visitor/agent.php:83
 msgid "Safari"
 msgstr "Safari"
+
+#: templates-part/visitor/by-hours.php:109
+msgid "Saturday"
+msgstr "Samedi"
 
 #: templates-part/dashboard/summary.php:97
 msgid "Search engine redirects"
@@ -715,6 +728,10 @@ msgstr "Sauvegarder le User Agent"
 msgid "Summary"
 msgstr "Résumé"
 
+#: templates-part/visitor/by-hours.php:91
+msgid "Sunday"
+msgstr "Dimanche"
+
 #: templates-part/support.php:7
 msgid "Support Request"
 msgstr "Support Request"
@@ -731,7 +748,11 @@ msgstr "Les tables :"
 msgid "Tablet"
 msgstr "Tablette"
 
-#: templates-part/dashboard/summary.php:211
+#: templates-part/visitor/by-hours.php:103
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: templates-part/dashboard/summary.php:215
 msgid "Time"
 msgstr "Heure"
 
@@ -792,6 +813,10 @@ msgstr "Total des pages vues"
 msgid "Total visitors"
 msgstr "Total des visiteurs"
 
+#: templates-part/visitor/by-hours.php:97
+msgid "Tuesday"
+msgstr "Mardi"
+
 #: templates-part/dashboard/top-10-visitors-today.php:25
 #: templates-part/pages/dashboard.php:17 templates-part/pages/type.php:35
 #: templates-part/pages/type.php:57 templates-part/pages/top.php:33
@@ -832,9 +857,9 @@ msgstr "Utilisateurs connectés :"
 #: templates-part/dashboard/country-maps.php:35
 #: templates-part/dashboard/visitors.php:40
 #: templates-part/dashboard/visitors.php:49
-#: templates-part/visitor/lang-maps.php:36 templates-part/visitor/lang.php:36
+#: templates-part/visitor/lang-maps.php:43 templates-part/visitor/lang.php:36
 #: templates-part/visitor/location.php:36 templates-part/visitor/device.php:142
-#: templates-part/visitor/location-maps.php:36
+#: templates-part/visitor/location-maps.php:42
 msgid "Users"
 msgstr "Utilisateurs"
 
@@ -842,7 +867,7 @@ msgstr "Utilisateurs"
 msgid "Users country maps for last year"
 msgstr "Cartes de pays des utilisateurs pour l'année dernière"
 
-#: templates-part/visitor/lang-maps.php:24
+#: templates-part/visitor/lang-maps.php:31
 msgid "Users language"
 msgstr "Users language"
 
@@ -871,9 +896,13 @@ msgstr "Visiteur"
 msgid "Visitors"
 msgstr "Visiteurs"
 
-#: templates-part/visitor/by-hours.php:61
+#: templates-part/visitor/by-hours.php:66
 msgid "Visitors by hour"
 msgstr "Visiteurs par heure"
+
+#: templates-part/visitor/by-hours.php:140
+msgid "Visitors by hour and days"
+msgstr "Visiteurs par heure et par jour"
 
 #: templates-part/visitor/bare.php:10
 msgid "Visitors by hours"
@@ -883,6 +912,10 @@ msgstr "Visiteurs par heures"
 #: templates-part/dashboard/top-10-pages.php:22 inc/Widgets/CptVisitors.php:68
 msgid "Visits"
 msgstr "Visites"
+
+#: templates-part/visitor/by-hours.php:100
+msgid "Wednesday"
+msgstr "Mercredi"
 
 #: inc/Widgets/CptVisitors.php:40
 msgid "Widget Number of visitors"

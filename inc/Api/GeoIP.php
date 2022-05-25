@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.2
+ * @Version 1.3.4
  */
 namespace STATS4WP\Api;
 
@@ -15,7 +15,7 @@ class GeoIP
      *
      * @var string
      */
-    public static $geoip_date = '20220329';
+    public static $geoip_date = '20220524';
 
     /**
      * Date of database GeoIpLitle User IP
