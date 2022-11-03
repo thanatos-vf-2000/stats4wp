@@ -3,7 +3,7 @@
 Plugin Name: stats4wp
 Plugin URI: https://ginkgos.net/plugin/stats4wp/
 Description: Statistics For WorPress.
-Version: 1.3.5
+Version: 1.3.4
 Requires at least: 5.2
 Tested up to: 6.0
 Requires PHP: 7.4
@@ -40,7 +40,7 @@ if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
 /**
  * Plugin variable information
  */
-define('STATS4WP_VERSION', '1.3.5' );
+define('STATS4WP_VERSION', '1.3.4' );
 define('STATS4WP_NAME', 'stats4wp' );
 define('STATS4WP_FILE', __FILE__ );
 define('STATS4WP_PATH', plugin_dir_path( STATS4WP_FILE ) );
