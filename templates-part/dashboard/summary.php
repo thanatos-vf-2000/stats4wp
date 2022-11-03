@@ -74,7 +74,7 @@ $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronli
                     }
                     $summary_users = $wpdb->get_row("SELECT count(*) as visitors,SUM(hits) as visits 
                         FROM ". DB::table('visitor').
-                        " WHERE device!='bot' 
+                        " WHERE device!='bot' and location != 'local'
                         AND last_counter BETWEEN '". $from ."' AND '". $to."'");
                     if ($max  != $summary_users->visitors || $nb == 8) {
                     echo '<tr>
