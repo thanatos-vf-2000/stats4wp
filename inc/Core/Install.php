@@ -76,9 +76,7 @@ class Install
                         hits int(11),
 						PRIMARY KEY  (ID),
 						UNIQUE KEY date_ip_agent (last_counter,ip,agent(50),platform(50)),
-						KEY agent (agent),
-						KEY platform (platform),
-						KEY location (location)
+                        KEY `SELSTAT` (`device`, `last_counter`)
 					) {$collate}");
         dbDelta($create_visitor_table);
 
@@ -91,11 +89,8 @@ class Install
 						date date NOT NULL,
 						count int(11) NOT NULL,
 						id int(11) NOT NULL,
-						UNIQUE KEY date_2 (date,uri),
-						KEY url (uri),
-						KEY date (date),
-						KEY id (id),
-						KEY `uri` (`uri`,`count`,`id`),
+                        KEY `UPDSTATS` (`date`,`type`),
+                        KEY `SELDATE` (`date`),
 						PRIMARY KEY (`page_id`)
 					) {$collate}");
         dbDelta($create_pages_table);

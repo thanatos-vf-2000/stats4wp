@@ -80,8 +80,12 @@ settings_errors();
 					$json_install = file_get_contents(STATS4WP_PATH ."vendor/composer/installed.json");
 					$json_data = json_decode($json_install, true);
 					foreach ($json_data as $install_name => $install_data) {
-						echo "<dt><b>" . esc_html($install_data['name']) . "</b></td>";
-						echo "<dd>" . __('Version', 'stats4wp'). ": " .esc_html($install_data['version']). "</dd>";
+						if (isset($install_data) && is_array($install_data)) {
+							foreach ($install_data as $component) {
+								echo "<dt><b>" . esc_html($component['name']) . "</b></td>";
+								echo "<dd>" . __('Version', 'stats4wp'). ": " .esc_html($component['version']). "</dd>";
+							}
+						}
 					}
 					?>
 					<dt><b>Geo2IP Lite</b></dt>

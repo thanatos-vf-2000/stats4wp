@@ -1,12 +1,13 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.2
+ * @Version 1.3.7
  */
 
 namespace STATS4WP;
 
 use STATS4WP\Core\Options;
+use STATS4WP\Core\Install;
 
 final class Init
 {
@@ -45,6 +46,12 @@ final class Init
 		if (is_array($opt)) {
 			if ( !array_key_exists('version',$opt) || $opt['version'] != STATS4WP_VERSION) {
 				Options::set_option('version',STATS4WP_VERSION);
+				if (is_multisite()) {
+					Install::install(true);
+				} else {
+					Install::install(false);
+				}
+				
 			}
 		}
 

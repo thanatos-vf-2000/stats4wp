@@ -101,12 +101,15 @@ Source: https://developers.google.com/chart/interactive/docs/gallery/geochart
 
 == Changelog ==
 
-= 1.3.6 (2211-SFP2) =
-*Release Date - 03 November 2022*
+= 1.3.7 (2211-SFP3) =
+*Release Date - 13 November 2022*
 
-* Correction summary dashbord (exclude local location),
-* Update GeoIP Database 20221104.
-
+* Update ChartJS 3.7.1 to 3.9.1,
+* Composer: Php require >=7.3 to ^7.3||^8.0,
+* Update GeoIP Database 20221111,
+* request Optimisation,
+* Correction multisite uninstall,
+* Correction php warning.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 

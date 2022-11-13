@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @Version 1.3.7
  */
 namespace STATS4WP\Core;
 
@@ -18,6 +18,13 @@ class DB
         'pages',
         'useronline'
     );
+
+    /**
+     * List of array exist
+     * 
+     * @var array
+     */
+    public static $db_table_exist = array();
 
     /**
      * Table name Structure in Database
@@ -120,8 +127,15 @@ class DB
     {
         global $wpdb;
         if (! in_array($tbl, self::$db_table)) return false;
-        $nbrows = $wpdb->get_row("SELECT count(*) as nb FROM " . DB::table($tbl));
-        if ($nbrows->nb > 0 ) {
+        if (in_array($tbl,self::$db_table_exist,true)) {
+            $nb = self::$db_table_exist[$tbl];
+        } else {
+            $nbrows = $wpdb->get_row("SELECT count(*) as nb FROM " . DB::table($tbl));
+            $nb = $nbrows->nb;
+            self::$db_table_exist+= ["$tbl" => $nb];
+        }
+        
+        if ($nb > 0 ) {
             return true;
         } else {
             return false;

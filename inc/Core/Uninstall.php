@@ -38,9 +38,19 @@ class Uninstall
     {
         global $wpdb;
 
-        // Drop the tables
-        foreach (DB::table() as $tbl) {
-            $wpdb->query("DROP TABLE IF EXISTS {$tbl}");
+        if (is_multisite() && $network_wide) {
+            $blog_ids = $wpdb->get_col("SELECT `blog_id` FROM $wpdb->blogs");
+            switch_to_blog($blog_id);
+            // Drop the tables
+            foreach (DB::table() as $tbl) {
+                $wpdb->query("DROP TABLE IF EXISTS {$tbl}");
+            }
+            restore_current_blog();
+        } else {
+            // Drop the tables
+            foreach (DB::table() as $tbl) {
+                $wpdb->query("DROP TABLE IF EXISTS {$tbl}");
+            }
         }
     }
 }
