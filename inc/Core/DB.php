@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.7
+ * @Version 1.3.8
  */
 namespace STATS4WP\Core;
 
@@ -126,11 +126,16 @@ class DB
     public static function ExistRow($tbl)
     {
         global $wpdb;
+        
         if (! in_array($tbl, self::$db_table)) return false;
         if (in_array($tbl,self::$db_table_exist,true)) {
             $nb = self::$db_table_exist[$tbl];
         } else {
-            $nbrows = $wpdb->get_row("SELECT count(*) as nb FROM " . DB::table($tbl));
+            $nbrows = wp_cache_get( "cpt_".$tbl );
+            if ( false === $nbrows ) {
+                $nbrows = $wpdb->get_row("SELECT count(*) as nb FROM " . DB::table($tbl));
+                wp_cache_set( "cpt_".$tbl, $nbrows );
+            }
             $nb = $nbrows->nb;
             self::$db_table_exist+= ["$tbl" => $nb];
         }

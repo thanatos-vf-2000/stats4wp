@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.8
  */
 
 use STATS4WP\Core\DB;
@@ -52,58 +52,69 @@ if (DB::ExistRow('visitor')) {
         $hits[] = $visitor->hits;
     }
 
-    $script_js = ' var ctx = document.getElementById("chartjs_nb_users_hits").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels:'.json_encode($day). ',
-                        datasets: [{
-                            label: "'. esc_html(__('Users', 'stats4wp')) .'",
-                            borderColor: "#FF6384",
-                            fill: false,
-                            pointRadius: [0],
-                            pointHitRadius: [0],
-                            cubicInterpolationMode: "monotone",
-                            tension: 0.4,
-                            backgroundColor: [
-                               "#FF6384"
-                            ],
-                            data:'. json_encode($users). ',
-                        },
-                        {
-                            label: "'. esc_html(__('Hits', 'stats4wp')) .'",
-                            borderColor: "#36A2EB",
-                            fill: false,
-                            pointRadius: [0],
-                            pointHitRadius: [0],
-                            cubicInterpolationMode: "monotone",
-                            tension: 0.4,
-                            backgroundColor: [
-                               "#36A2EB"
-                            ],
-                            data:'. json_encode($hits). ',
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                              display: false,
-                              text: "'. $char_title .'"
-                            },
-                          },
-                        legend: {
-                            display: true,
-                            position: "bottom",
-                            labels: {
-                                fontColor: "#05419ad6",
-                                fontFamily: "Circular Std Book",
-                                fontSize: 14,
-                            }
-                        },
-                    },
-                }
-                );';
+    $script_js = ' 
+    const dataNbUsersHits = {
+        labels:'.json_encode($day). ',
+        datasets: [{
+            label: "'. esc_html(__('Users', 'stats4wp')) .'",
+            borderColor: "#FF6384",
+            fill: false,
+            pointRadius: [0],
+            pointHitRadius: [0],
+            cubicInterpolationMode: "monotone",
+            tension: 0.4,
+            backgroundColor: [
+               "#FF6384"
+            ],
+            data:'. json_encode($users). ',
+        },
+        {
+            label: "'. esc_html(__('Hits', 'stats4wp')) .'",
+            borderColor: "#36A2EB",
+            fill: false,
+            pointRadius: [0],
+            pointHitRadius: [0],
+            cubicInterpolationMode: "monotone",
+            tension: 0.4,
+            backgroundColor: [
+               "#36A2EB"
+            ],
+            data:'. json_encode($hits). ',
+        }]
+    };
+
+    const optionsNbUsersHits = {
+        responsive: true,
+        plugins: {
+            title: {
+              display: false,
+              text: "'. $char_title .'"
+            },
+          },
+        legend: {
+            display: true,
+            position: "bottom",
+            labels: {
+                fontColor: "#05419ad6",
+                fontFamily: "Circular Std Book",
+                fontSize: 14,
+            }
+        },
+    };
+
+    const configNbUsersHits = {
+    type: "line",
+    data: dataNbUsersHits,
+    options: optionsNbUsersHits,
+    };
+
+    // render init block
+    const myChartNbUsersHits = new Chart(
+    document.getElementById("chartjs_nb_users_hits"),
+    configNbUsersHits
+    );
+    
+    ;';
     wp_add_inline_script('chart-js',$script_js);
     unset($day, $users, $hits, $visitors);
 

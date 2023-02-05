@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.0
+ * @Version 1.3.8
  */
 
 use STATS4WP\Core\DB;
@@ -48,37 +48,47 @@ if (DB::ExistRow('visitor')) {
                 }
                 $pays_list .= '</tbody>
                     </table>';
-                $script_js = ' var ctx = document.getElementById("chartjs_location").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "doughnut",
-                    data: {
-                        labels:'.json_encode($pay). ',
-                        datasets: [{
-                            label: "'. esc_html(__('Country', 'stats4wp')) .'",
-                            data:'. json_encode($nb). ',
-                            backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
-                        }]
-                    },
-                    options: {
-                        responsive: false,
-                        plugins: {
-                            title: {
-                              display: true,
-                              text: "'. esc_html(__('Location TOP 10', 'stats4wp')) .'"
-                            },
-                          },
-                        legend: {
-                            display: true,
-                            position: "bottom",
-                            labels: {
-                                fontColor: "#05419ad6",
-                                fontFamily: "Circular Std Book",
-                                fontSize: 14,
-                            }
+                $script_js = '
+                const dataLocation= {
+                    labels:'.json_encode($pay). ',
+                    datasets: [{
+                        label: "'. esc_html(__('Country', 'stats4wp')) .'",
+                        data:'. json_encode($nb). ',
+                        backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
+                    }]
+                };
+            
+                const optionsLocation = {
+                    responsive: false,
+                    plugins: {
+                        title: {
+                          display: true,
+                          text: "'. esc_html(__('Location TOP 10', 'stats4wp')) .'"
                         },
+                      },
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            fontColor: "#05419ad6",
+                            fontFamily: "Circular Std Book",
+                            fontSize: 14,
+                        }
                     },
-                }
-                );';
+                };
+            
+                const configLocation = {
+                  type: "doughnut",
+                  data: dataLocation,
+                  options: optionsLocation,
+                };
+            
+                // render init block
+                const myChartLocation = new Chart(
+                  document.getElementById("chartjs_location"),
+                  configLocation
+                );
+                ';
                 wp_add_inline_script('chart-js',$script_js);
                 unset($pay, $nb);
                 ?>

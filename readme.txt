@@ -2,9 +2,9 @@
 Contributors: vanhoucke
 Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, chart, browser, today, yesterday, week, month, year, total, post, page, sidebar, google, live visit, search word, agent, google analytics, webmasters, google webmasters, geoip, location, maps, map
 Requires at least: 5.2
-Tested up to: 6.0
+Tested up to: 6.1.1
 Requires PHP: 7.4
-Stable tag: 1.3.6
+Stable tag: 1.3.8
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -101,14 +101,15 @@ Source: https://developers.google.com/chart/interactive/docs/gallery/geochart
 
 == Changelog ==
 
-= 1.3.7 (2211-SFP3) =
-*Release Date - 13 November 2022*
+= 1.3.8 (2302-SFP1) =
+*Release Date - 05 Febrary 2023*
 
-* Update ChartJS 3.7.1 to 3.9.1,
-* Composer: Php require >=7.3 to ^7.3||^8.0,
-* Update GeoIP Database 20221111,
+* Update ChartJS 3.9.1 to 4.2.0,
+* Add option CDN for ChartJS,
+* Update GeoIP Database 20230203,
+* Add device type gaming and television,
+* Add agent type opera and Samsung Internet,
 * request Optimisation,
-* Correction multisite uninstall,
 * Correction php warning.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog

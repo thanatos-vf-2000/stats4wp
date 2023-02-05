@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.4
+ * @Version 1.3.8
  * 
  * Desciption: By Hour
  */
@@ -29,7 +29,15 @@ if ($page == 'stats4wp_plugin') {
 <?php
 if (DB::ExistRow('visitor')) {
     $param = AdminGraph::getdate($data);
-    $by_hours = $wpdb->get_results("SELECT HOUR(hour) as hour, COUNT(*) AS nb 
+    $by_hours = $wpdb->get_results("WITH RECURSIVE h (hour, nb) AS
+        (
+        SELECT 0, 0
+        UNION ALL
+        SELECT hour + 1, 0 FROM h WHERE hour < 23
+        )
+        SELECT * FROM h
+        UNION
+        SELECT HOUR(hour) as hour, COUNT(*) AS nb 
         FROM ". DB::table('visitor') ." 
         where device!='bot' 
         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."' 
@@ -39,26 +47,25 @@ if (DB::ExistRow('visitor')) {
         $nb[] = $by_hour->nb;
     }
 
-    $script_js = ' var ctx = document.getElementById("chartjs_by_hours").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels:'.json_encode($hour). ',
-                        datasets: [{
-                            label: "'. esc_html(__('Hits', 'stats4wp')) .'",
-                            borderColor: "#05419ad6",
-                            fill: false,
-                            pointRadius: [0],
-                            pointHitRadius: [0],
-                            cubicInterpolationMode: "monotone",
-                            tension: 0.4,
-                            backgroundColor: [
-                               "#05419ad6"
-                            ],
-                            data:'. json_encode($nb). ',
-                        }]
-                    },
-                    options: {
+    $script_js = '
+    const dataByHours= {
+		labels:'.json_encode($hour). ',
+		datasets: [{
+			label: "'. esc_html(__('Hits', 'stats4wp')) .'",
+			borderColor: "#05419ad6",
+			fill: false,
+			pointRadius: [0],
+			pointHitRadius: [0],
+			cubicInterpolationMode: "monotone",
+			tension: 0.4,
+			backgroundColor: [
+			   "#05419ad6"
+			],
+			data:'. json_encode($nb). ',
+		}]
+	};
+
+    const optionsByHours = {
                         responsive: false,
                         plugins: {
                             title: {
@@ -75,9 +82,21 @@ if (DB::ExistRow('visitor')) {
                                 fontSize: 14,
                             }
                         },
-                    },
-                }
-                );';
+                    };
+
+    const configByHours = {
+      type: "line",
+      data: dataByHours,
+      options: optionsByHours,
+    };
+
+    // render init block
+    const myChartByHours = new Chart(
+      document.getElementById("chartjs_by_hours"),
+      configByHours
+    );
+
+    ';
     wp_add_inline_script('chart-js',$script_js);
     unset($day, $nb,$script_js);
     $by_hours_days = $wpdb->get_results("SELECT DAYOFWEEK(last_counter) as d, HOUR(hour) as hour, COUNT(*) AS nb 
@@ -113,45 +132,56 @@ if (DB::ExistRow('visitor')) {
         $nb[] = $by_hour_day->nb;
     }
 
-    $script_js = ' var ctx = document.getElementById("chartjs_by_hours_days").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels:'.json_encode($hour). ',
-                        datasets: [{
-                            label: "'. esc_html(__('Hits', 'stats4wp')) .'",
-                            borderColor: "#05419ad6",
-                            fill: false,
-                            pointRadius: [0],
-                            pointHitRadius: [0],
-                            cubicInterpolationMode: "monotone",
-                            tension: 0.4,
-                            backgroundColor: [
-                               "#05419ad6"
-                            ],
-                            data:'. json_encode($nb). ',
-                        }]
-                    },
-                    options: {
-                        responsive: false,
-                        plugins: {
-                            title: {
-                              display: true,
-                              text: "'. esc_html(__('Visitors by hour and days', 'stats4wp')) .'"
-                            },
-                          },
-                        legend: {
-                            display: true,
-                            position: "bottom",
-                            labels: {
-                                fontColor: "#05419ad6",
-                                fontFamily: "Circular Std Book",
-                                fontSize: 14,
-                            }
-                        },
-                    },
-                }
-                );';
+    $script_js = '
+    const dataByHoursDays= {
+		labels:'.json_encode($hour). ',
+		datasets: [{
+			label: "'. esc_html(__('Hits', 'stats4wp')) .'",
+			borderColor: "#05419ad6",
+			fill: false,
+			pointRadius: [0],
+			pointHitRadius: [0],
+			cubicInterpolationMode: "monotone",
+			tension: 0.4,
+			backgroundColor: [
+			   "#05419ad6"
+			],
+			data:'. json_encode($nb). ',
+		}]
+	};
+
+    const optionsByHoursDays = {
+		responsive: false,
+		plugins: {
+			title: {
+			  display: true,
+			  text: "'. esc_html(__('Visitors by hour and days', 'stats4wp')) .'"
+			},
+		  },
+		legend: {
+			display: true,
+			position: "bottom",
+			labels: {
+				fontColor: "#05419ad6",
+				fontFamily: "Circular Std Book",
+				fontSize: 14,
+			}
+		},
+	};
+
+    const configByHoursDays = {
+      type: "line",
+      data: dataByHoursDays,
+      options: optionsByHoursDays,
+    };
+
+    // render init block
+    const myChartByHoursDays = new Chart(
+      document.getElementById("chartjs_by_hours_days"),
+      configByHoursDays
+    );
+    
+    ';
     wp_add_inline_script('chart-js',$script_js);
 
 }

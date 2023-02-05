@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @Version 1.3.8
  */
 global $wpdb;
 use STATS4WP\Core\DB;
@@ -27,38 +27,51 @@ if (DB::ExistRow('visitor')) {
         $type[]  = $platform->platform ;
         $nb[] = $platform->nb ;
     }
-    $script_js = ' var ctx = document.getElementById("chartjs_top_platforms").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "doughnut",
-                    data: {
-                        labels:'.json_encode($type). ',
-                        datasets: [{
-                            label: "'. esc_html(__('Platforms', 'stats4wp')) .'",
-                            data:'. json_encode($nb). ',
-                            backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: {
-                              display: false,
-                              text: "'. esc_html(__('Platforms TOP 10', 'stats4wp')) .'"
-                            },
-                          },
-                        legend: {
-                            display: true,
-                            position: "bottom",
-                            labels: {
-                                fontColor: "#05419ad6",
-                                fontFamily: "Circular Std Book",
-                                fontSize: 14,
-                            }
-                        },
-                    },
-                }
-                );';
-                wp_add_inline_script('chart-js',$script_js);
+    $script_js = ' 
+    
+    const dataTopPlatforms= {
+        labels: '.json_encode($type). ',
+        datasets: [{
+          label: "'. esc_html(__('Platforms', 'stats4wp')) .'",
+          data: '. json_encode($nb). ',
+          backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
+          hoverOffset: 4
+        }]
+      };
+
+    const optionsTopPlatforms = {
+      responsive: true,
+      plugins: {
+          title: {
+              display: false,
+              text: "'. esc_html(__('Platforms TOP 10', 'stats4wp')) .'"
+          },
+          },
+      legend: {
+          display: true,
+          position: "bottom",
+          labels: {
+              fontColor: "#05419ad6",
+              fontFamily: "Circular Std Book",
+              fontSize: 14,
+          }
+      },
+    };
+
+    const configTopPlatforms = {
+      type: "doughnut",
+      data: dataTopPlatforms,
+      options: optionsTopPlatforms,
+    };
+
+    // render init block
+    const myChartTopPlatforms = new Chart(
+      document.getElementById("chartjs_top_platforms"),
+      configTopPlatforms
+    );
+
+    ';
+    wp_add_inline_script('chart-js',$script_js);
 
     unset($browsers, $type, $nb);
 }

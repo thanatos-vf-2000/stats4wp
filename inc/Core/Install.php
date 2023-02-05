@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @Version 1.3.8
  */
 namespace STATS4WP\Core;
 
@@ -89,7 +89,7 @@ class Install
 						date date NOT NULL,
 						count int(11) NOT NULL,
 						id int(11) NOT NULL,
-                        KEY `UPDSTATS` (`date`,`type`),
+                        KEY `UPDSTATS` (`date`,`type`,`id`),
                         KEY `SELDATE` (`date`),
 						PRIMARY KEY (`page_id`)
 					) {$collate}");

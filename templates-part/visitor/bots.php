@@ -1,4 +1,10 @@
 <?php
+/**
+ * @package  STATS4WPPlugin
+ * @Version 1.3.8
+ * 
+ * Desciption: Bots
+ */
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
@@ -44,43 +50,54 @@ if (DB::ExistRow('visitor')) {
         $nb[] = $bot->nb;
     }
 
-    $script_js = ' var ctx = document.getElementById("chartjs_bots").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "bar",
-                    data: {
-                        labels:'.json_encode($bot_agent). ',
-                        datasets: [{
-                            label: "'. esc_html(__('Bots', 'stats4wp')) .'",
-                            borderColor: "#05419ad6",
-                            fill: false,
-                            cubicInterpolationMode: "monotone",
-                            tension: 0.4,
-                            backgroundColor: [
-                               "#05419ad6"
-                            ],
-                            data:'. json_encode($nb). ',
-                        }]
-                    },
-                    options: {
-                        responsive: false,
-                        plugins: {
-                            title: {
-                              display: true,
-                              text: "'. esc_html($title) .'"
-                            },
-                          },
-                        legend: {
-                            display: true,
-                            position: "bottom",
-                            labels: {
-                                fontColor: "#05419ad6",
-                                fontFamily: "Circular Std Book",
-                                fontSize: 14,
-                            }
-                        },
-                    },
-                }
-                );';
+    $script_js = ' 
+    const dataBots= {
+		labels:'.json_encode($bot_agent). ',
+		datasets: [{
+			label: "'. esc_html(__('Bots', 'stats4wp')) .'",
+			borderColor: "#05419ad6",
+			fill: false,
+			cubicInterpolationMode: "monotone",
+			tension: 0.4,
+			backgroundColor: [
+			   "#05419ad6"
+			],
+			data:'. json_encode($nb). ',
+		}]
+	};
+
+    const optionsBots = {
+		responsive: false,
+		plugins: {
+			title: {
+			  display: true,
+			  text: "'. esc_html($title) .'"
+			},
+		  },
+		legend: {
+			display: true,
+			position: "bottom",
+			labels: {
+				fontColor: "#05419ad6",
+				fontFamily: "Circular Std Book",
+				fontSize: 14,
+			}
+		},
+	};
+
+    const configBots = {
+      type: "bar",
+      data: dataBots,
+      options: optionsBots,
+    };
+
+    // render init block
+    const myChartBots = new Chart(
+      document.getElementById("chartjs_bots"),
+      configBots
+    );
+                
+    ';
     wp_add_inline_script('chart-js',$script_js);
     unset($day, $nb);
 

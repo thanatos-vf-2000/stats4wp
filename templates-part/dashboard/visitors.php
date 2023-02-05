@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.0
+ * @Version 1.3.8
  */
 
 use STATS4WP\Core\DB;
@@ -98,18 +98,18 @@ if (DB::ExistRow('visitor')) {
     </div>
 </div>
 <?php
-$script_js = ' var ctx = document.getElementById("chartjs_visitors_new").getContext("2d");
-var myChart = new Chart(ctx, {
-    type: "doughnut",
-    data: {
+$script_js = ' 
+
+    const dataVisitorsNew = {
         labels:'.json_encode($type). ',
         datasets: [{
             label: "'. esc_html(__('Browsers', 'stats4wp')) .'",
             data:'. json_encode($nb). ',
             backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
         }]
-    },
-    options: {
+    };
+
+    const optionsVisitorsNew = {
         responsive: true,
         plugins: {
             title: {
@@ -126,9 +126,21 @@ var myChart = new Chart(ctx, {
                 fontSize: 14,
             }
         },
-    },
-}
-);';
+    };
+
+    const configVisitorsNew = {
+        type: "doughnut",
+        data: dataVisitorsNew,
+        options: optionsVisitorsNew,
+    };
+
+    // render init block
+    const myChartVisitorsNew = new Chart(
+        document.getElementById("chartjs_visitors_new"),
+        configVisitorsNew
+    );
+
+';
 wp_add_inline_script('chart-js',$script_js);
 
 unset($type, $nb);

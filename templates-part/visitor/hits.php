@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.2
+ * @Version 1.3.8
  */
 
 use STATS4WP\Core\DB;
@@ -46,45 +46,56 @@ if (DB::ExistRow('visitor')) {
         $nb[] = $hit->nb;
     }
 
-    $script_js = ' var ctx = document.getElementById("chartjs_nb_hits").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "line",
-                    data: {
-                        labels:'.json_encode($day). ',
-                        datasets: [{
-                            label: "'. esc_html(__('Hits', 'stats4wp')) .'",
-                            borderColor: "#05419ad6",
-                            fill: false,
-                            pointRadius: [0],
-                            pointHitRadius: [0],
-                            cubicInterpolationMode: "monotone",
-                            tension: 0.4,
-                            backgroundColor: [
-                               "#05419ad6"
-                            ],
-                            data:'. json_encode($nb). ',
-                        }]
-                    },
-                    options: {
-                        responsive: false,
-                        plugins: {
-                            title: {
-                              display: true,
-                              text: "'. $char_title .'"
-                            },
-                          },
-                        legend: {
-                            display: true,
-                            position: "bottom",
-                            labels: {
-                                fontColor: "#05419ad6",
-                                fontFamily: "Circular Std Book",
-                                fontSize: 14,
-                            }
-                        },
-                    },
-                }
-                );';
+    $script_js = '
+    const dataNbHits= {
+		labels:'.json_encode($day). ',
+		datasets: [{
+			label: "'. esc_html(__('Hits', 'stats4wp')) .'",
+			borderColor: "#05419ad6",
+			fill: false,
+			pointRadius: [0],
+			pointHitRadius: [0],
+			cubicInterpolationMode: "monotone",
+			tension: 0.4,
+			backgroundColor: [
+			   "#05419ad6"
+			],
+			data:'. json_encode($nb). ',
+		}]
+	};
+
+    const optionsNbHits = {
+		responsive: false,
+		plugins: {
+			title: {
+			  display: true,
+			  text: "'. $char_title .'"
+			},
+		  },
+		legend: {
+			display: true,
+			position: "bottom",
+			labels: {
+				fontColor: "#05419ad6",
+				fontFamily: "Circular Std Book",
+				fontSize: 14,
+			}
+		},
+	};
+
+    const configNbHits = {
+      type: "line",
+      data: dataNbHits,
+      options: optionsNbHits,
+    };
+
+    // render init block
+    const myChartNbHits = new Chart(
+      document.getElementById("chartjs_nb_hits"),
+      configNbHits
+    );
+    
+    ';
     wp_add_inline_script('chart-js',$script_js);
     unset($day, $nb);
 

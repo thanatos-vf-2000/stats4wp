@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.2
+ * @Version 1.3.8
  */
 
 use STATS4WP\Core\DB;
@@ -71,7 +71,7 @@ if (DB::ExistRow('visitor')) {
                 $oss = $wpdb->get_results('SELECT z as d,
                 SUM(CASE WHEN platform = "Windows" THEN nb END) windows,
                 SUM(CASE WHEN platform = "Ubuntu " THEN nb END) ubuntu ,
-                SUM(CASE WHEN platform = "OS X " THEN nb END) osx ,
+                SUM(CASE WHEN platform = "OS X" THEN nb END) osx ,
                 SUM(CASE WHEN platform = "Linux " THEN nb END) linux ,
                 SUM(CASE WHEN platform = "iOS" THEN nb END) ios,
                 SUM(CASE WHEN platform = "Chrome OS" THEN nb END) chromeos,
@@ -97,97 +97,107 @@ if (DB::ExistRow('visitor')) {
                     $other[] = ($os->other == null) ? 0 : $os->other;
                 }
                 
-                $script_js = ' var ctx = document.getElementById("chartjs_os").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "bar",
-                    data: {
-                        labels:'.json_encode($day). ',
-                        datasets: [{
-                                label: "'. esc_html(__('Windows', 'stats4wp')) .'",
-                                backgroundColor: [
-                                "#36a2eb"
-                                ],
-                                data:'. json_encode($windows). ',
-                            },
-                            {
-                                label: "'. esc_html(__('Ubuntu', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#f67019"
-                                ],
-                                data:'. json_encode($ubuntu). ',
-                            },
-                            {
-                                label: "'. esc_html(__('osx', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#f53794"
-                                ],
-                                data:'. json_encode($osx). ',
-                            },
-                            {
-                                label: "'. esc_html(__('Linux', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#537bc4"
-                                ],
-                                data:'. json_encode($linux). ',
-                            },
-                            {
-                                label: "'. esc_html(__('iOS', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#acc236"
-                                ],
-                                data:'. json_encode($ios). ',
-                            },
-                            {
-                                label: "'. esc_html(__('Chrome OS', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#166a8f"
-                                ],
-                                data:'. json_encode($chromeos). ',
-                            },
-                            {
-                                label: "'. esc_html(__('Android', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#00a950"
-                                ],
-                                data:'. json_encode($android). ',
-                            },
-                            {
-                                label: "'. esc_html(__('Other', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#58595b"
-                                ],
-                                data:'. json_encode($other). ',
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: false,
-                        scales: {
-                            x: {
-                              stacked: true,
-                            },
-                            y: {
-                              stacked: true
-                            }
-                          },
-                        plugins: {
-                            title: {
-                              display: true,
-                              text: "'. $char_title .'"
-                            },
-                          },
-                        legend: {
-                            display: true,
-                            position: "bottom",
-                            labels: {
-                                fontColor: "#05419ad6",
-                                fontFamily: "Circular Std Book",
-                                fontSize: 14,
-                            }
+                $script_js = '
+                const dataOs= {
+                    labels:'.json_encode($day). ',
+                    datasets: [{
+                            label: "'. esc_html(__('Windows', 'stats4wp')) .'",
+                            backgroundColor: [
+                            "#36a2eb"
+                            ],
+                            data:'. json_encode($windows). ',
                         },
+                        {
+                            label: "'. esc_html(__('Ubuntu', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#f67019"
+                            ],
+                            data:'. json_encode($ubuntu). ',
+                        },
+                        {
+                            label: "'. esc_html(__('osx', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#f53794"
+                            ],
+                            data:'. json_encode($osx). ',
+                        },
+                        {
+                            label: "'. esc_html(__('Linux', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#537bc4"
+                            ],
+                            data:'. json_encode($linux). ',
+                        },
+                        {
+                            label: "'. esc_html(__('iOS', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#acc236"
+                            ],
+                            data:'. json_encode($ios). ',
+                        },
+                        {
+                            label: "'. esc_html(__('Chrome OS', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#166a8f"
+                            ],
+                            data:'. json_encode($chromeos). ',
+                        },
+                        {
+                            label: "'. esc_html(__('Android', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#00a950"
+                            ],
+                            data:'. json_encode($android). ',
+                        },
+                        {
+                            label: "'. esc_html(__('Other', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#58595b"
+                            ],
+                            data:'. json_encode($other). ',
+                        }
+                    ]
+                };
+            
+                const optionsOs = {
+                    responsive: false,
+                    scales: {
+                        x: {
+                          stacked: true,
+                        },
+                        y: {
+                          stacked: true
+                        }
+                      },
+                    plugins: {
+                        title: {
+                          display: true,
+                          text: "'. $char_title .'"
+                        },
+                      },
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            fontColor: "#05419ad6",
+                            fontFamily: "Circular Std Book",
+                            fontSize: 14,
+                        }
                     },
-                }
-                );';
+                };
+            
+                const configOs = {
+                  type: "bar",
+                  data: dataOs,
+                  options: optionsOs,
+                };
+            
+                // render init block
+                const myChartOs = new Chart(
+                  document.getElementById("chartjs_os"),
+                  configOs
+                );
+                ';
                 wp_add_inline_script('chart-js',$script_js);
                 unset($day, $windows, $ubuntu, $safari, $edge, $chrome, $chromeos, $android, $other);
                 ?>

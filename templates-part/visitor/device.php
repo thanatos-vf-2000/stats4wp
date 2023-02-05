@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.2
+ * @Version 1.3.8
  */
 
 use STATS4WP\Core\DB;
@@ -39,7 +39,9 @@ if (DB::ExistRow('visitor')) {
                 SUM(CASE WHEN device =  "desktop" THEN nb END) desktop,
                 SUM(CASE WHEN device =  "mobile " THEN nb END) mobile ,
                 SUM(CASE WHEN device =  "tablet " THEN nb END) tablet ,
-                SUM(CASE WHEN device NOT IN  ("desktop","mobile","tablet") THEN nb END) other
+                SUM(CASE WHEN device =  "gaming " THEN nb END) gaming ,
+                SUM(CASE WHEN device =  "television " THEN nb END) television ,
+                SUM(CASE WHEN device NOT IN  ("desktop","mobile","tablet","gaming","television") THEN nb END) other
                 FROM (
                 select '. $select .', device, COUNT(*) as nb
                   from '. DB::table('visitor') ." 
@@ -53,72 +55,99 @@ if (DB::ExistRow('visitor')) {
                     $desktop[] = ($device->desktop == null) ? 0 : $device->desktop;
                     $mobile[] = ($device->mobile == null) ? 0 : $device->mobile;
                     $tablet[] = ($device->tablet == null) ? 0 : $device->tablet;
+                    $gaming[] = ($device->gaming == null) ? 0 : $device->gaming;
+                    $television[] = ($device->television == null) ? 0 : $device->television;
                     $other[] = ($device->other == null) ? 0 : $device->other;
                 }
                 
-                $script_js = ' var ctx = document.getElementById("chartjs_devices").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "bar",
-                    data: {
-                        labels:'.json_encode($day). ',
-                        datasets: [{
-                                label: "'. esc_html(__('Desktop', 'stats4wp')) .'",
-                                backgroundColor: [
-                                "#36a2eb"
-                                ],
-                                data:'. json_encode($desktop). ',
-                            },
-                            {
-                                label: "'. esc_html(__('Mobile', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#f67019"
-                                ],
-                                data:'. json_encode($mobile). ',
-                            },
-                            {
-                                label: "'. esc_html(__('Tablet', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#f53794"
-                                ],
-                                data:'. json_encode($tablet). ',
-                            },
-                            {
-                                label: "'. esc_html(__('Other', 'stats4wp')) .'",
-                                backgroundColor: [
-                                   "#537bc4"
-                                ],
-                                data:'. json_encode($other). ',
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: false,
-                        scales: {
-                            x: {
-                              stacked: true,
-                            },
-                            y: {
-                              stacked: true
-                            }
-                          },
-                        plugins: {
-                            title: {
-                              display: true,
-                              text: "'. $char_title .'"
-                            },
-                          },
-                        legend: {
-                            display: true,
-                            position: "bottom",
-                            labels: {
-                                fontColor: "#05419ad6",
-                                fontFamily: "Circular Std Book",
-                                fontSize: 14,
-                            }
+                $script_js = '
+                const dataDevices= {
+                    labels:'.json_encode($day). ',
+                    datasets: [{
+                            label: "'. esc_html(__('Desktop', 'stats4wp')) .'",
+                            backgroundColor: [
+                            "#36a2eb"
+                            ],
+                            data:'. json_encode($desktop). ',
                         },
+                        {
+                            label: "'. esc_html(__('Mobile', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#f67019"
+                            ],
+                            data:'. json_encode($mobile). ',
+                        },
+                        {
+                            label: "'. esc_html(__('Tablet', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#f53794"
+                            ],
+                            data:'. json_encode($tablet). ',
+                        },
+                        {
+                            label: "'. esc_html(__('Gaming', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#166a8f"
+                            ],
+                            data:'. json_encode($gaming). ',
+                        },
+                        {
+                            label: "'. esc_html(__('Television', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#00a950"
+                            ],
+                            data:'. json_encode($television). ',
+                        },
+                        {
+                            label: "'. esc_html(__('Other', 'stats4wp')) .'",
+                            backgroundColor: [
+                               "#537bc4"
+                            ],
+                            data:'. json_encode($other). ',
+                        }
+                    ]
+                };
+            
+                const optionsDevices = {
+                    responsive: false,
+                    scales: {
+                        x: {
+                          stacked: true,
+                        },
+                        y: {
+                          stacked: true
+                        }
+                      },
+                    plugins: {
+                        title: {
+                          display: true,
+                          text: "'. $char_title .'"
+                        },
+                      },
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            fontColor: "#05419ad6",
+                            fontFamily: "Circular Std Book",
+                            fontSize: 14,
+                        }
                     },
-                }
-                );';
+                };
+            
+                const configDevices = {
+                  type: "bar",
+                  data: dataDevices,
+                  options: optionsDevices,
+                };
+            
+                // render init block
+                const myChartDevices = new Chart(
+                  document.getElementById("chartjs_devices"),
+                  configDevices
+                );
+                
+                ';
                 wp_add_inline_script('chart-js',$script_js);
                 unset($day, $desktop, $mobile, $tablet, $other);
                 ?>

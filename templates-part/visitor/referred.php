@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.0
+ * @Version 1.3.8
  */
 
 use STATS4WP\Core\DB;
@@ -65,37 +65,47 @@ if (DB::ExistRow('visitor')) {
                 }
                 $referred_list .= '</tbody>
                     </table>';
-                $script_js = ' var ctx = document.getElementById("chartjs_referred").getContext("2d");
-                var myChart = new Chart(ctx, {
-                    type: "doughnut",
-                    data: {
-                        labels:'.json_encode($src). ',
-                        datasets: [{
-                            label: "'. esc_html(__('Referred', 'stats4wp')) .'",
-                            data:'. json_encode($nb). ',
-                            backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
-                        }]
-                    },
-                    options: {
-                        responsive: false,
-                        plugins: {
-                            title: {
-                              display: true,
-                              text: "'. esc_html($title) .'"
-                            },
-                          },
-                        legend: {
-                            display: true,
-                            position: "bottom",
-                            labels: {
-                                fontColor: "#05419ad6",
-                                fontFamily: "Circular Std Book",
-                                fontSize: 14,
-                            }
+                $script_js = '
+                const dataReferred= {
+                    labels:'.json_encode($src). ',
+                    datasets: [{
+                        label: "'. esc_html(__('Referred', 'stats4wp')) .'",
+                        data:'. json_encode($nb). ',
+                        backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
+                    }]
+                };
+            
+                const optionsReferred = {
+                    responsive: false,
+                    plugins: {
+                        title: {
+                          display: true,
+                          text: "'. esc_html($title) .'"
                         },
+                      },
+                    legend: {
+                        display: true,
+                        position: "bottom",
+                        labels: {
+                            fontColor: "#05419ad6",
+                            fontFamily: "Circular Std Book",
+                            fontSize: 14,
+                        }
                     },
-                }
-                );';
+                };
+            
+                const configReferred = {
+                  type: "doughnut",
+                  data: dataReferred,
+                  options: optionsReferred,
+                };
+            
+                // render init block
+                const myChartReferred = new Chart(
+                  document.getElementById("chartjs_referred"),
+                  configReferred
+                );
+                ';
                 wp_add_inline_script('chart-js',$script_js);
                 unset($src, $nb);
                 ?>

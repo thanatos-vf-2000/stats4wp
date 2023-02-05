@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.4
+ * @Version 1.3.8
  * 
  * Desciption: Location Maps
  */
@@ -31,7 +31,13 @@ if (Options::get_option('geochart') == true ) {
           <h2 class="hndle ui-sortable-handle"><?php _e('Bots location map', 'stats4wp'); ?></h2>
       </div>
       <div class="inside">
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      <?php
+      if (Options::get_option('cdn_chartjs') === false ) {
+        echo '<script type="text/javascript" src="' . STATS4WP_URL . 'assets/js/loader.js"></script>';
+      } else {
+        echo '<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>';
+      }
+      ?>
       <script type="text/javascript">
         google.charts.load('current', {
           'packages':['geochart'],

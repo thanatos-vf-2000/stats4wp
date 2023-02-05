@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.2
+ * @Version 1.3.8
  */
 return array(
     'anonymize_ips' => array(
@@ -51,5 +51,11 @@ return array(
         'section'   => STATS4WP_NAME.'_admin_index',
         'type'      => 'checkboxField',
         'message'   => __('Locations are geocoded by Google Maps. Any data that does not require geocoding is not sent to any server. Please see the Google Maps Terms of Service for more information on their data policy.','stats4wp'),
-        'link'      => 'https://developers.google.com/maps/terms')
+        'link'      => 'https://developers.google.com/maps/terms'),
+    'cdn_chartjs' => array(
+        'title'     => __('Enable CDN Chart JS','stats4wp'),
+        'section'   => STATS4WP_NAME.'_admin_index',
+        'type'      => 'checkboxField',
+        'message'   => __('Use CDN for Chart.js: https://cdnjs.cloudflare.com/ajax/libs/Chart.js/<version>/chart.min.js.','stats4wp'),
+        'link'      => 'https://cdnjs.com/libraries/Chart.js')
 );
