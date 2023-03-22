@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
@@ -36,11 +36,13 @@ if (DB::ExistRow('visitor')) {
                             <td style="width: 20%;"><?php echo esc_html(__('Call', 'stats4wp')); ?></td>
                         </tr>
                 <?php
-                foreach ( $uris as $uri ) {
+                foreach ($uris as $uri) {
                     $uri_nb++;
                     $percent = round($uri->nb * 100 / $uris_total, 2);
                     $tr_class = ($uri_nb % 2 == 0) ? "stats4wp-bg" : '';
-                    if ($uri_nb < Options::get_option('top_page') && $percent > 0 ) echo '<tr class="' . esc_attr($tr_class) . '"><td>' . esc_html($uri_nb) . '.</td><td>' . esc_html($uri->type). '</td><td>' . esc_html($uri->uri). '</td><td class="stats4wp-right">'. esc_html(number_format($uri->nb, 0, ',', ' ')) .'</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . $percent . "%</td></tr>";
+                    if ($uri_nb < Options::get_option('top_page') && $percent > 0) {
+                        echo '<tr class="' . esc_attr($tr_class) . '"><td>' . esc_html($uri_nb) . '.</td><td>' . esc_html($uri->type). '</td><td>' . esc_html($uri->uri). '</td><td class="stats4wp-right">'. esc_html(number_format($uri->nb, 0, ',', ' ')) .'</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . $percent . "%</td></tr>";
+                    }
                 }
                 if ($uri_nb > Options::get_option('top_page')) {
                     echo '<tr><td colspan="5">' . __('Others ...', 'stats4wp'). '</td></tr>';

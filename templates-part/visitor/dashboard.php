@@ -1,6 +1,7 @@
 <?php
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
+
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
 if ($page == 'stats4wp_plugin') {
     $data = 'all';
@@ -10,7 +11,7 @@ if ($page == 'stats4wp_plugin') {
 
 if (DB::ExistRow('visitor')) {
     $param = AdminGraph::getdate($data);
-?>
+    ?>
     <div class="rows stats4wp-dashboard">
         <div class="stats4wp-rows">
             <div class="stats4wp-inline width30 border">
@@ -20,11 +21,12 @@ if (DB::ExistRow('visitor')) {
                 $navigator_total = array_sum(array_column($navigators, 'nb'));
                 $navigator_nb=0;
                 echo '<p>';
-                foreach ( $navigators as $navigator ) 
-                {
+                foreach ($navigators as $navigator) {
                     $navigator_nb++;
                     $percent = round($navigator->nb * 100 / $navigator_total);
-                    if ($navigator_nb <10 && $percent > 0 ) echo esc_html($navigator->agent). " ($percent%) - ";
+                    if ($navigator_nb <10 && $percent > 0) {
+                        echo esc_html($navigator->agent). " ($percent%) - ";
+                    }
                 }
                 echo esc_html(__('All', 'stats4wp')).'</p>';
                 ?>
@@ -36,11 +38,12 @@ if (DB::ExistRow('visitor')) {
                 $platform_total = array_sum(array_column($platforms, 'nb'));
                 $platform_nb=0;
                 echo '<p>';
-                foreach ( $platforms as $platform ) 
-                {
+                foreach ($platforms as $platform) {
                     $platform_nb++;
                     $percent = round($platform->nb * 100 / $platform_total);
-                    if ($platform_nb <10 && $percent > 0 ) echo esc_html($platform->platform). " ($percent%) - ";
+                    if ($platform_nb <10 && $percent > 0) {
+                        echo esc_html($platform->platform). " ($percent%) - ";
+                    }
                 }
                 echo esc_html(__('All', 'stats4wp')).'</p>';
                 ?>
@@ -52,11 +55,12 @@ if (DB::ExistRow('visitor')) {
                 $device_total = array_sum(array_column($devices, 'nb'));
                 $device_nb=0;
                 echo '<p>';
-                foreach ( $devices as $device ) 
-                {
+                foreach ($devices as $device) {
                     $device_nb++;
                     $percent = round($device->nb * 100 / $device_total);
-                    if ($device_nb <10 && $percent > 0 ) echo esc_html($device->device). " ($percent%) - ";
+                    if ($device_nb <10 && $percent > 0) {
+                        echo esc_html($device->device). " ($percent%) - ";
+                    }
                 }
                 echo esc_html(__('All', 'stats4wp')).'</p>';
                 ?>
@@ -70,11 +74,12 @@ if (DB::ExistRow('visitor')) {
                 $location_total = array_sum(array_column($locations, 'nb'));
                 $location_nb=0;
                 echo '<p>';
-                foreach ( $locations as $location ) 
-                {
+                foreach ($locations as $location) {
                     $location_nb++;
                     $percent = round($location->nb * 100 / $location_total);
-                    if ($location_nb <10 && $percent > 0 ) echo esc_html($location->location). " ($percent%) - ";
+                    if ($location_nb <10 && $percent > 0) {
+                        echo esc_html($location->location). " ($percent%) - ";
+                    }
                 }
                 echo esc_html(__('All', 'stats4wp')).'</p>';
                 ?>
@@ -86,11 +91,12 @@ if (DB::ExistRow('visitor')) {
                 $language_total = array_sum(array_column($languages, 'nb'));
                 $language_nb=0;
                 echo '<p>';
-                foreach ( $languages as $language ) 
-                {
+                foreach ($languages as $language) {
                     $language_nb++;
                     $percent = round($language->nb * 100 / $language_total);
-                    if ($language_nb <10 && $percent > 0 ) echo esc_html($language->language). " ($percent%) - ";
+                    if ($language_nb <10 && $percent > 0) {
+                        echo esc_html($language->language). " ($percent%) - ";
+                    }
                 }
                 echo '<a href="/wp-admin/admin.php?page=stats4wp_visitors&spage=lang" >' . esc_html(__('All', 'stats4wp')) . '</a></p>';
                 ?>
@@ -104,16 +110,17 @@ if (DB::ExistRow('visitor')) {
                 $bot_total = array_sum(array_column($bots, 'nb'));
                 $bot_nb=0;
                 echo '<p>';
-                foreach ( $bots as $bot ) 
-                {
+                foreach ($bots as $bot) {
                     $bot_nb++;
                     $percent = round($bot->nb * 100 / $bot_total);
-                    if ($bot_nb <10 && $percent > 0 ) echo esc_html($bot->agent). " ($percent%) - ";
+                    if ($bot_nb <10 && $percent > 0) {
+                        echo esc_html($bot->agent). " ($percent%) - ";
+                    }
                 }
                 echo '</p>';
                 ?>
             </div>
         </div>
     </div>
-<?php
+    <?php
 }

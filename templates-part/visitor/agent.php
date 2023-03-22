@@ -1,11 +1,12 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
+
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
 if ($page == 'stats4wp_plugin') {
     $data = 'all';
@@ -21,7 +22,7 @@ if (DB::ExistRow('visitor')) {
             <div class="stats4wp-inline width46 ">
                 <canvas id="chartjs_agents" height="300vw" width="400vw"></canvas> 
                 <?php
-                switch($param['interval']) {
+                switch ($param['interval']) {
                     case 'days':
                         $select = 'last_counter as z';
                         $char_title = __('Agents per days', 'stats4wp');
@@ -52,7 +53,7 @@ if (DB::ExistRow('visitor')) {
                   GROUP BY  1, 2
                 ) all_data
                 group by 1");
-                foreach ( $agents as $agent ) {
+                foreach ($agents as $agent) {
                     $day[]  = $agent->d ;
                     $ie[] = ($agent->ie == null) ? "0" : $agent->ie;
                     $firefox[] = ($agent->firefox == null) ? "0" : $agent->firefox;
@@ -140,7 +141,7 @@ if (DB::ExistRow('visitor')) {
                     plugins: {
                         title: {
                           display: true,
-                          text: "'. $char_title .'"
+                          text: "'. esc_html($char_title).'"
                         },
                       },
                     legend: {
@@ -167,7 +168,7 @@ if (DB::ExistRow('visitor')) {
                 );
                 
                 ';
-                wp_add_inline_script('chart-js',$script_js);
+                wp_add_inline_script('chart-js', $script_js);
                 unset($day, $ie, $firefox, $safari, $edge, $chrome, $opera, $samsungie, $other);
                 ?>
             </div>
@@ -189,13 +190,13 @@ if (DB::ExistRow('visitor')) {
                                 <td>' .  esc_html(__('Navigator', 'stats4wp')) . '</td>
                                 <td style="width: 10%;"></td>
                             </tr>';
-                    foreach ( $agents_version as $agent_version ) {
+                    foreach ($agents_version as $agent_version) {
                         if ($agent_local != $agent_version->agent) {
                             $agents_nb = 1;
                             echo  '<tr><th colspan="3">'. esc_html($agent_version->agent).'</th></tr>';
                         }
                         $percent = round($agent_version->nb * 100 / $agents_total, 2);
-                        echo '<tr><td>' . $agents_nb . '</td><td>' . esc_html(substr($agent_version->version,0,50))  . '</td><td>' . esc_html($percent) . '%</td><td>' .  esc_html(number_format($agent_version->nb, 0, ',', ' ')). '</td></tr>' ;
+                        echo '<tr><td>' . $agents_nb . '</td><td>' . esc_html(substr($agent_version->version, 0, 50))  . '</td><td>' . esc_html($percent) . '%</td><td>' .  esc_html(number_format($agent_version->nb, 0, ',', ' ')). '</td></tr>' ;
                         $agent_local = $agent_version->agent;
                         $agents_nb++;
                     }

@@ -1,11 +1,9 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @version 1.4.0
  */
 namespace STATS4WP\Api;
-
-
 
 class User
 {

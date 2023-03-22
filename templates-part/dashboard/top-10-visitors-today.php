@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
@@ -31,7 +31,7 @@ use STATS4WP\Core\Options;
                 AND device!='bot' 
                 ORDER BY hits  DESC LIMIT 10");
             $i=1;
-            foreach($top_visitors as $top_visitor){
+            foreach ($top_visitors as $top_visitor) {
                 $views = $top_visitor->hits;
                 $ip = (Options::get_option('anonymize_ips') == true) ? __('None', 'stats4wp') : $top_visitor->ip;
                 $browser = $top_visitor->agent .' - '. $top_visitor->agent_v;

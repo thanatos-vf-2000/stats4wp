@@ -1,8 +1,8 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.2
- * 
+ * @package STATS4WPPlugin
+ * @version 1.4.0
+ *
  * Desciption: CVS Export date
  */
 
@@ -40,7 +40,7 @@ self::get_template(array('header'));
                         <td>" . esc_html($t). "</td>
                         <td>" . esc_html($num->nb). "</td>
                         <td><a href=\"?page=stats4wp_cvsexport&report=". $t ."\" target=\"_blank\"> ". __('Export All', 'stats4wp') ."</a>";
-                foreach ( $years as $year ) {
+                foreach ($years as $year) {
                     echo " - <a href=\"?page=stats4wp_cvsexport&report=". $t ."&year=" . $year->y . "\" target=\"_blank\"> ". $year->y ."</a>";
                 }
                 echo "</td></tr>";
@@ -49,6 +49,6 @@ self::get_template(array('header'));
         </tbody>
     </table>
 </div>
-<?php 
+<?php
 self::get_template(array('footer'));
 ?>

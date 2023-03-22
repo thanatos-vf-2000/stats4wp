@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
@@ -28,9 +28,9 @@ use STATS4WP\Core\Options;
                 WHERE device!='bot' 
                 ORDER BY id  DESC LIMIT 10");
             $i=1;
-            foreach($recent_visitors as $recent_visitor) {
+            foreach ($recent_visitors as $recent_visitor) {
                 $browser = $recent_visitor->agent;
-                $day = date(get_option( 'date_format' ), strtotime($recent_visitor->last_counter));
+                $day = date(get_option('date_format'), strtotime($recent_visitor->last_counter));
                 $ip = (Options::get_option('anonymize_ips') == true) ? __('None', 'stats4wp') : $recent_visitor->ip;
                 $referred_txt = parse_url($recent_visitor->referred, PHP_URL_HOST);
                 $referred = $recent_visitor->referred;
@@ -43,7 +43,6 @@ use STATS4WP\Core\Options;
                         <td style="text-align: left"><a href="'. esc_url($referred) .'" title="'. esc_attr($referred) .'">'. esc_html($referred_txt) .'</a></td>
                     </tr>';
                 $i++;
-
             }
             unset($recent_visitors, $i, $browser, $day, $ip, $referred_txt, $referred);
             ?>

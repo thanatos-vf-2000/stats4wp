@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
@@ -19,7 +19,7 @@ use STATS4WP\Api\AdminGraph;
 <?php
 if (DB::ExistRow('visitor')) {
     $param = AdminGraph::getdate('');
-    switch($param['group']) {
+    switch ($param['group']) {
         case 1:
             $select = 'last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
             $char_title = __('Number of users and Hits per days', 'stats4wp');
@@ -46,7 +46,7 @@ if (DB::ExistRow('visitor')) {
         where device!='bot' 
         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."' 
         GROUP BY 1 ORDER BY 1 ASC");
-    foreach ( $visitors as $visitor ) {
+    foreach ($visitors as $visitor) {
         $day[]  = $visitor->last_counter ;
         $users[] = $visitor->user;
         $hits[] = $visitor->hits;
@@ -88,7 +88,7 @@ if (DB::ExistRow('visitor')) {
         plugins: {
             title: {
               display: false,
-              text: "'. $char_title .'"
+              text: "'. esc_html($char_title) .'"
             },
           },
         legend: {
@@ -115,7 +115,6 @@ if (DB::ExistRow('visitor')) {
     );
     
     ;';
-    wp_add_inline_script('chart-js',$script_js);
+    wp_add_inline_script('chart-js', $script_js);
     unset($day, $users, $hits, $visitors);
-
 }

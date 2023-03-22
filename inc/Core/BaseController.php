@@ -1,34 +1,36 @@
-<?php 
+<?php
 /**
- * @package  STATS4WP Plugin
+ * @package STATS4WP Plugin
+ * @version 1.4.0
  */
 namespace STATS4WP\Core;
 
 class BaseController
 {
-	public $plugin_path;
+    public $plugin_path;
 
-	public $plugin_url;
+    public $plugin_url;
 
-	public $plugin;
+    public $plugin;
 
-	public $managers = array();
+    public $managers = array();
 
-	public function __construct() {
-		$this->plugin_path = STATS4WP_PATH;
-		$this->plugin_url = STATS4WP_URL;
-		$this->plugin = STATS4WP_NAME;
-		$this->managers = array_merge(array(), Options::get_options());
-	}
+    public function __construct()
+    {
+        $this->plugin_path = STATS4WP_PATH;
+        $this->plugin_url = STATS4WP_URL;
+        $this->plugin = STATS4WP_NAME;
+        $this->managers = array_merge(array(), Options::get_options());
+    }
 
-	public function activated( string $key )
-	{
-		$option = get_option( STATS4WP_NAME.'_plugin' );
+    public function activated(string $key)
+    {
+        $option = get_option(STATS4WP_NAME.'_plugin');
 
-		return isset( $option[ $key ] ) ? $option[ $key ] : false;
-	}
+        return isset($option[ $key ]) ? $option[ $key ] : false;
+    }
 
-	/**
+    /**
      * Get Template File
      *
      * @param $template
@@ -45,7 +47,6 @@ class BaseController
 
         // Load File
         foreach ($template as $file) {
-
             $template_file = STATS4WP_PATH . "templates-part/" . $file . ".php";
             if (!file_exists($template_file)) {
                 continue;

@@ -1,8 +1,8 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
- * 
+ * @package STATS4WPPlugin
+ * @version 1.4.0
+ *
  * Desciption: By Hour
  */
 use STATS4WP\Core\DB;
@@ -42,7 +42,7 @@ if (DB::ExistRow('visitor')) {
         where device!='bot' 
         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."' 
         GROUP BY 1 ORDER by 1 ASC");
-    foreach ( $by_hours as $by_hour ) {
+    foreach ($by_hours as $by_hour) {
         $hour[]  = $by_hour->hour ;
         $nb[] = $by_hour->nb;
     }
@@ -97,14 +97,14 @@ if (DB::ExistRow('visitor')) {
     );
 
     ';
-    wp_add_inline_script('chart-js',$script_js);
-    unset($day, $nb,$script_js);
+    wp_add_inline_script('chart-js', $script_js);
+    unset($day, $nb, $script_js);
     $by_hours_days = $wpdb->get_results("SELECT DAYOFWEEK(last_counter) as d, HOUR(hour) as hour, COUNT(*) AS nb 
         FROM ". DB::table('visitor') ." 
         where device!='bot' 
         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."' 
         GROUP BY 1,2 ORDER by 1 ASC");
-    foreach ( $by_hours_days as $by_hour_day ) {
+    foreach ($by_hours_days as $by_hour_day) {
         switch ($by_hour_day->d) {
             case 1:
                 $d = __('Sunday', 'stats4wp');
@@ -182,6 +182,5 @@ if (DB::ExistRow('visitor')) {
     );
     
     ';
-    wp_add_inline_script('chart-js',$script_js);
-
+    wp_add_inline_script('chart-js', $script_js);
 }

@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.1
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 namespace STATS4WP\Stats;
 
@@ -16,7 +16,7 @@ class Page
     public function register()
     {
         if (Options::get_option('version') == STATS4WP_VERSION) {
-            add_action('init', array( $this,'page'));     
+            add_action('init', array( $this,'page'));
         }
     }
 
@@ -109,7 +109,7 @@ class Page
         }
 
         // Add admin URL
-        if (strpos(self::get_page_uri(), parse_url(admin_url(), PHP_URL_PATH)) !== false ){
+        if (strpos(self::get_page_uri(), parse_url(admin_url(), PHP_URL_PATH)) !== false) {
             $current_page['type'] = "admin";
         }
 
@@ -138,7 +138,6 @@ class Page
                 $current_page['id'] = $local_post['ID'];
                 return apply_filters('stats4wp_current_page', $current_page);
             }
-
         }
 
         if ($current_page['type'] =='') {
@@ -166,7 +165,7 @@ class Page
         $home_uri_len = strlen($home_uri);
 
         // Get the current page URI.
-        $page_uri = $_SERVER["REQUEST_URI"];
+        $page_uri = sanitize_text_field($_SERVER["REQUEST_URI"]);
 
         /*
          * We need to check which URI is longer in case one contains the other.
@@ -201,7 +200,7 @@ class Page
         }
 
         if (function_exists('pll_current_language')) {
-            $page_uri =str_replace('/'.pll_current_language().'/','/',$page_uri);
+            $page_uri =str_replace('/'.pll_current_language().'/', '/', $page_uri);
         }
 
         return apply_filters('stats4wp_page_uri', $page_uri);
@@ -267,12 +266,9 @@ class Page
 
         // Update Exist Page
         if (null !== $exist) {
-
             $wpdb->query($wpdb->prepare("UPDATE `" . DB::table('pages') . "` SET `count` = `count` + 1 WHERE `date` = '" . TimeZone::getCurrentDate('Y-m-d') . "' " . (array_key_exists("search_query", $current_page) === true ? "AND `uri` = '" . esc_sql($page_uri) . "'" : "") . "AND `type` = '{$current_page['type']}' AND `id` = %d", $current_page['id']));
             $page_id = $exist['page_id'];
-
         } else {
-
             // Prepare Pages Data
             $pages = array(
                 'uri' => $page_uri,
@@ -314,6 +310,6 @@ class Page
         # Get Page ID
         $page_id = $wpdb->insert_id;
 
-       return $page_id;
+        return $page_id;
     }
 }

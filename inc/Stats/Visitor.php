@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 namespace STATS4WP\Stats;
 
@@ -15,14 +15,13 @@ use STATS4WP\Api\GeoIP;
 use STATS4WP\Core\DB;
 use STATS4WP\Core\Options;
 
-
 class Visitor
 {
 
-    public function register() 
+    public function register()
     {
         if (Options::get_option('version') == STATS4WP_VERSION) {
-            add_action('init', array( $this,'visitor'));     
+            add_action('init', array( $this,'visitor'));
         }
     }
 
@@ -42,7 +41,7 @@ class Visitor
         // If we have a new Visitor in Day
         if (!$same_visitor) {
             // Prepare Visitor information
-            $language = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+            $language = substr(sanitize_text_field($_SERVER['HTTP_ACCEPT_LANGUAGE']), 0, 2);
             $visitor = array(
                 'last_counter'  => TimeZone::getCurrentDate('Y-m-d'),
                 'hour'          => date("H:i:s"),
@@ -114,5 +113,4 @@ class Visitor
 
         return $visitor_id;
     }
-
 }

@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 namespace STATS4WP\Stats;
 
@@ -30,7 +30,7 @@ class UserOnline
         if (Options::get_option('version') == STATS4WP_VERSION) {
             # Reset User Online Count
             add_action('wp_loaded', array($this, 'reset_user_online'));
-            add_action('init', array( $this,'useronline')); 
+            add_action('init', array( $this,'useronline'));
         }
     }
 
@@ -61,7 +61,6 @@ class UserOnline
 
         // Call the deletion query.
         $wpdb->query("DELETE FROM `" . DB::table('useronline') . "` WHERE timestamp < {$time_diff}");
-
     }
 
     /**
@@ -80,12 +79,9 @@ class UserOnline
 
         # Check Users Exist in Online list
         if ($user_online === false) {
-
             # Added New Online User
             self::add_user_online();
-
         } else {
-
             # Update current User Time
             self::update_user_online();
         }
@@ -153,7 +149,6 @@ class UserOnline
 
         # Get User Online ID
         $user_online_id = $wpdb->insert_id;
-
     }
 
     /**
@@ -182,11 +177,13 @@ class UserOnline
         $user_online = apply_filters('stats4wp_update_user_online_data', $user_online);
 
         # Update the database with the new information.
-        $wpdb->update(DB::table('useronline'), 
-            $user_online, 
+        $wpdb->update(
+            DB::table('useronline'),
+            $user_online,
             array('ip' => IP::StoreIP()),
             array( '%d', '%s', '%s', '%d', '%d', '%s' ),
-            array( '%s' ));
+            array( '%s' )
+        );
     }
 
     /**

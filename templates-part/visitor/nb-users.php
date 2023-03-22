@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
@@ -23,7 +23,7 @@ if ($page == 'stats4wp_plugin') {
 <?php
 if (DB::ExistRow('visitor')) {
     $param = AdminGraph::getdate($data);
-    switch($param['interval']) {
+    switch ($param['interval']) {
         case 'days':
             $select = 'last_counter as d';
             $char_title = __('Number of user per days', 'stats4wp');
@@ -41,7 +41,7 @@ if (DB::ExistRow('visitor')) {
         FROM ". DB::table('visitor') ." 
         where device!='bot' 
         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."' group by 1");
-    foreach ( $visitors as $visitor ) {
+    foreach ($visitors as $visitor) {
         $day[]  = $visitor->d ;
         $nb[] = $visitor->nb;
     }
@@ -69,7 +69,7 @@ if (DB::ExistRow('visitor')) {
 		plugins: {
 			title: {
 			  display: true,
-			  text: "'. $char_title .'"
+			  text: "'. esc_html($char_title) .'"
 			},
 		  },
 		legend: {
@@ -95,7 +95,6 @@ if (DB::ExistRow('visitor')) {
       configNbVisitor
     );
     ';
-    wp_add_inline_script('chart-js',$script_js);
+    wp_add_inline_script('chart-js', $script_js);
     unset($day, $nb);
-
 }

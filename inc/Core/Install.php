@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 namespace STATS4WP\Core;
 
@@ -30,11 +30,9 @@ class Install
         if (is_multisite() && $network_wide) {
             $blog_ids = $wpdb->get_col("SELECT `blog_id` FROM $wpdb->blogs");
             foreach ($blog_ids as $blog_id) {
-
                 switch_to_blog($blog_id);
                 self::table_sql();
                 restore_current_blog();
-
             }
         } else {
             self::table_sql();

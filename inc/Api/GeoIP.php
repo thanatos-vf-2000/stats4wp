@@ -1,12 +1,11 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @version 1.4.0
  */
 namespace STATS4WP\Api;
 
 use MaxMind\Db\Reader;
-
 
 class GeoIP
 {
@@ -15,7 +14,7 @@ class GeoIP
      *
      * @var string
      */
-    public static $geoip_date = '20230203';
+    public static $geoip_date = '20230321';
 
     /**
      * Date of database GeoIpLitle User IP
@@ -33,10 +32,14 @@ class GeoIP
      */
     public static function getCountry($ip)
     {
-        if (IP::CheckIPRange(IP::$private_SubNets,$ip)) return 'local';
-        $reader = new Reader( self::$geoip_file );
+        if (IP::CheckIPRange(IP::$private_SubNets, $ip)) {
+            return 'local';
+        }
+        $reader = new Reader(self::$geoip_file);
         $ipData = $reader->get($ip);
-        if (WP_DEBUG) error_log(print_r($ipData,true));
+        if (WP_DEBUG) {
+            error_log(print_r($ipData, true));
+        }
         $reader->close();
         return (!$ipData['country']['iso_code'] ? 'none' : $ipData['country']['iso_code']);
     }

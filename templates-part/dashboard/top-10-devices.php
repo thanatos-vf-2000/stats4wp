@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 global $wpdb;
 use STATS4WP\Core\DB;
@@ -70,7 +70,7 @@ if (DB::ExistRow('visitor')) {
     configTopDevices
     );
     ';
-    wp_add_inline_script('chart-js',$script_js);
+    wp_add_inline_script('chart-js', $script_js);
 
     unset($devices, $type, $nb);
 }

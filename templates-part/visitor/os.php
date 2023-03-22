@@ -1,11 +1,12 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
+
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
 if ($page == 'stats4wp_plugin') {
     $data = 'all';
@@ -36,13 +37,13 @@ if (DB::ExistRow('visitor')) {
                                 <td>' .  esc_html(__('Os', 'stats4wp')) . '</td>
                                 <td style="width: 10%;"></td>
                             </tr>';
-                    foreach ( $os_versions as $os_version ) {
+                    foreach ($os_versions as $os_version) {
                         if ($os_local != $os_version->platform) {
                             $os_nb = 1;
                             echo  '<tr><th colspan="3">'. esc_html($os_version->platform).'</th></tr>';
                         }
                         $percent = round($os_version->nb * 100 / $os_total, 2);
-                        echo '<tr><td>' . $os_nb . '</td><td>' . esc_html(substr($os_version->version,0,50))  . '</td><td>' . esc_html($percent) . '%</td><td>' .  esc_html(number_format($os_version->nb, 0, ',', ' ')). '</td></tr>' ;
+                        echo '<tr><td>' . esc_html($os_nb) . '</td><td>' . esc_html(substr($os_version->version, 0, 50))  . '</td><td>' . esc_html($percent) . '%</td><td>' .  esc_html(number_format($os_version->nb, 0, ',', ' ')). '</td></tr>' ;
                         $os_local = $os_version->platform;
                         $os_nb++;
                     }
@@ -54,7 +55,7 @@ if (DB::ExistRow('visitor')) {
             <div class="stats4wp-inline width46 ">
                 <canvas id="chartjs_os" height="300vw" width="400vw"></canvas> 
                 <?php
-                switch($param['interval']) {
+                switch ($param['interval']) {
                     case 'days':
                         $select = 'last_counter as z';
                         $char_title = __('OS per days', 'stats4wp');
@@ -85,7 +86,7 @@ if (DB::ExistRow('visitor')) {
                   GROUP BY  1, 2
                 ) all_data
                 group by 1");
-                foreach ( $oss as $os ) {
+                foreach ($oss as $os) {
                     $day[]  = $os->d ;
                     $windows[] = ($os->windows == null) ? 0 : $os->windows;
                     $ubuntu[] = ($os->ubuntu == null) ? 0 : $os->ubuntu;
@@ -172,7 +173,7 @@ if (DB::ExistRow('visitor')) {
                     plugins: {
                         title: {
                           display: true,
-                          text: "'. $char_title .'"
+                          text: "'. esc_html($char_title) .'"
                         },
                       },
                     legend: {
@@ -198,7 +199,7 @@ if (DB::ExistRow('visitor')) {
                   configOs
                 );
                 ';
-                wp_add_inline_script('chart-js',$script_js);
+                wp_add_inline_script('chart-js', $script_js);
                 unset($day, $windows, $ubuntu, $safari, $edge, $chrome, $chromeos, $android, $other);
                 ?>
             </div>

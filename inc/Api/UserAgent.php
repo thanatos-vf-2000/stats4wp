@@ -1,11 +1,11 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @version 1.4.0
  */
 namespace STATS4WP\Api;
-use STATS4WP\Core\Options;
 
+use STATS4WP\Core\Options;
 
 class UserAgent
 {
@@ -16,7 +16,7 @@ class UserAgent
      */
     public static function getHttpUserAgent()
     {
-        return apply_filters('stats4wp_user_http_agent', (isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : ''));
+        return apply_filters('stats4wp_user_http_agent', (isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_text_field($_SERVER['HTTP_USER_AGENT']) : ''));
     }
 
     /**

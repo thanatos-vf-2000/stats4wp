@@ -1,11 +1,12 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
+
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
 if ($page == 'stats4wp_plugin') {
     $data = 'all';
@@ -21,7 +22,7 @@ if (DB::ExistRow('visitor')) {
             <div class="stats4wp-inline width46 ">
                 <canvas id="chartjs_devices" height="300vw" width="400vw"></canvas> 
                 <?php
-                switch($param['interval']) {
+                switch ($param['interval']) {
                     case 'days':
                         $select = 'last_counter as z';
                         $char_title = __('Device per days', 'stats4wp');
@@ -50,7 +51,7 @@ if (DB::ExistRow('visitor')) {
                   GROUP BY  1, 2
                 ) all_data
                 group by 1");
-                foreach ( $devices as $device ) {
+                foreach ($devices as $device) {
                     $day[]  = $device->d ;
                     $desktop[] = ($device->desktop == null) ? 0 : $device->desktop;
                     $mobile[] = ($device->mobile == null) ? 0 : $device->mobile;
@@ -121,7 +122,7 @@ if (DB::ExistRow('visitor')) {
                     plugins: {
                         title: {
                           display: true,
-                          text: "'. $char_title .'"
+                          text: "'. esc_html($char_title) .'"
                         },
                       },
                     legend: {
@@ -148,7 +149,7 @@ if (DB::ExistRow('visitor')) {
                 );
                 
                 ';
-                wp_add_inline_script('chart-js',$script_js);
+                wp_add_inline_script('chart-js', $script_js);
                 unset($day, $desktop, $mobile, $tablet, $other);
                 ?>
             </div>
@@ -171,14 +172,14 @@ if (DB::ExistRow('visitor')) {
                                 <td style="width: 20%;">' .  esc_html(__('Users', 'stats4wp')) . '</td>
                                 <td style="width: 20%;">' .  esc_html(__('% Users', 'stats4wp')) . '</td>
                             </tr>';
-                    foreach ( $devices_version as $device_version ) {
+                    foreach ($devices_version as $device_version) {
                         if ($device_local != $device_version->device) {
                             $device_nb = 1;
                             echo  '<tr><th colspan="4">'. esc_html($device_version->device).'</th></tr>';
                         }
                         $tr_class = ($device_nb % 2 == 0) ? "stats4wp-bg" : '';
                         $percent = round($device_version->nb * 100 / $device_total, 2);
-                        echo '<tr class="' . esc_attr($tr_class) . '"><td>' . $device_nb . '</td><td>' . esc_html(substr($device_version->version,0,50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($device_version->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
+                        echo '<tr class="' . esc_attr($tr_class) . '"><td>' . $device_nb . '</td><td>' . esc_html(substr($device_version->version, 0, 50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($device_version->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                         $device_local = $device_version->device;
                         $device_nb++;
                     }

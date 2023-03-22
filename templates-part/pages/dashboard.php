@@ -1,6 +1,7 @@
 <?php
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
+
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
 if ($page == 'stats4wp_plugin') {
     $data = 'all';
@@ -20,11 +21,12 @@ if (DB::ExistRow('visitor')) {
                 $uri_types_total = array_sum(array_column($uri_types, 'nb'));
                 $uri_types_nb=0;
                 echo '<p>';
-                foreach ( $uri_types as $uri_type ) 
-                {
+                foreach ($uri_types as $uri_type) {
                     $uri_types_nb++;
                     $percent = round($uri_type->nb * 100 / $uri_types_total);
-                    if ($uri_types_nb <10 && $percent > 0 ) echo esc_html($uri_type->type). " ($percent%) - ";
+                    if ($uri_types_nb <10 && $percent > 0) {
+                        echo esc_html($uri_type->type). " ($percent%) - ";
+                    }
                 }
                 echo esc_html(__('All', 'stats4wp')).'</p>';
                 ?>

@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.2.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 namespace STATS4WP\Widgets;
 
@@ -12,17 +12,18 @@ class CptVisitors
 {
     public function register()
     {
-        add_action( 'widgets_init',array($this, 'register_cpt_visitors_widget'));
+        add_action('widgets_init', array($this, 'register_cpt_visitors_widget'));
     }
 
-    public function register_cpt_visitors_widget() {
-        register_widget('STATS4WP\Widgets\stats4wp_cpt_visitors_widget' );
+    public function register_cpt_visitors_widget()
+    {
+        register_widget('STATS4WP\Widgets\stats4wp_cpt_visitors_widget');
     }
-
 }
 
 
-class stats4wp_cpt_visitors_widget extends \WP_Widget {
+class stats4wp_cpt_visitors_widget extends \WP_Widget
+{
     private $widget_fields;
 
     private $display  = array(
@@ -34,23 +35,27 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget {
         6   =>  'total'
     );
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct(
             'stats4wp_cpt_visitors_widget',
-            esc_html__( 'Widget Number of visitors', 'stats4wp' ),
-            array( 'description' => esc_html__( 'Display number of visitors', 'stats4wp' ), 
+            esc_html__('Widget Number of visitors', 'stats4wp'),
+            array( 'description' => esc_html__('Display number of visitors', 'stats4wp'),
                 'panels_icon' => 'dashicons dashicons-screenoptions',
-                'classname' => 'stats4wp_cpt_visitors_widget', 
+                'classname' => 'stats4wp_cpt_visitors_widget',
                 )
         );
     }
 
-    public function widget( $args, $instance ) {
+    public function widget($args, $instance)
+    {
 
         global $wpdb;
         echo $args['before_widget'];
         //title
-        if ($instance[ 'title' ] <>'')  echo '<h5 class="widget-title">'.__( 'Number of visitors' , 'stats4wp'). '</h5>';
+        if ($instance[ 'title' ] <>'') {
+            echo '<h5 class="widget-title">'.__('Number of visitors', 'stats4wp'). '</h5>';
+        }
         // Output generated fields
         $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronline'));
         ?>
@@ -69,8 +74,8 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget {
                 </tr>
                 <?php
                 $nb=0;
-                while(++$nb < 7) {
-                    switch($nb){
+                while (++$nb < 7) {
+                    switch ($nb) {
                         case 1:
                             $to = $from = date("Y-m-d");
                             $title = __('Today', 'stats4wp');
@@ -99,7 +104,6 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget {
                             $from = '1999-01-01';
                             $title = __('Total', 'stats4wp');
                             break;
-
                     }
                     if ($instance[ $this->display[$nb] ] == 'checked') {
                         $summary_users = $wpdb->get_row("SELECT count(*) as visitors,SUM(hits) as visits 
@@ -126,31 +130,33 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget {
         echo $args['after_widget'];
     }
 
-    public function form( $instance ) {
-        $title = (isset( $instance[ 'title' ])) ? $instance[ 'title' ] : __( 'Default Title', 'stats4wp' );
+    public function form($instance)
+    {
+        $title = (isset($instance[ 'title' ])) ? $instance[ 'title' ] : __('Default Title', 'stats4wp');
         
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
         </p>
         <?php
-        foreach($this->display as $key => $value){
-            $checked = (isset( $instance[ $value ]) && $instance[ $value ] == 'checked') ? 'checked' : '' ;
-        ?>
+        foreach ($this->display as $key => $value) {
+            $checked = (isset($instance[ $value ]) && $instance[ $value ] == 'checked') ? 'checked' : '' ;
+            ?>
             <p>
-                <input type="checkbox" id="<?php echo $this->get_field_id( $value ); ?>" name="<?php echo $this->get_field_name( $value ); ?>" value="checked" <?php echo $checked; ?> >
+                <input type="checkbox" id="<?php echo $this->get_field_id($value); ?>" name="<?php echo $this->get_field_name($value); ?>" value="checked" <?php echo $checked; ?> >
                 <label for="scales"><?php echo $value; ?></label>
             </p>
-        <?php
+            <?php
         }
     }
 
-    public function update( $new_instance, $old_instance ) {
+    public function update($new_instance, $old_instance)
+    {
         $instance = array();
-        $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-        foreach($this->display as $key => $value) {
-            $instance[$value] = ( ! empty( $new_instance[$value] ) && $new_instance[$value]=='checked' ) ? 'checked' : '';
+        $instance['title'] = ( ! empty($new_instance['title']) ) ? strip_tags($new_instance['title']) : '';
+        foreach ($this->display as $key => $value) {
+            $instance[$value] = ( ! empty($new_instance[$value]) && $new_instance[$value]=='checked' ) ? 'checked' : '';
         }
         return $instance;
     }

@@ -1,8 +1,8 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.1.0
- * 
+ * @package STATS4WPPlugin
+ * @version 1.4.0
+ *
  * Desciption: Admin Page Pages
  */
 
@@ -12,7 +12,7 @@ use STATS4WP\Core\DB;
 $visitors_month = $wpdb->get_row("SELECT count(*) as visitors, COALESCE(SUM(hits),0) as pages
     FROM ". DB::table('visitor') ." 
     where device!='bot' and location != 'local'
-    and last_counter BETWEEN date_add(date_add(LAST_DAY(CURRENT_DATE()),interval 1 DAY),interval -1 MONTH) AND CURRENT_DATE()"); 
+    and last_counter BETWEEN date_add(date_add(LAST_DAY(CURRENT_DATE()),interval 1 DAY),interval -1 MONTH) AND CURRENT_DATE()");
 
 $visitors_month_past = $wpdb->get_row("SELECT count(*) as visitors, COALESCE(SUM(hits),0) as pages
     FROM ". DB::table('visitor') ." 
@@ -26,12 +26,12 @@ $last_hour = $wpdb->get_row("SELECT count(*) as visitors, COALESCE(SUM(hits),0) 
     AND hour > (CURRENT_TIME() - INTERVAL 1 hour)");
 
 $month_visitors['d'] = ($visitors_month_past->visitors > 0 ) ? $visitors_month->visitors - $visitors_month_past->visitors : 0;
-$month_visitors['p'] = ($visitors_month_past->visitors > 0 ) ? round($visitors_month->visitors * 100 / $visitors_month_past->visitors - 100,2) : 0;
-if ($month_visitors['p'] == 0 ) {
+$month_visitors['p'] = ($visitors_month_past->visitors > 0 ) ? round($visitors_month->visitors * 100 / $visitors_month_past->visitors - 100, 2) : 0;
+if ($month_visitors['p'] == 0) {
     $class_visitors='neutral';
     $month_visitors['p'] .= '+';
     $month_visitors['m'] = __('less than previous period', 'stats4wp');
-}elseif ($month_visitors['p'] >0) {
+} elseif ($month_visitors['p'] >0) {
     $class_visitors='up';
     $month_visitors['p'] .= '+';
     $month_visitors['m'] = __('more than previous period', 'stats4wp');
@@ -41,12 +41,12 @@ if ($month_visitors['p'] == 0 ) {
 }
 
 $month_pages['d'] = ($visitors_month_past->pages > 0 ) ? $visitors_month->pages - $visitors_month_past->pages : 0;
-$month_pages['p'] = ($visitors_month_past->pages > 0 ) ? round($visitors_month->pages * 100 / $visitors_month_past->pages - 100,2) : 0;
-if ($month_pages['p'] == 0 ) {
+$month_pages['p'] = ($visitors_month_past->pages > 0 ) ? round($visitors_month->pages * 100 / $visitors_month_past->pages - 100, 2) : 0;
+if ($month_pages['p'] == 0) {
     $class_pages='neutral';
     $month_pages['p'] .= '+';
     $month_pages['m'] = __('less than previous period', 'stats4wp');
-}elseif ($month_pages['p'] >0) {
+} elseif ($month_pages['p'] >0) {
     $class_pages='up';
     $month_pages['p'] .= '+';
     $month_pages['m'] = __('more than previous period', 'stats4wp');
@@ -81,14 +81,14 @@ if ($month_pages['p'] == 0 ) {
         </div>
     </div>
     <?php
-    unset($visitors_month,$visitors_month_past, $month_visitors,$class_visitors,$month_pages, $class_pages, $last_hour);
+    unset($visitors_month, $visitors_month_past, $month_visitors, $class_visitors, $month_pages, $class_pages, $last_hour);
     
     AdminGraph::select_date_dashboard();
     if (DB::ExistRow('visitor')) {
         $data = AdminGraph::getdate('local');
         echo '<p class="stats4wp-min">'. esc_html($data['from']) . ' - '. esc_html($data['to']) . '</p>';
     } else {
-        echo '<p class="stats4wp-min">'. esc_html(__('No data found to visitor.','stats4wp')). '</p>';
+        echo '<p class="stats4wp-min">'. esc_html(__('No data found to visitor.', 'stats4wp')). '</p>';
     }
     ?>
 </div>

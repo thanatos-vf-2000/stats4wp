@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.4
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 global $wpdb;
 use STATS4WP\Core\DB;
@@ -29,9 +29,10 @@ $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronli
                     <th class="th-center"><?php _e('Visits', 'stats4wp'); ?></th>
                 </tr>
                 <?php
-                $nb=0;$max=0;
-                while(++$nb < 9) {
-                    switch($nb){
+                $nb=0;
+                $max=0;
+                while (++$nb < 9) {
+                    switch ($nb) {
                         case 1:
                             $to = $from = date("Y-m-d");
                             $title = __('Today', 'stats4wp');
@@ -70,14 +71,13 @@ $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronli
                             $from = '1999-01-01';
                             $title = __('Total', 'stats4wp');
                             break;
-
                     }
                     $summary_users = $wpdb->get_row("SELECT count(*) as visitors,SUM(hits) as visits 
                         FROM ". DB::table('visitor').
                         " WHERE device!='bot' and location != 'local'
                         AND last_counter BETWEEN '". $from ."' AND '". $to."'");
                     if ($max  != $summary_users->visitors || $nb == 8) {
-                    echo '<tr>
+                        echo '<tr>
                         <th>'.esc_html($title).': </th>
                         <th class="th-center">
                             <span>'.esc_html($summary_users->visitors).'</span>
@@ -106,8 +106,8 @@ $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronli
             $nb = 0;
             $total_bot_t = $total_bot_y = $total_bot_m =  0;
             $display=0;
-            while(++$nb < 9) {
-                switch($nb) {
+            while (++$nb < 9) {
+                switch ($nb) {
                     case 1:
                         $search='bing';
                         $title = "Bing";
@@ -181,7 +181,7 @@ $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronli
                 $total_bot_m += $bot_month->nb;
             }
             if ($display > 0) {
-            ?>
+                ?>
             <tr>
                 <th><?php _e('Daily Total', 'stats4wp');?>:</th>
                 <td id="th-colspan" class="th-center">
@@ -194,7 +194,7 @@ $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronli
                     <span><?php echo esc_html($total_bot_m);?></span>
                 </td>
             </tr>
-            <?php
+                <?php
             } else {
                 echo '<tr><th>' . __('No data.', 'stats4wp') . '</th><td colspan=3></td></tr>';
             }
@@ -209,13 +209,13 @@ $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronli
                 </th>
             </tr>
             <tr>
-                <th colspan="3"><?php _e('Dated', 'stats4wp');?>: <code dir="ltr"><?php echo date(get_option( 'date_format' ));?></code></th>
+                <th colspan="3"><?php _e('Dated', 'stats4wp');?>: <code dir="ltr"><?php echo date(get_option('date_format'));?></code></th>
             </tr>
             <tr>
-                <th colspan="3"><?php _e('Time', 'stats4wp');?>: <code dir="ltr"><?php echo date(get_option( 'time_format' ));?></code></th>
+                <th colspan="3"><?php _e('Time', 'stats4wp');?>: <code dir="ltr"><?php echo date(get_option('time_format'));?></code></th>
             </tr>
         </tbody></table>
     </div>
 </div>
 <?php
-unset($user_online,$summary_users, $nb);
+unset($user_online, $summary_users, $nb);

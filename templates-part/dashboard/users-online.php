@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
@@ -24,7 +24,7 @@ use STATS4WP\Core\Options;
                 <?php
                 $users_online = $wpdb->get_results("SELECT ip, referred, user_id, page_id  
                     FROM ". DB::table('useronline'));
-                foreach($users_online as $user_online) {
+                foreach ($users_online as $user_online) {
                     $ip = (Options::get_option('anonymize_ips') == true) ? __('None', 'stats4wp') : $user_online->ip;
                     $referred = parse_url($user_online->referred, PHP_URL_HOST);
                     $page_online = $wpdb->get_row("SELECT uri, type  
@@ -35,14 +35,14 @@ use STATS4WP\Core\Options;
                         $page_txt = __('None', 'stats4wp');
                         $page_uri = __('None', 'stats4wp');
                     } else {
-                        if (in_array($page_online->type,array("home", "loginpage"))) {
+                        if (in_array($page_online->type, array("home", "loginpage"))) {
                             $page_txt = $page_online->type;
                             $page_uri = $page_online->uri;
                         } elseif ($page_online->type == "attachment") {
-                            $page_txt = basename ($page_online->uri);
+                            $page_txt = basename($page_online->uri);
                             $page_uri = $page_online->uri;
                         } else {
-                            $page_txt = basename (dirname($page_online->uri),"/");
+                            $page_txt = basename(dirname($page_online->uri), "/");
                             $page_uri = $page_online->uri;
                         }
                     }

@@ -1,11 +1,12 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
+
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
 if ($page == 'stats4wp_plugin') {
     $data = 'all';
@@ -52,7 +53,7 @@ if (DB::ExistRow('visitor')) {
                         <td style="width: 20%;"></td>
                         <td style="width: 20%;"></td>
                     </tr>';
-                foreach ( $referreds as $referred ) {
+                foreach ($referreds as $referred) {
                     if ($referred_nb <10) {
                         $src[]  = $referred->referred ;
                         $nb[] = ($referred->nb == null) ? 0 : $referred->nb;
@@ -60,8 +61,7 @@ if (DB::ExistRow('visitor')) {
                     $referred_nb++;
                     $tr_class = ($referred_nb % 2 == 0) ? "stats4wp-bg" : '';
                     $percent = round($referred->nb * 100 / $referred_total, 2);
-                    $referred_list .=  '<tr class="' . esc_attr($tr_class) . '"><td>' . $referred_nb . '</td><td>' . esc_html(substr($referred->referred,0,50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($referred->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;               
-                    
+                    $referred_list .=  '<tr class="' . esc_attr($tr_class) . '"><td>' . esc_html($referred_nb) . '</td><td>' . esc_html(substr($referred->referred, 0, 50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($referred->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                 }
                 $referred_list .= '</tbody>
                     </table>';
@@ -106,7 +106,7 @@ if (DB::ExistRow('visitor')) {
                   configReferred
                 );
                 ';
-                wp_add_inline_script('chart-js',$script_js);
+                wp_add_inline_script('chart-js', $script_js);
                 unset($src, $nb);
                 ?>
             </div>

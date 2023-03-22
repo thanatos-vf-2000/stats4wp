@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @version 1.4.0
  */
 namespace STATS4WP\Api;
 
@@ -16,7 +16,7 @@ class Referred
      */
     public static function getRefererURL()
     {
-        return (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
+        return (isset($_SERVER['HTTP_REFERER']) ? sanitize_text_field($_SERVER['HTTP_REFERER']) : '');
     }
 
     /**
@@ -40,11 +40,9 @@ class Referred
 
         // Check Search Engine
         if (Options::get_option('addsearchwords', false)) {
-
             // Check to see if this is a search engine referrer
             $SEInfo = SearchEngine::getByUrl($referred);
             if (is_array($SEInfo)) {
-
                 // If we're a known SE, check the query string
                 if ($SEInfo['tag'] != '') {
                     $result = SearchEngine::getByQueryString($referred);

@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
@@ -31,8 +31,7 @@ if (DB::ExistRow('visitor')) {
     $nb[] =  round($newusers->nb * 100 / $visitors->users, 2);
     $type[]  = __('Returning Visitor', 'stats4wp') ;
     $nb[] =  round(100 - $newusers->nb * 100 / $visitors->users, 2);
-
-} 
+}
 
 ?>
 <div id ="stats4wp-visitors-widget" class="postbox " >
@@ -141,6 +140,6 @@ $script_js = '
     );
 
 ';
-wp_add_inline_script('chart-js',$script_js);
+wp_add_inline_script('chart-js', $script_js);
 
 unset($type, $nb);

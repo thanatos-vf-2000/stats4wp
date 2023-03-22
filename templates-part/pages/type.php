@@ -1,11 +1,12 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
+
 $page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
 if ($page == 'stats4wp_plugin') {
     $data = 'all';
@@ -36,7 +37,7 @@ if (DB::ExistRow('pages')) {
                             <td style="width: 20%;"></td>
                             <td style="width: 20%;"></td>
                         </tr>';
-                foreach ( $types as $type ) {
+                foreach ($types as $type) {
                     if ($type_nb <10) {
                         $t[]  = $type->type ;
                         $nb[] = ($type->nb == null) ? 0 : $type->nb;
@@ -91,13 +92,13 @@ if (DB::ExistRow('pages')) {
                 );
                 
                 ';
-                wp_add_inline_script('chart-js',$script_js);
+                wp_add_inline_script('chart-js', $script_js);
                 unset($t, $nb);
                 ?>
             </div>
             <div class="stats4wp-inline width46">
                 <div class="stats4wp-type">
-                    <?php echo $type_list; ?>
+                    <?php _e($type_list); ?>
                 </div>
             </div>
         </div>

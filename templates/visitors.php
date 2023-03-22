@@ -1,8 +1,8 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.2
- * 
+ * @package STATS4WPPlugin
+ * @version 1.4.0
+ *
  * Desciption: Admin Page Visitor
  */
 
@@ -17,7 +17,7 @@ AdminGraph::select_date();
 <?php
 
 if (isset($_GET['spage'])) {
-    foreach(glob(STATS4WP_PATH.'/templates-part/visitor/' . $_GET['spage'] . '-*.php') as $file) {
+    foreach (glob(STATS4WP_PATH.'/templates-part/visitor/' . $_GET['spage'] . '-*.php') as $file) {
         $spage_type = basename($file, '.php');
         self::get_template(array('visitor/'.sanitize_text_field($spage_type)));
     }
@@ -25,4 +25,4 @@ if (isset($_GET['spage'])) {
 } else {
     self::get_template(array('visitor/nb-users', 'visitor/dashboard', 'visitor/agent', 'visitor/os', 'visitor/device', 'visitor/location','visitor/lang', 'footer'));
 }
-?>
+

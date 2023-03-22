@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 namespace STATS4WP\Ui;
@@ -31,21 +31,21 @@ class DashboardWidgetAdmin extends BaseController
         global $wpdb;
         echo '<div class="activity-block"><h3>' . esc_html(__('Tables:', 'stats4wp')) . '</h3><ul>';
 
-        foreach(DB::$db_table as $table) {
+        foreach (DB::$db_table as $table) {
             if (DB::ExistRow($table)) {
                 $nbrows = $wpdb->get_row("SELECT count(*) as nb FROM " . DB::table($table));
                 $msg = $nbrows->nb;
             } else {
-                $msg = __('No data found.','stats4wp');
+                $msg = __('No data found.', 'stats4wp');
             }
-            printf( '<li class="%1$s-count">%1$s: %2$s</li>', $table, $msg );
+            printf('<li class="%1$s-count">%1$s: %2$s</li>', $table, $msg);
         }
         echo '</ul></div>
         <div class="activity-block"><h3>' . esc_html(__('User connected:', 'stats4wp')) . '</h3><ul>';
         if (DB::ExistRow('useronline')) {
             $useronlines = $wpdb->get_results("SELECT user_id, location FROM ". DB::table('useronline') ." 
                 ORDER by user_id ASC");
-            foreach ( $useronlines as $useronline ) {
+            foreach ($useronlines as $useronline) {
                 if ($useronline->user_id == 0) {
                     $username = __('Anonymous', 'stats4wp');
                 } else {
@@ -56,7 +56,7 @@ class DashboardWidgetAdmin extends BaseController
                 echo '<li>' . esc_html($username) .  ' (' . esc_html($useronline->location). ')</li>';
             }
         } else {
-            echo '<li>' .  __('No Users.','stats4wp').'</li>';
+            echo '<li>' .  __('No Users.', 'stats4wp').'</li>';
         }
 
         echo '</ul></div>';

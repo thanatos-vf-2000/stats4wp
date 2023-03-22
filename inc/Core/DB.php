@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 namespace STATS4WP\Core;
 
@@ -21,7 +21,7 @@ class DB
 
     /**
      * List of array exist
-     * 
+     *
      * @var array
      */
     public static $db_table_exist = array();
@@ -77,7 +77,7 @@ class DB
     }
     
     /**
-     * Table List 
+     * Table List
      *
      * @param string $export
      * @param array $except
@@ -99,7 +99,6 @@ class DB
 
         # Get List
         foreach ($mysql_list_table as $tbl) {
-
             # WP-Statistics table name
             $table_name = self::getTableName($tbl);
 
@@ -117,7 +116,7 @@ class DB
     }
 
     /**
-     * Test if exist Row in table 
+     * Test if exist Row in table
      *
      * @param string $export
      * @param array $except
@@ -127,20 +126,22 @@ class DB
     {
         global $wpdb;
         
-        if (! in_array($tbl, self::$db_table)) return false;
-        if (in_array($tbl,self::$db_table_exist,true)) {
+        if (! in_array($tbl, self::$db_table)) {
+            return false;
+        }
+        if (in_array($tbl, self::$db_table_exist, true)) {
             $nb = self::$db_table_exist[$tbl];
         } else {
-            $nbrows = wp_cache_get( "cpt_".$tbl );
-            if ( false === $nbrows ) {
+            $nbrows = wp_cache_get("cpt_".$tbl);
+            if (false === $nbrows) {
                 $nbrows = $wpdb->get_row("SELECT count(*) as nb FROM " . DB::table($tbl));
-                wp_cache_set( "cpt_".$tbl, $nbrows );
+                wp_cache_set("cpt_".$tbl, $nbrows);
             }
             $nb = $nbrows->nb;
             self::$db_table_exist+= ["$tbl" => $nb];
         }
         
-        if ($nb > 0 ) {
+        if ($nb > 0) {
             return true;
         } else {
             return false;

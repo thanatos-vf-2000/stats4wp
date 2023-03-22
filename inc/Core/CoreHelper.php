@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.0.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 namespace STATS4WP\Core;
 
@@ -21,9 +21,9 @@ class CoreHelper
         }
 
         // Check Native php
-        $protocol   = strpos(strtolower($_SERVER['SERVER_PROTOCOL']), 'https') === false ? 'http' : 'https';
-        $host       = $_SERVER['HTTP_HOST'];
-        $script     = $_SERVER['SCRIPT_NAME'];
+        $protocol   = strpos(strtolower(sanitize_text_field($_SERVER['SERVER_PROTOCOL'])), 'https') === false ? 'http' : 'https';
+        $host       = sanitize_text_field($_SERVER['HTTP_HOST']);
+        $script     = sanitize_text_field($_SERVER['SCRIPT_NAME']);
         $currentURL = $protocol . '://' . $host . $script;
         $loginURL   = wp_login_url();
         if ($currentURL == $loginURL) {
@@ -43,5 +43,4 @@ class CoreHelper
     {
         return substr($url, 0, strrpos($url, "?"));
     }
-
 }

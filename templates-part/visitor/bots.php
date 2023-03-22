@@ -1,8 +1,8 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.3.8
- * 
+ * @package STATS4WPPlugin
+ * @version 1.4.0
+ *
  * Desciption: Bots
  */
 
@@ -45,7 +45,7 @@ if (DB::ExistRow('visitor')) {
         where device='bot' 
         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."' 
         GROUP BY 1 ORDER by 2 DESC ". $all_data);
-    foreach ( $bots as $bot ) {
+    foreach ($bots as $bot) {
         $bot_agent[]  = $bot->agent ;
         $nb[] = $bot->nb;
     }
@@ -98,7 +98,6 @@ if (DB::ExistRow('visitor')) {
     );
                 
     ';
-    wp_add_inline_script('chart-js',$script_js);
+    wp_add_inline_script('chart-js', $script_js);
     unset($day, $nb);
-
 }

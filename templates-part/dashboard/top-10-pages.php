@@ -1,7 +1,7 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @Version 1.1.0
+ * @package STATS4WPPlugin
+ * @version 1.4.0
  */
 
 use STATS4WP\Core\DB;
@@ -28,7 +28,7 @@ use STATS4WP\Api\TimeZone;
                     AND type='page' 
                     ORDER BY count  DESC LIMIT 10");
                 $i=1;
-                foreach($top_pages as $top_page) {
+                foreach ($top_pages as $top_page) {
                     $title = get_the_title($top_page->id);
                     $link = $top_page->uri;
                     $nb = $top_page->count;
