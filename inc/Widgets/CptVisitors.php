@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  */
 namespace STATS4WP\Widgets;
 
@@ -51,7 +51,7 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget
     {
 
         global $wpdb;
-        echo $args['before_widget'];
+        _e($args['before_widget']);
         //title
         if ($instance[ 'title' ] <>'') {
             echo '<h5 class="widget-title">'.__('Number of visitors', 'stats4wp'). '</h5>';
@@ -145,7 +145,7 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget
             ?>
             <p>
                 <input type="checkbox" id="<?php echo $this->get_field_id($value); ?>" name="<?php echo $this->get_field_name($value); ?>" value="checked" <?php echo $checked; ?> >
-                <label for="scales"><?php echo $value; ?></label>
+                <label for="scales"><?php esc_html($value); ?></label>
             </p>
             <?php
         }

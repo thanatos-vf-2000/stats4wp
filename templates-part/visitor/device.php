@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  */
 
 use STATS4WP\Core\DB;
@@ -160,7 +160,7 @@ if (DB::ExistRow('visitor')) {
                         FROM ". DB::table('visitor') ."
                         WHERE device NOT in ('bot','') 
                         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
-                        GROUP BY 1,2 ORDER BY 1,2 ASC ");
+                        GROUP BY 1,2 ORDER BY 1,3 DESC ");
                     $device_total = array_sum(array_column($devices_version, 'nb'));
                     $device_nb=1;
                     $device_local='';

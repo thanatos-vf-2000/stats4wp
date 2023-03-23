@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  */
 
 use STATS4WP\Core\DB;
@@ -97,7 +97,7 @@ if (DB::ExistRow('visitor')) {
             </div>
             <div class="stats4wp-inline width46">
                 <div class="stats4wp-language">
-                    <?php echo $language_list; ?>
+                    <?php _e($language_list); ?>
                 </div>
             </div>
         </div>

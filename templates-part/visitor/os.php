@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  */
 
 use STATS4WP\Core\DB;
@@ -26,24 +26,25 @@ if (DB::ExistRow('visitor')) {
                         FROM ". DB::table('visitor') ."
                         WHERE device !='bot' 
                         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
-                        GROUP BY 1,2 ORDER BY 1,2 ASC ");
+                        GROUP BY 1,2 ORDER BY 1,3 DESC ");
                     $os_total = array_sum(array_column($os_versions, 'nb'));
                     $os_nb=1;
                     $os_local='';
-                    echo '<table class="widefat table-stats stats4wp-report-table">
+                    echo '<table class="widefat table-stats stats4wp-report-table" style="width: 90%;">
                         <tbody>
                             <tr>
                                 <td style="width: 1%;"></td>
                                 <td>' .  esc_html(__('Os', 'stats4wp')) . '</td>
                                 <td style="width: 10%;"></td>
+                                <td style="width: 10%;"></td>
                             </tr>';
                     foreach ($os_versions as $os_version) {
                         if ($os_local != $os_version->platform) {
                             $os_nb = 1;
-                            echo  '<tr><th colspan="3">'. esc_html($os_version->platform).'</th></tr>';
+                            echo  '<tr><th colspan="4">'. esc_html($os_version->platform).'</th></tr>';
                         }
                         $percent = round($os_version->nb * 100 / $os_total, 2);
-                        echo '<tr><td>' . esc_html($os_nb) . '</td><td>' . esc_html(substr($os_version->version, 0, 50))  . '</td><td>' . esc_html($percent) . '%</td><td>' .  esc_html(number_format($os_version->nb, 0, ',', ' ')). '</td></tr>' ;
+                        echo '<tr><td>' . esc_html($os_nb) . '</td><td>' . esc_html(substr($os_version->version, 0, 50))  . '</td><td>' .  esc_html(number_format($os_version->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                         $os_local = $os_version->platform;
                         $os_nb++;
                     }

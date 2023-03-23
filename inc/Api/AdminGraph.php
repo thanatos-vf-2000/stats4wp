@@ -5,7 +5,7 @@
  * @link     https://ginkgos.net/
  * @author   VANHOUCKE Franck <contact@ginkgos.net>
  * @license  GPLv2 or later
- * @version  1.4.0
+ * @version  1.4.1
  */
 
 namespace STATS4WP\Api;
@@ -116,12 +116,13 @@ class AdminGraph
         global $wpdb;
         if ($var == self::ARG_INTERVAL_FLAG) {
             if (isset($_GET[self::ARG_INTERVAL_FLAG])) {
-                return ($_GET[self::ARG_INTERVAL_FLAG] = "flag") ? true : false;
+                $flag = sanitize_text_field($_GET[self::ARG_INTERVAL_FLAG]);
+                return ($flag = "flag") ? true : false;
             }
             return false;
         }
         if (isset($_GET[$var])) {
-            return $_GET[$var];
+            return sanitize_text_field($_GET[$var]);
         }
         switch ($var) {
             case self::ARG_INTERVAL:

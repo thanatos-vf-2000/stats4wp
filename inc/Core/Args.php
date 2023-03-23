@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  */
 namespace STATS4WP\Core;
 
@@ -16,6 +16,6 @@ class Args
      */
     public static function getARGValue($key, $default, $valid = null)
     {
-        return (!empty($_GET[$key]) && ($valid == null || $valid($_GET[$key]))) ? $_GET[$key] : $default;
+        return (!empty($_GET[$key]) && ($valid == null || $valid($_GET[$key]))) ? sanitize_text_field($_GET[$key]) : $default;
     }
 }

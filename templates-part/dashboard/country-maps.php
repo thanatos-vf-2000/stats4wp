@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  *
  * Desciption: Contry Maps
  */
@@ -24,8 +24,10 @@ if (Options::get_option('geochart') == true) {
       <div class="inside">
       <?php
 
-      if (isset($script_js)) {unset($script_js);}
-      $script_js = '
+        if (isset($script_js)) {
+            unset($script_js);
+        }
+        $script_js = '
         google.charts.load("current", {
           "packages":["geochart"],
         });
@@ -36,9 +38,9 @@ if (Options::get_option('geochart') == true) {
             ["Country", "' . __("Users", "stats4wp") . '"], ';
 
         foreach ($locations as $location) {
-          $script_js .=  '[\'' . esc_html($location->location) . '\', '. esc_html($location->nb) .'],';
+            $script_js .=  '[\'' . esc_html($location->location) . '\', '. esc_html($location->nb) .'],';
         }
-      $script_js .= '
+        $script_js .= '
           ]);
 
           var options = {};
@@ -48,8 +50,8 @@ if (Options::get_option('geochart') == true) {
           chart.draw(data, options);
         }
       ';
-      wp_add_inline_script('google-loader', $script_js, 'after');
-      ?>
+        wp_add_inline_script('google-loader', $script_js, 'after');
+        ?>
           <div id="regions_div" style="width: 100%"></div>
       </div>
   </div>

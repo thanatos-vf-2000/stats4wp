@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  *
  * Desciption: Location Maps
  */
@@ -31,7 +31,9 @@ if (Options::get_option('geochart') == true) {
       </div>
       <div class="inside">
       <?php
-        if (isset($script_js)) {unset($script_js);}
+        if (isset($script_js)) {
+            unset($script_js);
+        }
         $script_js = '
         google.charts.load("current", {
           "packages":["geochart"],
@@ -42,9 +44,9 @@ if (Options::get_option('geochart') == true) {
           var data = google.visualization.arrayToDataTable([
             ["Country", "' . __("Users", "stats4wp") . '"],';
 
-          foreach ($locations as $location) {
+        foreach ($locations as $location) {
             $script_js .=  '[\'' . esc_html($location->location) . '\', '. esc_html($location->nb) .'],';
-          }
+        }
 
           $script_js .= '
           ]);
@@ -56,9 +58,9 @@ if (Options::get_option('geochart') == true) {
           chart.draw(data, options);
         }
       ';
-      wp_add_inline_script('google-loader', $script_js, 'after');
+        wp_add_inline_script('google-loader', $script_js, 'after');
 
-      ?>
+        ?>
           <div id="regions_div" style="width: 450px; height: 250px;" class="stats4wp-maps"></div>
       </div>
   </div>

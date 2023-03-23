@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  *
  * Desciption: Location Maps
  */
@@ -32,8 +32,10 @@ if (Options::get_option('geochart') == true) {
       </div>
       <div class="inside">
       <?php
-      if (isset($script_js)) {unset($script_js);}
-      $script_js = '
+        if (isset($script_js)) {
+            unset($script_js);
+        }
+        $script_js = '
         google.charts.load("current", {
           "packages":["geochart"],
         });
@@ -43,7 +45,7 @@ if (Options::get_option('geochart') == true) {
           var data = google.visualization.arrayToDataTable([
             ["Country", "' . __("Bots", "stats4wp") .'"],';
         foreach ($locations as $location) {
-          $script_js .= '[\'' . esc_html($location->location) . '\', '. esc_html($location->nb) .'],';
+            $script_js .= '[\'' . esc_html($location->location) . '\', '. esc_html($location->nb) .'],';
         }
         $script_js .= '
           ]);

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  */
 
 use STATS4WP\Core\DB;
@@ -179,7 +179,7 @@ if (DB::ExistRow('visitor')) {
                         FROM ". DB::table('visitor') ."
                         WHERE device !='bot' 
                         AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."'
-                        GROUP BY 1,2 ORDER BY 1,2 ASC ");
+                        GROUP BY 1,2 ORDER BY 1,3 DESC ");
                     $agents_total = array_sum(array_column($agents_version, 'nb'));
                     $agents_nb=1;
                     $agent_local='';
@@ -196,7 +196,7 @@ if (DB::ExistRow('visitor')) {
                             echo  '<tr><th colspan="3">'. esc_html($agent_version->agent).'</th></tr>';
                         }
                         $percent = round($agent_version->nb * 100 / $agents_total, 2);
-                        echo '<tr><td>' . $agents_nb . '</td><td>' . esc_html(substr($agent_version->version, 0, 50))  . '</td><td>' . esc_html($percent) . '%</td><td>' .  esc_html(number_format($agent_version->nb, 0, ',', ' ')). '</td></tr>' ;
+                        echo '<tr><td>' . $agents_nb . '</td><td>' . esc_html(substr($agent_version->version, 0, 50))  . '</td><td>' .  esc_html(number_format($agent_version->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                         $agent_local = $agent_version->agent;
                         $agents_nb++;
                     }

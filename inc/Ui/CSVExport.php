@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.1
  */
 
 namespace STATS4WP\Ui;
@@ -32,7 +32,7 @@ class CSVExport extends BaseController
         
         $this->separator = ';';
         if (isset($_GET['report'])) {
-            $csv = $this->generate_csv($_GET['report']);
+            $csv = $this->generate_csv(sanitize_text_field($_GET['report']));
 
             header("Pragma: public");
             header("Expires: 0");
@@ -40,13 +40,13 @@ class CSVExport extends BaseController
             header("Cache-Control: private", false);
             header("Content-Type: application/octet-stream");
             if (isset($_GET['year'])) {
-                header("Content-Disposition: attachment; filename=\"Export_" . $_GET['report'] . "_" . $_GET['year'] . ".csv\";");
+                header("Content-Disposition: attachment; filename=\"Export_" . sanitize_text_field($_GET['report']) . "_" . sanitize_text_field($_GET['year']) . ".csv\";");
             } else {
-                header("Content-Disposition: attachment; filename=\"Export_" . $_GET['report'] . ".csv\";");
+                header("Content-Disposition: attachment; filename=\"Export_" . sanitize_text_field($_GET['report']) . ".csv\";");
             }
             header("Content-Transfer-Encoding: binary");
 
-            echo $csv;
+            _e($csv);
             exit;
         }
     }
@@ -95,7 +95,7 @@ class CSVExport extends BaseController
         $csv_output .= "\n";
 
         if (isset($_GET['year'])) {
-            $y = " where YEAR(" . $field . ")=".$_GET['year'];
+            $y = " where YEAR(" . $field . ")=".sanitize_text_field($_GET['year']);
         } else {
             $y="";
         }

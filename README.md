@@ -11,7 +11,7 @@ Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, 
 Requires at least: 5.7
 Tested up to: 6.2
 Requires PHP: 7.4
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -96,15 +96,15 @@ GeoChart
 Source: https://developers.google.com/chart/interactive/docs/gallery/geochart
 
 
-### 1.4.0 (2300-SFP1) 
-*Release Date - 22 March 2023*
+### 1.4.1 (2303-SFP1) 
+*Release Date - 23 March 2023*
 
 * Compatible Wordpress 6.2,
-* Delete cdn charjs Option,
 * Sanitized Data, Escaped, and Validated (used sanitize_text_field),
-* Variables and options must be escaped,
-* Update ChartJS 4.2.0 to 4.2.1,
-* Update GeoIP Database 20230321.
+* change Data agent sort by browser and usages,
+* change Data os sort by OS and usages,
+* change Data device sort by device and usages,
+* OS and navigator data add percent bar.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 
