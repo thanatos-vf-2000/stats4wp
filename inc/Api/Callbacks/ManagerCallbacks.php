@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.2
  */
 namespace STATS4WP\Api\Callbacks;
 
@@ -83,7 +83,7 @@ class ManagerCallbacks extends BaseController
 				<input id="upload_image" type="text" size="36" name="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" value="' . esc_attr($args['value']) . '" /> 
 				<input id="upload_image_button" for="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" class="button" type="button" value="' . __('Upload Menu', 'stats4wp') . '" />
 				<br>
-				<img id="imageBox" name="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" style="height: ' . $args['height'] . '; width: ' . $args['width'] . ';" src="' . esc_url($args['value']) . '">
+				<img id="imageBox" name="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" style="height: ' . esc_attr($args['height']) . '; width: ' . esc_attr($args['width']) . ';" src="' . esc_url($args['value']) . '">
 			</div>';
     }
 
@@ -93,7 +93,7 @@ class ManagerCallbacks extends BaseController
         $classes = $args['class'];
         $option_name = $args['option_name'];
         echo '<p>
-			<label for="' . $option_name . '[' . $name . ']" style="display:block;">' . __('Color:', 'stats4wp') .'</label> 
+			<label for="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" style="display:block;">' . __('Color:', 'stats4wp') .'</label> 
 			<input class="color-picker" id="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" name="' . esc_attr($option_name) . '[' . esc_attr($name) . ']" type="text" value="' . esc_attr($args['value']) . '" />
 		</p>';
     }

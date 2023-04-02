@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: stats4wp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-17 16:15+0000\n"
-"PO-Revision-Date: 2023-03-22 16:28+0000\n"
+"PO-Revision-Date: 2023-04-02 14:59+0000\n"
 "Last-Translator: Franck VANHOUCKE\n"
 "Language-Team: English (United States)\n"
 "Language: en_US\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.1; wp-5.9.2\n"
+"X-Loco-Version: 2.6.4; wp-6.2\n"
 "X-Domain: stats4wp"
 
 #: templates-part/visitor/lang.php:38 templates-part/visitor/location.php:38
@@ -55,11 +55,11 @@ msgid "Agents per weeks"
 msgstr "Agents per weeks"
 
 #: templates-part/pages/dashboard.php:31
-#: templates-part/visitor/dashboard.php:31
-#: templates-part/visitor/dashboard.php:48
-#: templates-part/visitor/dashboard.php:65
-#: templates-part/visitor/dashboard.php:84
-#: templates-part/visitor/dashboard.php:101
+#: templates-part/visitor/dashboard.php:36
+#: templates-part/visitor/dashboard.php:53
+#: templates-part/visitor/dashboard.php:70
+#: templates-part/visitor/dashboard.php:89
+#: templates-part/visitor/dashboard.php:106
 msgid "All"
 msgstr "All"
 
@@ -72,7 +72,7 @@ msgstr "All Bots"
 msgid "All Referred"
 msgstr "All Referred"
 
-#: templates-part/visitor/os.php:147
+#: templates-part/visitor/os.php:148
 msgid "Android"
 msgstr "Android"
 
@@ -84,16 +84,28 @@ msgstr "Anonymize IP."
 msgid "Anonymous"
 msgstr "Anonymous"
 
+#: inc/Api/SearchEngine.php:30
+msgid "Ask.com"
+msgstr "Ask.com"
+
+#: inc/Api/SearchEngine.php:40
+msgid "Baidu"
+msgstr "Baidu"
+
 #: templates-part/settings/tables.php:64
 msgid "Before: "
 msgstr "Before: "
 
-#: templates-part/visitor/dashboard.php:107
+#: inc/Api/SearchEngine.php:50
+msgid "Bing"
+msgstr "Bing"
+
+#: templates-part/visitor/dashboard.php:112
 msgid "Bot"
 msgstr "Bot"
 
 #: templates-part/visitor/bots.php:57 templates-part/visitor/bare.php:11
-#: templates-part/visitor/bots-maps.php:44
+#: templates-part/visitor/bots-maps.php:46
 msgid "Bots"
 msgstr "Bots"
 
@@ -130,7 +142,6 @@ msgid "Call"
 msgstr "Call"
 
 #: assets/defaults.php:20
-#, fuzzy
 #| msgid "chose $_SERVER."
 msgid "chose _SERVER."
 msgstr "chose $_SERVER."
@@ -139,9 +150,13 @@ msgstr "chose $_SERVER."
 msgid "Chrome"
 msgstr "Chrome"
 
-#: templates-part/visitor/os.php:140
+#: templates-part/visitor/os.php:141
 msgid "Chrome OS"
 msgstr "Chrome OS"
+
+#: inc/Api/SearchEngine.php:60
+msgid "clearch.org"
+msgstr "clearch.org"
 
 #: inc/Api/Callbacks/ManagerCallbacks.php:96
 msgid "Color:"
@@ -167,7 +182,7 @@ msgstr "Daily Total"
 msgid "Data"
 msgstr "Data"
 
-#: inc/Api/AdminGraph.php:220
+#: inc/Api/AdminGraph.php:221
 msgid "Data last"
 msgstr "Data last"
 
@@ -195,7 +210,7 @@ msgstr "Delete user in table useronile after xxx seconds (default 120)."
 msgid "Desktop"
 msgstr "Desktop"
 
-#: templates-part/visitor/dashboard.php:52 templates-part/visitor/bare.php:4
+#: templates-part/visitor/dashboard.php:57 templates-part/visitor/bare.php:4
 msgid "Device"
 msgstr "Device"
 
@@ -227,7 +242,7 @@ msgstr "Devices"
 msgid "Disabled statistics for the administration part (/wp-admin/)."
 msgstr "Disabled statistics for the administration part (/wp-admin/)."
 
-#: inc/Api/AdminGraph.php:236
+#: inc/Api/AdminGraph.php:237
 msgid "Display by"
 msgstr "Display by"
 
@@ -235,9 +250,17 @@ msgstr "Display by"
 msgid "Display number of visitors"
 msgstr "Display number of visitors"
 
+#: inc/Api/SearchEngine.php:70
+msgid "DuckDuckGo"
+msgstr "DuckDuckGo"
+
 #: templates-part/visitor/agent.php:94
 msgid "Edge"
 msgstr "Edge"
+
+#: assets/defaults.php:63
+msgid "Enable CDN Chart JS"
+msgstr "Enable CDN Chart JS"
 
 #: assets/defaults.php:57
 msgid "Enable Google GeoChart"
@@ -280,6 +303,10 @@ msgstr "From: "
 #: templates-part/visitor/device.php:89
 msgid "Gaming"
 msgstr "Gaming"
+
+#: inc/Api/SearchEngine.php:80
+msgid "Google"
+msgstr "Google"
 
 #: templates-part/support.php:5
 msgid "Got a Question an Idea or a Problem?"
@@ -337,12 +364,13 @@ msgstr "ID"
 msgid "Internet Explorer"
 msgstr "Internet Explorer"
 
-#: templates-part/visitor/os.php:133
+#: templates-part/visitor/os.php:134
 msgid "iOS"
 msgstr "iOS"
 
 #: templates-part/dashboard/recent-visitors.php:22
 #: templates-part/dashboard/top-10-visitors-today.php:22
+#: templates-part/dashboard/users-online.php:20
 msgid "IP"
 msgstr "IP"
 
@@ -350,7 +378,7 @@ msgstr "IP"
 msgid "IP methode"
 msgstr "IP methode"
 
-#: templates-part/visitor/dashboard.php:88 templates-part/visitor/bare.php:6
+#: templates-part/visitor/dashboard.php:93 templates-part/visitor/bare.php:6
 msgid "Language"
 msgstr "Language"
 
@@ -395,11 +423,11 @@ msgstr "less than previous period"
 msgid "Link"
 msgstr "Link"
 
-#: templates-part/visitor/os.php:126
+#: templates-part/visitor/os.php:127
 msgid "Linux"
 msgstr "Linux"
 
-#: templates-part/visitor/dashboard.php:71 templates-part/visitor/bare.php:5
+#: templates-part/visitor/dashboard.php:76 templates-part/visitor/bare.php:5
 msgid "Location"
 msgstr "Location"
 
@@ -458,7 +486,7 @@ msgstr "Monthly"
 msgid "more than previous period"
 msgstr "more than previous period"
 
-#: templates-part/visitor/dashboard.php:18 templates-part/visitor/agent.php:190
+#: templates-part/visitor/dashboard.php:23 templates-part/visitor/agent.php:190
 #: templates-part/visitor/bare.php:2
 msgid "Navigator"
 msgstr "Navigator"
@@ -575,7 +603,7 @@ msgstr "Online users"
 msgid "Opera"
 msgstr "Opera"
 
-#: templates-part/visitor/dashboard.php:35 templates-part/visitor/bare.php:3
+#: templates-part/visitor/dashboard.php:40 templates-part/visitor/bare.php:3
 msgid "Operating system"
 msgstr "Operating system"
 
@@ -587,23 +615,23 @@ msgstr "OS"
 msgid "Os"
 msgstr "Os"
 
-#: templates-part/visitor/os.php:61
+#: templates-part/visitor/os.php:62
 msgid "OS per days"
 msgstr "OS per days"
 
-#: templates-part/visitor/os.php:69
+#: templates-part/visitor/os.php:70
 msgid "OS per months"
 msgstr "OS per months"
 
-#: templates-part/visitor/os.php:65
+#: templates-part/visitor/os.php:66
 msgid "OS per weeks"
 msgstr "OS per weeks"
 
-#: templates-part/visitor/os.php:119
+#: templates-part/visitor/os.php:120
 msgid "osx"
 msgstr "osx"
 
-#: templates-part/visitor/os.php:154 templates-part/visitor/agent.php:122
+#: templates-part/visitor/os.php:155 templates-part/visitor/agent.php:122
 #: templates-part/visitor/device.php:103
 msgid "Other"
 msgstr "Other"
@@ -611,6 +639,10 @@ msgstr "Other"
 #: templates-part/pages/top.php:48
 msgid "Others ..."
 msgstr "Others ..."
+
+#: templates-part/dashboard/users-online.php:21
+msgid "Page"
+msgstr "Page"
 
 #: templates-part/dashboard/visitors.php:72
 msgid "Page views"
@@ -649,6 +681,10 @@ msgstr "Purge tables"
 msgid "Purged tables with succes."
 msgstr "Purged tables with succes."
 
+#: inc/Api/SearchEngine.php:110
+msgid "Qwant"
+msgstr "Qwant"
+
 #: templates-part/dashboard/header.php:78
 msgid "Realtime pageviews"
 msgstr "Realtime pageviews"
@@ -674,7 +710,7 @@ msgstr "Referred TOP 10"
 msgid "Referring"
 msgstr "Referring"
 
-#: inc/Api/AdminGraph.php:106 inc/Api/AdminGraph.php:252
+#: inc/Api/AdminGraph.php:106 inc/Api/AdminGraph.php:253
 msgid "Refresh"
 msgstr "Refresh"
 
@@ -685,6 +721,10 @@ msgstr "REMOTE_ADDR"
 #: templates-part/dashboard/visitors.php:32
 msgid "Returning Visitor"
 msgstr "Returning Visitor"
+
+#: templates-part/dashboard/users-online.php:22
+msgid "Référant"
+msgstr "Referring"
 
 #: templates-part/visitor/agent.php:87
 msgid "Safari"
@@ -697,6 +737,11 @@ msgstr "Samsung Internet"
 #: templates-part/visitor/by-hours.php:128
 msgid "Saturday"
 msgstr "Saturday"
+
+#: inc/Api/SearchEngine.php:138
+msgctxt "Search Engine"
+msgid "Unknown"
+msgstr "Unknown"
 
 #: templates-part/dashboard/summary.php:97
 msgid "Search engine redirects"
@@ -842,7 +887,7 @@ msgstr "Type"
 msgid "Type TOP 10"
 msgstr "Type TOP 10"
 
-#: templates-part/visitor/os.php:112
+#: templates-part/visitor/os.php:113
 msgid "Ubuntu"
 msgstr "Ubuntu"
 
@@ -863,17 +908,25 @@ msgstr "Upload Menu"
 msgid "URI"
 msgstr "URI"
 
+#: assets/defaults.php:66
+msgid ""
+"Use CDN for Chart.js: https://cdnjs.cloudflare.com/ajax/libs/Chart."
+"js/<version>/chart.min.js."
+msgstr ""
+"Use CDN for Chart.js: https://cdnjs.cloudflare.com/ajax/libs/Chart."
+"js/<version>/chart.min.js."
+
 #: inc/Ui/DashboardWidgetAdmin.php:44
 msgid "User connected:"
 msgstr "User connected:"
 
 #: templates-part/dashboard/nb-users-hits.php:59
-#: templates-part/dashboard/country-maps.php:36
+#: templates-part/dashboard/country-maps.php:38
 #: templates-part/dashboard/visitors.php:39
 #: templates-part/dashboard/visitors.php:48
-#: templates-part/visitor/lang-maps.php:44 templates-part/visitor/lang.php:37
+#: templates-part/visitor/lang-maps.php:46 templates-part/visitor/lang.php:37
 #: templates-part/visitor/location.php:37 templates-part/visitor/device.php:172
-#: templates-part/visitor/location-maps.php:43
+#: templates-part/visitor/location-maps.php:45
 msgid "Users"
 msgstr "Users"
 
@@ -935,9 +988,17 @@ msgstr "Wednesday"
 msgid "Widget Number of visitors"
 msgstr "Widget Number of visitors"
 
-#: templates-part/visitor/os.php:105
+#: templates-part/visitor/os.php:106
 msgid "Windows"
 msgstr "Windows"
+
+#: inc/Api/SearchEngine.php:90
+msgid "Yahoo!"
+msgstr "Yahoo!"
+
+#: inc/Api/SearchEngine.php:100
+msgid "Yandex"
+msgstr "Yandex"
 
 #: templates-part/dashboard/summary.php:42
 #: templates-part/dashboard/summary.php:102 inc/Widgets/CptVisitors.php:85

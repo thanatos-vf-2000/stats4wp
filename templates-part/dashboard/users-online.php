@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.2
  */
 
 use STATS4WP\Core\DB;
@@ -17,9 +17,9 @@ use STATS4WP\Core\Options;
         <table class="widefat table-stats stats4wp-report-table stats4wp-table-fixed">
             <tbody>
                 <tr>
-                    <td style="text-align: left;">IP</td>
-                    <td width="35%" style="text-align: left;">Page</td>
-                    <td style="text-align: left;">Référant</td>
+                    <td style="text-align: left;"><?php _e('IP', 'stats4wp'); ?></td>
+                    <td width="35%" style="text-align: left;"><?php _e('Page', 'stats4wp'); ?></td>
+                    <td style="text-align: left;"><?php _e('Référant', 'stats4wp'); ?></td>
                 </tr>
                 <?php
                 $users_online = $wpdb->get_results("SELECT ip, referred, user_id, page_id  

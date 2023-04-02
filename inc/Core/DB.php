@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.2
  */
 namespace STATS4WP\Core;
 
@@ -9,7 +9,7 @@ class DB
 {
 
     /**
-     * List Of wp-statistics Mysql Table
+     * List Of Mysql Table
      *
      * @var array
      */

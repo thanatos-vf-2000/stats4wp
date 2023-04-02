@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.1
+ * @version 1.4.2
  */
 
 use STATS4WP\Core\DB;
@@ -45,7 +45,7 @@ if (DB::ExistRow('visitor')) {
                     $language_nb++;
                     $tr_class = ($language_nb % 2 == 0) ? "stats4wp-bg" : '';
                     $percent = round($language->nb * 100 / $language_total, 2);
-                    $language_list .=  '<tr class="' . esc_attr($tr_class) . '"><td>' . $language_nb . '</td><td>' . esc_html(substr($language->language, 0, 50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($language->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
+                    $language_list .=  '<tr class="' . esc_attr($tr_class) . '"><td>' . esc_html($language_nb) . '</td><td>' . esc_html(substr($language->language, 0, 50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($language->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                 }
                 $language_list .= '</tbody>
                     </table>';

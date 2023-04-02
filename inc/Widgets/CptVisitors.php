@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.1
+ * @version 1.4.2
  */
 namespace STATS4WP\Widgets;
 
@@ -39,8 +39,8 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget
     {
         parent::__construct(
             'stats4wp_cpt_visitors_widget',
-            esc_html__('Widget Number of visitors', 'stats4wp'),
-            array( 'description' => esc_html__('Display number of visitors', 'stats4wp'),
+            __('Widget Number of visitors', 'stats4wp'),
+            array( 'description' => __('Display number of visitors', 'stats4wp'),
                 'panels_icon' => 'dashicons dashicons-screenoptions',
                 'classname' => 'stats4wp_cpt_visitors_widget',
                 )
@@ -136,15 +136,15 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget
         
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
+            <label for="<?php echo esc_attr($this->get_field_id('title')); ?>"><?php _e('Title:'); ?></label>
+            <input class="widefat" id="<?php echo esc_attr($this->get_field_id('title')); ?>" name="<?php echo esc_attr($this->get_field_name('title')); ?>" type="text" value="<?php echo esc_attr($title); ?>" />
         </p>
         <?php
         foreach ($this->display as $key => $value) {
             $checked = (isset($instance[ $value ]) && $instance[ $value ] == 'checked') ? 'checked' : '' ;
             ?>
             <p>
-                <input type="checkbox" id="<?php echo $this->get_field_id($value); ?>" name="<?php echo $this->get_field_name($value); ?>" value="checked" <?php echo $checked; ?> >
+                <input type="checkbox" id="<?php echo esc_attr($this->get_field_id($value)); ?>" name="<?php echo esc_attr($this->get_field_name($value)); ?>" value="checked" <?php echo esc_attr($checked); ?> >
                 <label for="scales"><?php esc_html($value); ?></label>
             </p>
             <?php

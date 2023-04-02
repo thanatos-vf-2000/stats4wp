@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.2
  */
 global $wpdb;
 use STATS4WP\Core\DB;
@@ -163,7 +163,7 @@ $user_online = $wpdb->get_row("SELECT COUNT(*) as nb FROM ". DB::table('useronli
                 if ($bot_today->nb != 0 || $bot_yesterday->nb != 0 || $bot_month->nb != 0) {
                     echo '<tr>
                         <th>
-                            <img src="' . STATS4WP_URL . '/assets/images/search-engine/'. esc_attr($search) .'.png" alt="' . esc_attr($title) . '" class="stats4wp-engine-logo"> '. esc_html($title) .':</th>
+                            <img src="' . esc_attr(STATS4WP_URL) . '/assets/images/search-engine/'. esc_attr($search) .'.png" alt="' . esc_attr($title) . '" class="stats4wp-engine-logo"> '. esc_html($title) .':</th>
                         <th class="th-center">
                             <span>' . esc_html($bot_today->nb) . '</span>
                         </th>

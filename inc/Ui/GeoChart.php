@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.2
  */
 
 namespace STATS4WP\Ui;
@@ -39,13 +39,13 @@ class GeoChart extends BaseController
             ?>
             <div id="stats4wp-dismiss-geochart" class="notice notice-info is-dismissible">
                 <div class="stats4wp-geochart-img">
-                <img src="<?php echo STATS4WP_URL; ?>/assets/images/geochart.png" alt="GeoChart" title="GeoChart">
+                <img src="<?php echo esc_attr(STATS4WP_URL); ?>/assets/images/geochart.png" alt="GeoChart" title="GeoChart">
                 </div>
                 <div class="stats4wp-geochart-txt">
                     <p>
                         <?php
                         $link = 'https://developers.google.com/maps/terms';
-                        printf(__('%1$s v1.3.2 add a map feature using Google Geochart, see %2$s.', 'stats4wp'), '<em>Stats4WP</em>', '<a href="' . $link . '"><em>Google Maps Terms of Service</em></a>');
+                        printf(__('%1$s v1.3.2 add a map feature using Google Geochart, see %2$s.', 'stats4wp'), '<em>Stats4WP</em>', '<a href="' . esc_attr($link) . '"><em>Google Maps Terms of Service</em></a>');
                         ?>
                     </p>
                     <p><?php echo esc_html('Enable maps in the plugin options.', 'stats4wp');?> <a href="<?php echo admin_url('admin.php?page=stats4wp_settings'); ?>"><?php echo esc_html('Settings.', 'stats4wp');?></a></p>

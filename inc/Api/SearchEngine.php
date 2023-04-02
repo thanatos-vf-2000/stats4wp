@@ -1,7 +1,7 @@
 <?php
 /**
  * @package  STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.2
  */
 namespace STATS4WP\Api;
 
@@ -27,7 +27,7 @@ class SearchEngine
         $default = $engines = array(
             'ask'        => array(
                 'name'         => 'Ask.com',
-                'translated'   => __('Ask.com', 'wp-statistics'),
+                'translated'   => __('Ask.com', 'stats4wp'),
                 'tag'          => 'ask',
                 'sqlpattern'   => '%ask.com%',
                 'regexpattern' => 'ask\.com',
@@ -37,7 +37,7 @@ class SearchEngine
             ),
             'baidu'      => array(
                 'name'         => 'Baidu',
-                'translated'   => __('Baidu', 'wp-statistics'),
+                'translated'   => __('Baidu', 'stats4wp'),
                 'tag'          => 'baidu',
                 'sqlpattern'   => '%baidu.com%',
                 'regexpattern' => 'baidu\.com',
@@ -47,7 +47,7 @@ class SearchEngine
             ),
             'bing'       => array(
                 'name'         => 'Bing',
-                'translated'   => __('Bing', 'wp-statistics'),
+                'translated'   => __('Bing', 'stats4wp'),
                 'tag'          => 'bing',
                 'sqlpattern'   => '%bing.com%',
                 'regexpattern' => 'bing\.com',
@@ -57,7 +57,7 @@ class SearchEngine
             ),
             'clearch'    => array(
                 'name'         => 'clearch.org',
-                'translated'   => __('clearch.org', 'wp-statistics'),
+                'translated'   => __('clearch.org', 'stats4wp'),
                 'tag'          => 'clearch',
                 'sqlpattern'   => '%clearch.org%',
                 'regexpattern' => 'clearch\.org',
@@ -67,7 +67,7 @@ class SearchEngine
             ),
             'duckduckgo' => array(
                 'name'         => 'DuckDuckGo',
-                'translated'   => __('DuckDuckGo', 'wp-statistics'),
+                'translated'   => __('DuckDuckGo', 'stats4wp'),
                 'tag'          => 'duckduckgo',
                 'sqlpattern'   => array('%duckduckgo.com%', '%ddg.gg%'),
                 'regexpattern' => array('duckduckgo\.com', 'ddg\.gg'),
@@ -77,7 +77,7 @@ class SearchEngine
             ),
             'google'     => array(
                 'name'         => 'Google',
-                'translated'   => __('Google', 'wp-statistics'),
+                'translated'   => __('Google', 'stats4wp'),
                 'tag'          => 'google',
                 'sqlpattern'   => '%google.%',
                 'regexpattern' => 'google\.',
@@ -87,7 +87,7 @@ class SearchEngine
             ),
             'yahoo'      => array(
                 'name'         => 'Yahoo!',
-                'translated'   => __('Yahoo!', 'wp-statistics'),
+                'translated'   => __('Yahoo!', 'stats4wp'),
                 'tag'          => 'yahoo',
                 'sqlpattern'   => '%yahoo.com%',
                 'regexpattern' => 'yahoo\.com',
@@ -97,7 +97,7 @@ class SearchEngine
             ),
             'yandex'     => array(
                 'name'         => 'Yandex',
-                'translated'   => __('Yandex', 'wp-statistics'),
+                'translated'   => __('Yandex', 'stats4wp'),
                 'tag'          => 'yandex',
                 'sqlpattern'   => '%yandex.ru%',
                 'regexpattern' => 'yandex\.ru',
@@ -107,7 +107,7 @@ class SearchEngine
             ),
             'qwant'      => array(
                 'name'         => 'Qwant',
-                'translated'   => __('Qwant', 'wp-statistics'),
+                'translated'   => __('Qwant', 'stats4wp'),
                 'tag'          => 'qwant',
                 'sqlpattern'   => '%qwant.com%',
                 'regexpattern' => 'qwant\.com',
@@ -135,7 +135,7 @@ class SearchEngine
     public static function default_engine()
     {
         return array(
-            'name'         => _x('Unknown', 'Search Engine', 'wp-statistics'),
+            'name'         => _x('Unknown', 'Search Engine', 'stats4wp'),
             'tag'          => '',
             'sqlpattern'   => '',
             'regexpattern' => '',
@@ -165,7 +165,7 @@ class SearchEngine
 
         // If no URL was passed in, get the current referrer for the session.
         if (!$url) {
-            $url = !empty($_SERVER['HTTP_REFERER']) ? Referred::get() : false;
+            $url = !empty(sanitize_text_field($_SERVER['HTTP_REFERER'])) ? Referred::get() : false;
         }
 
         // If there is no URL and no referrer, always return false.

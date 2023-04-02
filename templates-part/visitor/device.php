@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.1
+ * @version 1.4.2
  */
 
 use STATS4WP\Core\DB;
@@ -179,7 +179,7 @@ if (DB::ExistRow('visitor')) {
                         }
                         $tr_class = ($device_nb % 2 == 0) ? "stats4wp-bg" : '';
                         $percent = round($device_version->nb * 100 / $device_total, 2);
-                        echo '<tr class="' . esc_attr($tr_class) . '"><td>' . $device_nb . '</td><td>' . esc_html(substr($device_version->version, 0, 50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($device_version->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
+                        echo '<tr class="' . esc_attr($tr_class) . '"><td>' . esc_html($device_nb) . '</td><td>' . esc_html(substr($device_version->version, 0, 50))  . '</td><td class="stats4wp-right">' .  esc_html(number_format($device_version->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                         $device_local = $device_version->device;
                         $device_nb++;
                     }

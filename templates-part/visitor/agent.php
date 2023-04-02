@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.1
+ * @version 1.4.2
  */
 
 use STATS4WP\Core\DB;
@@ -196,7 +196,7 @@ if (DB::ExistRow('visitor')) {
                             echo  '<tr><th colspan="3">'. esc_html($agent_version->agent).'</th></tr>';
                         }
                         $percent = round($agent_version->nb * 100 / $agents_total, 2);
-                        echo '<tr><td>' . $agents_nb . '</td><td>' . esc_html(substr($agent_version->version, 0, 50))  . '</td><td>' .  esc_html(number_format($agent_version->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
+                        echo '<tr><td>' . esc_html($agents_nb) . '</td><td>' . esc_html(substr($agent_version->version, 0, 50))  . '</td><td>' .  esc_html(number_format($agent_version->nb, 0, ',', ' ')). '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>' ;
                         $agent_local = $agent_version->agent;
                         $agents_nb++;
                     }

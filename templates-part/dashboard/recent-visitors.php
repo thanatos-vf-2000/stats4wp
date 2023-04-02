@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.2
  */
 
 use STATS4WP\Core\DB;
@@ -36,7 +36,7 @@ use STATS4WP\Core\Options;
                 $referred = $recent_visitor->referred;
                 echo '<tr>
                         <td style="text-align: left">
-                            <img src="' . STATS4WP_URL . '/assets/images/browser/'. esc_attr($browser) .'.png" alt="'. esc_attr($browser) .'" class="log-tools" title="'. esc_attr($browser) .'">
+                            <img src="' . esc_attr(STATS4WP_URL) . '/assets/images/browser/'. esc_attr($browser) .'.png" alt="'. esc_attr($browser) .'" class="log-tools" title="'. esc_attr($browser) .'">
                         </td>
                         <td style="text-align: left">' . esc_html($day) . '</td>
                         <td style="text-align: left">'. esc_html($ip) .'</td>

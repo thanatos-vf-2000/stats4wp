@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package STATS4WPPlugin
+ * @version 1.4.2
+ */
+
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 
@@ -25,7 +30,7 @@ if (DB::ExistRow('visitor')) {
                     $navigator_nb++;
                     $percent = round($navigator->nb * 100 / $navigator_total);
                     if ($navigator_nb <10 && $percent > 0) {
-                        echo esc_html($navigator->agent). " ($percent%) - ";
+                        echo esc_html($navigator->agent ." ($percent%) - ");
                     }
                 }
                 echo esc_html(__('All', 'stats4wp')).'</p>';
@@ -42,7 +47,7 @@ if (DB::ExistRow('visitor')) {
                     $platform_nb++;
                     $percent = round($platform->nb * 100 / $platform_total);
                     if ($platform_nb <10 && $percent > 0) {
-                        echo esc_html($platform->platform). " ($percent%) - ";
+                        echo esc_html($platform->platform. " ($percent%) - ");
                     }
                 }
                 echo esc_html(__('All', 'stats4wp')).'</p>';
@@ -59,7 +64,7 @@ if (DB::ExistRow('visitor')) {
                     $device_nb++;
                     $percent = round($device->nb * 100 / $device_total);
                     if ($device_nb <10 && $percent > 0) {
-                        echo esc_html($device->device). " ($percent%) - ";
+                        echo esc_html($device->device. " ($percent%) - ");
                     }
                 }
                 echo esc_html(__('All', 'stats4wp')).'</p>';
@@ -78,7 +83,7 @@ if (DB::ExistRow('visitor')) {
                     $location_nb++;
                     $percent = round($location->nb * 100 / $location_total);
                     if ($location_nb <10 && $percent > 0) {
-                        echo esc_html($location->location). " ($percent%) - ";
+                        echo esc_html($location->location. " ($percent%) - ");
                     }
                 }
                 echo esc_html(__('All', 'stats4wp')).'</p>';
@@ -95,7 +100,7 @@ if (DB::ExistRow('visitor')) {
                     $language_nb++;
                     $percent = round($language->nb * 100 / $language_total);
                     if ($language_nb <10 && $percent > 0) {
-                        echo esc_html($language->language). " ($percent%) - ";
+                        echo esc_html($language->language. " ($percent%) - ");
                     }
                 }
                 echo '<a href="/wp-admin/admin.php?page=stats4wp_visitors&spage=lang" >' . esc_html(__('All', 'stats4wp')) . '</a></p>';
@@ -114,7 +119,7 @@ if (DB::ExistRow('visitor')) {
                     $bot_nb++;
                     $percent = round($bot->nb * 100 / $bot_total);
                     if ($bot_nb <10 && $percent > 0) {
-                        echo esc_html($bot->agent). " ($percent%) - ";
+                        echo esc_html($bot->agent. " ($percent%) - ");
                     }
                 }
                 echo '</p>';
