@@ -5,6 +5,13 @@
 This file contains older changelog entries, so we can keep the size of the standard WordPress readme.txt file reasonable.
 For the latest changes, please see the "Changelog" section of the [readme.txt file](https://plugins.svn.wordpress.org/stats4wp/trunk/readme.txt).
 
+= 1.4.4 (2309-SFP2) =
+*Release Date - 30 September 2023*
+
+* Compatible Wordpress 6.3.1,
+* Update GeoIP Database 20230929,
+* Correction phpcs 3.7.2 error.
+
 = 1.4.3 (2309-SFP1) =
 *Release Date - 1 September 2023*
 

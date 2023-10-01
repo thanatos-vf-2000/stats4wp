@@ -1,11 +1,16 @@
 <?php
 /**
- *  * @category assets
- * @package  STATS4WPPlugin
- * @link     https://ginkgos.net/
- * @author   VANHOUCKE Franck <contact@ginkgos.net>
- * @license  GPLv2 or later
- * @version  1.4.1
+ * Admin Graph
+ * 
+ * PHP version 7
+ *
+ * @category  PHP
+ * @package   STATS4WPPlugin
+ * @author    Franck VANHOUCKE <ct4gg@ginkgos.net>
+ * @copyright 2021-2023 Copyright 2023, Inc. All rights reserved.
+ * @license   GNU General Public License version 2 or later
+ * @version   1.4.1 GIT:https://github.com/thanatos-vf-2000/WordPress
+ * @link      https://ginkgos.net
  */
 
 namespace STATS4WP\Api;
@@ -13,8 +18,8 @@ namespace STATS4WP\Api;
 use STATS4WP\Core\DB;
 
 /**
-*
-*/
+ * Class AdminGraph
+ */
 class AdminGraph
 {
     const ARG_FROM = "stats4wp-from";
