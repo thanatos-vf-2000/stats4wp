@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.5
  */
 
 namespace STATS4WP\Ui;
@@ -11,36 +11,34 @@ use STATS4WP\Api\SettingsApi;
 use STATS4WP\Api\Callbacks\AdminCallbacks;
 
 /**
-*
-*/
-class Pages extends BaseController
-{
-    public $callbacks;
+ *
+ */
+class Pages extends BaseController {
 
-    public $subpages = array();
+	public $callbacks;
 
-    public function register()
-    {
-        $this->settings = new SettingsApi();
+	public $subpages = array();
 
-        $this->callbacks = new AdminCallbacks();
+	public function register() {
+		$this->settings = new SettingsApi();
 
-        $this->setSubpages();
+		$this->callbacks = new AdminCallbacks();
 
-        $this->settings->addSubPages($this->subpages)->register();
-    }
+		$this->setSubpages();
 
-    public function setSubpages()
-    {
-        $this->subpages = array(
-            array(
-                'parent_slug' => STATS4WP_NAME.'_plugin',
-                'page_title' => 'Pages',
-                'menu_title' => 'Pages',
-                'capability' => 'manage_options',
-                'menu_slug' => STATS4WP_NAME.'_pages',
-                'callback' => array( $this->callbacks, 'adminPages' )
-            )
-        );
-    }
+		$this->settings->add_sub_pages( $this->subpages )->register();
+	}
+
+	public function setSubpages() {
+		$this->subpages = array(
+			array(
+				'parent_slug' => STATS4WP_NAME . '_plugin',
+				'page_title'  => 'Pages',
+				'menu_title'  => 'Pages',
+				'capability'  => 'manage_options',
+				'menu_slug'   => STATS4WP_NAME . '_pages',
+				'callback'    => array( $this->callbacks, 'adminPages' ),
+			),
+		);
+	}
 }

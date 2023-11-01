@@ -7,4 +7,8 @@
  */
 
 
-self::get_template(array('header', 'settings/options', 'footer'));
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+self::get_template( array( 'header', 'settings/options', 'footer' ) );

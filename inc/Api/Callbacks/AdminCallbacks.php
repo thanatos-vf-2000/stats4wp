@@ -1,36 +1,32 @@
 <?php
 /**
- * @package  STATS4WPPlugin
- * @version 1.4.0
+ * @package STATS4WPPlugin
+ * @version 1.4.5
  */
+
 namespace STATS4WP\Api\Callbacks;
 
 use STATS4WP\Core\BaseController;
 
-class AdminCallbacks extends BaseController
-{
-    public function adminDashboard()
-    {
-        return require_once("$this->plugin_path/templates/dashboard.php");
-    }
+class AdminCallbacks extends BaseController {
 
-    public function adminSettings()
-    {
-        return require_once("$this->plugin_path/templates/settings.php");
-    }
+	public function adminDashboard() {
+		return include_once "$this->plugin_path/templates/dashboard.php";
+	}
 
-    public function adminVisitors()
-    {
-        return require_once("$this->plugin_path/templates/visitors.php");
-    }
+	public function adminSettings() {
+		return include_once "$this->plugin_path/templates/settings.php";
+	}
 
-    public function adminPages()
-    {
-        return require_once("$this->plugin_path/templates/pages.php");
-    }
+	public function adminVisitors() {
+		return include_once "$this->plugin_path/templates/visitors.php";
+	}
 
-    public function adminCSVExport()
-    {
-        return require_once("$this->plugin_path/templates/cvs-export.php");
-    }
+	public function adminPages() {
+		return include_once "$this->plugin_path/templates/pages.php";
+	}
+
+	public function adminCSVExport() {
+		return include_once "$this->plugin_path/templates/cvs-export.php";
+	}
 }

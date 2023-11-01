@@ -2,9 +2,9 @@
 Contributors: vanhoucke
 Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, chart, browser, today, yesterday, week, month, year, total, post, page, sidebar, google, live visit, search word, agent, google analytics, webmasters, google webmasters, geoip, location, maps, map
 Requires at least: 5.2
-Tested up to: 6.3.1
+Tested up to: 6.3.2
 Requires PHP: 7.4
-Stable tag: 1.4.4
+Stable tag: 1.4.5
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -34,7 +34,7 @@ With Statistics  For WordPress you can know your website statistics without any 
 
 ### Contributing
 
-You can contribute toStats4wp in many different ways. For example:
+You can contribute to Stats4wp in many different ways. For example:
 
 - Write about the plugin on your blog or share it on social media.
 - [Vote on features in the GitHub issue list](https://github.com/thanatos-vf-2000/stats4wp/issues?q=is%3Aopen+is%3Aissue+label%3A%22feature+suggestion%22).
@@ -96,17 +96,20 @@ Chart.js
 License: MIT license
 Source: https://opensource.org/licenses/MIT
 
-GeoChart
-Source: https://developers.google.com/chart/interactive/docs/gallery/geochart
+jVectorMap
+License: The GNU AGPL is an open-source license
+Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.4.4 (2309-SFP2) =
-*Release Date - 30 September 2023*
+= 1.4.5 (2311-SFP1) =
+*Release Date - 1 November 2023*
 
-* Compatible Wordpress 6.3.1,
+* Compatible Wordpress 6.3.2,
 * Update GeoIP Database 20230929,
-* Correction phpcs 3.7.2 error.
+* Correction phpcs 3.7.2 error,
+* Change Google GeoChart by jVectorMap 2.0.5,
+* Correction country map to used parameters.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 

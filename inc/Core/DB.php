@@ -1,150 +1,146 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.2
+ * @version 1.4.5
  */
 namespace STATS4WP\Core;
 
-class DB
-{
+class DB {
 
-    /**
-     * List Of Mysql Table
-     *
-     * @var array
-     */
-    public static $db_table = array(
-        'visitor',
-        'pages',
-        'useronline'
-    );
 
-    /**
-     * List of array exist
-     *
-     * @var array
-     */
-    public static $db_table_exist = array();
+	/**
+	 * List Of Mysql Table
+	 *
+	 * @var array
+	 */
+	public static $db_table = array(
+		'visitor',
+		'pages',
+		'useronline',
+	);
 
-    /**
-     * Table name Structure in Database
-     *
-     * @var string
-     */
-    public static $tbl_name = '[prefix]stats4wp_[name]';
+	/**
+	 * List of array exist
+	 *
+	 * @var array
+	 */
+	public static $db_table_exist = array();
 
-    /**
-     * Get WordPress Table Collate
-     *
-     * @return mixed
-     */
-    public static function charset_collate()
-    {
-        global $wpdb;
-        return $wpdb->get_charset_collate();
-    }
+	/**
+	 * Table name Structure in Database
+	 *
+	 * @var string
+	 */
+	public static $tbl_name = '[prefix]stats4wp_[name]';
 
-    /**
-     * Get WordPress Table Prefix
-     */
-    public static function prefix()
-    {
-        global $wpdb;
-        return $wpdb->prefix;
-    }
+	/**
+	 * Get WordPress Table Collate
+	 *
+	 * @return mixed
+	 */
+	public static function charset_collate() {
+		global $wpdb;
+		return $wpdb->get_charset_collate();
+	}
 
-    /**
-     * Get Table name
-     *
-     * @param $tbl
-     * @return mixed
-     */
-    public static function getTableName($tbl)
-    {
-        return str_ireplace(array("[prefix]", "[name]"), array(self::prefix(), $tbl), self::$tbl_name);
-    }
+	/**
+	 * Get WordPress Table Prefix
+	 */
+	public static function prefix() {
+		global $wpdb;
+		return $wpdb->prefix;
+	}
 
-    /**
-     * Check Exist Table in Database
-     *
-     * @param $tbl_name
-     * @return bool
-     */
-    public static function ExistTable($tbl_name)
-    {
-        global $wpdb;
-        return ($wpdb->get_var("SHOW TABLES LIKE '$tbl_name'") == $tbl_name);
-    }
-    
-    /**
-     * Table List
-     *
-     * @param string $export
-     * @param array $except
-     * @return array|null|string
-     */
-    public static function table($export = 'all', $except = array())
-    {
+	/**
+	 * Get Table name
+	 *
+	 * @param  $tbl
+	 * @return mixed
+	 */
+	public static function get_table_name( $tbl ) {
+		return str_ireplace( array( '[prefix]', '[name]' ), array( self::prefix(), $tbl ), self::$tbl_name );
+	}
 
-        # Create Empty Object
-        $list = array();
+	/**
+	 * Check Exist Table in Database
+	 *
+	 * @param  $tbl_name
+	 * @return bool
+	 */
+	public static function exist_table( $tbl_name ) {
+		global $wpdb;
+		$wpdb->stats4wp_test = $tbl_name;
+		return ( $wpdb->get_var( "SHOW TABLES LIKE {$wpdb->stats4wp_test}" ) === $tbl_name );
+	}
 
-        # Convert except String to array
-        if (is_string($except)) {
-            $except = array($except);
-        }
+	/**
+	 * Table List
+	 *
+	 * @param  string $export
+	 * @param  array  $except
+	 * @return array|null|string
+	 */
+	public static function table( $export = 'all', $except = array() ) {
 
-        # Check Except List
-        $mysql_list_table = array_diff(self::$db_table, $except);
+		// Create Empty Object
+		$list = array();
 
-        # Get List
-        foreach ($mysql_list_table as $tbl) {
-            # WP-Statistics table name
-            $table_name = self::getTableName($tbl);
+		// Convert except String to array
+		if ( is_string( $except ) ) {
+			$except = array( $except );
+		}
 
-            if ($export == "all") {
-                if (self::ExistTable($table_name)) {
-                    $list[$tbl] = $table_name;
-                }
-            } else {
-                $list[$tbl] = $table_name;
-            }
-        }
+		// Check Except List
+		$mysql_list_table = array_diff( self::$db_table, $except );
 
-        # Export Data
-        return ($export == 'all' ? $list : (array_key_exists($export, $list) ? $list[$export] : null));
-    }
+		// Get List
+		foreach ( $mysql_list_table as $tbl ) {
+			// WP-Statistics table name
+			$table_name = self::get_table_name( $tbl );
 
-    /**
-     * Test if exist Row in table
-     *
-     * @param string $export
-     * @param array $except
-     * @return array|null|string
-     */
-    public static function ExistRow($tbl)
-    {
-        global $wpdb;
-        
-        if (! in_array($tbl, self::$db_table)) {
-            return false;
-        }
-        if (in_array($tbl, self::$db_table_exist, true)) {
-            $nb = self::$db_table_exist[$tbl];
-        } else {
-            $nbrows = wp_cache_get("cpt_".$tbl);
-            if (false === $nbrows) {
-                $nbrows = $wpdb->get_row("SELECT count(*) as nb FROM " . DB::table($tbl));
-                wp_cache_set("cpt_".$tbl, $nbrows);
-            }
-            $nb = $nbrows->nb;
-            self::$db_table_exist+= ["$tbl" => $nb];
-        }
-        
-        if ($nb > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+			if ( 'all' === $export ) {
+				if ( self::exist_table( $table_name ) ) {
+					$list[ $tbl ] = $table_name;
+				}
+			} else {
+				$list[ $tbl ] = $table_name;
+			}
+		}
+
+		// Export Data
+		return ( 'all' === $export ? $list : ( array_key_exists( $export, $list ) ? $list[ $export ] : null ) );
+	}
+
+	/**
+	 * Test if exist Row in table
+	 *
+	 * @param  string $export
+	 * @param  array  $except
+	 * @return array|null|string
+	 */
+	public static function exist_row( $tbl ) {
+		global $wpdb;
+
+		if ( ! in_array( $tbl, self::$db_table ) ) {
+			return false;
+		}
+		if ( in_array( $tbl, self::$db_table_exist, true ) ) {
+			$nb = self::$db_table_exist[ $tbl ];
+		} else {
+			$nbrows = wp_cache_get( 'cpt_' . $tbl );
+			if ( false === $nbrows ) {
+				$wpdb->stats4wp_test = self::table( $tbl );
+				$nbrows              = $wpdb->get_row( "SELECT count(*) as nb FROM {$wpdb->stats4wp_test}" );
+				wp_cache_set( 'cpt_' . $tbl, $nbrows );
+			}
+			$nb                    = $nbrows->nb;
+			self::$db_table_exist += array( "$tbl" => $nb );
+		}
+
+		if ( $nb > 0 ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

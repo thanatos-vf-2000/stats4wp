@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.5
  */
 
 namespace STATS4WP\Ui;
@@ -11,36 +11,34 @@ use STATS4WP\Api\SettingsApi;
 use STATS4WP\Api\Callbacks\AdminCallbacks;
 
 /**
-*
-*/
-class Visitors extends BaseController
-{
-    public $callbacks;
+ *
+ */
+class Visitors extends BaseController {
 
-    public $subpages = array();
+	public $callbacks;
 
-    public function register()
-    {
-        $this->settings = new SettingsApi();
+	public $subpages = array();
 
-        $this->callbacks = new AdminCallbacks();
+	public function register() {
+		$this->settings = new SettingsApi();
 
-        $this->setSubpages();
+		$this->callbacks = new AdminCallbacks();
 
-        $this->settings->addSubPages($this->subpages)->register();
-    }
+		$this->setSubpages();
 
-    public function setSubpages()
-    {
-        $this->subpages = array(
-            array(
-                'parent_slug' => STATS4WP_NAME.'_plugin',
-                'page_title' => 'Visitors',
-                'menu_title' => 'Visitors',
-                'capability' => 'manage_options',
-                'menu_slug' => STATS4WP_NAME.'_visitors',
-                'callback' => array( $this->callbacks, 'adminVisitors' )
-            )
-        );
-    }
+		$this->settings->add_sub_pages( $this->subpages )->register();
+	}
+
+	public function setSubpages() {
+		$this->subpages = array(
+			array(
+				'parent_slug' => STATS4WP_NAME . '_plugin',
+				'page_title'  => 'Visitors',
+				'menu_title'  => 'Visitors',
+				'capability'  => 'manage_options',
+				'menu_slug'   => STATS4WP_NAME . '_visitors',
+				'callback'    => array( $this->callbacks, 'adminVisitors' ),
+			),
+		);
+	}
 }

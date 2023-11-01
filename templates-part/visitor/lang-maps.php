@@ -1,68 +1,91 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.1
+ * @version 1.4.5
  *
  * Desciption: Location Maps
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 
 use STATS4WP\Core\Options;
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 
-$page = (isset($_GET['page']) ? sanitize_text_field($_GET['page']) : '');
-if ($page == 'stats4wp_plugin') {
-    $data = 'all';
+$page_local = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
+if ( 'stats4wp_plugin' === $page_local ) {
+	$data = 'all';
 } else {
-    $data ='';
+	$data = '';
 }
 
-if (Options::get_option('geochart') == true) {
-    $param = AdminGraph::getdate($data);
-    $languages = $wpdb->get_results("SELECT UPPER(language) as language, count(*) as nb FROM ". DB::table('visitor') ." 
+	$param = AdminGraph::getdate( $data );
+if ( ! isset( $wpdb->stats4wp_visitor ) ) {
+	$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
+	$languages = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT UPPER(language) as language, count(*) as nb FROM {$wpdb->stats4wp_visitor} 
     WHERE device NOT IN ('bot','')
     AND language not in ('','*','#','q=')
-    AND last_counter BETWEEN '".  $param['from'] ."' AND '". $param['to'] ."'
+    AND last_counter BETWEEN %s AND %s
     GROUP BY language
-    ORDER by nb DESC");
-    ?>
+    ORDER by nb DESC",
+			$param['from'],
+			$param['to']
+		)
+	);
+	?>
   <div id ="stats4wp-maps-widget" class="postbox " >
-      <div class="postbox-header">
-          <h2 class="hndle ui-sortable-handle"><?php _e('Users language', 'stats4wp'); ?></h2>
-      </div>
-      <div class="inside">
-      <?php
-        if (isset($script_js)) {
-            unset($script_js);
-        }
-        $script_js = '
-        google.charts.load("current", {
-          "packages":["geochart"],
-        });
-        google.charts.setOnLoadCallback(drawRegionsMap);
+	  <div class="postbox-header">
+		  <h2 class="hndle ui-sortable-handle"><?php esc_html_e( 'Users language', 'stats4wp' ); ?></h2>
+	  </div>
+	  <div id="world-map" style="width: 600px; height: 400px"></div>
+	  <?php
+		if ( isset( $script_js ) ) {
+			unset( $script_js );
+		}
+		$script_js = '
 
-        function drawRegionsMap() {
-          var data = google.visualization.arrayToDataTable([
-            ["Country", "'. __("Users", "stats4wp") . '"],';
+		function defered(method) {
+			if (window.jQuery && window.jQuery.fn.vectorMap) {
+				method();
+			} else {
+				setTimeout(function() { defered(method) }, 50);
+			}
+		}
+		defered(function () {
+			console.log("jQuery is now loaded");
+			jQuery(function ($) {
+				$(function(){
+					$(\'#world-map\').vectorMap({map: \'world_mill\',
+						series: {
+							regions: [{
+							values: gdpData,
+							scale: [\'#C8EEFF\', \'#0071A4\'],
+							normalizeFunction: \'polynomial\'
+							}]
+						},
+						onRegionTipShow: function(e, el, code){
+							el.html(el.html()+\' (' . esc_html( 'Number', 'stats4wp' ) . ' - \'+gdpData[code]+\')\');
+						}
+					});
+				});
+			});
+		});
 
-        foreach ($languages as $language) {
-            $script_js .= '[\'' . esc_html($language->language) . '\', '. esc_html($language->nb) .'],';
-        }
+			var gdpData = {';
 
-        $script_js .= '
-          ]);
+		foreach ( $languages as $language ) {
+			$script_js .= '"' . esc_html( $language->language ) . '":' . esc_html( $language->nb ) . ',';
+		}
 
-          var options = {};
-
-          var chart = new google.visualization.GeoChart(document.getElementById("regions_div"));
-
-          chart.draw(data, options);
-        }
-      ';
-        wp_add_inline_script('google-loader', $script_js, 'after');
-        ?>
-          <div id="regions_div" style="width: 450px; height: 250px;" class="stats4wp-maps"></div>
-      </div>
+				$script_js .= '"UNDEFINED": 0,};';
+			echo "<script>
+			$script_js
+			</script>";
+		?>
   </div>
-    <?php
-}
+

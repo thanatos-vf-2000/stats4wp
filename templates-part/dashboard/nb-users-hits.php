@@ -1,62 +1,75 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.0
+ * @version 1.4.5
  */
+
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 
 ?>
 <div id ="stats4wp-nb-users-hits-widget" class="postbox " >
-    <div class="postbox-header">
-        <h2 class="hndle ui-sortable-handle"><?php _e('Number of Users and Hits', 'stats4wp'); ?></h2>
-    </div>
-    <div class="inside">
-        <canvas  id="chartjs_nb_users_hits" height="300vw" width="800vw"></canvas> 
-    </div>
+	<div class="postbox-header">
+		<h2 class="hndle ui-sortable-handle"><?php esc_html_e( 'Number of Users and Hits', 'stats4wp' ); ?></h2>
+	</div>
+	<div class="inside">
+		<canvas  id="chartjs_nb_users_hits" height="300vw" width="800vw"></canvas> 
+	</div>
 </div>
 <?php
-if (DB::ExistRow('visitor')) {
-    $param = AdminGraph::getdate('');
-    switch ($param['group']) {
-        case 1:
-            $select = 'last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
-            $char_title = __('Number of users and Hits per days', 'stats4wp');
-            break;
-        case 2:
-            $select = 'CONCAT(YEAR(last_counter),"-",WEEK(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
-            $char_title = __('Number of users and Hits per weeks', 'stats4wp');
-            break;
-        case 3:
-            $select = 'CONCAT(YEAR(last_counter),"-",MONTH(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
-            $char_title = __('Number of users and Hits per months', 'stats4wp');
-            break;
-        case 4:
-            $select = 'CONCAT(YEAR(last_counter),"-",QUARTER(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
-            $char_title = __('Number of users and Hits per quarter', 'stats4wp');
-            break;
-        case 5:
-            $select = 'YEAR(last_counter) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
-            $char_title = __('Number of users and Hits per Years', 'stats4wp');
-            break;
-    }
-    $visitors = $wpdb->get_results("SELECT ".  $select ." 
-        FROM ". DB::table('visitor') ." 
+if ( DB::exist_row( 'visitor' ) ) {
+	if ( ! isset( $wpdb->stats4wp_visitor ) ) {
+		$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
+	$param = AdminGraph::getdate( '' );
+	switch ( $param['group'] ) {
+		case 1:
+			$select     = 'last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$char_title = __( 'Number of users and Hits per days', 'stats4wp' );
+			break;
+		case 2:
+			$select     = 'CONCAT(YEAR(last_counter),"-",WEEK(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$char_title = __( 'Number of users and Hits per weeks', 'stats4wp' );
+			break;
+		case 3:
+			$select     = 'CONCAT(YEAR(last_counter),"-",MONTH(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$char_title = __( 'Number of users and Hits per months', 'stats4wp' );
+			break;
+		case 4:
+			$select     = 'CONCAT(YEAR(last_counter),"-",QUARTER(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$char_title = __( 'Number of users and Hits per quarter', 'stats4wp' );
+			break;
+		case 5:
+			$select     = 'YEAR(last_counter) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$char_title = __( 'Number of users and Hits per Years', 'stats4wp' );
+			break;
+	}
+	$visitors = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT {$select} 
+        FROM {$wpdb->stats4wp_visitor} 
         where device!='bot' 
-        AND last_counter BETWEEN '". $param['from'] ."' AND '". $param['to'] ."' 
-        GROUP BY 1 ORDER BY 1 ASC");
-    foreach ($visitors as $visitor) {
-        $day[]  = $visitor->last_counter ;
-        $users[] = $visitor->user;
-        $hits[] = $visitor->hits;
-    }
+        AND last_counter BETWEEN %s AND %s 
+        GROUP BY 1 ORDER BY 1 ASC",
+			$param['from'],
+			$param['to']
+		)
+	);
+	foreach ( $visitors as $visitor ) {
+		$day[]   = $visitor->last_counter;
+		$users[] = $visitor->user;
+		$hits[]  = $visitor->hits;
+	}
 
-    $script_js = ' 
+	$script_js = ' 
     const dataNbUsersHits = {
-        labels:'.json_encode($day). ',
+        labels:' . wp_json_encode( $day ) . ',
         datasets: [{
-            label: "'. esc_html(__('Users', 'stats4wp')) .'",
+            label: "' . esc_html( __( 'Users', 'stats4wp' ) ) . '",
             borderColor: "#FF6384",
             fill: false,
             pointRadius: [0],
@@ -66,10 +79,10 @@ if (DB::ExistRow('visitor')) {
             backgroundColor: [
                "#FF6384"
             ],
-            data:'. json_encode($users). ',
+            data:' . wp_json_encode( $users ) . ',
         },
         {
-            label: "'. esc_html(__('Hits', 'stats4wp')) .'",
+            label: "' . esc_html( __( 'Hits', 'stats4wp' ) ) . '",
             borderColor: "#36A2EB",
             fill: false,
             pointRadius: [0],
@@ -79,7 +92,7 @@ if (DB::ExistRow('visitor')) {
             backgroundColor: [
                "#36A2EB"
             ],
-            data:'. json_encode($hits). ',
+            data:' . wp_json_encode( $hits ) . ',
         }]
     };
 
@@ -88,7 +101,7 @@ if (DB::ExistRow('visitor')) {
         plugins: {
             title: {
               display: false,
-              text: "'. esc_html($char_title) .'"
+              text: "' . esc_html( $char_title ) . '"
             },
           },
         legend: {
@@ -115,6 +128,6 @@ if (DB::ExistRow('visitor')) {
     );
     
     ;';
-    wp_add_inline_script('chart-js', $script_js);
-    unset($day, $users, $hits, $visitors);
+	wp_add_inline_script( 'chart-js', $script_js );
+	unset( $day, $users, $hits, $visitors );
 }

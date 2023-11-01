@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.1
+ * @version 1.4.5
  */
 
 namespace STATS4WP\Ui;
@@ -12,102 +12,99 @@ use STATS4WP\Api\Callbacks\AdminCallbacks;
 use STATS4WP\Core\DB;
 
 /**
-*
-*/
-class CSVExport extends BaseController
-{
-    public $callbacks;
+ * Class CSVExport
+ */
+class CSVExport extends BaseController {
 
-    public $subpages = array();
+	public $callbacks;
 
-    public function register()
-    {
-        $this->settings = new SettingsApi();
+	public $subpages = array();
 
-        $this->callbacks = new AdminCallbacks();
+	public function register() {
+		$this->settings = new SettingsApi();
 
-        $this->setSubpages();
+		$this->callbacks = new AdminCallbacks();
 
-        $this->settings->addSubPages($this->subpages)->register();
-        
-        $this->separator = ';';
-        if (isset($_GET['report'])) {
-            $csv = $this->generate_csv(sanitize_text_field($_GET['report']));
+		$this->setSubpages();
 
-            header("Pragma: public");
-            header("Expires: 0");
-            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-            header("Cache-Control: private", false);
-            header("Content-Type: application/octet-stream");
-            if (isset($_GET['year'])) {
-                header("Content-Disposition: attachment; filename=\"Export_" . sanitize_text_field($_GET['report']) . "_" . sanitize_text_field($_GET['year']) . ".csv\";");
-            } else {
-                header("Content-Disposition: attachment; filename=\"Export_" . sanitize_text_field($_GET['report']) . ".csv\";");
-            }
-            header("Content-Transfer-Encoding: binary");
+		$this->settings->add_sub_pages( $this->subpages )->register();
 
-            _e($csv);
-            exit;
-        }
-    }
+		$this->separator = ';';
+		if ( isset( $_GET['report'] ) ) {
+			$csv = $this->generate_csv( sanitize_text_field( wp_unslash( $_GET['report'] ) ) );
 
-    public function setSubpages()
-    {
-        $this->subpages = array(
-            array(
-                'parent_slug' => STATS4WP_NAME.'_plugin',
-                'page_title' => 'CSV Export',
-                'menu_title' => 'CSV Export',
-                'capability' => 'manage_options',
-                'menu_slug' => STATS4WP_NAME.'_cvsexport',
-                'callback' => array( $this->callbacks, 'adminCSVExport' )
-            )
-        );
-    }
+			header( 'Pragma: public' );
+			header( 'Expires: 0' );
+			header( 'Cache-Control: must-revalidate, post-check=0, pre-check=0' );
+			header( 'Cache-Control: private', false );
+			header( 'Content-Type: application/octet-stream' );
+			if ( isset( $_GET['year'] ) ) {
+				header( 'Content-Disposition: attachment; filename="Export_' . sanitize_text_field( wp_unslash( $_GET['report'] ) ) . '_' . sanitize_text_field( wp_unslash( $_GET['year'] ) ) . '.csv";' );
+			} else {
+				header( 'Content-Disposition: attachment; filename="Export_' . sanitize_text_field( wp_unslash( $_GET['report'] ) ) . '.csv";' );
+			}
+			header( 'Content-Transfer-Encoding: binary' );
 
-    /**
-     * Converting data to CSV
-     */
-    public function generate_csv($table)
-    {
-        global $wpdb;
+			esc_html_e( $csv );
+			exit;
+		}
+	}
 
-        switch ($table) {
-            case 'visitor';
-                $field = 'last_counter';
-                break;
-            case 'pages':
-                $field = 'date';
-                break;
-        }
+	public function setSubpages() {
+		$this->subpages = array(
+			array(
+				'parent_slug' => STATS4WP_NAME . '_plugin',
+				'page_title'  => 'CSV Export',
+				'menu_title'  => 'CSV Export',
+				'capability'  => 'manage_options',
+				'menu_slug'   => STATS4WP_NAME . '_cvsexport',
+				'callback'    => array( $this->callbacks, 'adminCSVExport' ),
+			),
+		);
+	}
 
-        $table = DB::table($table);
-        $csv_output = '';                                           //Assigning the variable to store all future CSV file's data
+	/**
+	 * Converting data to CSV
+	 */
+	public function generate_csv( $table ) {
+		global $wpdb;
 
-        $result = $wpdb->get_results("SHOW COLUMNS FROM " . $table . "");   //Displays all COLUMN NAMES under 'Field' column in records returned
+		switch ( $table ) {
+			case 'visitor';
+				$field = 'last_counter';
+		break;
+			case 'pages':
+				$field = 'date';
+				break;
+		}
 
-        if (count($result) > 0) {
-            foreach ($result as $row) {
-                $csv_output = $csv_output . $row->Field . $this->separator;
-            }
-            $csv_output = substr($csv_output, 0, -1);               //Removing the last separator, because thats how CSVs work
-        }
-        $csv_output .= "\n";
+		$wpdb->stats4wp_tmp = DB::table( $table );
+		$csv_output         = '';                                           // Assigning the variable to store all future CSV file's data
 
-        if (isset($_GET['year'])) {
-            $y = " where YEAR(" . $field . ")=".sanitize_text_field($_GET['year']);
-        } else {
-            $y="";
-        }
+		$result = $wpdb->get_results( "SHOW COLUMNS FROM {$wpdb->stats4wp_tmp}" );   // Displays all COLUMN NAMES under 'field' column in records returned
 
-        $values = $wpdb->get_results("SELECT * FROM " . $table . " ". $y);       //This here
+		if ( count( $result ) > 0 ) {
+			foreach ( $result as $row ) {
+				$csv_output = $csv_output . $row->field . $this->separator;
+			}
+			$csv_output = substr( $csv_output, 0, -1 );               // Removing the last separator, because thats how CSVs work
+		}
+		$csv_output .= "\n";
 
-        foreach ($values as $rowr) {
-            $fields = array_values((array) $rowr);                  //Getting rid of the keys and using numeric array to get values
-            $csv_output .= implode($this->separator, $fields);      //Generating string with field separator
-            $csv_output .= "\n";    //Yeah...
-        }
+		if ( isset( $_GET['year'] ) ) {
+			$wpdb->stats4wp_y = ' where YEAR(' . $field . ')=' . sanitize_text_field( wp_unslash( $_GET['year'] ) );
+		} else {
+			$wpdb->stats4wp_y = '';
+		}
 
-        return $csv_output; //Back to constructor
-    }
+		$values = $wpdb->get_results( "SELECT * FROM {$wpdb->stats4wp_tmp} {$wpdb->stats4wp_y}" );       // This here
+
+		foreach ( $values as $rowr ) {
+			$fields      = array_values( (array) $rowr );                  // Getting rid of the keys and using numeric array to get values
+			$csv_output .= implode( $this->separator, $fields );      // Generating string with field separator
+			$csv_output .= "\n";    // Yeah...
+		}
+
+		return $csv_output; // Back to constructor
+	}
 }

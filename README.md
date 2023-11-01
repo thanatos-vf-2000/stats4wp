@@ -92,16 +92,19 @@ Chart.js
 License: MIT license
 Source: https://opensource.org/licenses/MIT
 
-GeoChart
-Source: https://developers.google.com/chart/interactive/docs/gallery/geochart
+jVectorMap
+License: The GNU AGPL is an open-source license
+Source: https://jvectormap.com/
 
 
-### 1.4.4 (2309-SFP2)
-*Release Date - 30 September 2023*
+### 1.4.5 (2311-SFP1)
+*Release Date - 1 November 2023*
 
-* Compatible Wordpress 6.3.1,
+* Compatible Wordpress 6.3.2,
 * Update GeoIP Database 20230929,
-* Correction phpcs 3.7.2 error.
+* Correction phpcs 3.7.2 error,
+* Change Google GeoChart by jVectorMap 2.0.5,
+* Correction country map to used parameters.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 

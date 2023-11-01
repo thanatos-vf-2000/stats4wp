@@ -1,59 +1,82 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.1
+ * @version 1.4.5
  *
  * Desciption: Contry Maps
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use STATS4WP\Core\Options;
 use STATS4WP\Core\DB;
+use STATS4WP\Api\AdminGraph;
 
-if (Options::get_option('geochart') == true) {
-    $locations = $wpdb->get_results("SELECT location, count(*) as nb FROM ". DB::table('visitor') ." 
-    WHERE device NOT IN ('bot','')
-    AND location NOT IN ('local','none')
-    AND last_counter BETWEEN '".  date("Y-m-d", strtotime('-1 years')) ."' AND '". date("Y-m-d") ."'
-    GROUP BY location
-    ORDER by nb DESC");
-    ?>
-  <div id ="stats4wp-maps-widget" class="postbox " >
-      <div class="postbox-header">
-          <h2 class="hndle ui-sortable-handle"><?php _e('Users country maps for last year', 'stats4wp'); ?></h2>
-      </div>
-      <div class="inside">
-      <?php
+if ( ! isset( $wpdb->stats4wp_visitor ) ) {
+	$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
+		$param = AdminGraph::getdate( '' );
+	$locations = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT location, count(*) as nb FROM {$wpdb->stats4wp_visitor} 
+		WHERE device NOT IN ('bot','')
+		AND location NOT IN ('local','none')
+		AND last_counter BETWEEN %s AND %s
+		GROUP BY location
+		ORDER by nb DESC",
+			$param['from'],
+			$param['to']
+		)
+	);
+	?>
+	<div id ="stats4wp-maps-widget" class="postbox " >
+	  <div class="postbox-header">
+		  <h2 class="hndle ui-sortable-handle"><?php esc_html_e( 'Users country maps for last year', 'stats4wp' ); ?></h2>
+	  </div>
+	  <div id="world-map" style="width: 600px; height: 400px"></div>
+	  <?php
+		if ( isset( $script_js ) ) {
+			unset( $script_js );
+		}
+		$script_js = '
 
-        if (isset($script_js)) {
-            unset($script_js);
-        }
-        $script_js = '
-        google.charts.load("current", {
-          "packages":["geochart"],
-        });
-        google.charts.setOnLoadCallback(drawRegionsMap);
+		function defered(method) {
+			if (window.jQuery && window.jQuery.fn.vectorMap) {
+				method();
+			} else {
+				setTimeout(function() { defered(method) }, 50);
+			}
+		}
+		defered(function () {
+			console.log("jQuery is now loaded");
+			jQuery(function ($) {
+				$(function(){
+					$(\'#world-map\').vectorMap({map: \'world_mill\',
+						series: {
+							regions: [{
+							values: gdpData,
+							scale: [\'#C8EEFF\', \'#0071A4\'],
+							normalizeFunction: \'polynomial\'
+							}]
+						},
+						onRegionTipShow: function(e, el, code){
+							el.html(el.html()+\' (' . esc_html( 'Number', 'stats4wp' ) . ' - \'+gdpData[code]+\')\');
+						}
+					});
+				});
+			});
+		});
 
-        function drawRegionsMap() {
-          var data = google.visualization.arrayToDataTable([
-            ["Country", "' . __("Users", "stats4wp") . '"], ';
+			var gdpData = {';
 
-        foreach ($locations as $location) {
-            $script_js .=  '[\'' . esc_html($location->location) . '\', '. esc_html($location->nb) .'],';
-        }
-        $script_js .= '
-          ]);
+		foreach ( $locations as $location ) {
+			$script_js .= '"' . esc_html( $location->location ) . '":' . esc_html( $location->nb ) . ',';
+		}
 
-          var options = {};
-
-          var chart = new google.visualization.GeoChart(document.getElementById("regions_div"));
-
-          chart.draw(data, options);
-        }
-      ';
-        wp_add_inline_script('google-loader', $script_js, 'after');
-        ?>
-          <div id="regions_div" style="width: 100%"></div>
-      </div>
-  </div>
-    <?php
-}
+				$script_js .= '"UNDEFINED": 0,};';
+			echo "<script>
+			$script_js
+			</script>";
+		?>
+	</div>
