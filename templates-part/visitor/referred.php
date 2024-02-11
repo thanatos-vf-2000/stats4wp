@@ -1,9 +1,8 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.7
  */
-
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -19,15 +18,6 @@ if ( 'stats4wp_plugin' === $page_local ) {
 	$data = '';
 }
 $all_data = ( isset( $_GET['data'] ) ) ? sanitize_text_field( wp_unslash( $_GET['data'] ) ) : '';
-if ( 'all' === $all_data ) {
-	$all_data = '';
-	$title    = __( 'All Referred', 'stats4wp' );
-} else {
-	$all_data = 'LIMIT 0,10';
-	$title    = __( 'Referred TOP 10', 'stats4wp' );
-}
-
-
 
 if ( DB::exist_row( 'visitor' ) ) {
 	$param = AdminGraph::getdate( $data );
@@ -37,32 +27,49 @@ if ( DB::exist_row( 'visitor' ) ) {
 	<div class="stats4wp-dashboard">
 		<div class="stats4wp-rows">
 			<ul id="stats4wp-menu" >
-				<li><a class="<?php echo ( '' === $all_data ) ? 'active' : ''; ?>" href="/wp-admin/admin.php?page=stats4wp_visitors&spage=referred&data=all" ><?php echo esc_html( __( 'All Referred', 'stats4wp' ) ); ?></a></li>
-				<li><a class="<?php echo ( '' !== $all_data ) ? 'active' : ''; ?>" href="/wp-admin/admin.php?page=stats4wp_visitors&spage=referred" ><?php echo esc_html( __( 'TOP 10 Referred', 'stats4wp' ) ); ?></a></li>
+				<li><a class="<?php echo ( '' === $all_data ) ? 'active' : ''; ?>" href="/wp-admin/admin.php?page=stats4wp_visitors&spage=referred&data=all" ><?php echo esc_html( esc_html__( 'All Referred', 'stats4wp' ) ); ?></a></li>
+				<li><a class="<?php echo ( '' !== $all_data ) ? 'active' : ''; ?>" href="/wp-admin/admin.php?page=stats4wp_visitors&spage=referred" ><?php echo esc_html( esc_html__( 'TOP 10 Referred', 'stats4wp' ) ); ?></a></li>
 			</ul>  
 		</div>
 		<div class="stats4wp-rows">
 			<div class="stats4wp-inline width46 ">
 			<canvas  id="chartjs_referred" height="300vw" width="400vw"></canvas> 
 				<?php
-				$referreds      = $wpdb->get_results(
-					$wpdb->prepare(
-						"SELECT referred, count(*) as nb FROM {$wpdb->stats4wp_visitor}
-                WHERE device NOT IN ('bot','')
-                AND last_counter BETWEEN %s AND %s
-                GROUP BY referred
-                ORDER by nb DESC {$all_data}",
-						$param['from'],
-						$param['to']
-					)
-				);
+				if ( 'all' === $all_data ) {
+					$referreds   = $wpdb->get_results(
+						$wpdb->prepare(
+							"SELECT referred, count(*) as nb FROM {$wpdb->stats4wp_visitor}
+					WHERE device NOT IN ('bot','')
+					AND last_counter BETWEEN %s AND %s
+					GROUP BY referred
+					ORDER by nb DESC ",
+							$param['from'],
+							$param['to']
+						)
+					);
+					$local_title = esc_html__( 'All Referred', 'stats4wp' );
+				} else {
+					$referreds   = $wpdb->get_results(
+						$wpdb->prepare(
+							"SELECT referred, count(*) as nb FROM {$wpdb->stats4wp_visitor}
+					WHERE device NOT IN ('bot','')
+					AND last_counter BETWEEN %s AND %s
+					GROUP BY referred
+					ORDER by nb DESC LIMIT 0,10",
+							$param['from'],
+							$param['to']
+						)
+					);
+					$local_title = esc_html__( 'Referred TOP 10', 'stats4wp' );
+				}
+
 				$referred_total = array_sum( array_column( $referreds, 'nb' ) );
 				$referred_nb    = 0;
 				$referred_list  = '<table class="widefat table-stats stats4wp-report-table">
                 <tbody>
                     <tr>
                         <td style="width: 1%;"></td>
-                        <td>' . esc_html( __( 'Referred', 'stats4wp' ) ) . '</td>
+                        <td>' . esc_html( esc_html__( 'Referred', 'stats4wp' ) ) . '</td>
                         <td style="width: 20%;"></td>
                         <td style="width: 20%;"></td>
                     </tr>';
@@ -82,7 +89,7 @@ if ( DB::exist_row( 'visitor' ) ) {
                 const dataReferred= {
                     labels:' . wp_json_encode( $src ) . ',
                     datasets: [{
-                        label: "' . esc_html( __( 'Referred', 'stats4wp' ) ) . '",
+                        label: "' . esc_html( esc_html__( 'Referred', 'stats4wp' ) ) . '",
                         data:' . wp_json_encode( $nb ) . ',
                         backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
                     }]
@@ -93,7 +100,7 @@ if ( DB::exist_row( 'visitor' ) ) {
                     plugins: {
                         title: {
                           display: true,
-                          text: "' . esc_html( $title ) . '"
+                          text: "' . esc_html( $local_title ) . '"
                         },
                       },
                     legend: {
@@ -125,7 +132,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 			</div>
 			<div class="stats4wp-inline width46 ">
 				<div class="stats4wp-referred">
-					<?php echo $referred_list; ?>
+					<?php echo wp_kses_post( $referred_list ); ?>
 				</div>
 			</div>
 			</div>

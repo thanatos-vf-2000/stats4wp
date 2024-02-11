@@ -5,6 +5,37 @@
 This file contains older changelog entries, so we can keep the size of the standard WordPress readme.txt file reasonable.
 For the latest changes, please see the "Changelog" section of the [readme.txt file](https://plugins.svn.wordpress.org/stats4wp/trunk/readme.txt).
 
+= 1.4.8 (2402-SFP1) =
+*Release Date - 11 Febrary 2023*
+
+* Compatible Wordpress 6.4.3,
+* Update GeoIP Database 20240209,
+* Correction phpcs 3.7.2 error,
+* Change Google GeoChart by jVectorMap 2.0.5,
+* Correction country map to used parameters,
+* Correction Use of undefined constant stats4wp_file,
+* Add Data OS Ubuntu, Fedora,
+* Add Data device pda.
+
+= 1.4.7 (2311-SFP3) =
+*Release Date - 18 November 2023*
+
+* Compatible Wordpress 6.4.1,
+* Update GeoIP Database 20231117,
+* Correction phpcs 3.7.2 error,
+* Change Google GeoChart by jVectorMap 2.0.5,
+* Correction country map to used parameters,
+* Correction Use of undefined constant stats4wp_file.
+
+= 1.4.6 (2311-SFP2) =
+*Release Date - 11 November 2023*
+
+* Compatible Wordpress 6.4,
+* Update GeoIP Database 20231107,
+* Correction phpcs 3.7.2 error,
+* Change Google GeoChart by jVectorMap 2.0.5,
+* Correction country map to used parameters.
+
 = 1.4.5 (2311-SFP1) =
 *Release Date - 1 November 2023*
 

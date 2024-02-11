@@ -1,11 +1,10 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.7
  *
  * Desciption: Bots
  */
-
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -21,14 +20,6 @@ if ( 'stats4wp_plugin' === $page_local ) {
 	$data = '';
 }
 $all_data = ( isset( $_GET['data'] ) ) ? sanitize_text_field( wp_unslash( $_GET['data'] ) ) : '';
-if ( 'all' === $all_data ) {
-	$all_data    = '';
-	$title_local = __( 'All Bots', 'stats4wp' );
-} else {
-	$all_data    = 'LIMIT 0,10';
-	$title_local = __( 'TOP 10 Bots', 'stats4wp' );
-}
-
 
 ?>
 <div class="stats4wp-dashboard">
@@ -46,18 +37,36 @@ if ( 'all' === $all_data ) {
 if ( DB::exist_row( 'visitor' ) ) {
 	$param = AdminGraph::getdate( $data );
 	if ( ! isset( $wpdb->stats4wp_visitor ) ) {
-		$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
-	$bots = $wpdb->get_results(
-		$wpdb->prepare(
-			"SELECT agent, COUNT(*) AS nb 
-        FROM {$wpdb->stats4wp_visitor}
-        where device='bot' 
-        AND last_counter BETWEEN %s AND %s
-        GROUP BY 1 ORDER by 2 DESC {$all_data}",
-			$param['from'],
-			$param['to']
-		)
-	);
+		$wpdb->stats4wp_visitor = DB::table( 'visitor' );
+	}
+	if ( 'all' === $all_data ) {
+		$bots        = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT agent, COUNT(*) AS nb 
+			FROM {$wpdb->stats4wp_visitor}
+			where device='bot' 
+			AND last_counter BETWEEN %s AND %s
+			GROUP BY 1 ORDER by 2 DESC",
+				$param['from'],
+				$param['to']
+			)
+		);
+		$title_local = __( 'All Bots', 'stats4wp' );
+	} else {
+		$bots        = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT agent, COUNT(*) AS nb 
+			FROM {$wpdb->stats4wp_visitor}
+			where device='bot' 
+			AND last_counter BETWEEN %s AND %s
+			GROUP BY 1 ORDER by 2 DESC LIMIT 0,10",
+				$param['from'],
+				$param['to']
+			)
+		);
+		$title_local = __( 'TOP 10 Bots', 'stats4wp' );
+	}
+
 	foreach ( $bots as $bot ) {
 		$bot_agent[] = $bot->agent;
 		$nb[]        = $bot->nb;

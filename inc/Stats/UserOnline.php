@@ -58,7 +58,7 @@ class UserOnline {
 		if ( ! isset( $wpdb->stats4wp_useronline ) ) {
 			$wpdb->stats4wp_useronline = DB::table( 'useronline' );}
 		// Call the deletion query.
-		$wpdb->query( $wpdb->prepare( "DELETE FROM {$wpdb->stats4wp_useronline} WHERE timestamp < %d", $time_diff ) );
+		$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->stats4wp_useronline WHERE timestamp < %d", $time_diff ) );
 	}
 
 	/**
@@ -94,7 +94,7 @@ class UserOnline {
 		global $wpdb;
 		if ( ! isset( $wpdb->stats4wp_useronline ) ) {
 			$wpdb->stats4wp_useronline = DB::table( 'useronline' );}
-		$user_online = $wpdb->query( $wpdb->prepare( "SELECT * FROM {$wpdb->stats4wp_useronline} WHERE `ip` = %s", $user_ip ) );
+		$user_online = $wpdb->query( $wpdb->prepare( "SELECT * FROM $wpdb->stats4wp_useronline WHERE `ip` = %s", $user_ip ) );
 		return ( ! $user_online ? false : $user_online );
 	}
 
@@ -195,14 +195,18 @@ class UserOnline {
 
 		if ( ! isset( $wpdb->stats4wp_pages ) ) {
 			$wpdb->stats4wp_pages = DB::table( 'pages' );}
+		$day                  = TimeZone::get_current_date( 'Y-m-d' );
+		$page_url             = esc_url( wp_parse_url( Page::get_page_uri(), PHP_URL_PATH ) );
 		$page_info            = $wpdb->get_row(
 			$wpdb->prepare(
 				"SELECT page_id, type  
-            FROM {$wpdb->stats4wp_pages}
-            WHERE date=%s 
-            AND uri=%s",
-				TimeZone::get_current_date( 'Y-m-d' ),
-				wp_parse_url( Page::get_page_uri(), PHP_URL_PATH )
+				FROM $wpdb->stats4wp_pages
+				WHERE date=%s 
+				AND uri=%s",
+				array(
+					$day,
+					$page_url,
+				)
 			)
 		);
 		$current_page['type'] = ( isset( $page_info->type ) ) ? $page_info->type : $current_page['type'];

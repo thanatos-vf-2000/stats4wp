@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  */
 
 namespace STATS4WP\Ui;
@@ -45,7 +45,7 @@ class CSVExport extends BaseController {
 			}
 			header( 'Content-Transfer-Encoding: binary' );
 
-			esc_html_e( $csv );
+			printf( '%s', esc_html( $csv ) );
 			exit;
 		}
 	}
@@ -81,7 +81,7 @@ class CSVExport extends BaseController {
 		$wpdb->stats4wp_tmp = DB::table( $table );
 		$csv_output         = '';                                           // Assigning the variable to store all future CSV file's data
 
-		$result = $wpdb->get_results( "SHOW COLUMNS FROM {$wpdb->stats4wp_tmp}" );   // Displays all COLUMN NAMES under 'field' column in records returned
+		$result = $wpdb->get_results( "SHOW COLUMNS FROM $wpdb->stats4wp_tmp" );   // Displays all COLUMN NAMES under 'field' column in records returned
 
 		if ( count( $result ) > 0 ) {
 			foreach ( $result as $row ) {
@@ -97,7 +97,7 @@ class CSVExport extends BaseController {
 			$wpdb->stats4wp_y = '';
 		}
 
-		$values = $wpdb->get_results( "SELECT * FROM {$wpdb->stats4wp_tmp} {$wpdb->stats4wp_y}" );       // This here
+		$values = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->stats4wp_tmp %s", $wpdb->stats4wp_y ) );       // This here
 
 		foreach ( $values as $rowr ) {
 			$fields      = array_values( (array) $rowr );                  // Getting rid of the keys and using numeric array to get values

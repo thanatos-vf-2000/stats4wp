@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.7
  */
 
 
@@ -28,37 +28,86 @@ if ( DB::exist_row( 'visitor' ) ) {
 	$param = AdminGraph::getdate( '' );
 	switch ( $param['group'] ) {
 		case 1:
-			$select     = 'last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$visitors   = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits 
+                FROM $wpdb->stats4wp_visitor 
+                where device!='bot' 
+                AND last_counter BETWEEN %s AND %s 
+                GROUP BY 1 ORDER BY 1 ASC",
+					array(
+						$param['from'],
+						$param['to'],
+					)
+				)
+			);
 			$char_title = __( 'Number of users and Hits per days', 'stats4wp' );
 			break;
 		case 2:
-			$select     = 'CONCAT(YEAR(last_counter),"-",WEEK(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$visitors   = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT CONCAT(YEAR(last_counter),' - ',WEEK(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits 
+                FROM $wpdb->stats4wp_visitor 
+                where device!='bot' 
+                AND last_counter BETWEEN %s AND %s 
+                GROUP BY 1 ORDER BY 1 ASC",
+					array(
+						$param['from'],
+						$param['to'],
+					)
+				)
+			);
 			$char_title = __( 'Number of users and Hits per weeks', 'stats4wp' );
 			break;
 		case 3:
-			$select     = 'CONCAT(YEAR(last_counter),"-",MONTH(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$visitors   = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT CONCAT(YEAR(last_counter),' - ',MONTH(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits 
+                FROM $wpdb->stats4wp_visitor 
+                where device!='bot' 
+                AND last_counter BETWEEN %s AND %s 
+                GROUP BY 1 ORDER BY 1 ASC",
+					array(
+						$param['from'],
+						$param['to'],
+					)
+				)
+			);
 			$char_title = __( 'Number of users and Hits per months', 'stats4wp' );
 			break;
 		case 4:
-			$select     = 'CONCAT(YEAR(last_counter),"-",QUARTER(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$visitors   = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT CONCAT(YEAR(last_counter),' - ',QUARTER(last_counter)) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits
+                FROM $wpdb->stats4wp_visitor 
+                where device!='bot' 
+                AND last_counter BETWEEN %s AND %s 
+                GROUP BY 1 ORDER BY 1 ASC",
+					array(
+						$param['from'],
+						$param['to'],
+					)
+				)
+			);
 			$char_title = __( 'Number of users and Hits per quarter', 'stats4wp' );
 			break;
 		case 5:
-			$select     = 'YEAR(last_counter) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits';
+			$visitors   = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT YEAR(last_counter) as last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits
+                FROM $wpdb->stats4wp_visitor 
+                where device!='bot' 
+                AND last_counter BETWEEN %s AND %s 
+                GROUP BY 1 ORDER BY 1 ASC",
+					array(
+						$param['from'],
+						$param['to'],
+					)
+				)
+			);
 			$char_title = __( 'Number of users and Hits per Years', 'stats4wp' );
 			break;
 	}
-	$visitors = $wpdb->get_results(
-		$wpdb->prepare(
-			"SELECT {$select} 
-        FROM {$wpdb->stats4wp_visitor} 
-        where device!='bot' 
-        AND last_counter BETWEEN %s AND %s 
-        GROUP BY 1 ORDER BY 1 ASC",
-			$param['from'],
-			$param['to']
-		)
-	);
 	foreach ( $visitors as $visitor ) {
 		$day[]   = $visitor->last_counter;
 		$users[] = $visitor->user;

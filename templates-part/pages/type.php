@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  */
 
 
@@ -12,8 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 
-$page = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
-if ( 'stats4wp_plugin' === $page ) {
+$page_local = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
+if ( 'stats4wp_plugin' === $page_local ) {
 	$data = 'all';
 } else {
 	$data = '';
@@ -50,15 +50,15 @@ if ( DB::exist_row( 'pages' ) ) {
                             <td style="width: 20%;"></td>
                             <td style="width: 20%;"></td>
                         </tr>';
-				foreach ( $types as $type ) {
+				foreach ( $types as $type_local ) {
 					if ( $type_nb < 10 ) {
-						$t[]  = $type->type;
-						$nb[] = ( null === $type->nb ) ? 0 : $type->nb;
+						$t[]  = $type_local->type;
+						$nb[] = ( null === $type_local->nb ) ? 0 : $type->nb;
 					}
 					$type_nb++;
 					$tr_class   = ( 0 === $type_nb % 2 ) ? 'stats4wp-bg' : '';
-					$percent    = round( $type->nb * 100 / $type_total, 2 );
-					$type_list .= '<tr class="' . esc_attr( $tr_class ) . '"><td>' . esc_html( $type_nb ) . '</td><td>' . esc_html( $type->type ) . '</td><td class="stats4wp-right">' . esc_html( number_format( $type->nb, 0, ',', ' ' ) ) . '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr( $percent ) . '%;"></div>' . esc_html( $percent ) . '%</td></tr>';
+					$percent    = round( $type_local->nb * 100 / $type_total, 2 );
+					$type_list .= '<tr class="' . esc_attr( $tr_class ) . '"><td>' . esc_html( $type_nb ) . '</td><td>' . esc_html( $type_local->type ) . '</td><td class="stats4wp-right">' . esc_html( number_format( $type_local->nb, 0, ',', ' ' ) ) . '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr( $percent ) . '%;"></div>' . esc_html( $percent ) . '%</td></tr>';
 				}
 				$type_list .= '</tbody>
                     </table>';
@@ -111,7 +111,7 @@ if ( DB::exist_row( 'pages' ) ) {
 			</div>
 			<div class="stats4wp-inline width46">
 				<div class="stats4wp-type">
-					<?php echo $type_list; ?>
+					<?php echo wp_kses_post( $type_list ); ?>
 				</div>
 			</div>
 		</div>

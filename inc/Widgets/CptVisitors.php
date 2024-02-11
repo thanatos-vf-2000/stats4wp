@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  */
 namespace STATS4WP\Widgets;
 
@@ -48,13 +48,14 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget {
 	public function widget( $args, $instance ) {
 
 		global $wpdb;
-		esc_html_e( $args['before_widget'] );
+		printf( '%s', esc_html( $args['before_widget'] ) );
 		// title
 		if ( '' !== $instance['title'] ) {
-			esc_html_e( '<h5 class="widget-title">' . __( 'Number of visitors', 'stats4wp' ) . '</h5>' );
+			printf( '<h5 class="widget-title"> %s </h5>', esc_html__( 'Number of visitors', 'stats4wp' ) );
 		}
 		// Output generated fields
-		$user_online = $wpdb->get_row( $wpdb->prepare( 'SELECT COUNT(*) as nb FROM %s', DB::table( 'useronline' ) ) );
+		$local_table = DB::table( 'useronline' );
+		$user_online = $wpdb->get_row( $wpdb->prepare( 'SELECT COUNT(*) as nb FROM %s', $local_table ) );
 		?>
 		<table width="100%" class="widefat table-stats stats4wp-summary-stats">
 			<tbody>
@@ -108,11 +109,13 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget {
 						$summary_users = $wpdb->get_row(
 							$wpdb->prepare(
 								"SELECT count(*) as visitors,SUM(hits) as visits 
-                            FROM {$wpdb->stats4wp_visitor}
+                            FROM $wpdb->stats4wp_visitor
 							 WHERE device!='bot' 
                             AND last_counter BETWEEN %s AND %s",
-								$from,
-								$to
+								array(
+									$from,
+									$to,
+								)
 							)
 						);
 
@@ -132,7 +135,7 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget {
 			</table>
 		<?php
 
-		echo $args['after_widget'];
+		echo esc_html( $args['after_widget'] );
 	}
 
 	public function form( $instance ) {

@@ -17,7 +17,7 @@ class Uninstall {
 
 		delete_option( STATS4WP_NAME . '_plugin' );
 		if ( is_multisite() ) {
-			$blog_ids = $wpdb->get_col( "SELECT `blog_id` FROM $wpdb->blogs" );
+			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
 			foreach ( $blog_ids as $blog_id ) {
 				switch_to_blog( $blog_id );
 				self::site_removal();
@@ -35,19 +35,19 @@ class Uninstall {
 		global $wpdb;
 
 		if ( is_multisite() && $network_wide ) {
-			$blog_ids = $wpdb->get_col( "SELECT `blog_id` FROM $wpdb->blogs" );
+			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
 			switch_to_blog( $blog_id );
 			// Drop the tables
 			foreach ( DB::table() as $tbl ) {
 				$wpdb->stats4wp_tmp = $tbl;
-				$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->stats4wp_tmp}" );
+				$wpdb->query( "DROP TABLE IF EXISTS $wpdb->stats4wp_tmp" );
 			}
 			restore_current_blog();
 		} else {
 			// Drop the tables
 			foreach ( DB::table() as $tbl ) {
 				$wpdb->stats4wp_tmp = $tbl;
-				$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->stats4wp_tmp}" );
+				$wpdb->query( "DROP TABLE IF EXISTS $wpdb->stats4wp_tmp" );
 			}
 		}
 	}

@@ -30,12 +30,14 @@ if ( DB::exist_row( 'visitor' ) ) {
 	$devices = $wpdb->get_results(
 		$wpdb->prepare(
 			"SELECT device, count(*) as nb
-            FROM {$wpdb->stats4wp_visitor}
+            FROM $wpdb->stats4wp_visitor
             where device!='bot' 
             AND last_counter BETWEEN %s AND %s 
             GROUP BY 1 ORDER BY 2 DESC LIMIT 10",
-			$param['from'],
-			$param['to']
+			array(
+				$param['from'],
+				$param['to'],
+			)
 		)
 	);
 	foreach ( $devices as $device ) {

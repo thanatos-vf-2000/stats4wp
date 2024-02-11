@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  */
 
 
@@ -109,7 +109,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 			</div>
 			<div class="stats4wp-inline width46 ">
 				<div class="stats4wp-location">
-					<?php echo $pays_list; ?>
+					<?php echo wp_kses_post( $pays_list ); ?>
 				</div>
 			</div>
 		</div>

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -110,7 +110,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 			</div>
 			<div class="stats4wp-inline width46">
 				<div class="stats4wp-language">
-					<?php echo $language_list; ?>
+					<?php echo wp_kses_post( $language_list ); ?>
 				</div>
 			</div>
 		</div>

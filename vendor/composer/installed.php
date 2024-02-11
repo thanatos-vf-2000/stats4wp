@@ -3,7 +3,7 @@
         'name' => 'thanatos-vf-2000/stats4wp',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '27ec9e9a84347f5e73ba7f83d6e304c4c59a3702',
+        'reference' => '0ae17f3a3b9b195817b58d67ff0ff6e813a43943',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'maxmind-db/reader' => array(
-            'pretty_version' => 'v1.11.0',
-            'version' => '1.11.0.0',
-            'reference' => 'b1f3c0699525336d09cc5161a2861268d9f2ae5b',
+            'pretty_version' => 'v1.11.1',
+            'version' => '1.11.1.0',
+            'reference' => '1e66f73ffcf25e17c7a910a1317e9720a95497c7',
             'type' => 'library',
             'install_path' => __DIR__ . '/../maxmind-db/reader',
             'aliases' => array(),
@@ -31,7 +31,7 @@
         'thanatos-vf-2000/stats4wp' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '27ec9e9a84347f5e73ba7f83d6e304c4c59a3702',
+            'reference' => '0ae17f3a3b9b195817b58d67ff0ff6e813a43943',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

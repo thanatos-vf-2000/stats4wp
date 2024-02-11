@@ -90,10 +90,12 @@ if ( DB::exist_row( 'visitor' ) ) {
                     SUM(CASE WHEN platform = 'Ubuntu' THEN nb END) ubuntu ,
                     SUM(CASE WHEN platform = 'OS X' THEN nb END) osx ,
                     SUM(CASE WHEN platform = 'Linux' THEN nb END) linux ,
+                    SUM(CASE WHEN platform = 'Fedora' THEN nb END) fedora ,
+                    SUM(CASE WHEN platform = 'Ubuntu' THEN nb END) ubuntu ,
                     SUM(CASE WHEN platform = 'iOS' THEN nb END) ios,
                     SUM(CASE WHEN platform = 'Chrome OS' THEN nb END) chromeos,
                     SUM(CASE WHEN platform = 'Android' THEN nb END) android,
-                    SUM(CASE WHEN platform NOT IN  ('Windows','Ubuntu','OS X','Linux','iOS','Chrome OS','Android') THEN nb END) other
+                    SUM(CASE WHEN platform NOT IN  ('Windows','Ubuntu','OS X','Linux','Fedora','Ubuntu','iOS','Chrome OS','Android') THEN nb END) other
                     FROM (
                     select {$wpdb->stats4wp_select}, platform, COUNT(*) as nb
                     from {$wpdb->stats4wp_visitor}
@@ -112,6 +114,8 @@ if ( DB::exist_row( 'visitor' ) ) {
 					$ubuntu[]   = ( null === $os->ubuntu ) ? 0 : $os->ubuntu;
 					$osx[]      = ( null === $os->osx ) ? 0 : $os->osx;
 					$linux[]    = ( null === $os->linux ) ? 0 : $os->linux;
+                    $fedora[]    = ( null === $os->fedora ) ? 0 : $os->fedora;
+                    $ubuntu[]    = ( null === $os->ubuntu ) ? 0 : $os->ubuntu;
 					$ios[]      = ( null === $os->ios ) ? 0 : $os->ios;
 					$chromeos[] = ( null === $os->chromeos ) ? 0 : $os->chromeos;
 					$android[]  = ( null === $os->android ) ? 0 : $os->android;
@@ -148,6 +152,20 @@ if ( DB::exist_row( 'visitor' ) ) {
                                "#537bc4"
                             ],
                             data:' . wp_json_encode( $linux ) . ',
+                        },
+                        {
+                            label: "' . esc_html( __( 'Fedora', 'stats4wp' ) ) . '",
+                            backgroundColor: [
+                               "#537bc4"
+                            ],
+                            data:' . wp_json_encode( $ferora ) . ',
+                        },
+                        {
+                            label: "' . esc_html( __( 'Ubuntu', 'stats4wp' ) ) . '",
+                            backgroundColor: [
+                               "#537bc4"
+                            ],
+                            data:' . wp_json_encode( $ubuntu ) . ',
                         },
                         {
                             label: "' . esc_html( __( 'iOS', 'stats4wp' ) ) . '",

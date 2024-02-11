@@ -9,7 +9,7 @@
  * @author  Franck VANHOUCKE <ct4gg@ginkgos.net>
  * @copyright 2021-2023 Copyright 2023, Inc. All rights reserved.
  * @license  GNU General Public License version 2 or later
- * @version  1.4.5 GIT:https://github.com/thanatos-vf-2000/WordPress
+ * @version  1.4.6 GIT:https://github.com/thanatos-vf-2000/WordPress
  * @link   https://ginkgos.net
  */
 
@@ -67,7 +67,7 @@ class AdminGraph {
 		global $wp;
 		?>
 		<form method="GET" action="<?php esc_url( admin_url( 'admin.php' ) ); ?>">
-		<input type="hidden" name="page" value="<?php esc_attr_e( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : 'stats4wp_visitors' ); ?>"/>
+		<input type="hidden" name="page" value="<?php printf( '%s', esc_html( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : 'stats4wp_visitors' ) ); ?>"/>
 		<?php
 		if ( isset( $_GET['spage'] ) ) {
 			echo '<input type="hidden" name="spage" value="' . esc_attr( sanitize_text_field( wp_unslash( $_GET['spage'] ) ) ) . '"/>';
@@ -79,18 +79,18 @@ class AdminGraph {
 					<th scope="row"><?php esc_html_e( 'From', 'stats4wp' ); ?>: </th>
 					<td>
 						<fieldset><legend class="screen-reader-text"><span><?php esc_html_e( 'From: ', 'stats4wp' ); ?></span></legend><label for="date_from">
-							<input type="date" id="<?php esc_attr_e( self::ARG_FROM ); ?>" name="<?php esc_attr_e( self::ARG_FROM ); ?>" value="<?php esc_attr_e( self::get_var( self::ARG_FROM ) ); ?>" <?php esc_attr_e( ( self::get_var( self::ARG_INTERVAL_FLAG ) === true ) ? 'disabled' : '' ); ?> /></label>
+							<input type="date" id="<?php printf( '%s', esc_html( self::ARG_FROM ) ); ?>" name="<?php printf( '%s', esc_html( self::ARG_FROM ) ); ?>" value="<?php printf( '%s', esc_html( self::get_var( self::ARG_FROM ) ) ); ?>" <?php printf( '%s', esc_html( ( self::get_var( self::ARG_INTERVAL_FLAG ) === true ) ? 'disabled' : '' ) ); ?> /></label>
 						</fieldset>
 					</td>
 					<th scope="row"><?php esc_html_e( 'To', 'stats4wp' ); ?>: </th>
 					<td>
 						<fieldset><legend class="screen-reader-text"><span><?php esc_html_e( 'To: ', 'stats4wp' ); ?></span></legend><label for="date_to">
-							<input type="date" id="<?php esc_attr_e( self::ARG_TO ); ?>" name="<?php esc_attr_e( self::ARG_TO ); ?>" value="<?php esc_attr_e( self::get_var( self::ARG_TO ) ); ?>" /></label>
+							<input type="date" id="<?php printf( '%s', esc_html( self::ARG_TO ) ); ?>" name="<?php printf( '%s', esc_html( self::ARG_TO ) ); ?>" value="<?php printf( '%s', esc_html( self::get_var( self::ARG_TO ) ) ); ?>" /></label>
 						</fieldset>
 					</td>
 					<th scope="row"><?php esc_html_e( 'Day interval', 'stats4wp' ); ?></th>
 					<td>
-						<select name="<?php esc_attr_e( self::ARG_INTERVAL ); ?>" id="<?php esc_attr_e( self::ARG_INTERVAL ); ?>" <?php esc_attr_e( ( self::get_var( self::ARG_INTERVAL_FLAG ) === true ) ? '' : 'disabled' ); ?>>
+						<select name="<?php printf( '%s', esc_html( self::ARG_INTERVAL ) ); ?>" id="<?php printf( '%s', esc_html( self::ARG_INTERVAL ) ); ?>" <?php printf( '%s', esc_html( ( self::get_var( self::ARG_INTERVAL_FLAG ) === true ) ? '' : 'disabled' ) ); ?>>
 							<?php
 							foreach ( self::$date_range as $k => $v ) {
 								$display_name = stripslashes( $v );
@@ -103,7 +103,7 @@ class AdminGraph {
 							}
 							?>
 						</select>
-						<input type="checkbox" id="<?php esc_attr_e( self::ARG_INTERVAL_FLAG ); ?>" name="<?php esc_attr_e( self::ARG_INTERVAL_FLAG ); ?>" value="flag" <?php esc_attr_e( ( self::get_var( self::ARG_INTERVAL_FLAG ) === true ) ? 'checked' : '' ); ?> >
+						<input type="checkbox" id="<?php printf( '%s', esc_html( self::ARG_INTERVAL_FLAG ) ); ?>" name="<?php printf( '%s', esc_html( self::ARG_INTERVAL_FLAG ) ); ?>" value="flag" <?php printf( '%s', esc_html( ( self::get_var( self::ARG_INTERVAL_FLAG ) === true ) ? 'checked' : '' ) ); ?> >
 					</td>
 				</tr>
 			</table>
@@ -132,38 +132,38 @@ class AdminGraph {
 				return 10;
 				break;
 			case self::ARG_TO:
-				return date( 'Y-m-d' );
+				return gmdate( 'Y-m-d' );
 				break;
 			case self::ARG_FROM:
 				if ( isset( $_GET['page'] ) && sanitize_text_field( wp_unslash( $_GET['page'] ) ) === 'stats4wp_plugin' ) {
 					switch ( self::get_var( self::ARG_DASHBOARD_DATA ) ) {
 						case 1:
-							return date( 'Y-m-d', strtotime( '-14 days' ) );
+							return gmdate( 'Y-m-d', strtotime( '-14 days' ) );
 						break;
 						case 2:
-							return date( 'Y-m-d', strtotime( '-1 months' ) );
+							return gmdate( 'Y-m-d', strtotime( '-1 months' ) );
 						break;
 						case 3:
-							return date( 'Y-m-d', strtotime( '-2 months' ) );
+							return gmdate( 'Y-m-d', strtotime( '-2 months' ) );
 						break;
 						case 4:
-							return date( 'Y-m-d', strtotime( '-3 months' ) );
+							return gmdate( 'Y-m-d', strtotime( '-3 months' ) );
 						break;
 						case 5:
-							return date( 'Y-m-d', strtotime( '-1 years' ) );
+							return gmdate( 'Y-m-d', strtotime( '-1 years' ) );
 						break;
 						case 6:
-							return date( 'Y-m-d', strtotime( '-2 years' ) );
+							return gmdate( 'Y-m-d', strtotime( '-2 years' ) );
 						break;
 						case 7;
 							if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 								$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
-							$visitor = $wpdb->get_row( "SELECT min(last_counter) as minimum FROM {$wpdb->stats4wp_visitor}" );
+							$visitor = $wpdb->get_row( "SELECT min(last_counter) as minimum FROM $wpdb->stats4wp_visitor" );
 						return $visitor->minimum;
 						break;
 					}
 				} else {
-					return date( 'Y-m-d', strtotime( '-' . self::get_var( self::ARG_INTERVAL ) . ' days' ) );
+					return gmdate( 'Y-m-d', strtotime( '-' . self::get_var( self::ARG_INTERVAL ) . ' days' ) );
 				}
 				break;
 			case self::ARG_DASHBOARD_DATA:
@@ -184,14 +184,14 @@ class AdminGraph {
 		if ( 'all' === $type ) {
 			if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 				$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
-			$all_date = $wpdb->get_row( "SELECT min(last_counter) as minimum, max(last_counter) as maximum FROM{$wpdb->stats4wp_visitor}" );
+			$all_date = $wpdb->get_row( "SELECT min(last_counter) as minimum, max(last_counter) as maximum FROM $wpdb->stats4wp_visitor" );
 			$from     = $all_date->minimum;
 			$to       = $all_date->maximum;
 		} else {
 			$to = self::get_var( self::ARG_TO );
 			if ( self::get_var( self::ARG_INTERVAL_FLAG ) ) {
 				$dt   = new \DateTime( $to );
-				$from = date( 'Y-m-d', strtotime( '-' . self::get_var( self::ARG_INTERVAL ) . ' days', $dt->getTimestamp() ) );
+				$from = gmdate( 'Y-m-d', strtotime( '-' . self::get_var( self::ARG_INTERVAL ) . ' days', $dt->getTimestamp() ) );
 			} else {
 				$from = self::get_var( self::ARG_FROM );
 			}
@@ -221,13 +221,13 @@ class AdminGraph {
 	public static function select_date_dashboard() {
 		?>
 		<form method="GET" action="<?php esc_url( admin_url( 'admin.php' ) ); ?>">
-		<input type="hidden" name="page" value="<?php esc_attr_e( ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : 'stats4wp_visitors' ) ); ?>"/>
+		<input type="hidden" name="page" value="<?php printf( '%s', esc_html( ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : 'stats4wp_visitors' ) ) ); ?>"/>
 			<?php wp_nonce_field( 'stats4wp-opt', 'stats4wp-verif' ); ?>
 			<table class="form-table-visitor" role="presentation">
 				<tr>
 					<th scope="row"><?php esc_html_e( 'Data last', 'stats4wp' ); ?>: </th>
 					<td>
-						<select name="<?php esc_attr_e( self::ARG_DASHBOARD_DATA ); ?>" id="<?php esc_attr_e( self::ARG_DASHBOARD_DATA ); ?>" >
+						<select name="<?php printf( '%s', esc_html( self::ARG_DASHBOARD_DATA ) ); ?>" id="<?php printf( '%s', esc_html( self::ARG_DASHBOARD_DATA ) ); ?>" >
 							<?php
 							foreach ( self::$date_dashboard as $k => $v ) {
 								$display_name = stripslashes( $v );
@@ -243,7 +243,7 @@ class AdminGraph {
 					</td>
 					<th scope="row"><?php esc_html_e( 'Display by', 'stats4wp' ); ?>: </th>
 					<td>
-						<select name="<?php esc_attr_e( self::ARG_DASHBOARD_GROUP ); ?>" id="<?php esc_attr_e( self::ARG_DASHBOARD_GROUP ); ?>" >
+						<select name="<?php printf( '%s', esc_html( self::ARG_DASHBOARD_GROUP ) ); ?>" id="<?php printf( '%s', esc_html( self::ARG_DASHBOARD_GROUP ) ); ?>" >
 							<?php
 							foreach ( self::$date_group as $k => $v ) {
 								$display_name = stripslashes( $v );

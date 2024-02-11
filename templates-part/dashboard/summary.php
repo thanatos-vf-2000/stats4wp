@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  */
 
 
@@ -16,7 +16,7 @@ use STATS4WP\Api\AdminGraph;
 if ( ! isset( $wpdb->stats4wp_useronline ) ) {
 	$wpdb->stats4wp_useronline = DB::table( 'useronline' );}
 
-$user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM {$wpdb->stats4wp_useronline}" );
+$user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM $wpdb->stats4wp_useronline" );
 
 ?>
 <div id="stats4wp-summary-widget" class="postbox">
@@ -43,42 +43,42 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM {$wpdb->stats4wp_user
 				while ( ++$nb < 9 ) {
 					switch ( $nb ) {
 						case 1:
-							$to    = $from = date( 'Y-m-d' );
-							$title = __( 'Today', 'stats4wp' );
+							$to          = $from = gmdate( 'Y-m-d' );
+							$title_local = esc_html__( 'Today', 'stats4wp' );
 							break;
 						case 2:
-							$from  = $to = date( 'Y-m-d', strtotime( '-1 days' ) );
-							$title = __( 'Yesterday', 'stats4wp' );
+							$from        = $to = gmdate( 'Y-m-d', strtotime( '-1 days' ) );
+							$title_local = esc_html__( 'Yesterday', 'stats4wp' );
 							break;
 						case 3:
-							$to    = date( 'Y-m-d' );
-							$from  = date( 'Y-m-d', strtotime( '-7 days' ) );
-							$title = __( 'Last 7 Days (Week)', 'stats4wp' );
+							$to          = gmdate( 'Y-m-d' );
+							$from        = gmdate( 'Y-m-d', strtotime( '-7 days' ) );
+							$title_local = esc_html__( 'Last 7 Days (Week)', 'stats4wp' );
 							break;
 						case 4:
-							$to    = date( 'Y-m-d' );
-							$from  = date( 'Y-m-d', strtotime( '-14 days' ) );
-							$title = __( 'Last 14 Days (2 Week)', 'stats4wp' );
+							$to          = gmdate( 'Y-m-d' );
+							$from        = gmdate( 'Y-m-d', strtotime( '-14 days' ) );
+							$title_local = esc_html__( 'Last 14 Days (2 Week)', 'stats4wp' );
 							break;
 						case 5:
-							$to    = date( 'Y-m-d' );
-							$from  = date( 'Y-m-d', strtotime( '-1 months' ) );
-							$title = __( 'Last 30 Days (Month)', 'stats4wp' );
+							$to          = gmdate( 'Y-m-d' );
+							$from        = gmdate( 'Y-m-d', strtotime( '-1 months' ) );
+							$title_local = esc_html__( 'Last 30 Days (Month)', 'stats4wp' );
 							break;
 						case 6:
-							$to    = date( 'Y-m-d' );
-							$from  = date( 'Y-m-d', strtotime( '-6 months' ) );
-							$title = __( 'Last 6 Month', 'stats4wp' );
+							$to          = gmdate( 'Y-m-d' );
+							$from        = gmdate( 'Y-m-d', strtotime( '-6 months' ) );
+							$title_local = esc_html__( 'Last 6 Month', 'stats4wp' );
 							break;
 						case 7:
-							$to    = date( 'Y-m-d' );
-							$from  = date( 'Y-m-d', strtotime( '-1 years' ) );
-							$title = __( 'Last 365 Days (Year)', 'stats4wp' );
+							$to          = gmdate( 'Y-m-d' );
+							$from        = gmdate( 'Y-m-d', strtotime( '-1 years' ) );
+							$title_local = esc_html__( 'Last 365 Days (Year)', 'stats4wp' );
 							break;
 						case 8:
-							$to    = date( 'Y-m-d' );
-							$from  = '1999-01-01';
-							$title = __( 'Total', 'stats4wp' );
+							$to          = gmdate( 'Y-m-d' );
+							$from        = '1999-01-01';
+							$title_local = esc_html__( 'Total', 'stats4wp' );
 							break;
 					}
 					if ( ! isset( $wpdb->stats4wp_visitor ) ) {
@@ -86,15 +86,19 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM {$wpdb->stats4wp_user
 					$summary_users = $wpdb->get_row(
 						$wpdb->prepare(
 							"SELECT count(*) as visitors,SUM(hits) as visits 
-                        FROM {$wpdb->stats4wp_visitor} WHERE device!='bot' and location != 'local'
-                        AND last_counter BETWEEN %s AND %s",
-							$from,
-							$to
+							FROM $wpdb->stats4wp_visitor 
+							WHERE device!='bot' 
+							AND location != 'local'
+							AND last_counter BETWEEN %s AND %s",
+							array(
+								$from,
+								$to,
+							)
 						)
 					);
 					if ( $max !== $summary_users->visitors || 8 === $nb ) {
 						echo '<tr>
-                        <th>' . esc_html( $title ) . ': </th>
+                        <th>' . esc_html( $title_local ) . ': </th>
                         <th class="th-center">
                             <span>' . esc_html( $summary_users->visitors ) . '</span>
                         </th>
@@ -127,79 +131,88 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM {$wpdb->stats4wp_user
 			while ( ++$nb < 9 ) {
 				switch ( $nb ) {
 					case 1:
-						$search = 'bing';
-						$title  = 'Bing';
+						$search_local = 'bing';
+						$title_local  = 'Bing';
 						break;
 					case 2:
-						$search = 'duckduckgo';
-						$title  = 'DuckDuckGo';
+						$search_local = 'duckduckgo';
+						$title_local  = 'DuckDuckGo';
 						break;
 					case 3:
-						$search = 'google';
-						$title  = 'Google';
+						$search_local = 'google';
+						$title_local  = 'Google';
 						break;
 					case 4:
-						$search = 'yahoo';
-						$title  = 'Yahoo!';
+						$search_local = 'yahoo';
+						$title_local  = 'Yahoo!';
 						break;
 					case 5:
-						$search = 'yandex';
-						$title  = 'Yandex';
+						$search_local = 'yandex';
+						$title_local  = 'Yandex';
 						break;
 					case 6:
-						$search = 'lilo';
-						$title  = 'LiLo';
+						$search_local = 'lilo';
+						$title_local  = 'LiLo';
 						break;
 					case 7:
-						$search = 'searchbip';
-						$title  = 'SearchBip';
+						$search_local = 'searchbip';
+						$title_local  = 'SearchBip';
 						break;
 					case 8:
-						$search = 'qwant';
-						$title  = 'Qwant';
+						$search_local = 'qwant';
+						$title_local  = 'Qwant';
 						break;
 					case 9:
-						$search = 'ecosia';
-						$title  = 'Ecosia';
+						$search_local = 'ecosia';
+						$title_local  = 'Ecosia';
 						break;
 				}
-				$bot_today     = $wpdb->get_row(
+				$local_day       = gmdate( 'Y-m-d' );
+				$bot_today       = $wpdb->get_row(
 					$wpdb->prepare(
 						"SELECT count(*) as nb 
-                        FROM {$wpdb->stats4wp_visitor}
+                        FROM $wpdb->stats4wp_visitor
 						WHERE device!='bot' 
                         AND last_counter = %s 
                         AND referred like %s",
-						date( 'Y-m-d' ),
-						'%' . $search . '%'
+						array(
+							$local_day,
+							'%' . $search_local . '%',
+						)
 					)
 				);
-				$bot_yesterday = $wpdb->get_row(
+				$local_yesterday = gmdate( 'Y-m-d', strtotime( '-1 days' ) );
+				$bot_yesterday   = $wpdb->get_row(
 					$wpdb->prepare(
 						"SELECT count(*) as nb 
-						FROM {$wpdb->stats4wp_visitor}
+						FROM $wpdb->stats4wp_visitor
 						WHERE device!='bot' 
 						AND last_counter = %s 
 						AND referred like %s",
-						date( 'Y-m-d', strtotime( '-1 days' ) ),
-						'%' . $search . '%'
+						array(
+							$local_yesterday,
+							'%' . $search_local . '%',
+						)
 					)
 				);
-				$bot_month     = $wpdb->get_row(
+				$local_month     = gmdate( 'Y-m-d', strtotime( '-1 months' ) );
+				$bot_month       = $wpdb->get_row(
 					$wpdb->prepare(
 						"SELECT count(*) as nb 
-                    FROM {$wpdb->stats4wp_visitor}
+                    FROM $wpdb->stats4wp_visitor
 					WHERE device!='bot' 
                     AND last_counter > %s 
                     AND referred like %s",
-						date( 'Y-m-d', strtotime( '-1 months' ) ),
-						'%' . $search . '%'
+						array(
+							$local_month,
+							'%' . $search_local . '%',
+						)
 					)
 				);
 				if ( 0 !== $bot_today->nb || 0 !== $bot_yesterday->nb || 0 !== $bot_month->nb ) {
 					echo '<tr>
                         <th>
-                            <img src="' . esc_attr( STATS4WP_URL ) . '/assets/images/search-engine/' . esc_attr( $search ) . '.png" alt="' . esc_attr( $title ) . '" class="stats4wp-engine-logo"> ' . esc_html( $title ) . ':</th>
+                            <img src="' . esc_attr( STATS4WP_URL ) . '/assets/images/search-engine/' . esc_attr( $search_local ) . '.png" alt="' . esc_attr( $title_local ) . '" class="stats4wp-engine-logo"> ' . esc_html( $title_local ) . ':</th>
                         <th class="th-center">
                             <span>' . esc_html( $bot_today->nb ) . '</span>
                         </th>
@@ -232,7 +245,7 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM {$wpdb->stats4wp_user
 			</tr>
 				<?php
 			} else {
-				echo '<tr><th>' . __( 'No data.', 'stats4wp' ) . '</th><td colspan=3></td></tr>';
+				echo '<tr><th>' . esc_html__( 'No data.', 'stats4wp' ) . '</th><td colspan=3></td></tr>';
 			}
 			?>
 			<tr>
@@ -245,10 +258,10 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM {$wpdb->stats4wp_user
 				</th>
 			</tr>
 			<tr>
-				<th colspan="3"><?php esc_html_e( 'Dated', 'stats4wp' ); ?>: <code dir="ltr"><?php echo date( get_option( 'date_format' ) ); ?></code></th>
+				<th colspan="3"><?php esc_html_e( 'Dated', 'stats4wp' ); ?>: <code dir="ltr"><?php echo esc_html( gmdate( get_option( 'date_format' ) ) ); ?></code></th>
 			</tr>
 			<tr>
-				<th colspan="3"><?php esc_html_e( 'Time', 'stats4wp' ); ?>: <code dir="ltr"><?php echo date( get_option( 'time_format' ) ); ?></code></th>
+				<th colspan="3"><?php esc_html_e( 'Time', 'stats4wp' ); ?>: <code dir="ltr"><?php echo esc_html( gmdate( get_option( 'time_format' ) ) ); ?></code></th>
 			</tr>
 		</tbody></table>
 	</div>

@@ -31,7 +31,7 @@ use STATS4WP\Core\Options;
 				$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
 			$recent_visitors = $wpdb->get_results(
 				"SELECT *
-                FROM {$wpdb->stats4wp_visitor} 
+                FROM $wpdb->stats4wp_visitor 
                 WHERE device!='bot' 
                 ORDER BY id  DESC LIMIT 10"
 			);

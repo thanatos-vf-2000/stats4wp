@@ -39,14 +39,17 @@ use STATS4WP\Core\Options;
 					$referred = wp_parse_url( $user_online->referred, PHP_URL_HOST );
 					if ( ! isset( $wpdb->stats4wp_pages ) ) {
 						$wpdb->stats4wp_pages = DB::table( 'pages' );}
+					$local_day   = TimeZone::get_current_date( 'Y-m-d' );
 					$page_online = $wpdb->get_row(
 						$wpdb->prepare(
 							"SELECT uri, type  
-                        FROM {$wpdb->stats4wp_pages}
+                        FROM $wpdb->stats4wp_pages
                         WHERE date=%s 
                         AND page_id=%s",
-							TimeZone::get_current_date( 'Y-m-d' ),
-							$user_online->page_id
+							array(
+								$local_day,
+								$user_online->page_id,
+							)
 						)
 					);
 					if ( null === $page_online ) {

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.7
  */
 namespace STATS4WP\Stats;
 
@@ -24,71 +24,97 @@ class Page {
 	 */
 	public static function get_page_type() {
 
-		// Set Default Option
+		/**
+		 * Set Default Option
+		 */
 		$current_page = array(
 			'type' => 'unknown',
 			'id'   => 0,
 		);
 
-		// Check Query object
+		/**
+		 * Check Query object
+		 */
 		$id = get_queried_object_id();
 		if ( is_numeric( $id ) && $id > 0 ) {
 			$current_page['id'] = $id;
 		}
 
-		// WooCommerce Product
+		/**
+		 * WooCommerce Product
+		 */
 		if ( class_exists( 'WooCommerce' ) ) {
 			if ( is_product() ) {
 				return wp_parse_args( array( 'type' => 'product' ), $current_page );
 			}
 		}
 
-		// Home Page or Front Page
+		/**
+		 * Home Page or Front Page
+		 */
 		if ( is_front_page() || is_home() ) {
 			return wp_parse_args( array( 'type' => 'home' ), $current_page );
 		}
 
-		// attachment View
+		/**
+		 * Attachment View
+		 */
 		if ( is_attachment() ) {
 			$current_page['type'] = 'attachment';
 		}
 
-		// is Archive Page
+		/**
+		 * Is Archive Page
+		 */
 		if ( is_archive() ) {
 			$current_page['type'] = 'archive';
 		}
 
-		// Single Post Fro All Post Type
+		/**
+		 * Single Post Fro All Post Type
+		 */
 		if ( is_singular() ) {
 			$current_page['type'] = 'post';
 		}
 
-		// Single Page
+		/**
+		 * Single Page
+		 */
 		if ( is_page() ) {
 			$current_page['type'] = 'page';
 		}
 
-		// Category Page
+		/**
+		 * Category Page
+		 */
 		if ( is_category() ) {
 			$current_page['type'] = 'category';
 		}
 
-		// Tag Page
+		/**
+		 * Tag Page
+		 */
 		if ( is_tag() ) {
 			$current_page['type'] = 'post_tag';
 		}
 
-		// is Custom Term From Taxonomy
+		/**
+		 * Is Custom Term From Taxonomy
+		 */
 		if ( is_tax() ) {
 			$current_page['type'] = 'tax';
 		}
 
-		// is Author Page
+		/**
+		 * Is Author Page
+		 */
 		if ( is_author() ) {
 			$current_page['type'] = 'author';
 		}
 
-		// is search page
+		/**
+		 * Is search page
+		 */
 		$search_query = filter_var( get_search_query( false ), FILTER_SANITIZE_STRING );
 		if ( trim( $search_query ) !== '' ) {
 			return array(
@@ -98,22 +124,30 @@ class Page {
 			);
 		}
 
-		// is 404 Page
+		/**
+		 * Is 404 Page
+		 */
 		if ( is_404() ) {
 			$current_page['type'] = '404';
 		}
 
-		// Add WordPress Feed
+		/**
+		 * Add WordPress Feed
+		 */
 		if ( is_feed() ) {
 			$current_page['type'] = 'feed';
 		}
 
-		// Add WordPress Login Page
+		/**
+		 * Add WordPress Login Page
+		 */
 		if ( CoreHelper::is_login_page() ) {
 			$current_page['type'] = 'loginpage';
 		}
 
-		// Add admin URL
+		/**
+		 * Add admin URL
+		 */
 		if ( strpos( self::get_page_uri(), wp_parse_url( admin_url(), PHP_URL_PATH ) ) !== false ) {
 			$current_page['type'] = 'admin';
 		}
@@ -160,16 +194,26 @@ class Page {
 	 */
 	public static function get_page_uri() {
 
-		// Get the site's path from the URL.
+		/**
+		 * Get the site's path from the URL.
+		 */
 		$site_uri     = wp_parse_url( site_url(), PHP_URL_PATH );
 		$site_uri_len = strlen( $site_uri );
 
-		// Get the site's path from the URL.
+		/**
+		 * Get the site's path from the URL.
+		 */
 		$home_uri     = wp_parse_url( home_url(), PHP_URL_PATH );
 		$home_uri_len = strlen( $home_uri );
 
-		// Get the current page URI.
-		$page_uri = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+		/**
+		 * Get the current page URI.
+		 */
+		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
+			$page_uri = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
+		} else {
+			$page_uri = '';
+		}
 
 		/*
 		 * We need to check which URI is longer in case one contains the other.
@@ -195,10 +239,14 @@ class Page {
 			}
 		}
 
-		// Sanitize Xss injection
+		/**
+		 * Sanitize Xss injection
+		 */
 		$page_uri = filter_var( $page_uri, FILTER_SANITIZE_STRING );
 
-		// If we're at the root (aka the URI is blank), let's make sure to indicate it.
+		/**
+		 * If we're at the root (aka the URI is blank), let's make sure to indicate it.
+		 */
 		if ( '' === $page_uri ) {
 			$page_uri = '/';
 		}
@@ -215,23 +263,33 @@ class Page {
 	 */
 	public static function sanitize_page_uri() {
 
-		// Get Current WordPress Page
+		/**
+		 * Get Current WordPress Page
+		 */
 		$current_page = self::get_page_type();
 
-		// Get the current page URI.
+		/**
+		 * Get the current page URI.
+		 */
 		$page_uri = self::get_page_uri();
 
-		// Get String Search WordPress
+		/**
+		 * Get String Search WordPress
+		 */
 		if ( array_key_exists( 'search_query', $current_page ) && ! empty( $current_page['search_query'] ) ) {
 			$page_uri = '?s=' . $current_page['search_query'];
 		}
 
-		// Sanitize for WordPress Login Page
+		/**
+		 * Sanitize for WordPress Login Page
+		 */
 		if ( 'loginpage' === $current_page['type'] ) {
 			$page_uri = CoreHelper::remove_query_string_url( $page_uri );
 		}
 
-		// Check Strip Url Parameter
+		/**
+		 * Check Strip Url Parameter
+		 */
 		if ( array_key_exists( 'search_query', $current_page ) === false ) {
 			$temp = explode( '?', $page_uri );
 			if ( false !== $temp ) {
@@ -239,34 +297,102 @@ class Page {
 			}
 		}
 
-		// Limit the URI length to 255 characters, otherwise we may overrun the SQL field size.
+		/**
+		 * Limit the URI length to 255 characters, otherwise we may overrun the SQL field size.
+		 */
 		return substr( $page_uri, 0, 255 );
 	}
 
 	public function page() {
 		global $wpdb;
 
-		// Get Current WordPress Page
+		/**
+		 *  Get Current WordPress Page
+		 */
 		$current_page = self::get_page_type();
 
-		// Check if admin page and page stats disable
+		/**
+		 *  Check if admin page and page stats disable
+		 */
 		if ( strpos( self::get_page_uri(), wp_parse_url( admin_url(), PHP_URL_PATH ) ) !== false && Options::get_option( 'disableadminstat' ) === true ) {
 			return false;
 		}
 
 		if ( ! isset( $wpdb->stats4wp_pages ) ) {
 			$wpdb->stats4wp_pages = DB::table( 'pages' );}
-		// Get Page uri
+		/**
+		 * Get Page uri
+		 */
 		$page_uri = self::sanitize_page_uri();
-		// Check if we have already been to this page today.
-		$exist = $wpdb->get_row( $wpdb->prepare( "SELECT `page_id` FROM {$wpdb->stats4wp_pages} WHERE `date` = %s " . ( array_key_exists( 'search_query', $current_page ) === true ? " AND `uri` = '" . esc_sql( $page_uri ) . "'" : '' ) . ' AND `type` = %s AND `id` = %d', TimeZone::get_current_date( 'Y-m-d' ), $current_page['type'], $current_page['id'] ), ARRAY_A );
 
-		// Update Exist Page
+		/**
+		 *  Check if we have already been to this page today.
+		 */
+		$day       = TimeZone::get_current_date( 'Y-m-d' );
+		$page_type = $current_page['type'];
+		$page_id   = $current_page['id'];
+		if ( array_key_exists( 'search_query', $current_page ) === true ) {
+			$uri   = esc_sql( $page_uri );
+			$exist = $wpdb->get_row(
+				$wpdb->prepare(
+					"SELECT page_id 
+					FROM $wpdb->stats4wp_pages 
+					WHERE `date` = %s  
+						AND uri = %s 
+						AND `type` = %s 
+						AND id = %d",
+					array(
+						$day,
+						$page_type,
+						$uri,
+						$page_id,
+					)
+				),
+				ARRAY_A
+			);
+		} else {
+			$exist = $wpdb->get_row(
+				$wpdb->prepare(
+					"SELECT page_id 
+					FROM $wpdb->stats4wp_pages
+					WHERE `date` = %s 
+						AND `type` = %s 
+						AND id = %d",
+					array(
+						$day,
+						$page_type,
+						$page_id,
+					)
+				),
+				ARRAY_A
+			);
+		}
+
+		/**
+		 *  Update Exist Page
+		 */
 		if ( null !== $exist ) {
-			$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->stats4wp_pages} SET `count` = `count` + 1 WHERE `date` = %s %s AND `type` = %s AND `id` = %d", TimeZone::get_current_date( 'Y-m-d' ), ( array_key_exists( 'search_query', $current_page ) === true ? " AND `uri` = '" . esc_sql( $page_uri ) . "'" : '' ), $current_page['type'], $current_page['id'] ) );
+			$query_cond = ( array_key_exists( 'search_query', $current_page ) === true ? " AND `uri` = '" . esc_sql( $page_uri ) . "'" : '' );
+			$wpdb->query(
+				$wpdb->prepare(
+					"UPDATE $wpdb->stats4wp_pages 
+				SET `count` = `count` + 1 
+				WHERE `date` = %s %s 
+					AND `type` = %s 
+					AND `id` = %d",
+					array(
+						$day,
+						$query_cond,
+						$page_type,
+						$page_id,
+					)
+				)
+			);
 			$page_id = $exist['page_id'];
 		} else {
-			// Prepare Pages Data
+			/**
+			 *  Prepare Pages Data
+			 */
 			$pages = array(
 				'uri'   => $page_uri,
 				'date'  => TimeZone::get_current_date( 'Y-m-d' ),
@@ -276,7 +402,9 @@ class Page {
 			);
 			$pages = apply_filters( 'stats4wp_pages_information', $pages );
 
-			// Added to DB
+			/**
+			 * Added to DB
+			 */
 			$page_id = self::save_page( $pages );
 		}
 
@@ -292,18 +420,24 @@ class Page {
 	public static function save_page( $page = array() ) {
 		global $wpdb;
 
-		// Save to WordPress Database
+		/**
+		 * Save to WordPress Database
+		 */
 		$insert = $wpdb->insert(
 			DB::table( 'pages' ),
 			$page
 		);
 		if ( ! $insert ) {
-			if ( ! empty( $wpdb->last_error ) && WP_DEBUG ) {
+			if ( ! empty( $wpdb->last_error ) && defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
+				// phpcs:disable WordPress.PHP.DevelopmentFunctions
 				error_log( $wpdb->last_error );
+				// phpcs:enable
 			}
 		}
 
-		// Get Page ID
+		/**
+		 * Get Page ID
+		 */
 		$page_id = $wpdb->insert_id;
 
 		return $page_id;

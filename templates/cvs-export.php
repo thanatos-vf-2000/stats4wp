@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  *
  * Desciption: CVS Export date
  */
@@ -31,7 +31,7 @@ self::get_template( array( 'header' ) );
 				$wpdb->stats4wp_tmp = DB::table( $t );
 				$num                = $wpdb->get_row(
 					"SELECT count(*) as nb 
-                    FROM {$wpdb->stats4wp_tmp}"
+                    FROM $wpdb->stats4wp_tmp"
 				);
 				switch ( $t ) {
 					case 'visitor';
@@ -43,7 +43,7 @@ self::get_template( array( 'header' ) );
 				}
 				$years = $wpdb->get_results(
 					$wpdb->prepare(
-						"SELECT DISTINCT(YEAR(%s)) as y FROM {$wpdb->stats4wp_tmp} 
+						"SELECT DISTINCT(YEAR(%s)) as y FROM $wpdb->stats4wp_tmp 
                     ORDER BY 1 ASC",
 						$field
 					)
@@ -51,9 +51,9 @@ self::get_template( array( 'header' ) );
 				echo '<tr>
                         <td>' . esc_html( $t ) . '</td>
                         <td>' . esc_html( $num->nb ) . '</td>
-                        <td><a href="?page=stats4wp_cvsexport&report=' . esc_attr( $t ) . '" target="_blank"> ' . __( 'Export All', 'stats4wp' ) . '</a>';
-				foreach ( $years as $year ) {
-					echo ' - <a href="?page=stats4wp_cvsexport&report=' . esc_attr( $t ) . '&year=' . esc_attr( $year->y ) . '" target="_blank"> ' . esc_attr( $year->y ) . '</a>';
+                        <td><a href="?page=stats4wp_cvsexport&report=' . esc_attr( $t ) . '" target="_blank"> ' . esc_html__( 'Export All', 'stats4wp' ) . '</a>';
+				foreach ( $years as $yeardata ) {
+					echo ' - <a href="?page=stats4wp_cvsexport&report=' . esc_attr( $t ) . '&year=' . esc_attr( $yeardata->y ) . '" target="_blank"> ' . esc_attr( $yeardata->y ) . '</a>';
 				}
 				echo '</td></tr>';
 			}

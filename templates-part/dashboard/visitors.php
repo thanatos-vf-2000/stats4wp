@@ -21,35 +21,41 @@ if ( DB::exist_row( 'visitor' ) ) {
 			"SELECT count(DISTINCT(ip)) as users, 
         count(*) as sessions,  
         SUM(hits) as pages 
-        FROM {$wpdb->stats4wp_visitor}
+        FROM $wpdb->stats4wp_visitor
         WHERE device!='bot' 
         AND last_counter BETWEEN %s AND %s",
-			$param['from'],
-			$param['to']
+			array(
+				$param['from'],
+				$param['to'],
+			)
 		)
 	);
 	$newusers = $wpdb->get_row(
 		$wpdb->prepare(
 			"SELECT count(DISTINCT(ip)) as nb
-        FROM {$wpdb->stats4wp_visitor}
+        FROM $wpdb->stats4wp_visitor
         WHERE device!='bot' 
         AND last_counter BETWEEN %s AND %s
-        AND IP not in (SELECT DISTINCT(ip) FROM {$wpdb->stats4wp_visitor}
+        AND IP not in (SELECT DISTINCT(ip) FROM $wpdb->stats4wp_visitor
             WHERE device!='bot' AND last_counter < %s)",
-			$param['from'],
-			$param['to'],
-			$param['from']
+			array(
+				$param['from'],
+				$param['to'],
+				$param['from'],
+			)
 		)
 	);
 	$bounce   = $wpdb->get_row(
 		$wpdb->prepare(
 			"SELECT count(*) as sessions  
-        FROM {$wpdb->stats4wp_visitor} 
+        FROM $wpdb->stats4wp_visitor 
         WHERE device!='bot' 
         AND hits=1
         AND last_counter BETWEEN %s AND %s",
-			$param['from'],
-			$param['to']
+			array(
+				$param['from'],
+				$param['to'],
+			)
 		)
 	);
 

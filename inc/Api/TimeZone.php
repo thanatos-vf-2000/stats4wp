@@ -47,4 +47,23 @@ class TimeZone {
 			return date( $format, time() + self::set_timezone() );
 		}
 	}
+
+	/**
+	 * @param string $format
+	 * @param null   $strtotime
+	 * @param null   $relative
+	 *
+	 * @return bool|string
+	 */
+	public static function get_current_gmdate( $format = 'Y-m-d H:i:s', $strtotime = null, $relative = null ) {
+		if ( $strtotime ) {
+			if ( $relative ) {
+				return gmdate( $format, strtotime( "{$strtotime} day", $relative ) + self::set_timezone() );
+			} else {
+				return gmdate( $format, strtotime( "{$strtotime} day" ) + self::set_timezone() );
+			}
+		} else {
+			return gmdate( $format, time() + self::set_timezone() );
+		}
+	}
 }

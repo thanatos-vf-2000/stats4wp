@@ -26,7 +26,7 @@ class Install {
 		global $wpdb;
 
 		if ( is_multisite() && $network_wide ) {
-			$blog_ids = $wpdb->get_col( $wpdb->prepare( 'SELECT `blog_id` FROM %s', $wpdb->blogs ) );
+			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
 			foreach ( $blog_ids as $blog_id ) {
 				switch_to_blog( $blog_id );
 				self::table_sql();

@@ -70,7 +70,7 @@ class DB {
 	public static function exist_table( $tbl_name ) {
 		global $wpdb;
 		$wpdb->stats4wp_test = $tbl_name;
-		return ( $wpdb->get_var( "SHOW TABLES LIKE {$wpdb->stats4wp_test}" ) === $tbl_name );
+		return ( $wpdb->get_var( "SHOW TABLES LIKE $wpdb->stats4wp_test" ) === $tbl_name );
 	}
 
 	/**
@@ -130,7 +130,7 @@ class DB {
 			$nbrows = wp_cache_get( 'cpt_' . $tbl );
 			if ( false === $nbrows ) {
 				$wpdb->stats4wp_test = self::table( $tbl );
-				$nbrows              = $wpdb->get_row( "SELECT count(*) as nb FROM {$wpdb->stats4wp_test}" );
+				$nbrows              = $wpdb->get_row( "SELECT count(*) as nb FROM $wpdb->stats4wp_test" );
 				wp_cache_set( 'cpt_' . $tbl, $nbrows );
 			}
 			$nb                    = $nbrows->nb;

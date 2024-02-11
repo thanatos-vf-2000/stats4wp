@@ -1,9 +1,8 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.7
  */
-
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -12,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 
-$page = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
-if ( 'stats4wp_plugin' === $page ) {
+$local_page = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
+if ( 'stats4wp_plugin' === $local_page ) {
 	$data = 'all';
 } else {
 	$data = '';
@@ -32,28 +31,46 @@ if ( DB::exist_row( 'visitor' ) ) {
 		$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
 	switch ( $param['interval'] ) {
 		case 'days':
-			$select     = 'last_counter as d';
+			$visitors   = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT last_counter as d ,count(*) as nb 
+					FROM {$wpdb->stats4wp_visitor} 
+					where device!='bot' 
+					AND last_counter BETWEEN %s AND %s group by 1",
+					$param['from'],
+					$param['to']
+				)
+			);
 			$char_title = __( 'Number of user per days', 'stats4wp' );
 			break;
 		case 'weeks':
-			$select     = 'CONCAT(YEAR(last_counter),".",WEEK(last_counter)) as d';
+			$visitors   = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT CONCAT(YEAR(last_counter),'.',WEEK(last_counter)) as d ,count(*) as nb 
+					FROM {$wpdb->stats4wp_visitor} 
+					where device!='bot' 
+					AND last_counter BETWEEN %s AND %s group by 1",
+					$param['from'],
+					$param['to']
+				)
+			);
 			$char_title = __( 'Number of user per weeks', 'stats4wp' );
 			break;
 		case 'month':
-			$select     = 'CONCAT(YEAR(last_counter),".",MONTH(last_counter)) as d';
+			$visitors   = $wpdb->get_results(
+				$wpdb->prepare(
+					"SELECT CONCAT(YEAR(last_counter),'.',MONTH(last_counter)) as d ,count(*) as nb 
+					FROM {$wpdb->stats4wp_visitor} 
+					where device!='bot' 
+					AND last_counter BETWEEN %s AND %s group by 1",
+					$param['from'],
+					$param['to']
+				)
+			);
 			$char_title = __( 'Number of user per months', 'stats4wp' );
 			break;
 	}
-	$visitors = $wpdb->get_results(
-		$wpdb->prepare(
-			"SELECT {$select} ,count(*) as nb 
-			FROM {$wpdb->stats4wp_visitor} 
-			where device!='bot' 
-			AND last_counter BETWEEN %s AND %s group by 1",
-			$param['from'],
-			$param['to']
-		)
-	);
+
 	foreach ( $visitors as $visitor ) {
 		$day[] = $visitor->d;
 		$nb[]  = $visitor->nb;

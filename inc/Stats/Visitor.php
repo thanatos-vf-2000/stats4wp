@@ -39,10 +39,15 @@ class Visitor {
 		// If we have a new Visitor in Day
 		if ( ! $same_visitor ) {
 			// Prepare Visitor information
+			if ( ! empty( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ) {
+				$language = substr( sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ), 0, 2 );
+			} else {
+				$language = 'no';
+			}
 			$language = substr( sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ), 0, 2 );
 			$visitor  = array(
-				'last_counter' => TimeZone::get_current_date( 'Y-m-d' ),
-				'hour'         => date( 'H:i:s' ),
+				'last_counter' => TimeZone::get_current_gmdate( 'Y-m-d' ),
+				'hour'         => gmdate( 'H:i:s' ),
 				'referred'     => Referred::get(),
 				'agent'        => $user_agent['browser'],
 				'agent_v'      => $user_agent['b-version'],
@@ -70,7 +75,17 @@ class Visitor {
 			// Update Visitor Count in DB
 			if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 				$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
-			$wpdb->query( $wpdb->prepare( "UPDATE {$wpdb->stats4wp_visitor} SET `hits` = `hits` + %d WHERE `ID` = %d", 1, $visitor_id ) );
+			$wpdb->query(
+				$wpdb->prepare(
+					"UPDATE $wpdb->stats4wp_visitor
+					SET `hits` = `hits` + %d 
+					WHERE `ID` = %d",
+					array(
+						1,
+						$visitor_id,
+					)
+				)
+			);
 		}
 	}
 	/**
@@ -84,7 +99,21 @@ class Visitor {
 		global $wpdb;
 		if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 			$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
-		$visitor = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->stats4wp_visitor} WHERE `last_counter` = %s AND `ip` = %s AND `agent` = %s", ( $date === false ? TimeZone::get_current_date( 'Y-m-d' ) : $date ), $ip, $agent['browser'] ) );
+		$calc_date = ( $date === false ? TimeZone::get_current_gmdate( 'Y-m-d' ) : $date );
+		$agent_c   = $agent['browser'];
+		$visitor   = $wpdb->get_row(
+			$wpdb->prepare(
+				"SELECT * FROM $wpdb->stats4wp_visitor 
+				WHERE `last_counter` = %s 
+				AND `ip` = %s 
+				AND `agent` = %s",
+				array(
+					$calc_date,
+					$ip,
+					$agent_c,
+				)
+			)
+		);
 		return ( ! $visitor ? false : $visitor );
 	}
 

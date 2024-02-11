@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  */
 
 namespace STATS4WP\Ui;
@@ -31,12 +31,12 @@ class DashboardWidgetAdmin extends BaseController {
 		foreach ( DB::$db_table as $table ) {
 			if ( DB::exist_row( $table ) ) {
 				$wpdb->stats4wp_tmp = DB::table( $table );
-				$nbrows             = $wpdb->get_row( "SELECT count(*) as nb FROM {$wpdb->stats4wp_tmp}" );
+				$nbrows             = $wpdb->get_row( "SELECT count(*) as nb FROM $wpdb->stats4wp_tmp" );
 				$msg                = $nbrows->nb;
 			} else {
 				$msg = __( 'No data found.', 'stats4wp' );
 			}
-			printf( '<li class="%1$s-count">%1$s: %2$s</li>', $table, $msg );
+			printf( '<li class="%1$s-count">%1$s: %2$s</li>', esc_html( $table ), esc_html( $msg ) );
 		}
 		echo '</ul></div>
         <div class="activity-block"><h3>' . esc_html( __( 'User connected:', 'stats4wp' ) ) . '</h3><ul>';
@@ -44,14 +44,14 @@ class DashboardWidgetAdmin extends BaseController {
 			if ( ! isset( $wpdb->stats4wp_useronline ) ) {
 				$wpdb->stats4wp_useronline = DB::table( 'useronline' );}
 			$useronlines = $wpdb->get_results(
-				"SELECT user_id, location FROM {$wpdb->stats4wp_useronline} 
+				"SELECT user_id, location FROM $wpdb->stats4wp_useronline 
                 ORDER by user_id ASC"
 			);
 			foreach ( $useronlines as $useronline ) {
 				if ( 0 === $useronline->user_id ) {
 					$username = __( 'Anonymous', 'stats4wp' );
 				} else {
-					$user     = $wpdb->get_row( $wpdb->prepare( "SELECT * from {$wpdb->users} where ID=%d", $useronline->user_id ) );
+					$user     = $wpdb->get_row( $wpdb->prepare( "SELECT * from $wpdb->users where ID=%d", $useronline->user_id ) );
 					$username = $user->user_login;
 				}
 

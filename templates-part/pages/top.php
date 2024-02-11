@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  */
 
 
@@ -14,8 +14,8 @@ use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 use STATS4WP\Core\Options;
 
-$page = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
-if ( 'stats4wp_plugin' === $page ) {
+$page_local = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
+if ( 'stats4wp_plugin' === $page_local ) {
 	$data = 'all';
 } else {
 	$data = '';
@@ -53,7 +53,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 					}
 				}
 				if ( $uri_nb > Options::get_option( 'top_page' ) ) {
-					echo '<tr><td colspan="5">' . __( 'Others ...', 'stats4wp' ) . '</td></tr>';
+					echo '<tr><td colspan="5">' . esc_html__( 'Others ...', 'stats4wp' ) . '</td></tr>';
 				}
 				?>
 					</tbody>

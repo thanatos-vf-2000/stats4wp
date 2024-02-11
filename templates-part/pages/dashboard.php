@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  */
 
 
@@ -13,8 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 
-$page = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
-if ( 'stats4wp_plugin' === $page ) {
+$page_local = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
+if ( 'stats4wp_plugin' === $page_local ) {
 	$data = 'all';
 } else {
 	$data = '';
@@ -38,7 +38,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 					$uri_types_nb++;
 					$percent = round( $uri_type->nb * 100 / $uri_types_total );
 					if ( $uri_types_nb < 10 && $percent > 0 ) {
-						echo esc_html( $uri_type->type ) . " ($percent&#37;) - ";
+						echo esc_html( $uri_type->type ) . esc_html( " ($percent&#37;) - " );
 					}
 				}
 				echo esc_html( __( 'All', 'stats4wp' ) ) . '</p>';

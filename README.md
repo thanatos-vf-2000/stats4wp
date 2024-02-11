@@ -9,9 +9,9 @@
 Contributors: vanhoucke
 Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, chart, browser, today, yesterday, week, month, year, total, post, page, sidebar, google, live visit, search word, agent, google analytics, webmasters, google webmasters, geoip, location
 Requires at least: 5.7
-Tested up to: 6.3.1
+Tested up to: 6.4.3
 Requires PHP: 7.4
-Stable tag: 1.4.4
+Stable tag: 1.4.8
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -97,14 +97,17 @@ License: The GNU AGPL is an open-source license
 Source: https://jvectormap.com/
 
 
-### 1.4.5 (2311-SFP1)
-*Release Date - 1 November 2023*
+###1.4.8 (2402-SFP1)
+*Release Date - 11 Febrary 2023*
 
-* Compatible Wordpress 6.3.2,
-* Update GeoIP Database 20230929,
+* Compatible Wordpress 6.4.3,
+* Update GeoIP Database 20240209,
 * Correction phpcs 3.7.2 error,
 * Change Google GeoChart by jVectorMap 2.0.5,
-* Correction country map to used parameters.
+* Correction country map to used parameters,
+* Correction Use of undefined constant stats4wp_file,
+* Add Data OS Ubuntu, Fedora,
+* Add Data device pda.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 

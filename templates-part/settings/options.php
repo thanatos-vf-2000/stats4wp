@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.6
  *
  * Desciption: Settings options
  */
@@ -79,7 +79,7 @@ settings_errors();
 		<div id="tab-4" class="stats4wp-tab-pane">
 			<div class="stats4wp-infos">
 				<h3><?php esc_html_e( 'About', 'stats4wp' ); ?></h3>
-				<p>Version : <?php echo STATS4WP_VERSION; ?></p>
+				<p>Version : <?php echo esc_html( STATS4WP_VERSION ); ?></p>
 				<p><?php esc_html_e( 'Credit', 'stats4wp' ); ?>: Franck VANHOUCKE</p>
 				<dl>
 					<?php
@@ -89,7 +89,7 @@ settings_errors();
 						if ( isset( $install_data ) && is_array( $install_data ) ) {
 							foreach ( $install_data as $component ) {
 								echo '<dt><b>' . esc_html( $component['name'] ) . '</b></td>';
-								echo '<dd>' . __( 'Version', 'stats4wp' ) . ': ' . esc_html( $component['version'] ) . '</dd>';
+								echo '<dd>' . esc_html__( 'Version', 'stats4wp' ) . ': ' . esc_html( $component['version'] ) . '</dd>';
 							}
 						}
 					}

@@ -32,14 +32,15 @@ use STATS4WP\Core\Options;
 			<?php
 			if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 				$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
+			$local_day    = TimeZone::get_current_date( 'Y-m-d' );
 			$top_visitors = $wpdb->get_results(
 				$wpdb->prepare(
 					"SELECT *
-                FROM {$wpdb->stats4wp_visitor} 
+                FROM $wpdb->stats4wp_visitor 
                 WHERE last_counter=%s 
                 AND device!='bot' 
                 ORDER BY hits  DESC LIMIT 10",
-					TimeZone::get_current_date( 'Y-m-d' )
+					$local_day
 				)
 			);
 			$i            = 1;

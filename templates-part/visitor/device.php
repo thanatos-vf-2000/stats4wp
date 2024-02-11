@@ -51,7 +51,8 @@ if ( DB::exist_row( 'visitor' ) ) {
                     SUM(CASE WHEN device =  'tablet' THEN nb END) tablet ,
                     SUM(CASE WHEN device =  'gaming' THEN nb END) gaming ,
                     SUM(CASE WHEN device =  'television ' THEN nb END) television ,
-                    SUM(CASE WHEN device NOT IN  ('desktop','mobile','tablet','gaming','television') THEN nb END) other
+                    SUM(CASE WHEN device =  'pda' THEN nb END) pda ,
+                    SUM(CASE WHEN device NOT IN  ('desktop','mobile','tablet','gaming','television','pda') THEN nb END) other
                     FROM (
                     select {$wpdb->stats4wp_select}, device, COUNT(*) as nb
                     from {$wpdb->stats4wp_visitor} 
@@ -71,6 +72,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 					$tablet[]     = ( null === $device->tablet ) ? 0 : $device->tablet;
 					$gaming[]     = ( null === $device->gaming ) ? 0 : $device->gaming;
 					$television[] = ( null === $device->television ) ? 0 : $device->television;
+                    $pda[] = ( null === $device->pda ) ? 0 : $device->pda;
 					$other[]      = ( null === $device->other ) ? 0 : $device->other;
 				}
 
@@ -111,6 +113,13 @@ if ( DB::exist_row( 'visitor' ) ) {
                                "#00a950"
                             ],
                             data:' . wp_json_encode( $television ) . ',
+                        },
+                        {
+                            label: "' . esc_html( __( 'Pda', 'stats4wp' ) ) . '",
+                            backgroundColor: [
+                               "#00a950"
+                            ],
+                            data:' . wp_json_encode( $pda ) . ',
                         },
                         {
                             label: "' . esc_html( __( 'Other', 'stats4wp' ) ) . '",

@@ -29,17 +29,18 @@ use STATS4WP\Api\TimeZone;
 				<?php
 				if ( ! isset( $wpdb->stats4wp_pages ) ) {
 					$wpdb->stats4wp_pages = DB::table( 'pages' );}
-				$top_pages = $wpdb->get_results(
+				$local_date = TimeZone::get_current_date( 'Y-m-d' );
+				$top_pages  = $wpdb->get_results(
 					$wpdb->prepare(
 						"SELECT *
-                    FROM {$wpdb->stats4wp_pages}
+                    FROM $wpdb->stats4wp_pages
                     WHERE date=%s
                     AND type='page' 
                     ORDER BY count  DESC LIMIT 10",
-						TimeZone::get_current_date( 'Y-m-d' )
+						$local_date
 					)
 				);
-				$i         = 1;
+				$i          = 1;
 				foreach ( $top_pages as $top_page ) {
 					$title_local = get_the_title( $top_page->id );
 					$link_local  = $top_page->uri;
