@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 
 
@@ -114,8 +114,8 @@ if ( DB::exist_row( 'visitor' ) ) {
 					$ubuntu[]   = ( null === $os->ubuntu ) ? 0 : $os->ubuntu;
 					$osx[]      = ( null === $os->osx ) ? 0 : $os->osx;
 					$linux[]    = ( null === $os->linux ) ? 0 : $os->linux;
-                    $fedora[]    = ( null === $os->fedora ) ? 0 : $os->fedora;
-                    $ubuntu[]    = ( null === $os->ubuntu ) ? 0 : $os->ubuntu;
+					$fedora[]   = ( null === $os->fedora ) ? 0 : $os->fedora;
+					$ubuntu[]   = ( null === $os->ubuntu ) ? 0 : $os->ubuntu;
 					$ios[]      = ( null === $os->ios ) ? 0 : $os->ios;
 					$chromeos[] = ( null === $os->chromeos ) ? 0 : $os->chromeos;
 					$android[]  = ( null === $os->android ) ? 0 : $os->android;
@@ -158,7 +158,7 @@ if ( DB::exist_row( 'visitor' ) ) {
                             backgroundColor: [
                                "#537bc4"
                             ],
-                            data:' . wp_json_encode( $ferora ) . ',
+                            data:' . wp_json_encode( $fedora ) . ',
                         },
                         {
                             label: "' . esc_html( __( 'Ubuntu', 'stats4wp' ) ) . '",

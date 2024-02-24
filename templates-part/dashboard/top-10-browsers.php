@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 
 
@@ -41,13 +41,13 @@ if ( DB::exist_row( 'visitor' ) ) {
 		)
 	);
 	foreach ( $browsers as $browser ) {
-		$type[] = $browser->agent;
-		$nb[]   = $browser->nb;
+		$type_browser[] = $browser->agent;
+		$nb[]           = $browser->nb;
 	}
 	$script_js = ' 
    
     const dataTopBrowsers = {
-        labels: ' . wp_json_encode( $type ) . ',
+        labels: ' . wp_json_encode( $type_browser ) . ',
         datasets: [{
           label: "' . esc_html( __( 'Browsers', 'stats4wp' ) ) . '",
           data: ' . wp_json_encode( $nb ) . ',
@@ -89,5 +89,5 @@ if ( DB::exist_row( 'visitor' ) ) {
     ';
 	wp_add_inline_script( 'chart-js', $script_js );
 
-	unset( $browsers, $type, $nb );
+	unset( $browsers, $type_browser, $nb );
 }

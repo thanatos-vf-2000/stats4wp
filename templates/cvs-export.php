@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.6
+ * @version 1.4.9
  *
  * Desciption: CVS Export date
  */
@@ -34,9 +34,9 @@ self::get_template( array( 'header' ) );
                     FROM $wpdb->stats4wp_tmp"
 				);
 				switch ( $t ) {
-					case 'visitor';
+					case 'visitor':
 						$field = 'last_counter';
-					break;
+						break;
 					case 'pages':
 						$field = 'date';
 						break;

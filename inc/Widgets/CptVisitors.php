@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.6
+ * @version 1.4.9
  */
 namespace STATS4WP\Widgets;
 
@@ -75,30 +75,30 @@ class stats4wp_cpt_visitors_widget extends \WP_Widget {
 				while ( ++$nb < 7 ) {
 					switch ( $nb ) {
 						case 1:
-							$to    = $from = date( 'Y-m-d' );
+							$to    = $from = gmdate( 'Y-m-d' );
 							$title = __( 'Today', 'stats4wp' );
 							break;
 						case 2:
-							$from  = $to = date( 'Y-m-d', strtotime( '-1 days' ) );
+							$from  = $to = gmdate( 'Y-m-d', strtotime( '-1 days' ) );
 							$title = __( 'Yesterday', 'stats4wp' );
 							break;
 						case 3:
-							$to    = date( 'Y-m-d' );
-							$from  = date( 'Y-m-d', strtotime( '-7 days' ) );
+							$to    = gmdate( 'Y-m-d' );
+							$from  = gmdate( 'Y-m-d', strtotime( '-7 days' ) );
 							$title = __( 'Last 7 Days (Week)', 'stats4wp' );
 							break;
 						case 4:
-							$to    = date( 'Y-m-d' );
-							$from  = date( 'Y-m-d', strtotime( '-1 months' ) );
+							$to    = gmdate( 'Y-m-d' );
+							$from  = gmdate( 'Y-m-d', strtotime( '-1 months' ) );
 							$title = __( 'Last 30 Days (Month)', 'stats4wp' );
 							break;
 						case 5:
-							$to    = date( 'Y-m-d' );
-							$from  = date( 'Y-m-d', strtotime( '-1 years' ) );
+							$to    = gmdate( 'Y-m-d' );
+							$from  = gmdate( 'Y-m-d', strtotime( '-1 years' ) );
 							$title = __( 'Last 365 Days (Year)', 'stats4wp' );
 							break;
 						case 6:
-							$to    = date( 'Y-m-d' );
+							$to    = gmdate( 'Y-m-d' );
 							$from  = '1999-01-01';
 							$title = __( 'Total', 'stats4wp' );
 							break;

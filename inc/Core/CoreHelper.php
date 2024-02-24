@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 namespace STATS4WP\Core;
 
@@ -15,7 +15,7 @@ class CoreHelper {
 	public static function is_login_page() {
 
 		// Check From global WordPress
-		if ( isset( $GLOBALS['pagenow'] ) && in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) {
+		if ( isset( $GLOBALS['pagenow'] ) && in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ), false ) ) {
 			return true;
 		}
 

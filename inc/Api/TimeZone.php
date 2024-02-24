@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 namespace STATS4WP\Api;
 
@@ -39,12 +39,12 @@ class TimeZone {
 	public static function get_current_date( $format = 'Y-m-d H:i:s', $strtotime = null, $relative = null ) {
 		if ( $strtotime ) {
 			if ( $relative ) {
-				return date( $format, strtotime( "{$strtotime} day", $relative ) + self::set_timezone() );
+				return gmdate( $format, strtotime( "{$strtotime} day", $relative ) + self::set_timezone() );
 			} else {
-				return date( $format, strtotime( "{$strtotime} day" ) + self::set_timezone() );
+				return gmdate( $format, strtotime( "{$strtotime} day" ) + self::set_timezone() );
 			}
 		} else {
-			return date( $format, time() + self::set_timezone() );
+			return gmdate( $format, time() + self::set_timezone() );
 		}
 	}
 

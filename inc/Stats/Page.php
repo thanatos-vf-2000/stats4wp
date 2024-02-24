@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.7
+ * @version 1.4.9
  */
 namespace STATS4WP\Stats;
 
@@ -10,6 +10,7 @@ use STATS4WP\Api\TimeZone;
 use STATS4WP\Core\CoreHelper;
 use STATS4WP\Core\DB;
 use STATS4WP\Core\Options;
+use STATS4WP\Core\Fonctions;
 
 class Page {
 
@@ -115,7 +116,7 @@ class Page {
 		/**
 		 * Is search page
 		 */
-		$search_query = filter_var( get_search_query( false ), FILTER_SANITIZE_STRING );
+		$search_query = filter_var( get_search_query( false ), FILTER_CALLBACK, array( 'options' => 'filter_string_polyfill' ) );
 		if ( trim( $search_query ) !== '' ) {
 			return array(
 				'type'         => 'search',
@@ -197,14 +198,20 @@ class Page {
 		/**
 		 * Get the site's path from the URL.
 		 */
-		$site_uri     = wp_parse_url( site_url(), PHP_URL_PATH );
-		$site_uri_len = strlen( $site_uri );
+		$site_uri = wp_parse_url( site_url(), PHP_URL_PATH );
+		if ( isset( $site_uri ) ) {
+			$site_uri_len = strlen( $site_uri );
+		} else {
+			$site_uri_len = 0;}
 
 		/**
 		 * Get the site's path from the URL.
 		 */
-		$home_uri     = wp_parse_url( home_url(), PHP_URL_PATH );
-		$home_uri_len = strlen( $home_uri );
+		$home_uri = wp_parse_url( home_url(), PHP_URL_PATH );
+		if ( isset( $home_uri ) ) {
+			$home_uri_len = strlen( $home_uri );
+		} else {
+			$home_uri_len = 0;}
 
 		/**
 		 * Get the current page URI.
@@ -242,7 +249,7 @@ class Page {
 		/**
 		 * Sanitize Xss injection
 		 */
-		$page_uri = filter_var( $page_uri, FILTER_SANITIZE_STRING );
+		$page_uri = filter_var( $page_uri, FILTER_CALLBACK, array( 'options' => 'filter_string_polyfill' ) );
 
 		/**
 		 * If we're at the root (aka the URI is blank), let's make sure to indicate it.

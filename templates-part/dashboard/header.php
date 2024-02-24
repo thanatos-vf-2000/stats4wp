@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  *
  * Desciption: Admin Page Pages
  */
@@ -71,7 +71,7 @@ if ( 0 === $month_pages['p'] ) {
 ?>
 
 <div class="rows stats4wp-dashboard-header">
-	<p><?php echo esc_html( __( 'Statistics', 'stats4wp' ) . ' ' . date( 'Y' ) ); ?></p>
+	<p><?php echo esc_html( __( 'Statistics', 'stats4wp' ) . ' ' . gmdate( 'Y' ) ); ?></p>
 	<div class="stats4wp-db-container">
 		<div class="stats4wp-db-box fade">
 			<div class="stats4wp-db-label"><?php esc_html_e( 'Total visitors', 'stats4wp' ); ?></div>

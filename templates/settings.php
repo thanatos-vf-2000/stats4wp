@@ -6,7 +6,6 @@
  * Desciption: Settings
  */
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

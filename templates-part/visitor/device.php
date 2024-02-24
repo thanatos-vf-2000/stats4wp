@@ -72,7 +72,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 					$tablet[]     = ( null === $device->tablet ) ? 0 : $device->tablet;
 					$gaming[]     = ( null === $device->gaming ) ? 0 : $device->gaming;
 					$television[] = ( null === $device->television ) ? 0 : $device->television;
-                    $pda[] = ( null === $device->pda ) ? 0 : $device->pda;
+					$pda[]        = ( null === $device->pda ) ? 0 : $device->pda;
 					$other[]      = ( null === $device->other ) ? 0 : $device->other;
 				}
 

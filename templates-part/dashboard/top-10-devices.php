@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 
 
@@ -41,13 +41,13 @@ if ( DB::exist_row( 'visitor' ) ) {
 		)
 	);
 	foreach ( $devices as $device ) {
-		$type[] = ( '' === $device->device ) ? __( 'Unknown', 'stats4wp' ) : $device->device;
-		$nb[]   = $device->nb;
+		$type_device[] = ( '' === $device->device ) ? __( 'Unknown', 'stats4wp' ) : $device->device;
+		$nb[]          = $device->nb;
 	}
 	$script_js = ' 
     
     const dataTopDevices = {
-        labels:' . wp_json_encode( $type ) . ',
+        labels:' . wp_json_encode( $type_device ) . ',
         datasets: [{
             label: "' . esc_html( __( 'Devices', 'stats4wp' ) ) . '",
             data:' . wp_json_encode( $nb ) . ',
@@ -88,5 +88,5 @@ if ( DB::exist_row( 'visitor' ) ) {
     ';
 	wp_add_inline_script( 'chart-js', $script_js );
 
-	unset( $devices, $type, $nb );
+	unset( $devices, $type_device, $nb );
 }

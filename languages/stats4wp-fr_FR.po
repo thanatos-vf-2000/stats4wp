@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: stats4wp\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-17 16:15+0000\n"
-"PO-Revision-Date: 2023-04-02 14:56+0000\n"
+"PO-Revision-Date: 2024-02-24 14:51+0000\n"
 "Last-Translator: Franck VANHOUCKE\n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -12,266 +12,250 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.4; wp-6.2\n"
+"X-Loco-Version: 2.6.6; wp-6.4.3\n"
 "X-Domain: stats4wp"
 
-#: templates-part/visitor/lang.php:38 templates-part/visitor/location.php:38
-#: templates-part/visitor/device.php:173
+#: templates-part/visitor/lang.php:51 templates-part/visitor/location.php:51
+#: templates-part/visitor/device.php:201
 msgid "% Users"
 msgstr "% Utilisateurs"
 
-#: inc/Ui/GeoChart.php:48
-#, php-format
-msgid "%1$s v1.3.2 add a map feature using Google Geochart, see %2$s."
-msgstr ""
-"%1$s v1.3.2 ajoute une fonctionnalité de carte utilisant Google Geochart, "
-"voir %2$s."
-
-#: assets/defaults.php:49
+#: assets/defaults.php:60
 msgid "(default 10)."
 msgstr "(par défaut 10)."
 
-#: templates-part/settings/options.php:16
-#: templates-part/settings/options.php:75
+#: templates-part/settings/options.php:22
+#: templates-part/settings/options.php:81
 msgid "About"
 msgstr "À propos de"
 
-#: assets/defaults.php:35
+#: assets/defaults.php:43
 msgid "Add search words"
 msgstr "Ajouter des mots de recherche"
 
-#: templates-part/dashboard/summary.php:207
+#: templates-part/dashboard/summary.php:256
 msgid "Adjustment"
 msgstr "Réglage"
 
-#: templates-part/visitor/agent.php:28
+#: templates-part/visitor/agent.php:34
 msgid "Agents per days"
 msgstr "Agents par jour"
 
-#: templates-part/visitor/agent.php:36
+#: templates-part/visitor/agent.php:42
 msgid "Agents per months"
 msgstr "Agent par mois"
 
-#: templates-part/visitor/agent.php:32
+#: templates-part/visitor/agent.php:38
 msgid "Agents per weeks"
 msgstr "Agents par semaine"
 
-#: templates-part/pages/dashboard.php:31
-#: templates-part/visitor/dashboard.php:36
-#: templates-part/visitor/dashboard.php:53
-#: templates-part/visitor/dashboard.php:70
-#: templates-part/visitor/dashboard.php:89
-#: templates-part/visitor/dashboard.php:106
+#: templates-part/pages/dashboard.php:44
+#: templates-part/visitor/dashboard.php:43
+#: templates-part/visitor/dashboard.php:60
+#: templates-part/visitor/dashboard.php:77
+#: templates-part/visitor/dashboard.php:96
+#: templates-part/visitor/dashboard.php:113
 msgid "All"
 msgstr "Tous"
 
-#: templates-part/visitor/bots.php:21 templates-part/visitor/bots.php:32
+#: templates-part/visitor/bots.php:28 templates-part/visitor/bots.php:54
 msgid "All Bots"
 msgstr "Tous les bots"
 
-#: templates-part/visitor/referred.php:19
-#: templates-part/visitor/referred.php:33
+#: templates-part/visitor/referred.php:30
+#: templates-part/visitor/referred.php:50
 msgid "All Referred"
 msgstr "Tous les référents"
 
-#: templates-part/visitor/os.php:148
+#: templates-part/visitor/os.php:185
 msgid "Android"
 msgstr "Android"
 
-#: assets/defaults.php:15
+#: assets/defaults.php:22
 msgid "Anonymize IP."
 msgstr "Anonymiser l'IP."
 
-#: inc/Ui/DashboardWidgetAdmin.php:50
+#: inc/Ui/DashboardWidgetAdmin.php:52
 msgid "Anonymous"
 msgstr "Anonyme"
 
-#: inc/Api/SearchEngine.php:30
+#: inc/Api/SearchEngine.php:29
 msgid "Ask.com"
 msgstr "Ask.com"
 
-#: inc/Api/SearchEngine.php:40
+#: inc/Api/SearchEngine.php:39
 msgid "Baidu"
 msgstr "Baidu"
 
-#: templates-part/settings/tables.php:64
+#: templates-part/settings/tables.php:80
 msgid "Before: "
 msgstr "Avant : "
 
-#: inc/Api/SearchEngine.php:50
+#: inc/Api/SearchEngine.php:49
 msgid "Bing"
 msgstr "Bing"
 
-#: templates-part/visitor/dashboard.php:112
+#: templates-part/visitor/dashboard.php:119
 msgid "Bot"
 msgstr "Moteur de recherche"
 
-#: templates-part/visitor/bots.php:57 templates-part/visitor/bare.php:11
-#: templates-part/visitor/bots-maps.php:46
+#: templates-part/visitor/bots.php:79 templates-part/visitor/bare.php:25
 msgid "Bots"
 msgstr "Bots"
 
-#: templates-part/visitor/bots-maps.php:31
+#: templates-part/visitor/bots-maps.php:47
 msgid "Bots location map"
 msgstr "Carte de localisation des moteurs de recherche"
 
-#: templates-part/dashboard/visitors.php:84
+#: templates-part/dashboard/visitors.php:116
 msgid "Bounce rate"
 msgstr "Taux de rebond"
 
-#: templates-part/dashboard/recent-visitors.php:20
-#: templates-part/dashboard/top-10-visitors-today.php:23
+#: templates-part/dashboard/recent-visitors.php:24
+#: templates-part/dashboard/top-10-visitors-today.php:28
 msgid "Browser"
 msgstr "Navigateur"
 
-#: inc/Api/UserAgent.php:36
+#: inc/Api/UserAgent.php:34
 msgctxt "Browser"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: templates-part/dashboard/top-10-browsers.php:48
-#: templates-part/dashboard/visitors.php:116
+#: templates-part/dashboard/top-10-browsers.php:64
+#: templates-part/dashboard/visitors.php:148
 msgid "Browser TOP 10"
 msgstr "TOP 10 des navigateurs"
 
-#: templates-part/dashboard/top-10-browsers.php:36
-#: templates-part/dashboard/visitors.php:105
+#: templates-part/dashboard/top-10-browsers.php:52
+#: templates-part/dashboard/visitors.php:137
 msgid "Browsers"
 msgstr "Navigateurs"
 
-#: templates-part/pages/top.php:36
+#: templates-part/pages/top.php:44
 msgid "Call"
 msgstr "Appel"
 
-#: assets/defaults.php:20
+#: assets/defaults.php:28
 #| msgid "chose $_SERVER."
 msgid "chose _SERVER."
 msgstr "choisis $_SERVER."
 
-#: templates-part/visitor/agent.php:101
+#: templates-part/visitor/agent.php:113
 msgid "Chrome"
 msgstr "Chrome"
 
-#: templates-part/visitor/os.php:141
+#: templates-part/visitor/os.php:178
 msgid "Chrome OS"
 msgstr "Chrome OS"
 
-#: inc/Api/SearchEngine.php:60
+#: inc/Api/SearchEngine.php:59
 msgid "clearch.org"
 msgstr "clearch.org"
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:96
+#: inc/Api/Callbacks/ManagerCallbacks.php:91
 msgid "Color:"
 msgstr "Couleur :"
 
-#: templates-part/visitor/location.php:56
+#: templates-part/visitor/location.php:69
 msgid "Country"
 msgstr "Pays"
 
-#: templates-part/settings/options.php:77
+#: templates-part/settings/options.php:83
 msgid "Credit"
 msgstr "Crédit"
 
-#: templates-part/dashboard/summary.php:206
+#: templates-part/dashboard/summary.php:255
 msgid "Current time and date"
 msgstr "Heure et date actuelles"
 
-#: templates-part/dashboard/summary.php:186
+#: templates-part/dashboard/summary.php:235
 msgid "Daily Total"
 msgstr "Total quotidien"
 
-#: templates-part/settings/options.php:14
+#: templates-part/settings/options.php:20
 msgid "Data"
 msgstr "Data"
 
-#: inc/Api/AdminGraph.php:221
+#: inc/Api/AdminGraph.php:228
 msgid "Data last"
 msgstr "Dernières données"
 
-#: templates-part/dashboard/summary.php:212
+#: templates-part/dashboard/summary.php:261
 msgid "Dated"
 msgstr "Daté"
 
-#: templates-part/dashboard/recent-visitors.php:21
+#: templates-part/dashboard/recent-visitors.php:25
 msgid "Day"
 msgstr "Jour"
 
-#: inc/Api/AdminGraph.php:87
+#: inc/Api/AdminGraph.php:91
 msgid "Day interval"
 msgstr "Intervalle entre les jours"
 
-#: inc/Widgets/CptVisitors.php:135
+#: inc/Widgets/CptVisitors.php:142
 msgid "Default Title"
 msgstr "Titre par défaut"
 
-#: assets/defaults.php:44
+#: assets/defaults.php:54
 msgid "Delete user in table useronile after xxx seconds (default 120)."
 msgstr ""
 "Supprime l'utilisateur dans la table useronile après xxx secondes (par "
 "défaut 120)."
 
-#: templates-part/visitor/device.php:68
+#: templates-part/visitor/device.php:83
 msgid "Desktop"
 msgstr "Desktop"
 
-#: templates-part/visitor/dashboard.php:57 templates-part/visitor/bare.php:4
+#: templates-part/visitor/dashboard.php:64 templates-part/visitor/bare.php:18
 msgid "Device"
 msgstr "Appareil"
 
-#: inc/Api/UserAgent.php:42 inc/Api/UserAgent.php:43 inc/Api/UserAgent.php:44
+#: inc/Api/UserAgent.php:40 inc/Api/UserAgent.php:41 inc/Api/UserAgent.php:42
 msgctxt "Device"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: templates-part/visitor/device.php:28
+#: templates-part/visitor/device.php:35
 msgid "Device per days"
 msgstr "Appareil par jour"
 
-#: templates-part/visitor/device.php:36
+#: templates-part/visitor/device.php:43
 msgid "Device per months"
 msgstr "Appareil par mois"
 
-#: templates-part/visitor/device.php:32
+#: templates-part/visitor/device.php:39
 msgid "Device per weeks"
 msgstr "Appareil par semaines"
 
-#: templates-part/dashboard/top-10-devices.php:12
-#: templates-part/dashboard/top-10-devices.php:36
-#: templates-part/dashboard/top-10-devices.php:47
-#: templates-part/visitor/device.php:171
+#: templates-part/dashboard/top-10-devices.php:18
+#: templates-part/dashboard/top-10-devices.php:52
+#: templates-part/dashboard/top-10-devices.php:63
+#: templates-part/visitor/device.php:199
 msgid "Devices"
 msgstr "Appareils"
 
-#: assets/defaults.php:53
+#: assets/defaults.php:65
 msgid "Disabled statistics for the administration part (/wp-admin/)."
 msgstr "Statistiques désactivées pour la partie administration (/wp-admin/)."
 
-#: inc/Api/AdminGraph.php:237
+#: inc/Api/AdminGraph.php:244
 msgid "Display by"
 msgstr "Afficher par"
 
-#: inc/Widgets/CptVisitors.php:43
+#: inc/Widgets/CptVisitors.php:41
 msgid "Display number of visitors"
 msgstr "Afficher le nombre de visiteurs"
 
-#: inc/Api/SearchEngine.php:70
+#: inc/Api/SearchEngine.php:69
 msgid "DuckDuckGo"
 msgstr "DuckDuckGo"
 
-#: templates-part/visitor/agent.php:94
+#: templates-part/visitor/agent.php:106
 msgid "Edge"
 msgstr "Edge"
 
-#: assets/defaults.php:63
-msgid "Enable CDN Chart JS"
-msgstr "Enable CDN Chart JS"
-
-#: assets/defaults.php:57
-msgid "Enable Google GeoChart"
-msgstr "Activer Google GeoChart"
-
 #. 1: Elementor, 2: Link to plugin review
-#: inc/Ui/DashBoard.php:241
+#: inc/Ui/DashBoard.php:232
 #, php-format
 msgid ""
 "Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your "
@@ -280,11 +264,15 @@ msgstr ""
 "Vous avez apprécié %1$s ? Veuillez nous laisser une note de %2$s. Nous "
 "apprécions vraiment votre soutien !"
 
-#: templates/cvs-export.php:42
+#: templates/cvs-export.php:54
 msgid "Export All"
 msgstr "Exporter tout"
 
-#: templates-part/visitor/agent.php:80
+#: templates-part/visitor/os.php:157
+msgid "Fedora"
+msgstr "Fedora"
+
+#: templates-part/visitor/agent.php:92
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -292,62 +280,62 @@ msgstr "Firefox"
 msgid "Franck VANHOUCKE"
 msgstr "Franck VANHOUCKE"
 
-#: templates-part/visitor/by-hours.php:125
+#: templates-part/visitor/by-hours.php:144
 msgid "Friday"
 msgstr "Vendredi"
 
-#: inc/Api/AdminGraph.php:75
+#: inc/Api/AdminGraph.php:79
 msgid "From"
 msgstr "De"
 
-#: inc/Api/AdminGraph.php:77
+#: inc/Api/AdminGraph.php:81
 msgid "From: "
 msgstr "De : "
 
-#: templates-part/visitor/device.php:89
+#: templates-part/visitor/device.php:104
 msgid "Gaming"
 msgstr "Gaming"
 
-#: inc/Api/SearchEngine.php:80
+#: inc/Api/SearchEngine.php:79
 msgid "Google"
 msgstr "Google"
 
-#: templates-part/support.php:5
+#: templates-part/support.php:17
 msgid "Got a Question an Idea or a Problem?"
 msgstr "Vous avez une question, une idée ou un problème ?"
 
-#: templates-part/dashboard/nb-users-hits.php:72
-#: templates-part/visitor/bare.php:8 templates-part/visitor/hits.php:53
-#: templates-part/visitor/by-hours.php:54
-#: templates-part/visitor/by-hours.php:139
+#: templates-part/dashboard/nb-users-hits.php:134
+#: templates-part/visitor/bare.php:22 templates-part/visitor/hits.php:66
+#: templates-part/visitor/by-hours.php:67
+#: templates-part/visitor/by-hours.php:158
 msgid "Hits"
 msgstr "Hits"
 
-#: assets/defaults.php:25
+#: assets/defaults.php:33
 msgid "HTTP_CLIENT_IP"
 msgstr "HTTP_CLIENT_IP"
 
-#: assets/defaults.php:29
+#: assets/defaults.php:37
 msgid "HTTP_FORWARDED"
 msgstr "HTTP_FORWARDED"
 
-#: assets/defaults.php:28
+#: assets/defaults.php:36
 msgid "HTTP_FORWARDED_FOR"
 msgstr "HTTP_FORWARDED_FOR"
 
-#: assets/defaults.php:31
+#: assets/defaults.php:39
 msgid "HTTP_X_CLUSTER_CLIENT_IP"
 msgstr "HTTP_X_CLUSTER_CLIENT_IP"
 
-#: assets/defaults.php:27
+#: assets/defaults.php:35
 msgid "HTTP_X_FORWARDED"
 msgstr "HTTP_X_FORWARDED"
 
-#: assets/defaults.php:26
+#: assets/defaults.php:34
 msgid "HTTP_X_FORWARDED_FOR"
 msgstr "HTTP_X_FORWARDED_FOR"
 
-#: assets/defaults.php:30
+#: assets/defaults.php:38
 msgid "HTTP_X_REAL_IP"
 msgstr "HTTP_X_REAL_IP"
 
@@ -359,106 +347,95 @@ msgstr "https://ginkgos.net/"
 msgid "https://ginkgos.net/plugin/stats4wp/"
 msgstr "https://ginkgos.net/plugin/stats4wp/"
 
-#: templates-part/dashboard/top-10-visitors-today.php:20
-#: templates-part/dashboard/top-10-pages.php:19
+#: templates-part/dashboard/top-10-visitors-today.php:25
+#: templates-part/dashboard/top-10-pages.php:24
 msgid "ID"
 msgstr "ID"
 
-#: templates-part/visitor/agent.php:73
+#: templates-part/visitor/agent.php:85
 msgid "Internet Explorer"
 msgstr "Internet Explorer"
 
-#: templates-part/visitor/os.php:134
+#: templates-part/visitor/os.php:171
 msgid "iOS"
 msgstr "iOS"
 
-#: templates-part/dashboard/recent-visitors.php:22
-#: templates-part/dashboard/top-10-visitors-today.php:22
-#: templates-part/dashboard/users-online.php:20
+#: templates-part/dashboard/recent-visitors.php:26
+#: templates-part/dashboard/top-10-visitors-today.php:27
+#: templates-part/dashboard/users-online.php:26
 msgid "IP"
 msgstr "IP"
 
-#: assets/defaults.php:19
+#: assets/defaults.php:27
 msgid "IP methode"
 msgstr "Méthode IP"
 
-#: templates-part/visitor/dashboard.php:93 templates-part/visitor/bare.php:6
+#: templates-part/visitor/dashboard.php:100 templates-part/visitor/bare.php:20
 msgid "Language"
 msgstr "Langue"
 
-#: templates-part/visitor/lang.php:67
+#: templates-part/visitor/lang.php:80
 msgid "Language TOP 10"
 msgstr "TOP 10 des langues"
 
-#: templates-part/visitor/lang.php:36 templates-part/visitor/lang.php:56
-#: templates-part/visitor/location.php:36
+#: templates-part/visitor/lang.php:49 templates-part/visitor/lang.php:69
+#: templates-part/visitor/location.php:49
 msgid "Languages"
 msgstr "Langues"
 
-#: templates-part/dashboard/summary.php:52
+#: templates-part/dashboard/summary.php:61
 msgid "Last 14 Days (2 Week)"
 msgstr "14 derniers jours (2 semaines)"
 
-#: templates-part/dashboard/summary.php:57 inc/Widgets/CptVisitors.php:95
+#: templates-part/dashboard/summary.php:66 inc/Widgets/CptVisitors.php:93
 msgid "Last 30 Days (Month)"
 msgstr "30 derniers jours (Mois)"
 
-#: templates-part/dashboard/summary.php:67 inc/Widgets/CptVisitors.php:100
+#: templates-part/dashboard/summary.php:76 inc/Widgets/CptVisitors.php:98
 msgid "Last 365 Days (Year)"
 msgstr "365 derniers jours (Année)"
 
-#: templates-part/dashboard/summary.php:62
+#: templates-part/dashboard/summary.php:71
 msgid "Last 6 Month"
 msgstr "6 derniers mois"
 
-#: templates-part/dashboard/summary.php:47 inc/Widgets/CptVisitors.php:90
+#: templates-part/dashboard/summary.php:56 inc/Widgets/CptVisitors.php:88
 msgid "Last 7 Days (Week)"
 msgstr "7 derniers jours (Semaine)"
 
-#: templates-part/dashboard/header.php:33
-#: templates-part/dashboard/header.php:40
-#: templates-part/dashboard/header.php:48
-#: templates-part/dashboard/header.php:55
+#: templates-part/dashboard/header.php:47
+#: templates-part/dashboard/header.php:54
+#: templates-part/dashboard/header.php:62
+#: templates-part/dashboard/header.php:69
 msgid "less than previous period"
 msgstr "moins que la période précédente"
 
-#: templates-part/dashboard/top-10-pages.php:21
-#: inc/Api/Callbacks/ManagerCallbacks.php:50
+#: templates-part/dashboard/top-10-pages.php:26
+#: inc/Api/Callbacks/ManagerCallbacks.php:48
 msgid "Link"
 msgstr "Lien"
 
-#: templates-part/visitor/os.php:127
+#: templates-part/visitor/os.php:150
 msgid "Linux"
 msgstr "Linux"
 
-#: templates-part/visitor/dashboard.php:76 templates-part/visitor/bare.php:5
+#: templates-part/visitor/dashboard.php:83 templates-part/visitor/bare.php:19
 msgid "Location"
 msgstr "Localisation"
 
-#: templates-part/visitor/location-maps.php:30
+#: templates-part/visitor/location-maps.php:43
 msgid "Location map"
 msgstr "Carte de localisation"
 
-#: templates-part/visitor/location.php:67
+#: templates-part/visitor/location.php:80
 msgid "Location TOP 10"
 msgstr "TOP 10 Localisation"
 
-#: assets/defaults.php:60
-msgid ""
-"Locations are geocoded by Google Maps. Any data that does not require "
-"geocoding is not sent to any server. Please see the Google Maps Terms of "
-"Service for more information on their data policy."
-msgstr ""
-"Les emplacements sont géocodés par Google Maps. Toutes les données qui ne "
-"nécessitent pas de géocodage ne sont pas envoyées à un serveur. Veuillez "
-"consulter les conditions de service de Google Maps pour plus d'informations "
-"sur leur politique en matière de données."
-
-#: templates-part/settings/options.php:13
+#: templates-part/settings/options.php:19
 msgid "Manage Settings"
 msgstr "Gérer les paramètres"
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:34
+#: inc/Api/Callbacks/ManagerCallbacks.php:33
 msgid ""
 "Manage the Sections and Features of this Plugin by activating the checkboxes "
 "from the following list."
@@ -466,313 +443,325 @@ msgstr ""
 "Gérez les sections et les fonctionnalités de ce plugin en activant les cases "
 "à cocher de la liste suivante."
 
-#: assets/defaults.php:43
+#: assets/defaults.php:53
 msgid "Max time user Online check"
 msgstr "Durée maximale du contrôle en ligne de l'utilisateur"
 
-#: templates-part/settings/tables.php:41
+#: templates-part/settings/tables.php:57
 msgid "Min day"
 msgstr "Jour min."
 
-#: templates-part/visitor/device.php:75
+#: templates-part/visitor/device.php:90
 msgid "Mobile"
 msgstr "Mobile"
 
-#: templates-part/visitor/by-hours.php:113
+#: templates-part/visitor/by-hours.php:132
 msgid "Monday"
 msgstr "Lundi"
 
-#: templates-part/dashboard/summary.php:103
+#: templates-part/dashboard/summary.php:123
 msgid "Monthly"
 msgstr "Mensuel"
 
-#: templates-part/dashboard/header.php:37
-#: templates-part/dashboard/header.php:52
+#: templates-part/dashboard/header.php:51
+#: templates-part/dashboard/header.php:66
 msgid "more than previous period"
 msgstr "plus que la période précédente"
 
-#: templates-part/visitor/dashboard.php:23 templates-part/visitor/agent.php:190
-#: templates-part/visitor/bare.php:2
+#: templates-part/visitor/dashboard.php:30 templates-part/visitor/agent.php:208
+#: templates-part/visitor/bare.php:16
 msgid "Navigator"
 msgstr "Navigateur"
 
-#: templates-part/dashboard/visitors.php:54
+#: templates-part/dashboard/visitors.php:86
 msgid "New users"
 msgstr "Nouveaux utilisateurs"
 
-#: templates-part/dashboard/visitors.php:30
+#: templates-part/dashboard/visitors.php:62
 msgid "New Visitor"
 msgstr "Nouveau visiteur"
 
-#: templates-part/dashboard/header.php:91
+#: templates-part/dashboard/header.php:105
 msgid "No data found to visitor."
 msgstr "Aucune donnée trouvée pour les visiteurs."
 
-#: inc/Ui/DashboardWidgetAdmin.php:39
+#: inc/Ui/DashboardWidgetAdmin.php:37
 msgid "No data found."
 msgstr "Aucune donnée trouvée."
 
-#: templates-part/dashboard/summary.php:199
+#: templates-part/dashboard/summary.php:248
 msgid "No data."
 msgstr "Aucune donnée."
 
-#: inc/Ui/DashboardWidgetAdmin.php:59
+#: inc/Ui/DashboardWidgetAdmin.php:61
 msgid "No Users."
 msgstr "Aucun utilisateur."
 
-#: templates-part/dashboard/recent-visitors.php:34
-#: templates-part/dashboard/top-10-visitors-today.php:36
-#: templates-part/dashboard/users-online.php:28
-#: templates-part/dashboard/users-online.php:35
-#: templates-part/dashboard/users-online.php:36
+#: templates-part/dashboard/recent-visitors.php:42
+#: templates-part/dashboard/top-10-visitors-today.php:49
+#: templates-part/dashboard/users-online.php:38
+#: templates-part/dashboard/users-online.php:56
+#: templates-part/dashboard/users-online.php:57
 msgid "None"
 msgstr "Aucun"
 
-#: templates-part/visitor/hits.php:29
+#: templates-part/dashboard/country-maps.php:62
+#: templates-part/visitor/lang-maps.php:68
+#: templates-part/visitor/bots-maps.php:71
+#: templates-part/visitor/location-maps.php:68
+msgid "Number"
+msgstr "Nombre"
+
+#: templates-part/visitor/hits.php:36
 msgid "Number of hits per days"
 msgstr "Nombre de visites par jour"
 
-#: templates-part/visitor/hits.php:37
+#: templates-part/visitor/hits.php:44
 msgid "Number of hits per months"
 msgstr "Nombre de visites par mois"
 
-#: templates-part/visitor/hits.php:33
+#: templates-part/visitor/hits.php:40
 msgid "Number of hits per weeks"
 msgstr "Nombre de visites par semaine"
 
-#: assets/defaults.php:48
+#: assets/defaults.php:59
 msgid "Number of result in top pages"
 msgstr "Nombre de résultats dans les premières pages"
 
-#: templates/cvs-export.php:21 templates-part/settings/tables.php:40
+#: templates/cvs-export.php:25 templates-part/settings/tables.php:56
 msgid "Number of rows"
 msgstr "Nombre d'enregistrement"
 
-#: templates-part/dashboard/visitors.php:66
+#: templates-part/dashboard/visitors.php:98
 msgid "Number of sessions per user"
 msgstr "Nombre de sessions par utilisateur"
 
-#: templates-part/visitor/nb-users.php:53
+#: templates-part/visitor/nb-users.php:83
 msgid "number of user"
 msgstr "nombre d'utilisateurs"
 
-#: templates-part/visitor/nb-users.php:29
+#: templates-part/visitor/nb-users.php:44
 msgid "Number of user per days"
 msgstr "Nombre d'utilisateurs par jour"
 
-#: templates-part/visitor/nb-users.php:37
+#: templates-part/visitor/nb-users.php:70
 msgid "Number of user per months"
 msgstr "Nombre d'utilisateurs par mois"
 
-#: templates-part/visitor/nb-users.php:33
+#: templates-part/visitor/nb-users.php:57
 msgid "Number of user per weeks"
 msgstr "Nombre d'utilisateurs par semaine"
 
-#: templates-part/visitor/bare.php:7
+#: templates-part/visitor/bare.php:21
 msgid "Number of users"
 msgstr "Nombre d'utilisateurs"
 
-#: templates-part/dashboard/nb-users-hits.php:13
+#: templates-part/dashboard/nb-users-hits.php:18
 msgid "Number of Users and Hits"
 msgstr "Nombre d'utilisateurs et de visites"
 
-#: templates-part/dashboard/nb-users-hits.php:25
+#: templates-part/dashboard/nb-users-hits.php:44
 msgid "Number of users and Hits per days"
 msgstr "Nombre d'utilisateurs et Hits par jour"
 
-#: templates-part/dashboard/nb-users-hits.php:33
+#: templates-part/dashboard/nb-users-hits.php:76
 msgid "Number of users and Hits per months"
 msgstr "Nombre d'utilisateurs et Hits par mois"
 
-#: templates-part/dashboard/nb-users-hits.php:37
+#: templates-part/dashboard/nb-users-hits.php:92
 msgid "Number of users and Hits per quarter"
 msgstr "Nombre d'utilisateurs et Hits par trimestre"
 
-#: templates-part/dashboard/nb-users-hits.php:29
+#: templates-part/dashboard/nb-users-hits.php:60
 msgid "Number of users and Hits per weeks"
 msgstr "Nombre d'utilisateurs et Hits par semaine"
 
-#: templates-part/dashboard/nb-users-hits.php:41
+#: templates-part/dashboard/nb-users-hits.php:108
 msgid "Number of users and Hits per Years"
 msgstr "Nombre d'utilisateurs et de visites par an"
 
-#: inc/Widgets/CptVisitors.php:57
+#: inc/Widgets/CptVisitors.php:54
 msgid "Number of visitors"
 msgstr "Nombre de visiteurs"
 
-#: templates-part/dashboard/summary.php:21 inc/Widgets/CptVisitors.php:65
+#: templates-part/dashboard/summary.php:30 inc/Widgets/CptVisitors.php:63
 msgid "Online users"
 msgstr "Utilisateurs en ligne"
 
-#: templates-part/visitor/agent.php:108
+#: templates-part/visitor/agent.php:120
 msgid "Opera"
 msgstr "Opera"
 
-#: templates-part/visitor/dashboard.php:40 templates-part/visitor/bare.php:3
+#: templates-part/visitor/dashboard.php:47 templates-part/visitor/bare.php:17
 msgid "Operating system"
 msgstr "Système d'exploitation"
 
-#: templates-part/dashboard/top-10-visitors-today.php:24
+#: templates-part/dashboard/top-10-visitors-today.php:29
 msgid "OS"
 msgstr "OS"
 
-#: templates-part/visitor/os.php:37
+#: templates-part/visitor/os.php:50
 msgid "Os"
 msgstr "OS"
 
-#: templates-part/visitor/os.php:62
+#: templates-part/visitor/os.php:75
 msgid "OS per days"
 msgstr "OS par jours"
 
-#: templates-part/visitor/os.php:70
+#: templates-part/visitor/os.php:83
 msgid "OS per months"
 msgstr "OS par mois"
 
-#: templates-part/visitor/os.php:66
+#: templates-part/visitor/os.php:79
 msgid "OS per weeks"
 msgstr "OS par semaines"
 
-#: templates-part/visitor/os.php:120
+#: templates-part/visitor/os.php:143
 msgid "osx"
 msgstr "osx"
 
-#: templates-part/visitor/os.php:155 templates-part/visitor/agent.php:122
-#: templates-part/visitor/device.php:103
+#: templates-part/visitor/os.php:192 templates-part/visitor/agent.php:134
+#: templates-part/visitor/device.php:125
 msgid "Other"
 msgstr "Autre"
 
-#: templates-part/pages/top.php:48
+#: templates-part/pages/top.php:56
 msgid "Others ..."
 msgstr "Autres ..."
 
-#: templates-part/dashboard/users-online.php:21
+#: templates-part/dashboard/users-online.php:27
 msgid "Page"
 msgstr "Page"
 
-#: templates-part/dashboard/visitors.php:72
+#: templates-part/dashboard/visitors.php:104
 msgid "Page views"
 msgstr "Pages vues"
 
-#: templates-part/settings/tables.php:51
+#: templates-part/settings/tables.php:67
 msgid "Pages"
 msgstr "Pages"
 
-#: templates-part/dashboard/visitors.php:78
+#: templates-part/dashboard/visitors.php:110
 msgid "Pages/session"
 msgstr "Pages/session"
 
-#: inc/Api/UserAgent.php:38 inc/Api/UserAgent.php:40
+#: templates-part/visitor/device.php:118
+msgid "Pda"
+msgstr "Pda"
+
+#: inc/Api/UserAgent.php:36 inc/Api/UserAgent.php:38
 msgctxt "Platform"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: templates-part/dashboard/top-platforms.php:35
+#: templates-part/dashboard/top-platforms.php:51
 msgid "Platforms"
 msgstr "Plateformes"
 
-#: templates-part/dashboard/top-platforms.php:47
+#: templates-part/dashboard/top-platforms.php:63
 msgid "Platforms TOP 10"
 msgstr "TOP 10 des Plateformes"
 
-#: templates-part/support.php:2
+#: templates-part/support.php:14
 msgid "Plugin Support"
 msgstr "Plugin Support"
 
-#: templates-part/settings/tables.php:21 templates-part/settings/tables.php:67
+#: templates-part/settings/tables.php:37 templates-part/settings/tables.php:83
 msgid "Purge tables"
 msgstr "Purger les tables"
 
-#: templates-part/settings/tables.php:24
+#: templates-part/settings/tables.php:40
 msgid "Purged tables with succes."
 msgstr "tables purgées avec succès."
 
-#: inc/Api/SearchEngine.php:110
+#: inc/Api/SearchEngine.php:109
 msgid "Qwant"
 msgstr "Qwant"
 
-#: templates-part/dashboard/header.php:78
+#: templates-part/dashboard/header.php:92
 msgid "Realtime pageviews"
 msgstr "Pages vues en temps réel"
 
-#: templates-part/dashboard/header.php:73
+#: templates-part/dashboard/header.php:87
 msgid "Realtime visitors"
 msgstr "Visiteurs en temps réel"
 
-#: templates-part/dashboard/recent-visitors.php:14
+#: templates-part/dashboard/recent-visitors.php:18
 msgid "Recent visitors"
 msgstr "Visiteurs récents"
 
-#: templates-part/visitor/referred.php:52
-#: templates-part/visitor/referred.php:72 templates-part/visitor/bare.php:9
+#: templates-part/visitor/referred.php:72
+#: templates-part/visitor/referred.php:92 templates-part/visitor/bare.php:23
 msgid "Referred"
 msgstr "Référent"
 
-#: templates-part/visitor/referred.php:22
+#: templates-part/visitor/referred.php:63
 msgid "Referred TOP 10"
 msgstr "TOP 10 Référé"
 
-#: templates-part/dashboard/recent-visitors.php:23
+#: templates-part/dashboard/recent-visitors.php:27
 msgid "Referring"
 msgstr "Référence"
 
-#: inc/Api/AdminGraph.php:106 inc/Api/AdminGraph.php:253
+#: inc/Api/AdminGraph.php:110 inc/Api/AdminGraph.php:260
 msgid "Refresh"
 msgstr "Rafraîchir"
 
-#: assets/defaults.php:24
+#: assets/defaults.php:32
 msgid "REMOTE_ADDR"
 msgstr "REMOTE_ADDR"
 
-#: templates-part/dashboard/visitors.php:32
+#: templates-part/dashboard/visitors.php:64
 msgid "Returning Visitor"
 msgstr "Visiteur de retour"
 
-#: templates-part/dashboard/users-online.php:22
+#: templates-part/dashboard/users-online.php:28
 msgid "Référant"
 msgstr "Référant"
 
-#: templates-part/visitor/agent.php:87
+#: templates-part/visitor/agent.php:99
 msgid "Safari"
 msgstr "Safari"
 
-#: templates-part/visitor/agent.php:115
+#: templates-part/visitor/agent.php:127
 msgid "Samsung Internet"
 msgstr "Samsung Internet"
 
-#: templates-part/visitor/by-hours.php:128
+#: templates-part/visitor/by-hours.php:147
 msgid "Saturday"
 msgstr "Samedi"
 
-#: inc/Api/SearchEngine.php:138
+#: inc/Api/SearchEngine.php:136
 msgctxt "Search Engine"
 msgid "Unknown"
 msgstr "Unknown"
 
-#: templates-part/dashboard/summary.php:97
+#: templates-part/dashboard/summary.php:117
 msgid "Search engine redirects"
 msgstr "Redirections des moteurs de recherche"
 
-#: templates-part/dashboard/visitors.php:60
+#: templates-part/dashboard/visitors.php:92
 msgid "Sessions"
 msgstr "Sessions"
 
-#: inc/Ui/DashBoard.php:85
+#: inc/Ui/DashBoard.php:80
 msgid "Settings Manager"
 msgstr "Gestionnaire des paramètres"
 
-#: templates-part/dashboard/header.php:60
+#: templates-part/dashboard/header.php:74
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: inc/Ui/DashboardWidgetAdmin.php:23
-msgid "Statistics For Wordpress"
+#: inc/Ui/DashboardWidgetAdmin.php:21
+#| msgid "Statistics For Wordpress"
+msgid "Statistics For WordPress"
 msgstr "Statistiques pour Wordpress"
 
 #. Description of the plugin
 msgid "Statistics For WorPress."
 msgstr "Statistiques pour WorPress."
 
-#: inc/Ui/DashBoard.php:242
+#: inc/Ui/DashBoard.php:233
 msgid "Stats4WP"
 msgstr "Stats4WP"
 
@@ -780,232 +769,221 @@ msgstr "Stats4WP"
 msgid "stats4wp"
 msgstr "stats4wp"
 
-#: assets/defaults.php:39
+#: assets/defaults.php:48
 msgid "Store User Agent."
 msgstr "Sauvegarder le User Agent"
 
-#: templates-part/dashboard/summary.php:15
+#: templates-part/dashboard/summary.php:24
 msgid "Summary"
 msgstr "Résumé"
 
-#: templates-part/visitor/by-hours.php:110
+#: templates-part/visitor/by-hours.php:129
 msgid "Sunday"
 msgstr "Dimanche"
 
-#: templates-part/support.php:7
+#: templates-part/support.php:19
 msgid "Support Request"
 msgstr "Support Request"
 
-#: templates-part/settings/tables.php:39
+#: templates-part/settings/tables.php:55
 msgid "Tables"
 msgstr "Tableaux"
 
-#: inc/Ui/DashboardWidgetAdmin.php:32
+#: inc/Ui/DashboardWidgetAdmin.php:29
 msgid "Tables:"
 msgstr "Les tables :"
 
-#: templates-part/visitor/device.php:82
+#: templates-part/visitor/device.php:97
 msgid "Tablet"
 msgstr "Tablette"
 
-#: templates-part/visitor/device.php:96
+#: templates-part/visitor/device.php:111
 msgid "Television"
 msgstr "Television"
 
-#: templates-part/visitor/by-hours.php:122
+#: templates-part/visitor/by-hours.php:141
 msgid "Thursday"
 msgstr "Jeudi"
 
-#: templates-part/dashboard/summary.php:215
+#: templates-part/dashboard/summary.php:264
 msgid "Time"
 msgstr "Heure"
 
-#: templates-part/dashboard/top-10-pages.php:20
+#: templates-part/dashboard/top-10-pages.php:25
 msgid "Title"
 msgstr "Titre"
 
-#: inc/Api/AdminGraph.php:81
+#: inc/Api/AdminGraph.php:85
 msgid "To"
 msgstr "A"
 
-#: inc/Api/AdminGraph.php:83
+#: inc/Api/AdminGraph.php:87
 msgid "To: "
 msgstr "A : "
 
-#: templates-part/dashboard/summary.php:38
-#: templates-part/dashboard/summary.php:101 inc/Widgets/CptVisitors.php:81
+#: templates-part/dashboard/summary.php:47
+#: templates-part/dashboard/summary.php:121 inc/Widgets/CptVisitors.php:79
 msgid "Today"
 msgstr "Aujourd'hui"
 
-#: templates-part/visitor/bots.php:24 templates-part/visitor/bots.php:33
+#: templates-part/visitor/bots.php:29 templates-part/visitor/bots.php:67
 msgid "TOP 10 Bots"
 msgstr "TOP 10 Bots"
 
-#: templates-part/dashboard/top-10-browsers.php:12
+#: templates-part/dashboard/top-10-browsers.php:18
 msgid "Top 10 Browsers"
 msgstr "Les 10 Navigateurs"
 
-#: templates-part/dashboard/top-10-pages.php:13
+#: templates-part/dashboard/top-10-pages.php:18
 msgid "Top 10 Pages today"
 msgstr "Top 10 des pages aujourd'hui"
 
-#: templates-part/visitor/referred.php:34
+#: templates-part/visitor/referred.php:31
 msgid "TOP 10 Referred"
 msgstr "TOP 10 référencés"
 
-#: templates-part/dashboard/top-10-visitors-today.php:14
+#: templates-part/dashboard/top-10-visitors-today.php:19
 msgid "Top 10 visitors today"
 msgstr "TOP 10 visiteurs d'aujourd'hui"
 
-#: templates-part/pages/bare.php:2
+#: templates-part/pages/bare.php:16
 msgid "Top Pages"
 msgstr "Top Pages"
 
-#: templates-part/dashboard/top-platforms.php:12
+#: templates-part/dashboard/top-platforms.php:18
 msgid "Top Platforms"
 msgstr "Top plates-formes"
 
-#: templates-part/dashboard/summary.php:72 inc/Widgets/CptVisitors.php:105
+#: templates-part/dashboard/summary.php:81 inc/Widgets/CptVisitors.php:103
 msgid "Total"
 msgstr "Total"
 
-#: templates-part/dashboard/header.php:68
+#: templates-part/dashboard/header.php:82
 msgid "Total pageviews"
 msgstr "Total des pages vues"
 
-#: templates-part/dashboard/header.php:63
+#: templates-part/dashboard/header.php:77
 msgid "Total visitors"
 msgstr "Total des visiteurs"
 
-#: templates-part/visitor/by-hours.php:116
+#: templates-part/visitor/by-hours.php:135
 msgid "Tuesday"
 msgstr "Mardi"
 
-#: templates-part/dashboard/top-10-visitors-today.php:25
-#: templates-part/pages/dashboard.php:18 templates-part/pages/type.php:36
-#: templates-part/pages/type.php:57 templates-part/pages/top.php:33
-#: templates-part/pages/bare.php:3
+#: templates-part/dashboard/top-10-visitors-today.php:30
+#: templates-part/pages/dashboard.php:29 templates-part/pages/type.php:49
+#: templates-part/pages/type.php:70 templates-part/pages/top.php:41
+#: templates-part/pages/bare.php:17
 msgid "Type"
 msgstr "Type"
 
-#: templates-part/pages/type.php:68
+#: templates-part/pages/type.php:81
 msgid "Type TOP 10"
 msgstr "Type TOP 10"
 
-#: templates-part/visitor/os.php:113
+#: templates-part/visitor/os.php:136 templates-part/visitor/os.php:164
 msgid "Ubuntu"
 msgstr "Ubuntu"
 
-#: templates-part/dashboard/top-10-devices.php:28
+#: templates-part/dashboard/top-10-devices.php:44
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: templates-part/settings/options.php:15
-#: templates-part/settings/options.php:46
+#: templates-part/settings/options.php:21
+#: templates-part/settings/options.php:52
 msgid "Updates"
 msgstr "Mises à jour"
 
-#: inc/Api/Callbacks/ManagerCallbacks.php:84
+#: inc/Api/Callbacks/ManagerCallbacks.php:80
 msgid "Upload Menu"
 msgstr "Menu de téléchargement"
 
-#: templates-part/pages/top.php:34
+#: templates-part/pages/top.php:42
 msgid "URI"
 msgstr "URI"
 
-#: assets/defaults.php:66
-msgid ""
-"Use CDN for Chart.js: https://cdnjs.cloudflare.com/ajax/libs/Chart."
-"js/<version>/chart.min.js."
-msgstr ""
-"Use CDN for Chart.js: https://cdnjs.cloudflare.com/ajax/libs/Chart."
-"js/<version>/chart.min.js."
-
-#: inc/Ui/DashboardWidgetAdmin.php:44
+#: inc/Ui/DashboardWidgetAdmin.php:42
 msgid "User connected:"
 msgstr "Utilisateurs connectés :"
 
-#: templates-part/dashboard/nb-users-hits.php:59
-#: templates-part/dashboard/country-maps.php:38
-#: templates-part/dashboard/visitors.php:39
-#: templates-part/dashboard/visitors.php:48
-#: templates-part/visitor/lang-maps.php:46 templates-part/visitor/lang.php:37
-#: templates-part/visitor/location.php:37 templates-part/visitor/device.php:172
-#: templates-part/visitor/location-maps.php:45
+#: templates-part/dashboard/nb-users-hits.php:121
+#: templates-part/dashboard/visitors.php:71
+#: templates-part/dashboard/visitors.php:80 templates-part/visitor/lang.php:50
+#: templates-part/visitor/location.php:50 templates-part/visitor/device.php:200
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: templates-part/dashboard/country-maps.php:22
+#: templates-part/dashboard/country-maps.php:37
 msgid "Users country maps for last year"
 msgstr "Cartes de pays des utilisateurs pour l'année dernière"
 
-#: templates-part/visitor/lang-maps.php:31
+#: templates-part/visitor/lang-maps.php:43
 msgid "Users language"
 msgstr "Users language"
 
-#: templates-part/dashboard/users-online.php:14
+#: templates-part/dashboard/users-online.php:20
 msgid "Users Online"
 msgstr "Utilisateurs en ligne"
 
-#: templates-part/settings/options.php:86
+#: templates-part/settings/options.php:92
 msgid "Version"
 msgstr "Version"
 
-#: inc/Api/UserAgent.php:37 inc/Api/UserAgent.php:39 inc/Api/UserAgent.php:41
+#: inc/Api/UserAgent.php:35 inc/Api/UserAgent.php:37 inc/Api/UserAgent.php:39
 msgctxt "Version"
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: templates-part/dashboard/top-10-visitors-today.php:21
+#: templates-part/dashboard/top-10-visitors-today.php:26
 msgid "Views"
 msgstr "Vues"
 
-#: templates-part/settings/tables.php:46
+#: templates-part/settings/tables.php:62
 msgid "Visitor"
 msgstr "Visiteur"
 
-#: templates-part/dashboard/summary.php:28 inc/Widgets/CptVisitors.php:72
+#: templates-part/dashboard/summary.php:37 inc/Widgets/CptVisitors.php:70
 msgid "Visitors"
 msgstr "Visiteurs"
 
-#: templates-part/visitor/by-hours.php:73
+#: templates-part/visitor/by-hours.php:86
 msgid "Visitors by hour"
 msgstr "Visiteurs par heure"
 
-#: templates-part/visitor/by-hours.php:158
+#: templates-part/visitor/by-hours.php:177
 msgid "Visitors by hour and days"
 msgstr "Visiteurs par heure et par jour"
 
-#: templates-part/visitor/bare.php:10
+#: templates-part/visitor/bare.php:24
 msgid "Visitors by hours"
 msgstr "Visiteurs par heures"
 
-#: templates-part/dashboard/summary.php:29
-#: templates-part/dashboard/top-10-pages.php:22 inc/Widgets/CptVisitors.php:73
+#: templates-part/dashboard/summary.php:38
+#: templates-part/dashboard/top-10-pages.php:27 inc/Widgets/CptVisitors.php:71
 msgid "Visits"
 msgstr "Visites"
 
-#: templates-part/visitor/by-hours.php:119
+#: templates-part/visitor/by-hours.php:138
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: inc/Widgets/CptVisitors.php:42
+#: inc/Widgets/CptVisitors.php:39
 msgid "Widget Number of visitors"
 msgstr "Widget Nombre de visiteurs"
 
-#: templates-part/visitor/os.php:106
+#: templates-part/visitor/os.php:129
 msgid "Windows"
 msgstr "Windows"
 
-#: inc/Api/SearchEngine.php:90
+#: inc/Api/SearchEngine.php:89
 msgid "Yahoo!"
 msgstr "Yahoo!"
 
-#: inc/Api/SearchEngine.php:100
+#: inc/Api/SearchEngine.php:99
 msgid "Yandex"
 msgstr "Yandex"
 
-#: templates-part/dashboard/summary.php:42
-#: templates-part/dashboard/summary.php:102 inc/Widgets/CptVisitors.php:85
+#: templates-part/dashboard/summary.php:51
+#: templates-part/dashboard/summary.php:122 inc/Widgets/CptVisitors.php:83
 msgid "Yesterday"
 msgstr "Hier"

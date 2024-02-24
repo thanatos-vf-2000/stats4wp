@@ -9,7 +9,7 @@
  * @author  Franck VANHOUCKE <ct4gg@ginkgos.net>
  * @copyright 2021-2023 Copyright 2023, Inc. All rights reserved.
  * @license  GNU General Public License version 2 or later
- * @version  1.4.6 GIT:https://github.com/thanatos-vf-2000/WordPress
+ * @version  1.4.9 GIT:https://github.com/thanatos-vf-2000/WordPress
  * @link   https://ginkgos.net
  */
 
@@ -155,11 +155,11 @@ class AdminGraph {
 						case 6:
 							return gmdate( 'Y-m-d', strtotime( '-2 years' ) );
 						break;
-						case 7;
+						case 7:
 							if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 								$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
 							$visitor = $wpdb->get_row( "SELECT min(last_counter) as minimum FROM $wpdb->stats4wp_visitor" );
-						return $visitor->minimum;
+							return $visitor->minimum;
 						break;
 					}
 				} else {

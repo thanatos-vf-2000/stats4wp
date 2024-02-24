@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.6
+ * @version 1.4.9
  *
  * Desciption: Settings tables
  */
@@ -71,7 +71,7 @@ echo '<table class="widefat striped health-check-table">
     </tbody>
     </table>';
 
-$delele_day = date( 'Y-m-d', strtotime( '-1 years' ) );
+$delele_day = gmdate( 'Y-m-d', strtotime( '-1 years' ) );
 if ( $delele_day < $min_visitors ) {
 	$delele_day = $min_visitors;
 }

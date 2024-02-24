@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 namespace STATS4WP\Core;
 
@@ -121,7 +121,7 @@ class DB {
 	public static function exist_row( $tbl ) {
 		global $wpdb;
 
-		if ( ! in_array( $tbl, self::$db_table ) ) {
+		if ( ! in_array( $tbl, self::$db_table, false ) ) {
 			return false;
 		}
 		if ( in_array( $tbl, self::$db_table_exist, true ) ) {

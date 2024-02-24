@@ -1,13 +1,15 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 
 namespace STATS4WP;
 
 use STATS4WP\Core\Options;
 use STATS4WP\Core\Install;
+
+require STATS4WP_PATH . 'inc/Core/Fonctions.php';
 
 final class Init {
 

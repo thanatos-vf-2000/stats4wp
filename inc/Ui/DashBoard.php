@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 
 namespace STATS4WP\Ui;
@@ -91,7 +91,7 @@ class DashBoard extends BaseController {
 		$defaults     = $this->get_customizer_configuration_defaults();
 		$all_defaults = $this->load_php_config( STATS4WP_PATH . 'assets/defaults.php' );
 		foreach ( $this->managers as $key => $value ) {
-			if ( ! in_array( $key, array( 'version', 't', 'install' ) ) ) {
+			if ( ! in_array( $key, array( 'version', 't', 'install' ), false ) ) {
 				$config = wp_parse_args( $all_defaults[ $key ], $defaults );
 				switch ( $config['type'] ) {
 					case 'checkboxField':

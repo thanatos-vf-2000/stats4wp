@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 
 namespace STATS4WP\Ui;
@@ -18,6 +18,12 @@ class Visitors extends BaseController {
 	public $callbacks;
 
 	public $subpages = array();
+
+	public $settings;
+
+	public function __set( string $settings, mixed $value ): void {
+		$this->{$settings} = $value;
+	}
 
 	public function register() {
 		$this->settings = new SettingsApi();

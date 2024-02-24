@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.4
+ * @version 1.4.9
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -38,7 +38,7 @@ use STATS4WP\Core\Options;
 			$i               = 1;
 			foreach ( $recent_visitors as $recent_visitor ) {
 				$browser      = $recent_visitor->agent;
-				$day          = date( get_option( 'date_format' ), strtotime( $recent_visitor->last_counter ) );
+				$day          = gmdate( get_option( 'date_format' ), strtotime( $recent_visitor->last_counter ) );
 				$ip           = ( true === Options::get_option( 'anonymize_ips' ) ) ? __( 'None', 'stats4wp' ) : $recent_visitor->ip;
 				$referred_txt = wp_parse_url( $recent_visitor->referred, PHP_URL_HOST );
 				$referred     = $recent_visitor->referred;

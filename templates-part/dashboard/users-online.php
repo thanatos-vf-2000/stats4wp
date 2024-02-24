@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.9
  */
 
 
@@ -56,7 +56,7 @@ use STATS4WP\Core\Options;
 						$page_txt = __( 'None', 'stats4wp' );
 						$page_uri = __( 'None', 'stats4wp' );
 					} else {
-						if ( in_array( $page_online->type, array( 'home', 'loginpage' ) ) ) {
+						if ( in_array( $page_online->type, array( 'home', 'loginpage' ), false ) ) {
 							$page_txt = $page_online->type;
 							$page_uri = $page_online->uri;
 						} elseif ( 'attachment' === $page_online->type ) {

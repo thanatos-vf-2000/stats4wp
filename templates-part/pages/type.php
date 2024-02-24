@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.6
+ * @version 1.4.9
  */
 
 
@@ -53,7 +53,7 @@ if ( DB::exist_row( 'pages' ) ) {
 				foreach ( $types as $type_local ) {
 					if ( $type_nb < 10 ) {
 						$t[]  = $type_local->type;
-						$nb[] = ( null === $type_local->nb ) ? 0 : $type->nb;
+						$nb[] = ( null === $type_local->nb ) ? 0 : $type_local->nb;
 					}
 					$type_nb++;
 					$tr_class   = ( 0 === $type_nb % 2 ) ? 'stats4wp-bg' : '';

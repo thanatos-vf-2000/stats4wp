@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.6
+ * @version 1.4.9
  */
 
 namespace STATS4WP\Ui;
@@ -19,6 +19,10 @@ class CSVExport extends BaseController {
 	public $callbacks;
 
 	public $subpages = array();
+
+	public $settings;
+
+	public $separator;
 
 	public function register() {
 		$this->settings = new SettingsApi();
@@ -70,9 +74,9 @@ class CSVExport extends BaseController {
 		global $wpdb;
 
 		switch ( $table ) {
-			case 'visitor';
+			case 'visitor':
 				$field = 'last_counter';
-		break;
+				break;
 			case 'pages':
 				$field = 'date';
 				break;
