@@ -4,7 +4,7 @@ Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, 
 Requires at least: 5.2
 Tested up to: 6.4.3
 Requires PHP: 7.4
-Stable tag: 1.4.9
+Stable tag: 1.4.10
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -102,13 +102,11 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.4.9 (2402-SFP2) =
-*Release Date - 24 Febrary 2023*
+= 1.4.10 (2402-SFP3) =
+*Release Date - 25 Febrary 2023*
 
 * Compatible PHP8.x,
-* Add translations,
-* Correction phpcs 3.7.2 warning Wordpress,
-* Update GeoIP Database 20240223.
+* Error: Your Composer dependencies require a PHP version ">= 8.0.0".3.
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 
