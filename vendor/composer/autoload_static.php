@@ -29,7 +29,6 @@ class ComposerStaticInit5cc0af48f7c4a39876f9e2e63c332369
         'WhichBrowser\\' => 
         array (
             0 => __DIR__ . '/..' . '/whichbrowser/parser/src',
-            1 => __DIR__ . '/..' . '/whichbrowser/parser/tests/src',
         ),
         'STATS4WP\\' => 
         array (

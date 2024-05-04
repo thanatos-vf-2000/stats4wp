@@ -2,9 +2,9 @@
 Contributors: vanhoucke
 Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, chart, browser, today, yesterday, week, month, year, total, post, page, sidebar, google, live visit, search word, agent, google analytics, webmasters, google webmasters, geoip, location, maps, map
 Requires at least: 5.2
-Tested up to: 6.4.3
+Tested up to: 6.5.3
 Requires PHP: 7.4
-Stable tag: 1.4.10
+Stable tag: 1.4.11
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -102,11 +102,13 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.4.10 (2402-SFP3) =
-*Release Date - 25 Febrary 2023*
+= 1.4.11 (2405-SFP1) =
+*Release Date - 04 May 2024*
 
-* Compatible PHP8.x,
-* Error: Your Composer dependencies require a PHP version ">= 8.0.0".3.
+* Compatible Wordpress 6.5.3,
+* Update GeoIP Database 20240503,
+* Error:  PHP Notice:  Undefined index: HTTP_ACCEPT_LANGUAGE.
+
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
 

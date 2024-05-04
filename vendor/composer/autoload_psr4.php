@@ -6,7 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'WhichBrowser\\' => array($vendorDir . '/whichbrowser/parser/src', $vendorDir . '/whichbrowser/parser/tests/src'),
+    'WhichBrowser\\' => array($vendorDir . '/whichbrowser/parser/src'),
     'STATS4WP\\' => array($baseDir . '/inc'),
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'MaxMind\\Db\\' => array($vendorDir . '/maxmind-db/reader/src/MaxMind/Db'),

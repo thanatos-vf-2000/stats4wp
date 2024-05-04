@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.11
  */
 namespace STATS4WP\Stats;
 
@@ -44,7 +44,6 @@ class Visitor {
 			} else {
 				$language = 'no';
 			}
-			$language = substr( sanitize_text_field( wp_unslash( $_SERVER['HTTP_ACCEPT_LANGUAGE'] ) ), 0, 2 );
 			$visitor  = array(
 				'last_counter' => TimeZone::get_current_gmdate( 'Y-m-d' ),
 				'hour'         => gmdate( 'H:i:s' ),
