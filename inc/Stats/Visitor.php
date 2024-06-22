@@ -44,7 +44,7 @@ class Visitor {
 			} else {
 				$language = 'no';
 			}
-			$visitor  = array(
+			$visitor = array(
 				'last_counter' => TimeZone::get_current_gmdate( 'Y-m-d' ),
 				'hour'         => gmdate( 'H:i:s' ),
 				'referred'     => Referred::get(),
@@ -64,7 +64,7 @@ class Visitor {
 				'UAString'     => ( true === Options::get_option( 'store_ua' ) ? UserAgent::get_http_user_agent() : '' ),
 				'hits'         => 1,
 			);
-			$visitor  = apply_filters( 'stats4wp_visitor_information', $visitor );
+			$visitor = apply_filters( 'stats4wp_visitor_information', $visitor );
 
 			// Save Visitor TO DB
 			$visitor_id = self::save_visitor( $visitor );
