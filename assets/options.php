@@ -9,21 +9,21 @@
  * @author    Franck VANHOUCKE <ct4gg@ginkgos.net>
  * @copyright 2021-2023 Copyright 2023, Inc. All rights reserved.
  * @license   GNU General Public License version 2 or later
- * @version   1.4.5 GIT:https://github.com/thanatos-vf-2000/WordPress
+ * @version   1.4.14 GIT:https://github.com/thanatos-vf-2000/WordPress
  * @link      https://ginkgos.net
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (! defined('ABSPATH') ) {
+    exit;
 }
 
 return array(
-	'install'          => '0',
-	'anonymize_ips'    => false,
-	'ip_method'        => 'REMOTE_ADDR',
-	'addsearchwords'   => false,
-	'store_ua'         => true,
-	'check_online'     => 120,
-	'top_page'         => 10,
-	'disableadminstat' => false,
+    'install'          => '0',
+    'anonymize_ips'    => false,
+    'ip_method'        => 'REMOTE_ADDR',
+    'addsearchwords'   => false,
+    'store_ua'         => true,
+    'check_online'     => 120,
+    'top_page'         => 10,
+    'disableadminstat' => false,
 );

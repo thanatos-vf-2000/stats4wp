@@ -1,12 +1,12 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.5
+ * @version 1.4.14
  */
 
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (! defined('ABSPATH') ) {
+    exit;
 }
 
 global $wpdb;
@@ -15,41 +15,42 @@ use STATS4WP\Api\AdminGraph;
 
 ?>
 <div id="stats4wp-platforms-widget" class="postbox ">
-	<div class="postbox-header"><h2 class="hndle ui-sortable-handle"><?php esc_html_e( 'Top Platforms', 'stats4wp' ); ?></h2>
-	</div>
-	<div class="inside">
-	<canvas  id="chartjs_top_platforms" height="150vw" width="200vw"></canvas> 
-	</div>
+    <div class="postbox-header"><h2 class="hndle ui-sortable-handle"><?php esc_html_e('Top Platforms', 'stats4wp'); ?></h2>
+    </div>
+    <div class="inside">
+    <canvas  id="chartjs_top_platforms" height="150vw" width="200vw"></canvas> 
+    </div>
 </div>
 <?php
-if ( DB::exist_row( 'visitor' ) ) {
-	$param = AdminGraph::getdate( '' );
-	if ( ! isset( $wpdb->stats4wp_visitor ) ) {
-		$wpdb->stats4wp_visitor = DB::table( 'visitor' );}
-	$platforms = $wpdb->get_results(
-		$wpdb->prepare(
-			"SELECT platform, count(*) as nb
+if (DB::exist_row('visitor') ) {
+    $param = AdminGraph::getdate('');
+    if (! isset($wpdb->stats4wp_visitor) ) {
+        $wpdb->stats4wp_visitor = DB::table('visitor');
+    }
+    $platforms = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT platform, count(*) as nb
         FROM $wpdb->stats4wp_visitor 
         where device!='bot' 
         AND last_counter BETWEEN %s AND %s
         GROUP BY 1 ORDER BY 2 DESC LIMIT 10",
-			array(
-				$param['from'],
-				$param['to'],
-			)
-		)
-	);
-	foreach ( $platforms as $platform ) {
-		$type_local[] = $platform->platform;
-		$nb[]         = $platform->nb;
-	}
-	$script_js = ' 
+            array(
+                $param['from'],
+                $param['to'],
+            )
+        )
+    );
+    foreach ( $platforms as $platform ) {
+        $type_local[] = $platform->platform;
+        $nb[]         = $platform->nb;
+    }
+    $script_js = ' 
     
     const dataTopPlatforms= {
-        labels: ' . wp_json_encode( $type_local ) . ',
+        labels: ' . wp_json_encode($type_local) . ',
         datasets: [{
-          label: "' . esc_html( __( 'Platforms', 'stats4wp' ) ) . '",
-          data: ' . wp_json_encode( $nb ) . ',
+          label: "' . esc_html(__('Platforms', 'stats4wp')) . '",
+          data: ' . wp_json_encode($nb) . ',
           backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
           hoverOffset: 4
         }]
@@ -60,7 +61,7 @@ if ( DB::exist_row( 'visitor' ) ) {
       plugins: {
           title: {
               display: false,
-              text: "' . esc_html( __( 'Platforms TOP 10', 'stats4wp' ) ) . '"
+              text: "' . esc_html(__('Platforms TOP 10', 'stats4wp')) . '"
           },
           },
       legend: {
@@ -87,7 +88,7 @@ if ( DB::exist_row( 'visitor' ) ) {
     );
 
     ';
-	wp_add_inline_script( 'chart-js', $script_js );
+    wp_add_inline_script('chart-js', $script_js);
 
-	unset( $browsers, $type_local, $nb );
+    unset($browsers, $type_local, $nb);
 }

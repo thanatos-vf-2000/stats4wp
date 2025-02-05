@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.9
+ * @version 1.4.14
  */
 
 /**
@@ -9,7 +9,8 @@
  *
  * @return string
  */
-function filter_string_polyfill( string $string ): string {
-	$str = preg_replace( '/\x00|<[^>]*>?/', '', $string );
-	return str_replace( array( "'", '"' ), array( '&#39;', '&#34;' ), $str );
+function filter_string_polyfill( string $string ): string
+{
+    $str = preg_replace('/\x00|<[^>]*>?/', '', $string);
+    return str_replace(array( "'", '"' ), array( '&#39;', '&#34;' ), $str);
 }
