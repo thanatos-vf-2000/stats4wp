@@ -1,0 +1,26 @@
+{
+    "name": "thanatos-vf-2000/stats4wp",
+    "description": "This plugin gives you the complete information on your website's visitors.",
+    "keywords": ["analytics", "wordpress analytics", "stats", "statistics", "visit", "visitors", "hits", "chart", "browser", "today", "yesterday", "week", "month", "year", "total", "post", "page", "sidebar", "google", "live visit", "search word", "agent", "google analytics", "webmasters", "google webmasters", "geoip", "location"],
+    "homepage": "https://ginkgos.net",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Franck VANHOUCKE",
+            "email": "contact@ginkgos.net",
+            "role": "Developer"
+        }
+    ],
+    "config": {
+	    "vendor-dir": "vendor"
+    },
+	"autoload": {
+			"psr-4": {"STATS4WP\\": "./inc"}
+			},
+    "require": {
+        "whichbrowser/parser": "^2.1",
+        "maxmind-db/reader": "^1.10",
+        "php": "^7.4"
+    }
+}

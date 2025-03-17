@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.15
  */
 namespace STATS4WP\Api;
 
@@ -103,7 +103,7 @@ class SettingsApi
     {
         // register setting
         foreach ( $this->settings as $setting ) {
-            register_setting($setting['option_group'], $setting['option_name'], ( isset($setting['callback']) ? $setting['callback'] : '' ));
+            register_setting($setting['option_group'], $setting['option_name'], array( 'type' => 'string', 'sanitize_callback' => isset($setting['callback']) ? $setting['callback'] : '' ));
         }
 
         // add settings section

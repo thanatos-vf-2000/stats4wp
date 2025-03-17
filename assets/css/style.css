@@ -20,16 +20,20 @@ Author URI: https://ginkgos.net/
 Version: 1.3.1
 */
 .stats4wp-summary-stats {
-  font-size: 13px; }
+  font-size: 13px;
+}
 
 .stats4wp-summary-stats th {
-  background-color: transparent; }
+  background-color: transparent;
+}
 
 .stats4wp-summary-stats #th-colspan span {
-  font-size: 20px; }
+  font-size: 20px;
+}
 
 .stats4wp-summary-stats span {
-  font-size: 13px !important; }
+  font-size: 13px !important;
+}
 
 /*
 * Dashboard Header Total Stats
@@ -40,19 +44,23 @@ Version: 1.3.1
   padding: 24px;
   margin-bottom: 12px;
   display: flex;
-  border-radius: 6px; }
+  border-radius: 6px;
+}
 
 .stats4wp-db-box {
   display: block;
-  margin-right: 48px; }
+  margin-right: 48px;
+}
 
 .fade {
-  animation: fadein .4s; }
+  animation: fadein 0.4s;
+}
 
 .stats4wp-db-label {
   color: #eee;
   margin-bottom: 6px;
-  font-size: 14px; }
+  font-size: 14px;
+}
 
 .stats4wp-db-amount {
   display: block;
@@ -60,31 +68,38 @@ Version: 1.3.1
   font-size: 48px;
   font-weight: 500;
   letter-spacing: -1px;
-  margin-bottom: 6px; }
+  margin-bottom: 6px;
+}
 
 .stats4wp-db-amount span {
-  font-size: .4em;
+  font-size: 0.4em;
   font-weight: normal;
   vertical-align: top;
-  letter-spacing: normal; }
+  letter-spacing: normal;
+}
 
 .stats4wp-db-compare {
-  color: #eee; }
+  color: #eee;
+}
 
 .neutral {
-  color: #aaa; }
+  color: #aaa;
+}
 
 .up {
-  color: #32cd32; }
+  color: #32cd32;
+}
 
 .down {
-  color: #fb7272; }
+  color: #fb7272;
+}
 
 /*
 * Dashboard next
 */
 p.stats4wp-min {
-  font-size: 18px !important; }
+  font-size: 18px !important;
+}
 
 .rows.stats4wp-dashboard-header p {
   font-size: 23px;
@@ -92,133 +107,166 @@ p.stats4wp-min {
   padding: 9px 0 4px 0;
   line-height: 1.3;
   text-align: center;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .stats4wp-dashboard {
   background-color: #fff;
-  padding: 20px 10px; }
+  padding: 20px 10px;
+}
 
 .stats4wp-rows {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+}
 
 .stats4wp-inline {
-  display: inline-block; }
+  display: inline-block;
+}
 
 .stats4wp-inline.width30 {
-  width: 30%; }
+  width: 30%;
+}
 
 .stats4wp-inline.width46 {
-  width: 46%; }
+  width: 46%;
+}
 
 .stats4wp-inline.width94 {
-  width: 94%; }
+  width: 94%;
+}
 
 .stats4wp-inline p {
-  margin: 0px; }
+  margin: 0px;
+}
 
 .stats4wp-dashboard p.title {
   font-size: 15px;
-  font-weight: bold; }
+  font-weight: bold;
+}
 
 .stats4wp-inline.border {
   box-shadow: 12px 12px 2px 1px #aaa;
   border: 2px solid #333;
-  margin: 10px; }
+  margin: 10px;
+}
 
 .metabox-holder {
-  padding-top: 10px; }
+  padding-top: 10px;
+}
 
 #stats4wp-postbox-container-1 {
   width: 30%;
-  float: left; }
+  float: left;
+}
 
 #stats4wp-postbox-container-2 {
   margin: 0 0 0 1%;
   width: 68%;
-  float: right; }
+  float: right;
+}
 
 #stats4wp-summary-widget, #stats4wp-browsers-widget, #stats4wp-platforms-widget, #stats4wp-useronline-widget, #stats4wp-pages-widget, #stats4wp-topvisitors-widget, #stats4wp-recentvisitors-widget, #stats4wp-nb-users-hits-widget {
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .postbox {
   background: #FFFFFF;
   border: 0;
-  box-shadow: 0px 2px 4px #00000014;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0784313725);
   border-radius: 2px;
   padding: 0;
   position: relative;
   min-width: 255px;
   margin-bottom: 20px;
-  line-height: 1; }
+  line-height: 1;
+}
 
 .postbox .postbox-header {
   padding: 7px 15px;
-  border-bottom: 1px solid #E7E7E7; }
+  border-bottom: 1px solid #E7E7E7;
+}
 
 .postbox-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #c3c4c7; }
+  border-bottom: 1px solid #c3c4c7;
+}
 
 .postbox .postbox-header h2 {
-  padding: 0; }
+  padding: 0;
+}
 
 .meta-box-sortables .inside {
-  padding: 15px !important; }
+  padding: 15px !important;
+}
 
 .table-stats {
-  border: 0 none !important; }
+  border: 0 none !important;
+}
 
 .table-stats tr, .table-stats td {
   border-bottom: 1px solid #efeeee;
   background-color: white;
-  transition: 1s all; }
+  transition: 1s all;
+}
 
 .table-stats tr:first-child td {
   border: 0 none;
-  text-align: left; }
+  text-align: left;
+}
 
 .stats4wp-summary-stats span {
   color: #21759B !important;
   font-family: Georgia, "Times New Roman", "Bitstream Charter", Times, serif;
-  font-size: 21px; }
+  font-size: 21px;
+}
 
 .stats4wp-summary-stats tr:first-child th {
-  border-top: 0 none; }
+  border-top: 0 none;
+}
 
 #th-colspan {
-  text-align: center; }
+  text-align: center;
+}
 
 #th-colspan span {
   color: #459605 !important;
-  font-size: 30px; }
+  font-size: 30px;
+}
 
 table.stats4wp-table-fixed {
   table-layout: fixed;
-  width: 100%; }
+  width: 100%;
+}
 
 .stats4wp-report-table tr:first-child {
   background: none repeat scroll 0 0 #EEEEEE;
   font-weight: bold;
-  text-align: center; }
+  text-align: center;
+}
 
 .stats4wp-text-wrap {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
-  width: 100% !important; }
+  width: 100% !important;
+}
 
 .stats4wp-text-danger {
-  color: #DC3545 !important; }
+  color: #DC3545 !important;
+}
 
 .th-center {
-  text-align: center !important; }
+  text-align: center !important;
+}
 
 #time_zone a {
   font-size: 11px;
-  text-decoration: none; }
+  text-decoration: none;
+}
 
 .stats4wp-engine-logo {
-  vertical-align: -3px; }
+  vertical-align: -3px;
+}

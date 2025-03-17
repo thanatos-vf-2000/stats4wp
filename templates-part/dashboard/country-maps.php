@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.15
  *
  * Desciption: Contry Maps
  */
@@ -17,7 +17,7 @@ use STATS4WP\Api\AdminGraph;
 if (! isset($wpdb->stats4wp_visitor) ) {
     $wpdb->stats4wp_visitor = DB::table('visitor');
 }
-        $param = AdminGraph::getdate('');
+    $param = AdminGraph::getdate('');
     $locations = $wpdb->get_results(
         $wpdb->prepare(
             "SELECT location, count(*) as nb FROM $wpdb->stats4wp_visitor 
@@ -32,47 +32,33 @@ if (! isset($wpdb->stats4wp_visitor) ) {
             )
         )
     );
+    wp_enqueue_script(
+        'chart-js-script',
+        STATS4WP_URL . 'assets/js/country-maps.js',
+        array('jquery', 'chart-js'),
+        null,
+        true
+    );
+    // Préparer les données pour JavaScript
+    $gdp_data = array();
+    if (!empty($locations)) {
+        foreach ($locations as $location) {
+            $gdp_data[$location->location] = (int) $location->nb;
+        }
+    }
+    $gdp_data["UNDEFINED"] = 0;
+
+    // Passer les données à admin.js
+    wp_localize_script(
+        'chart-js-script', 'stats4wpData', array(
+        'gdpData' => $gdp_data,
+        'regionText' => esc_html__('Number', 'stats4wp'),
+        )
+    );
     ?>
     <div id ="stats4wp-maps-widget" class="postbox " >
         <div class="postbox-header">
             <h2 class="hndle ui-sortable-handle"><?php esc_html_e('Users country maps for last year', 'stats4wp'); ?></h2>
         </div>
         <div id="world-map" style="width: 600px; height: 400px"></div>
-        <script type="text/javascript">
-
-        function defered(method) {
-            if (window.jQuery && window.jQuery.fn.vectorMap) {
-                method();
-            } else {
-                setTimeout(function() { defered(method) }, 50);
-            }
-        }
-        defered(function () {
-            console.log("jQuery is now loaded");
-            jQuery(function ($) {
-                $(function(){
-                    $('#world-map').vectorMap({map: 'world_mill',
-                        series: {
-                            regions: [{
-                            values: gdpData,
-                            scale: ['#C8EEFF', '#0071A4'],
-                            normalizeFunction: 'polynomial'
-                            }]
-                        },
-                        onRegionTipShow: function(e, el, code){
-                            el.html(el.html()+' (<?php echo esc_html__('Number', 'stats4wp'); ?> - '+gdpData[code]+')');
-                        }
-                    });
-                });
-            });
-        });
-
-            var gdpData = {
-            <?php
-            foreach ( $locations as $location ) {
-                echo '"' . esc_html($location->location) . '":' . esc_html($location->nb) . ',';
-            }
-            ?>
-            "UNDEFINED": 0,};
-            </script>
     </div>

@@ -2,7 +2,7 @@
 /**
  *
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.15
  */
 namespace STATS4WP\Core;
 
@@ -19,7 +19,7 @@ class Enqueue
 
     public function init()
     {
-        load_plugin_textdomain('stats4wp', false, STATS4WP_PATH . '/languages');
+        //load_plugin_textdomain('stats4wp', false, STATS4WP_PATH . '/languages');
 
         if (WP_DEBUG ) {
             wp_enqueue_style(STATS4WP_NAME, STATS4WP_URL . 'assets/css/style.css', array(), STATS4WP_VERSION);

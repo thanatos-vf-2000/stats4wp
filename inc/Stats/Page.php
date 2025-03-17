@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.15
  */
 namespace STATS4WP\Stats;
 
@@ -119,7 +119,7 @@ class Page
         /**
          * Is search page
          */
-        $search_query = filter_var(get_search_query(false), FILTER_CALLBACK, array( 'options' => 'filter_string_polyfill' ));
+        $search_query = filter_var(get_search_query(false), FILTER_CALLBACK, array( 'options' => 'stats4wp_filter_string_polyfill' ));
         if (trim($search_query) !== '' ) {
             return array(
             'type'         => 'search',
@@ -255,7 +255,7 @@ class Page
         /**
          * Sanitize Xss injection
          */
-        $page_uri = filter_var($page_uri, FILTER_CALLBACK, array( 'options' => 'filter_string_polyfill' ));
+        $page_uri = filter_var($page_uri, FILTER_CALLBACK, array( 'options' => 'stats4wp_filter_string_polyfill' ));
 
         /**
          * If we're at the root (aka the URI is blank), let's make sure to indicate it.

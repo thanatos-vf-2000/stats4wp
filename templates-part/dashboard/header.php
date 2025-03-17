@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.15
  *
  * Desciption: Admin Page Pages
  */
@@ -87,12 +87,12 @@ if (0 === $month_pages['p'] ) {
         <div class="stats4wp-db-box fade">
             <div class="stats4wp-db-label"><?php esc_html_e('Realtime visitors', 'stats4wp'); ?></div>
             <div class="stats4wp-db-amount"><?php echo esc_html(number_format($last_hour->visitors, 0, ',', ' ')); ?></div>
-            <div class="stats4wp-db-compare"><span><span><?php esc_html_e('visitors in the last hour'); ?></span></span></div>
+            <div class="stats4wp-db-compare"><span><span><?php esc_html_e('visitors in the last hour', 'stats4wp'); ?></span></span></div>
         </div>
         <div class="stats4wp-db-box fade">
             <div class="stats4wp-db-label"><?php esc_html_e('Realtime pageviews', 'stats4wp'); ?></div>
             <div class="stats4wp-db-amount"><?php echo esc_html(number_format($last_hour->pages, 0, ',', ' ')); ?></div>
-            <div class="stats4wp-db-compare"><span><span><?php esc_html_e('pageviews in the last hour'); ?></span></span></div>
+            <div class="stats4wp-db-compare"><span><span><?php esc_html_e('pageviews in the last hour', 'stats4wp'); ?></span></span></div>
         </div>
     </div>
     <?php
