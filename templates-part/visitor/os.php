@@ -5,88 +5,88 @@
  */
 
 
-if (! defined('ABSPATH') ) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 use STATS4WP\Core\DB;
 use STATS4WP\Api\AdminGraph;
 
-$page_local = ( isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '' );
-if ('stats4wp_plugin' === $page_local ) {
-    $data = 'all';
+$page_local = ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '' );
+if ( 'stats4wp_plugin' === $page_local ) {
+	$data = 'all';
 } else {
-    $data = '';
+	$data = '';
 }
 
-if (DB::exist_row('visitor') ) {
-    $param = AdminGraph::getdate($data);
-    if (! isset($wpdb->stats4wp_visitor) ) {
-        $wpdb->stats4wp_visitor = DB::table('visitor');
-    }
-    ?>
-    <div class="stats4wp-dashboard">
-        <div class="stats4wp-rows">
-            <div class="stats4wp-inline width46 ">
-                <div class="stats4wp-os">
-                    <?php
-                    $os_versions = $wpdb->get_results(
-                        $wpdb->prepare(
-                            "SELECT platform, platform_v as version, count(*) as nb
+if ( DB::exist_row( 'visitor' ) ) {
+	$param = AdminGraph::getdate( $data );
+	if ( ! isset( $wpdb->stats4wp_visitor ) ) {
+		$wpdb->stats4wp_visitor = DB::table( 'visitor' );
+	}
+	?>
+	<div class="stats4wp-dashboard">
+		<div class="stats4wp-rows">
+			<div class="stats4wp-inline width46 ">
+				<div class="stats4wp-os">
+					<?php
+					$os_versions = $wpdb->get_results(
+						$wpdb->prepare(
+							"SELECT platform, platform_v as version, count(*) as nb
                         FROM {$wpdb->stats4wp_visitor}
                         WHERE device !='bot' 
                         AND last_counter BETWEEN %s AND %s
                         GROUP BY 1,2 ORDER BY 1,3 DESC ",
-                            $param['from'],
-                            $param['to']
-                        )
-                    );
-                    $os_total    = array_sum(array_column($os_versions, 'nb'));
-                    $os_nb       = 1;
-                    $os_local    = '';
-                    echo '<table class="widefat table-stats stats4wp-report-table" style="width: 90%;">
+							$param['from'],
+							$param['to']
+						)
+					);
+					$os_total    = array_sum( array_column( $os_versions, 'nb' ) );
+					$os_nb       = 1;
+					$os_local    = '';
+					echo '<table class="widefat table-stats stats4wp-report-table" style="width: 90%;">
                         <tbody>
                             <tr>
                                 <td style="width: 1%;"></td>
-                                <td>' . esc_html(__('Os', 'stats4wp')) . '</td>
+                                <td>' . esc_html( __( 'Os', 'stats4wp' ) ) . '</td>
                                 <td style="width: 10%;"></td>
                                 <td style="width: 10%;"></td>
                             </tr>';
-                    foreach ( $os_versions as $os_version ) {
-                        if ($os_local !== $os_version->platform ) {
-                            $os_nb = 1;
-                            echo '<tr><th colspan="4">' . esc_html($os_version->platform) . '</th></tr>';
-                        }
-                        $percent = round($os_version->nb * 100 / $os_total, 2);
-                        echo '<tr><td>' . esc_html($os_nb) . '</td><td>' . esc_html(substr($os_version->version, 0, 50)) . '</td><td>' . esc_html(number_format($os_version->nb, 0, ',', ' ')) . '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr($percent) . '%;"></div>' . esc_html($percent) . '%</td></tr>';
-                        $os_local = $os_version->platform;
-                        $os_nb++;
-                    }
-                    echo '</tbody>
+					foreach ( $os_versions as $os_version ) {
+						if ( $os_local !== $os_version->platform ) {
+							$os_nb = 1;
+							echo '<tr><th colspan="4">' . esc_html( $os_version->platform ) . '</th></tr>';
+						}
+						$percent = round( $os_version->nb * 100 / $os_total, 2 );
+						echo '<tr><td>' . esc_html( $os_nb ) . '</td><td>' . esc_html( substr( $os_version->version, 0, 50 ) ) . '</td><td>' . esc_html( number_format( $os_version->nb, 0, ',', ' ' ) ) . '</td><td class="stats4wp-left stats4wp-nowrap"><div class="stats4wp-percent" style="width:' . esc_attr( $percent ) . '%;"></div>' . esc_html( $percent ) . '%</td></tr>';
+						$os_local = $os_version->platform;
+						++$os_nb;
+					}
+					echo '</tbody>
                     </table>';
-                    ?>
-                </div>
-            </div>
-            <div class="stats4wp-inline width46 ">
-                <canvas id="chartjs_os" height="300vw" width="400vw"></canvas> 
-                <?php
-                switch ( $param['interval'] ) {
-                case 'days':
-                    $wpdb->stats4wp_select = 'last_counter as z';
-                    $char_title            = __('OS per days', 'stats4wp');
-                    break;
-                case 'weeks':
-                    $wpdb->stats4wp_select = 'CONCAT(YEAR(last_counter),".",WEEK(last_counter)) as z';
-                    $char_title            = __('OS per weeks', 'stats4wp');
-                    break;
-                case 'month':
-                    $wpdb->stats4wp_select = 'CONCAT(YEAR(last_counter),".",MONTH(last_counter)) as z';
-                    $char_title            = __('OS per months', 'stats4wp');
-                    break;
-                }
-                $oss = $wpdb->get_results(
-                    $wpdb->prepare(
-                        "SELECT z as d,
+					?>
+				</div>
+			</div>
+			<div class="stats4wp-inline width46 ">
+				<canvas id="chartjs_os" height="300vw" width="400vw"></canvas> 
+				<?php
+				switch ( $param['interval'] ) {
+					case 'days':
+						$wpdb->stats4wp_select = 'last_counter as z';
+						$char_title            = __( 'OS per days', 'stats4wp' );
+						break;
+					case 'weeks':
+						$wpdb->stats4wp_select = 'CONCAT(YEAR(last_counter),".",WEEK(last_counter)) as z';
+						$char_title            = __( 'OS per weeks', 'stats4wp' );
+						break;
+					case 'month':
+						$wpdb->stats4wp_select = 'CONCAT(YEAR(last_counter),".",MONTH(last_counter)) as z';
+						$char_title            = __( 'OS per months', 'stats4wp' );
+						break;
+				}
+				$oss = $wpdb->get_results(
+					$wpdb->prepare(
+						"SELECT z as d,
                     SUM(CASE WHEN platform = 'Windows' THEN nb END) windows,
                     SUM(CASE WHEN platform = 'Ubuntu' THEN nb END) ubuntu ,
                     SUM(CASE WHEN platform = 'OS X' THEN nb END) osx ,
@@ -105,96 +105,96 @@ if (DB::exist_row('visitor') ) {
                     GROUP BY  1, 2
                     ) all_data
                     group by 1",
-                        $param['from'],
-                        $param['to']
-                    )
-                );
-                foreach ( $oss as $os ) {
-                    $day[]      = $os->d;
-                    $windows[]  = ( null === $os->windows ) ? 0 : $os->windows;
-                    $ubuntu[]   = ( null === $os->ubuntu ) ? 0 : $os->ubuntu;
-                    $osx[]      = ( null === $os->osx ) ? 0 : $os->osx;
-                    $linux[]    = ( null === $os->linux ) ? 0 : $os->linux;
-                    $fedora[]   = ( null === $os->fedora ) ? 0 : $os->fedora;
-                    $ubuntu[]   = ( null === $os->ubuntu ) ? 0 : $os->ubuntu;
-                    $ios[]      = ( null === $os->ios ) ? 0 : $os->ios;
-                    $chromeos[] = ( null === $os->chromeos ) ? 0 : $os->chromeos;
-                    $android[]  = ( null === $os->android ) ? 0 : $os->android;
-                    $other[]    = ( null === $os->other ) ? 0 : $os->other;
-                }
+						$param['from'],
+						$param['to']
+					)
+				);
+				foreach ( $oss as $os ) {
+					$day[]      = $os->d;
+					$windows[]  = ( null === $os->windows ) ? 0 : $os->windows;
+					$ubuntu[]   = ( null === $os->ubuntu ) ? 0 : $os->ubuntu;
+					$osx[]      = ( null === $os->osx ) ? 0 : $os->osx;
+					$linux[]    = ( null === $os->linux ) ? 0 : $os->linux;
+					$fedora[]   = ( null === $os->fedora ) ? 0 : $os->fedora;
+					$ubuntu[]   = ( null === $os->ubuntu ) ? 0 : $os->ubuntu;
+					$ios[]      = ( null === $os->ios ) ? 0 : $os->ios;
+					$chromeos[] = ( null === $os->chromeos ) ? 0 : $os->chromeos;
+					$android[]  = ( null === $os->android ) ? 0 : $os->android;
+					$other[]    = ( null === $os->other ) ? 0 : $os->other;
+				}
 
-                $script_js = '
+				$script_js = '
                 const dataOs= {
-                    labels:' . wp_json_encode($day) . ',
+                    labels:' . wp_json_encode( $day ) . ',
                     datasets: [{
-                            label: "' . esc_html(__('Windows', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'Windows', 'stats4wp' ) ) . '",
                             backgroundColor: [
                             "#36a2eb"
                             ],
-                            data:' . wp_json_encode($windows) . ',
+                            data:' . wp_json_encode( $windows ) . ',
                         },
                         {
-                            label: "' . esc_html(__('Ubuntu', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'Ubuntu', 'stats4wp' ) ) . '",
                             backgroundColor: [
                                "#f67019"
                             ],
-                            data:' . wp_json_encode($ubuntu) . ',
+                            data:' . wp_json_encode( $ubuntu ) . ',
                         },
                         {
-                            label: "' . esc_html(__('osx', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'osx', 'stats4wp' ) ) . '",
                             backgroundColor: [
                                "#f53794"
                             ],
-                            data:' . wp_json_encode($osx) . ',
+                            data:' . wp_json_encode( $osx ) . ',
                         },
                         {
-                            label: "' . esc_html(__('Linux', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'Linux', 'stats4wp' ) ) . '",
                             backgroundColor: [
                                "#537bc4"
                             ],
-                            data:' . wp_json_encode($linux) . ',
+                            data:' . wp_json_encode( $linux ) . ',
                         },
                         {
-                            label: "' . esc_html(__('Fedora', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'Fedora', 'stats4wp' ) ) . '",
                             backgroundColor: [
                                "#537bc4"
                             ],
-                            data:' . wp_json_encode($fedora) . ',
+                            data:' . wp_json_encode( $fedora ) . ',
                         },
                         {
-                            label: "' . esc_html(__('Ubuntu', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'Ubuntu', 'stats4wp' ) ) . '",
                             backgroundColor: [
                                "#537bc4"
                             ],
-                            data:' . wp_json_encode($ubuntu) . ',
+                            data:' . wp_json_encode( $ubuntu ) . ',
                         },
                         {
-                            label: "' . esc_html(__('iOS', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'iOS', 'stats4wp' ) ) . '",
                             backgroundColor: [
                                "#acc236"
                             ],
-                            data:' . wp_json_encode($ios) . ',
+                            data:' . wp_json_encode( $ios ) . ',
                         },
                         {
-                            label: "' . esc_html(__('Chrome OS', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'Chrome OS', 'stats4wp' ) ) . '",
                             backgroundColor: [
                                "#166a8f"
                             ],
-                            data:' . wp_json_encode($chromeos) . ',
+                            data:' . wp_json_encode( $chromeos ) . ',
                         },
                         {
-                            label: "' . esc_html(__('Android', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'Android', 'stats4wp' ) ) . '",
                             backgroundColor: [
                                "#00a950"
                             ],
-                            data:' . wp_json_encode($android) . ',
+                            data:' . wp_json_encode( $android ) . ',
                         },
                         {
-                            label: "' . esc_html(__('Other', 'stats4wp')) . '",
+                            label: "' . esc_html( __( 'Other', 'stats4wp' ) ) . '",
                             backgroundColor: [
                                "#58595b"
                             ],
-                            data:' . wp_json_encode($other) . ',
+                            data:' . wp_json_encode( $other ) . ',
                         }
                     ]
                 };
@@ -212,7 +212,7 @@ if (DB::exist_row('visitor') ) {
                     plugins: {
                         title: {
                           display: true,
-                          text: "' . esc_html($char_title) . '"
+                          text: "' . esc_html( $char_title ) . '"
                         },
                       },
                     legend: {
@@ -238,11 +238,11 @@ if (DB::exist_row('visitor') ) {
                   configOs
                 );
                 ';
-                wp_add_inline_script('chart-js', $script_js);
-                unset($day, $windows, $ubuntu, $safari, $edge, $chrome, $chromeos, $android, $other);
-                ?>
-            </div>
-        </div>
-    </div>
-    <?php
+				wp_add_inline_script( 'chart-js', $script_js );
+				unset( $day, $windows, $ubuntu, $safari, $edge, $chrome, $chromeos, $android, $other );
+				?>
+			</div>
+		</div>
+	</div>
+	<?php
 }

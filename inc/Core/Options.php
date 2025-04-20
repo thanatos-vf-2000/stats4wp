@@ -5,171 +5,162 @@
  */
 namespace STATS4WP\Core;
 
-class Options
-{
+class Options {
 
-    /**
-     * Class instance.
-     *
-     * @since  1.0.0
-     * @access private
-     * @var    $instance Class instance.
-     */
-    private static $instance;
 
-    /**
-     * A static option variable.
-     *
-     * @since  1.0.0
-     * @access private
-     * @var    mixed $db_options
-     */
-    private static $db_options;
+	/**
+	 * Class instance.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    $instance Class instance.
+	 */
+	private static $instance;
 
-    /**
-     * A static option variable.
-     *
-     * @since  1.0.0
-     * @access private
-     * @var    mixed $db_options
-     */
-    private static $db_options_no_defaults;
+	/**
+	 * A static option variable.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    mixed $db_options
+	 */
+	private static $db_options;
 
-    /**
-     * Initiator
-     *
-     * @since 1.0.0
-     */
-    public function register()
-    {
-        if (! isset(self::$instance) ) {
-            self::$instance = new self();
-            if (empty(self::$db_options) ) {
-                self::refresh();
-            }
-        }
-    }
+	/**
+	 * A static option variable.
+	 *
+	 * @since  1.0.0
+	 * @access private
+	 * @var    mixed $db_options
+	 */
+	private static $db_options_no_defaults;
 
-    /**
-     * LoadPHPConfig - load default config for plugin
-     *
-     * @since  1.0.0
-     * @return array()
-     */
-    private static function load_php_config( $path )
-    {
+	/**
+	 * Initiator
+	 *
+	 * @since 1.0.0
+	 */
+	public function register() {
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
+			if ( empty( self::$db_options ) ) {
+				self::refresh();
+			}
+		}
+	}
 
-        if (! file_exists($path) ) {
-            return array();
-        }
+	/**
+	 * LoadPHPConfig - load default config for plugin
+	 *
+	 * @since  1.0.0
+	 * @return array()
+	 */
+	private static function load_php_config( $path ) {
 
-        $content = include $path;
+		if ( ! file_exists( $path ) ) {
+			return array();
+		}
 
-        return $content;
-    }
+		$content = include $path;
 
-    /**
-     * Set default option values
-     *
-     * @since  1.0.0
-     * @return default values of the .
-     */
-    public static function defaults()
-    {
-        // Defaults list of options.
-        $defaults_sys = array(
-        'version' => '0.0.0',
-        't'       => time(),
-        );
-        $defaults_app = self::load_php_config(STATS4WP_PATH . 'assets/options.php');
+		return $content;
+	}
 
-        return array_merge($defaults_sys, $defaults_app);
-    }
+	/**
+	 * Set default option values
+	 *
+	 * @since  1.0.0
+	 * @return default values of the .
+	 */
+	public static function defaults() {
+		// Defaults list of options.
+		$defaults_sys = array(
+			'version' => '0.0.0',
+			't'       => time(),
+		);
+		$defaults_app = self::load_php_config( STATS4WP_PATH . 'assets/options.php' );
 
-    /**
-     * Get options from static array()
-     *
-     * @since  1.0.0
-     * @return array    Return array of options.
-     */
-    public static function get_options()
-    {
-        if (empty(self::$db_options) ) {
-            self::refresh();
-        }
-        return self::$db_options;
-    }
+		return array_merge( $defaults_sys, $defaults_app );
+	}
 
-    /**
-     * Get specific option
-     *
-     * @since  1.0.0
-     * @return array    Return array of options.
-     */
-    public static function get_option( $opt )
-    {
-        if (empty(self::$db_options) ) {
-            self::refresh();
-        }
-        return self::$db_options[ $opt ];
-    }
+	/**
+	 * Get options from static array()
+	 *
+	 * @since  1.0.0
+	 * @return array    Return array of options.
+	 */
+	public static function get_options() {
+		if ( empty( self::$db_options ) ) {
+			self::refresh();
+		}
+		return self::$db_options;
+	}
 
-    /**
-     * Update  static option array.
-     *
-     * @since 1.0.0
-     */
-    public static function refresh()
-    {
-        self::$db_options = wp_parse_args(
-            self::get_db_options(),
-            self::defaults()
-        );
-    }
+	/**
+	 * Get specific option
+	 *
+	 * @since  1.0.0
+	 * @return array    Return array of options.
+	 */
+	public static function get_option( $opt ) {
+		if ( empty( self::$db_options ) ) {
+			self::refresh();
+		}
+		return self::$db_options[ $opt ];
+	}
 
-    /**
-     * Get options from static array() from database
-     *
-     * @since  1.0.0
-     * @return array    Return array of options from database.
-     */
-    public static function get_db_options()
-    {
-        self::$db_options_no_defaults = get_option(STATS4WP_NAME . '_plugin');
-        return self::$db_options_no_defaults;
-    }
+	/**
+	 * Update  static option array.
+	 *
+	 * @since 1.0.0
+	 */
+	public static function refresh() {
+		self::$db_options = wp_parse_args(
+			self::get_db_options(),
+			self::defaults()
+		);
+	}
 
-    /**
-     * Set option to database
-     *
-     * @since  1.0.0
-     * @return true/false
-     */
-    public static function set_option( $name, $value )
-    {
-        if (empty(self::$db_options) ) {
-            self::refresh();
-        }
-        self::$db_options[ $name ] = $value;
-        self::$db_options['t']     = time();
-        update_option(STATS4WP_NAME . '_plugin', self::$db_options);
-        return true;
-    }
+	/**
+	 * Get options from static array() from database
+	 *
+	 * @since  1.0.0
+	 * @return array    Return array of options from database.
+	 */
+	public static function get_db_options() {
+		self::$db_options_no_defaults = get_option( STATS4WP_NAME . '_plugin' );
+		return self::$db_options_no_defaults;
+	}
 
-    /**
-     * Delete option to database
-     *
-     * @since  1.0.0
-     * @return true/false
-     */
-    public static function del_option( $name )
-    {
-        if (empty(self::$db_options) ) {
-            self::refresh();
-        }
-        unset(self::$db_options[ $name ]);
-        self::$db_options['t'] = time();
-        update_option(STATS4WP_NAME . '_plugin', self::$db_options);
-        return true;
-    }
+	/**
+	 * Set option to database
+	 *
+	 * @since  1.0.0
+	 * @return true/false
+	 */
+	public static function set_option( $name, $value ) {
+		if ( empty( self::$db_options ) ) {
+			self::refresh();
+		}
+		self::$db_options[ $name ] = $value;
+		self::$db_options['t']     = time();
+		update_option( STATS4WP_NAME . '_plugin', self::$db_options );
+		return true;
+	}
+
+	/**
+	 * Delete option to database
+	 *
+	 * @since  1.0.0
+	 * @return true/false
+	 */
+	public static function del_option( $name ) {
+		if ( empty( self::$db_options ) ) {
+			self::refresh();
+		}
+		unset( self::$db_options[ $name ] );
+		self::$db_options['t'] = time();
+		update_option( STATS4WP_NAME . '_plugin', self::$db_options );
+		return true;
+	}
 }

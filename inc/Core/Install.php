@@ -5,55 +5,52 @@
  */
 namespace STATS4WP\Core;
 
-class Install
-{
+class Install {
 
-    /**
-     * Install
-     *
-     * @param $network_wide
-     */
-    public static function install( $network_wide )
-    {
-        // Create MySQL Table
-        self::create_table($network_wide);
-    }
 
-    /**
-     * Adding new MYSQL Table in Activation Plugin
-     *
-     * @param $network_wide
-     */
-    public static function create_table( $network_wide )
-    {
-        global $wpdb;
+	/**
+	 * Install
+	 *
+	 * @param $network_wide
+	 */
+	public static function install( $network_wide ) {
+		// Create MySQL Table
+		self::create_table( $network_wide );
+	}
 
-        if (is_multisite() && $network_wide ) {
-            $blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-            foreach ( $blog_ids as $blog_id ) {
-                switch_to_blog($blog_id);
-                self::table_sql();
-                restore_current_blog();
-            }
-        } else {
-            self::table_sql();
-        }
-    }
+	/**
+	 * Adding new MYSQL Table in Activation Plugin
+	 *
+	 * @param $network_wide
+	 */
+	public static function create_table( $network_wide ) {
+		global $wpdb;
 
-    /**
-     * Create Database Table
-     */
-    public static function table_sql()
-    {
-        // Load dbDelta WordPress
-        self::load_db_delta();
+		if ( is_multisite() && $network_wide ) {
+			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
+			foreach ( $blog_ids as $blog_id ) {
+				switch_to_blog( $blog_id );
+				self::table_sql();
+				restore_current_blog();
+			}
+		} else {
+			self::table_sql();
+		}
+	}
 
-        // Charset Collate
-        $collate = DB::charset_collate();
+	/**
+	 * Create Database Table
+	 */
+	public static function table_sql() {
+		// Load dbDelta WordPress
+		self::load_db_delta();
 
-        // Visitor Table
-        $create_visitor_table = ( '
-					CREATE TABLE ' . DB::table('visitor') . " (
+		// Charset Collate
+		$collate = DB::charset_collate();
+
+		// Visitor Table
+		$create_visitor_table = ( '
+					CREATE TABLE ' . DB::table( 'visitor' ) . " (
 						ID bigint(20) NOT NULL AUTO_INCREMENT,
 						last_counter date NOT NULL,
                         hour time NOT NULL,
@@ -77,11 +74,11 @@ class Install
 						UNIQUE KEY date_ip_agent (last_counter,ip,agent(50),platform(50)),
                         KEY `SELSTAT` (`device`, `last_counter`)
 					) {$collate}" );
-        dbDelta($create_visitor_table);
+		dbDelta( $create_visitor_table );
 
-        // Pages Table
-        $create_pages_table = ( '
-					CREATE TABLE ' . DB::table('pages') . " (
+		// Pages Table
+		$create_pages_table = ( '
+					CREATE TABLE ' . DB::table( 'pages' ) . " (
 					    page_id BIGINT(20) NOT NULL AUTO_INCREMENT,
 						uri varchar(190) NOT NULL,
 						type varchar(180) NOT NULL,
@@ -92,11 +89,11 @@ class Install
                         KEY `SELDATE` (`date`),
 						PRIMARY KEY (`page_id`)
 					) {$collate}" );
-        dbDelta($create_pages_table);
+		dbDelta( $create_pages_table );
 
-        // Users Online Table
-        $create_user_online_table = ( '
-					CREATE TABLE ' . DB::table('useronline') . " (
+		// Users Online Table
+		$create_user_online_table = ( '
+					CREATE TABLE ' . DB::table( 'useronline' ) . " (
 						ID bigint(20) NOT NULL AUTO_INCREMENT,
 	  					ip varchar(60) NOT NULL,
 						created int(11),
@@ -112,16 +109,15 @@ class Install
 						`type` VARCHAR(100) NOT NULL,
 						PRIMARY KEY  (ID)
 					) {$collate}" );
-        dbDelta($create_user_online_table);
-    }
+		dbDelta( $create_user_online_table );
+	}
 
-    /**
-     * Load WordPress dbDelta Function
-     */
-    public static function load_db_delta()
-    {
-        if (! function_exists('dbDelta') ) {
-            include ABSPATH . 'wp-admin/includes/upgrade.php';
-        }
-    }
+	/**
+	 * Load WordPress dbDelta Function
+	 */
+	public static function load_db_delta() {
+		if ( ! function_exists( 'dbDelta' ) ) {
+			include ABSPATH . 'wp-admin/includes/upgrade.php';
+		}
+	}
 }

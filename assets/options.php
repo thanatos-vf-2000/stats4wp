@@ -13,17 +13,17 @@
  * @link      https://ginkgos.net
  */
 
-if (! defined('ABSPATH') ) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
 return array(
-    'install'          => '0',
-    'anonymize_ips'    => false,
-    'ip_method'        => 'REMOTE_ADDR',
-    'addsearchwords'   => false,
-    'store_ua'         => true,
-    'check_online'     => 120,
-    'top_page'         => 10,
-    'disableadminstat' => false,
+	'install'          => '0',
+	'anonymize_ips'    => false,
+	'ip_method'        => 'REMOTE_ADDR',
+	'addsearchwords'   => false,
+	'store_ua'         => true,
+	'check_online'     => 120,
+	'top_page'         => 10,
+	'disableadminstat' => false,
 );

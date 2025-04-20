@@ -5,56 +5,53 @@
  */
 namespace STATS4WP\Core;
 
-class BaseController
-{
+class BaseController {
 
-    public $plugin_path;
 
-    public $plugin_url;
+	public $plugin_path;
 
-    public $plugin;
+	public $plugin_url;
 
-    public $managers = array();
+	public $plugin;
 
-    public function __construct()
-    {
-        $this->plugin_path = STATS4WP_PATH;
-        $this->plugin_url  = STATS4WP_URL;
-        $this->plugin      = STATS4WP_NAME;
-        $this->managers    = array_merge(array(), Options::get_options());
-    }
+	public $managers = array();
 
-    public function activated( string $key )
-    {
-        $option = get_option(STATS4WP_NAME . '_plugin');
+	public function __construct() {
+		$this->plugin_path = STATS4WP_PATH;
+		$this->plugin_url  = STATS4WP_URL;
+		$this->plugin      = STATS4WP_NAME;
+		$this->managers    = array_merge( array(), Options::get_options() );
+	}
 
-        return isset($option[ $key ]) ? $option[ $key ] : false;
-    }
+	public function activated( string $key ) {
+		$option = get_option( STATS4WP_NAME . '_plugin' );
 
-    /**
-     * Get Template File
-     *
-     * @param string $template
-     * @param array  $args
-     */
-    public static function get_template( $template )
-    {
-        global $wpdb;
+		return isset( $option[ $key ] ) ? $option[ $key ] : false;
+	}
 
-        // Check Load single file or array list
-        if (is_string($template) ) {
-            $template = explode(' ', $template);
-        }
+	/**
+	 * Get Template File
+	 *
+	 * @param string $template
+	 * @param array  $args
+	 */
+	public static function get_template( $template ) {
+		global $wpdb;
 
-        // Load File
-        foreach ( $template as $file ) {
-            $template_file = STATS4WP_PATH . 'templates-part/' . $file . '.php';
-            if (! file_exists($template_file) ) {
-                continue;
-            }
+		// Check Load single file or array list
+		if ( is_string( $template ) ) {
+			$template = explode( ' ', $template );
+		}
 
-            // include File
-            include $template_file;
-        }
-    }
+		// Load File
+		foreach ( $template as $file ) {
+			$template_file = STATS4WP_PATH . 'templates-part/' . $file . '.php';
+			if ( ! file_exists( $template_file ) ) {
+				continue;
+			}
+
+			// include File
+			include $template_file;
+		}
+	}
 }

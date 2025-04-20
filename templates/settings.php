@@ -6,8 +6,8 @@
  * Desciption: Settings
  */
 
-if (! defined('ABSPATH') ) {
-    exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-self::get_template(array( 'header', 'settings/options', 'footer' ));
+self::get_template( array( 'header', 'settings/options', 'footer' ) );

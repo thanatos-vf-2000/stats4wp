@@ -4,7 +4,7 @@ Tags: analytics, stats, statistics, visit
 Requires at least: 5.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.4.15
+Stable tag: 1.4.17
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -102,12 +102,12 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.4.15 (2503-SFP1) =
-*Release Date - 16 March 2025*
+= 1.4.17 (2504-SFP2) =
+*Release Date - 20 April 2025*
 
-* Compatible Wordpress 6.8-beta2,
-* Update ChartJS 4.2.1 to 4.4.8,
-* Correction - 20250316.
+* Error - WordPress.WP.I18n.MissingArgDomain,
+* Warning - WordPress.WP.EnqueuedResourceParameters.MissingVersion,
+* .
 
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
