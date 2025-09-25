@@ -28,8 +28,8 @@ if ( DB::exist_row( 'visitor' ) ) {
 	<div class="stats4wp-dashboard">
 		<div class="stats4wp-rows">
 			<ul id="stats4wp-menu" >
-				<li><a class="<?php echo ( '' === $all_data ) ? 'active' : ''; ?>" href="/wp-admin/admin.php?page=stats4wp_visitors&spage=referred&data=all" ><?php echo esc_html( esc_html__( 'All Referred', 'stats4wp' ) ); ?></a></li>
-				<li><a class="<?php echo ( '' !== $all_data ) ? 'active' : ''; ?>" href="/wp-admin/admin.php?page=stats4wp_visitors&spage=referred" ><?php echo esc_html( esc_html__( 'TOP 10 Referred', 'stats4wp' ) ); ?></a></li>
+				<li><a class="<?php echo ( '' === $all_data ) ? 'active' : ''; ?>" href="/wp-admin/admin.php?page=stats4wp_visitors&spage=referred&data=all" ><?php esc_html_e( 'All Referred', 'stats4wp' ); ?></a></li>
+				<li><a class="<?php echo ( '' !== $all_data ) ? 'active' : ''; ?>" href="/wp-admin/admin.php?page=stats4wp_visitors&spage=referred" ><?php esc_html_e( 'TOP 10 Referred', 'stats4wp' ); ?></a></li>
 			</ul>  
 		</div>
 		<div class="stats4wp-rows">
@@ -70,7 +70,7 @@ if ( DB::exist_row( 'visitor' ) ) {
                 <tbody>
                     <tr>
                         <td style="width: 1%;"></td>
-                        <td>' . esc_html( esc_html__( 'Referred', 'stats4wp' ) ) . '</td>
+                        <td>' . esc_html__( 'Referred', 'stats4wp' ) . '</td>
                         <td style="width: 20%;"></td>
                         <td style="width: 20%;"></td>
                     </tr>';
@@ -90,7 +90,7 @@ if ( DB::exist_row( 'visitor' ) ) {
                 const dataReferred= {
                     labels:' . wp_json_encode( $src ) . ',
                     datasets: [{
-                        label: "' . esc_html( esc_html__( 'Referred', 'stats4wp' ) ) . '",
+                        label: "' . esc_html__( 'Referred', 'stats4wp' ) . '",
                         data:' . wp_json_encode( $nb ) . ',
                         backgroundColor: ["#36a2eb","#f67019","#f53794","#537bc4","#acc236","#166a8f","#00a950","#58595b","#8549ba","#4dc9f6"],
                     }]
