@@ -8,6 +8,7 @@ namespace STATS4WP\Api;
 class SearchEngine {
 
 
+
 	/**
 	 * Default error not founding search engine
 	 *

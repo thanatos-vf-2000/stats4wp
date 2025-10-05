@@ -8,6 +8,7 @@ namespace STATS4WP\Api;
 class TimeZone {
 
 
+
 	/**
 	 * Get Current timeStamp
 	 *

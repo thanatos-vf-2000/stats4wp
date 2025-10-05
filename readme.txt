@@ -3,8 +3,8 @@ Contributors: vanhoucke
 Tags: analytics, stats, statistics, visit
 Requires at least: 5.2
 Tested up to: 6.8
-Requires PHP: 7.4
-Stable tag: 1.4.17
+Requires PHP: 8.0
+Stable tag: 1.4.18
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -50,6 +50,7 @@ This plugin doesn't require technical knowledge or to be a web developer. The ac
 = Active Contributors =
 <li>[Franck VANHOUCKE](https://profiles.wordpress.org/vanhoucke/) (Development)</li>
 
+
 == Screenshots ==
 
 1. Logo,
@@ -69,7 +70,7 @@ This plugin doesn't require technical knowledge or to be a web developer. The ac
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Click on the stats4wp link from the main menu
 
-The stats4wp requires php 7.4 or higher.
+The stats4wp requires php 8.0 or higher.
 
 = Is this plugin compatible with WordPress multisite (MU)? =
 stats4wp is multisite compatible, in case of problem contact me.
@@ -102,12 +103,12 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.4.17 (2504-SFP2) =
-*Release Date - 20 April 2025*
+= 1.4.18 (2510-SFP1) =
+*Release Date - 4 October 2025*
 
-* Error - WordPress.WP.I18n.MissingArgDomain,
-* Warning - WordPress.WP.EnqueuedResourceParameters.MissingVersion,
-* .
+* DAnn2012 - Fixed Functions in referred.php,
+* Update GeoIP Database 20251003,
+* Requires PHP 8.x,
 
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog

@@ -11,6 +11,7 @@ use STATS4WP\Core\BaseController;
 class AdminCallbacks extends BaseController {
 
 
+
 	public function adminDashboard() {
 		return include_once "$this->plugin_path/templates/dashboard.php";
 	}

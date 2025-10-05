@@ -10,6 +10,7 @@ use MaxMind\Db\Reader;
 class GeoIP {
 
 
+
 	/**
 	 * Date of database GeoIpLitle User IP
 	 *

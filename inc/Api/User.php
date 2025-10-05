@@ -9,6 +9,7 @@ namespace STATS4WP\Api;
 class User {
 
 
+
 	/**
 	 * Check User is Logged in WordPress
 	 *

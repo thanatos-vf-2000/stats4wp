@@ -18,6 +18,7 @@ use STATS4WP\Core\Options;
 class UserOnline {
 
 
+
 	/**
 	 * Default User Reset Time User Online
 	 *

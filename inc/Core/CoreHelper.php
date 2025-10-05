@@ -8,6 +8,7 @@ namespace STATS4WP\Core;
 class CoreHelper {
 
 
+
 	/**
 	 * Check is Login Page
 	 *

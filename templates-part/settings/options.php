@@ -12,9 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use STATS4WP\Core\Options;
+
 global $wp_filesystem;
 
-require_once ( ABSPATH . '/wp-admin/includes/file.php' );
+require_once ABSPATH . '/wp-admin/includes/file.php';
 WP_Filesystem();
 
 settings_errors();

@@ -8,6 +8,7 @@ namespace STATS4WP\Core;
 class SettingsLinks {
 
 
+
 	public function register() {
 		add_filter( 'plugin_action_links', array( $this, 'settings_link' ), 10, 5 );
 	}

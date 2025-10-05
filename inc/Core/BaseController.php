@@ -8,6 +8,7 @@ namespace STATS4WP\Core;
 class BaseController {
 
 
+
 	public $plugin_path;
 
 	public $plugin_url;

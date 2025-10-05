@@ -11,6 +11,7 @@ use STATS4WP\Core\Options;
 class CptVisitors {
 
 
+
 	public function register() {
 		add_action( 'widgets_init', array( $this, 'register_cpt_visitors_widget' ) );
 	}
@@ -22,6 +23,7 @@ class CptVisitors {
 
 
 class stats4wp_cpt_visitors_widget extends \WP_Widget {
+
 
 
 	private $widget_fields;

@@ -14,7 +14,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 use STATS4WP\Api\AdminGraph;
 use STATS4WP\Core\DB;
 
-
 if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 	$wpdb->stats4wp_visitor = DB::table( 'visitor' );
 }

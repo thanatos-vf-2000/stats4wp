@@ -10,6 +10,7 @@ use STATS4WP\Core\Options;
 class IP {
 
 
+
 	/**
 	 * Default User IP
 	 *

@@ -21,6 +21,6 @@
     "require": {
         "whichbrowser/parser": "^2.1",
         "maxmind-db/reader": "^1.10",
-        "php": "^7.4"
+        "php": "^7.4 || ^8.0"
     }
 }

@@ -5,6 +5,13 @@
 This file contains older changelog entries, so we can keep the size of the standard WordPress readme.txt file reasonable.
 For the latest changes, please see the "Changelog" section of the [readme.txt file](https://plugins.svn.wordpress.org/stats4wp/trunk/readme.txt).
 
+= 1.4.17 (2504-SFP2) =
+*Release Date - 20 April 2025*
+
+* Error - WordPress.WP.I18n.MissingArgDomain,
+* Error - WordPress.WP.AlternativeFunctions.file_system_operations_*,
+* Warning - WordPress.WP.EnqueuedResourceParameters.MissingVersion.
+
 = 1.4.16 (2504-SFP1) =
 *Release Date - 07 April 2025*
 

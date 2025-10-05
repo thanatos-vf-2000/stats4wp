@@ -19,6 +19,7 @@ class DashBoard extends BaseController {
 
 
 
+
 	public $pages = array();
 
 	public $settings;

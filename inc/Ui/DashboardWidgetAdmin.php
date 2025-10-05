@@ -12,6 +12,7 @@ use STATS4WP\Core\DB;
 class DashboardWidgetAdmin extends BaseController {
 
 
+
 	public function register() {
 		add_action( 'wp_dashboard_setup', array( $this, 'custom_dashboard_widget' ) );
 	}

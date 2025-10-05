@@ -10,6 +10,7 @@ use SYAYS\Api\GeoIP;
 class Activate {
 
 
+
 	public static function activate( $network_wide ) {
 		flush_rewrite_rules();
 		Install::install( $network_wide );

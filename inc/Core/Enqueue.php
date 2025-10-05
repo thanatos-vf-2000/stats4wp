@@ -11,6 +11,7 @@ use STATS4WP\Core\Options;
 class Enqueue {
 
 
+
 	public function register() {
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue' ) );

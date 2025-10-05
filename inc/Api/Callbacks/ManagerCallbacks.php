@@ -11,6 +11,7 @@ use STATS4WP\Core\BaseController;
 class ManagerCallbacks extends BaseController {
 
 
+
 	public function checkboxSanitize( $input ) {
 		$output = array();
 

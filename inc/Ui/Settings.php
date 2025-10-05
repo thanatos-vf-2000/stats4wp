@@ -16,6 +16,7 @@ use STATS4WP\Api\Callbacks\AdminCallbacks;
 class Settings extends BaseController {
 
 
+
 	public $callbacks;
 
 	public $subpages = array();

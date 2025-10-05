@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.18
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

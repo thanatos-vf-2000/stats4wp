@@ -8,6 +8,7 @@ namespace STATS4WP\Api;
 class SettingsApi {
 
 
+
 	public $admin_pages = array();
 
 	public $admin_subpages = array();

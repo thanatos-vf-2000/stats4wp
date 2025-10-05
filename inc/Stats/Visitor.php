@@ -19,6 +19,7 @@ class Visitor {
 
 
 
+
 	public function register() {
 		if ( Options::get_option( 'version' ) === STATS4WP_VERSION ) {
 			add_action( 'init', array( $this, 'visitor' ) );

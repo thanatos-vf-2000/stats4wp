@@ -8,6 +8,7 @@ namespace STATS4WP\Core;
 class Args {
 
 
+
 	/**
 	 * @param $key
 	 * @param $default

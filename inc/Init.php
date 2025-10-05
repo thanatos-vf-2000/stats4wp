@@ -14,6 +14,7 @@ require STATS4WP_PATH . 'inc/Core/Fonctions.php';
 final class Init {
 
 
+
 	/**
 	 * Store all the classes inside an array
 	 *

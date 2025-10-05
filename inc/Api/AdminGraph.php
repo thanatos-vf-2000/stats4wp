@@ -23,6 +23,7 @@ use STATS4WP\Core\DB;
 class AdminGraph {
 
 
+
 	const ARG_FROM            = 'stats4wp-from';
 	const ARG_TO              = 'stats4wp-to';
 	const ARG_INTERVAL        = 'stats4wp-interval';
