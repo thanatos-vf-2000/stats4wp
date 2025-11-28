@@ -4,7 +4,7 @@ Tags: analytics, stats, statistics, visit
 Requires at least: 5.2
 Tested up to: 6.8
 Requires PHP: 8.0
-Stable tag: 1.4.19
+Stable tag: 1.4.20
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -103,7 +103,7 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.4.19 (2511-SFP1) =
+= 1.4.20 (2511-SFP2) =
 *Release Date - 28 November 2025*
 
 * Compatible Wordpress 6.8.3,

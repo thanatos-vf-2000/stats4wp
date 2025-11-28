@@ -3,7 +3,7 @@
         'name' => 'thanatos-vf-2000/stats4wp',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'a66188c992b53c2cb7fb5199a60d882d8a8ab27f',
+        'reference' => 'a690dca757a37ce161fb780bb0a6f754c870a5c1',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -31,7 +31,7 @@
         'thanatos-vf-2000/stats4wp' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'a66188c992b53c2cb7fb5199a60d882d8a8ab27f',
+            'reference' => 'a690dca757a37ce161fb780bb0a6f754c870a5c1',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
