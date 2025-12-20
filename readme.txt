@@ -2,9 +2,9 @@
 Contributors: vanhoucke
 Tags: analytics, stats, statistics, visit
 Requires at least: 5.2
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.4.20
+Stable tag: 1.4.21
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -103,13 +103,11 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.4.20 (2511-SFP2) =
-*Release Date - 28 November 2025*
+= 1.4.21 (2512-SFP1) =
+*Release Date - 20 December 2025*
 
-* Compatible Wordpress 6.8.3,
-* Random issue in Wordpress 6.8.3: PHP Fatal error: Uncaught MaxMind\Db\Reader\InvalidDatabaseException: Error opening database file (xxx/wp-content/plugins/stats4wp/db/GeoLite2-Country.mmdb),
-* Update GeoIP Database 20251125,
-* Upgrading maxmind-db/reader v1.12.1 => v1.13.1.
+* Compatible Wordpress 6.9.1-alpha-61393,
+* Update GeoIP Database 20251219.
 
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
