@@ -103,11 +103,11 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.4.21 (2512-SFP1) =
-*Release Date - 20 December 2025*
+= 1.4.22 (2601-SFP1) =
+*Release Date - 03 January 2026*
 
-* Compatible Wordpress 6.9.1-alpha-61393,
-* Update GeoIP Database 20251219.
+* Error: Images broken by gulp,
+* Update GeoIP Database 20260102.
 
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
