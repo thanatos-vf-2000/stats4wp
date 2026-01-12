@@ -47,7 +47,7 @@ class ManagerCallbacks extends BaseController {
 
 		if ( '' !== $args['message'] ) {
 			if ( '' !== $args['link'] ) {
-				echo '<p class="description">' . esc_html( $args['message'] ) . ' <a href="' . esc_url( $args['link'] ) . '" target="_blank">' . esc_html_e( 'Link', 'stats4wp' ) . '</a></p>';
+				echo '<p class="description">' . esc_html( $args['message'] ) . ' <a href="' . esc_url( $args['link'] ) . '" target="_blank">' . esc_html__( 'Link', 'stats4wp' ) . '</a></p>';
 			} else {
 				echo '<p class="description">' . esc_html( $args['message'] ) . '</p>';
 			}
@@ -79,7 +79,7 @@ class ManagerCallbacks extends BaseController {
 		$option_name = $args['option_name'];
 		echo '<div class="' . esc_attr( $classes ) . '">
 				<input id="upload_image" type="text" size="36" name="' . esc_attr( $option_name ) . '[' . esc_attr( $name ) . ']" value="' . esc_attr( $args['value'] ) . '" /> 
-				<input id="upload_image_button" for="' . esc_attr( $option_name ) . '[' . esc_attr( $name ) . ']" class="button" type="button" value="' . esc_html_e( 'Upload Menu', 'stats4wp' ) . '" />
+				<input id="upload_image_button" for="' . esc_attr( $option_name ) . '[' . esc_attr( $name ) . ']" class="button" type="button" value="' . esc_html__( 'Upload Menu', 'stats4wp' ) . '" />
 				<br>
 				<img id="imageBox" name="' . esc_attr( $option_name ) . '[' . esc_attr( $name ) . ']" style="height: ' . esc_attr( $args['height'] ) . '; width: ' . esc_attr( $args['width'] ) . ';" src="' . esc_url( $args['value'] ) . '">
 			</div>';
@@ -90,7 +90,7 @@ class ManagerCallbacks extends BaseController {
 		$classes     = $args['class'];
 		$option_name = $args['option_name'];
 		echo '<p>
-			<label for="' . esc_attr( $option_name ) . '[' . esc_attr( $name ) . ']" style="display:block;">' . esc_html_e( 'Color:', 'stats4wp' ) . '</label> 
+			<label for="' . esc_attr( $option_name ) . '[' . esc_attr( $name ) . ']" style="display:block;">' . esc_html__( 'Color:', 'stats4wp' ) . '</label> 
 			<input class="color-picker" id="' . esc_attr( $option_name ) . '[' . esc_attr( $name ) . ']" name="' . esc_attr( $option_name ) . '[' . esc_attr( $name ) . ']" type="text" value="' . esc_attr( $args['value'] ) . '" />
 		</p>';
 	}
