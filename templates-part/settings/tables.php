@@ -79,7 +79,7 @@ if ( $delele_day < $min_visitors ) {
 }
 echo '<form method="GET" action="' . esc_html( admin_url( 'admin.php' ) ) . '">
         <input type="hidden" name="page" value="stats4wp_settings"/>
-        <label>' . esc_html_e( 'Before: ', 'stats4wp' ) . '
+        <label>' . esc_html__( 'Before: ', 'stats4wp' ) . '
             <input type="date" name="delete-day" value="' . esc_html( $delele_day ) . '"/>
         </label>';
 	submit_button( esc_html__( 'Purge tables', 'stats4wp' ), 'primary', 'submit-delete-tables', false );
