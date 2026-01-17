@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  *
  * Desciption: Bots
  */
@@ -45,7 +45,8 @@ if ( DB::exist_row( 'visitor' ) ) {
 				"SELECT agent, COUNT(*) AS nb 
 			FROM {$wpdb->stats4wp_visitor}
 			where device='bot' 
-			AND last_counter BETWEEN %s AND %s
+			AND last_counter >= %s
+  			AND last_counter <= %s
 			GROUP BY 1 ORDER by 2 DESC",
 				$param['from'],
 				$param['to']

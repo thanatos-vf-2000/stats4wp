@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.15
+ * @version 1.4.23
  *
  * Desciption: Admin Page Pages
  */
@@ -18,21 +18,21 @@ if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 	$wpdb->stats4wp_visitor = DB::table( 'visitor' );
 }
 $visitors_month = $wpdb->get_row(
-	"SELECT count(*) as visitors, COALESCE(SUM(hits),0) as pages
+	"SELECT count(ID) as visitors, COALESCE(SUM(hits),0) as pages
     FROM $wpdb->stats4wp_visitor 
     where device!='bot' and location != 'local'
     and last_counter BETWEEN date_add(date_add(LAST_DAY(CURRENT_DATE()),interval 1 DAY),interval -1 MONTH) AND CURRENT_DATE()"
 );
 
 $visitors_month_past = $wpdb->get_row(
-	"SELECT count(*) as visitors, COALESCE(SUM(hits),0) as pages
+	"SELECT count(ID) as visitors, COALESCE(SUM(hits),0) as pages
     FROM $wpdb->stats4wp_visitor 
     where device!='bot' and location != 'local'
     and last_counter BETWEEN date_add(date_add(LAST_DAY((CURRENT_DATE() -INTERVAL 1 MONTH)),interval 1 DAY),interval -1 MONTH) AND (CURRENT_DATE() -INTERVAL 1 MONTH)"
 );
 
 $last_hour = $wpdb->get_row(
-	"SELECT count(*) as visitors, COALESCE(SUM(hits),0) as pages
+	"SELECT count(ID) as visitors, COALESCE(SUM(hits),0) as pages
     FROM $wpdb->stats4wp_visitor 
     where device!='bot' and location != 'local'
     AND last_counter = CURRENT_DATE()

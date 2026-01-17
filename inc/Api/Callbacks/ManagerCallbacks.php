@@ -2,7 +2,7 @@
 /**
  *
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 namespace STATS4WP\Api\Callbacks;
 

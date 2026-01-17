@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.17
+ * @version 1.4.23
  *
  * Desciption: Location Maps
  */
@@ -26,16 +26,19 @@ if ( 'stats4wp_plugin' === $page_local ) {
 
 	$param       = AdminGraph::getdate( $data );
 	$local_table = DB::table( 'visitor' );
+	if ( ! isset( $wpdb->stats4wp_visitor ) ) {
+		$wpdb->stats4wp_visitor = DB::table( 'visitor' );
+	}
 	$locations   = $wpdb->get_results(
 		$wpdb->prepare(
-			"SELECT location, count(*) as nb FROM %s
+			"SELECT location, count(*) as nb FROM {$wpdb->stats4wp_visitor}
         WHERE device IN ('bot','')
         AND location NOT IN ('local','none')
-        AND last_counter BETWEEN %s AND %s
+        AND last_counter >= %s
+  		AND last_counter <= %s
         GROUP BY location
         ORDER by nb DESC",
 			array(
-				$local_table,
 				$param['from'],
 				$param['to'],
 			)

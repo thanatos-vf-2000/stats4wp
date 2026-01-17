@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.17
+ * @version 1.4.23
  *
  * Desciption: Contry Maps
  */
@@ -20,7 +20,7 @@ if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 	$param     = AdminGraph::getdate( '' );
 	$locations = $wpdb->get_results(
 		$wpdb->prepare(
-			"SELECT location, count(*) as nb FROM $wpdb->stats4wp_visitor 
+			"SELECT location, count(ID) as nb FROM $wpdb->stats4wp_visitor 
 		WHERE device NOT IN ('bot','')
 		AND location NOT IN ('local','none')
 		AND last_counter BETWEEN %s AND %s

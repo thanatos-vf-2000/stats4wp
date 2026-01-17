@@ -103,7 +103,7 @@ class CSVExport extends BaseController {
 			$wpdb->stats4wp_y = '';
 		}
 
-		$values = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->stats4wp_tmp %s", $wpdb->stats4wp_y ) );       // This here
+		$values = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $wpdb->stats4wp_tmp $wpdb->stats4wp_y", array() ) );       // This here
 
 		foreach ( $values as $rowr ) {
 			$fields      = array_values( (array) $rowr );                  // Getting rid of the keys and using numeric array to get values

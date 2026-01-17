@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -37,7 +37,9 @@ if ( DB::exist_row( 'visitor' ) ) {
 					"SELECT last_counter as d ,count(*) as nb 
 					FROM {$wpdb->stats4wp_visitor} 
 					where device!='bot' 
-					AND last_counter BETWEEN %s AND %s group by 1",
+					AND last_counter >= %s
+  					AND last_counter <= %s
+					GROUP BY 1",
 					$param['from'],
 					$param['to']
 				)
@@ -50,7 +52,9 @@ if ( DB::exist_row( 'visitor' ) ) {
 					"SELECT CONCAT(YEAR(last_counter),'.',WEEK(last_counter)) as d ,count(*) as nb 
 					FROM {$wpdb->stats4wp_visitor} 
 					where device!='bot' 
-					AND last_counter BETWEEN %s AND %s group by 1",
+					AND last_counter >= %s
+  					AND last_counter <= %s
+					group by 1",
 					$param['from'],
 					$param['to']
 				)
@@ -63,7 +67,9 @@ if ( DB::exist_row( 'visitor' ) ) {
 					"SELECT CONCAT(YEAR(last_counter),'.',MONTH(last_counter)) as d ,count(*) as nb 
 					FROM {$wpdb->stats4wp_visitor} 
 					where device!='bot' 
-					AND last_counter BETWEEN %s AND %s group by 1",
+					AND last_counter >= %s
+  					AND last_counter <= %s
+					group by 1",
 					$param['from'],
 					$param['to']
 				)

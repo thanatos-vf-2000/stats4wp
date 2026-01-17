@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -50,7 +50,9 @@ if ( DB::exist_row( 'visitor' ) ) {
 			"SELECT {$wpdb->stats4wp_select},AVG(hits) nb 
         FROM {$wpdb->stats4wp_visitor}
         where device!='bot' 
-        AND last_counter BETWEEN %s AND %s group by 1",
+        AND last_counter >= %s
+  		AND last_counter <= %s
+		GROUP BY 1",
 			$param['from'],
 			$param['to']
 		)

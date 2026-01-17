@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 namespace STATS4WP\Core;
 
@@ -132,7 +132,7 @@ class DB {
 			$nbrows = wp_cache_get( 'cpt_' . $tbl );
 			if ( false === $nbrows ) {
 				$wpdb->stats4wp_test = self::table( $tbl );
-				$nbrows              = $wpdb->get_row( "SELECT count(*) as nb FROM $wpdb->stats4wp_test" );
+				$nbrows              = $wpdb->get_row( "SELECT count(id) as nb FROM $wpdb->stats4wp_test" );
 				wp_cache_set( 'cpt_' . $tbl, $nbrows );
 			}
 			$nb                    = $nbrows->nb;

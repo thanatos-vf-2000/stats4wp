@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,7 +34,8 @@ if ( DB::exist_row( 'visitor' ) ) {
 					$wpdb->prepare(
 						"SELECT language, count(*) as nb FROM {$wpdb->stats4wp_visitor} 
                 WHERE device NOT IN ('bot','')
-                AND last_counter BETWEEN %s AND %s
+                AND last_counter >= %s
+  		        AND last_counter <= %s
                 GROUP BY language
                 ORDER by nb DESC",
 						$param['from'],

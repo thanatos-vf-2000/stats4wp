@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 
 
@@ -31,7 +31,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 		case 1:
 			$visitors   = $wpdb->get_results(
 				$wpdb->prepare(
-					"SELECT last_counter, COUNT(*) as user, ROUND(AVG(hits),2) as hits 
+					"SELECT last_counter, COUNT(ID) as user, ROUND(AVG(hits),2) as hits 
                 FROM $wpdb->stats4wp_visitor 
                 where device!='bot' 
                 AND last_counter BETWEEN %s AND %s 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 
 
@@ -58,7 +58,8 @@ if ( DB::exist_row( 'visitor' ) ) {
                     select {$wpdb->stats4wp_select}, device, COUNT(*) as nb
                     from {$wpdb->stats4wp_visitor} 
                     WHERE device NOT IN ('bot','') 
-                    AND last_counter BETWEEN %s AND %s
+                    AND last_counter >= %s
+  		            AND last_counter <= %s
                     GROUP BY  1, 2
                     ) all_data
                     group by 1",
@@ -184,7 +185,8 @@ if ( DB::exist_row( 'visitor' ) ) {
 							"SELECT device, manufacturer as version, count(*) as nb
                         FROM {$wpdb->stats4wp_visitor}
                         WHERE device NOT in ('bot','') 
-                        AND last_counter BETWEEN %s AND %s
+                        AND last_counter >= %s
+  		                AND last_counter <= %s
                         GROUP BY 1,2 ORDER BY 1,3 DESC ",
 							$param['from'],
 							$param['to']
@@ -204,7 +206,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 					foreach ( $devices_version as $device_version ) {
 						if ( $device_local !== $device_version->device ) {
 							$device_nb = 1;
-							echo '<tr><th colspan="4">' . esc_html( $device_version->device ) . '</th></tr>';
+							echo '<tr><th colspan="4" class="stats4wp-souligne">' . esc_html( $device_version->device ) . '</th></tr>';
 						}
 						$tr_class = ( 0 === $device_nb % 2 ) ? 'stats4wp-bg' : '';
 						$percent  = round( $device_version->nb * 100 / $device_total, 2 );

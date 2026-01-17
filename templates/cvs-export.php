@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  *
  * Desciption: CVS Export date
  */
@@ -35,19 +35,24 @@ self::get_template( array( 'header' ) );
 				);
 				switch ( $t ) {
 					case 'visitor':
-						$field = 'last_counter';
+						$years = $wpdb->get_results(
+							$wpdb->prepare(
+								"SELECT DISTINCT(YEAR(`last_counter`)) as y FROM $wpdb->stats4wp_tmp 
+							ORDER BY 1 ASC",
+								array()
+							)
+						);
 						break;
 					case 'pages':
-						$field = 'date';
+						$years = $wpdb->get_results(
+							$wpdb->prepare(
+								"SELECT DISTINCT(YEAR(`date`)) as y FROM $wpdb->stats4wp_tmp 
+							ORDER BY 1 ASC",
+								array()
+							)
+						);
 						break;
 				}
-				$years = $wpdb->get_results(
-					$wpdb->prepare(
-						"SELECT DISTINCT(YEAR(%s)) as y FROM $wpdb->stats4wp_tmp 
-                    ORDER BY 1 ASC",
-						$field
-					)
-				);
 				echo '<tr>
                         <td>' . esc_html( $t ) . '</td>
                         <td>' . esc_html( $num->nb ) . '</td>

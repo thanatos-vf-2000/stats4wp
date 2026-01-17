@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.17
+ * @version 1.4.23
  *
  * Desciption: Settings options
  */
@@ -15,7 +15,10 @@ use STATS4WP\Core\Options;
 
 global $wp_filesystem;
 
-require_once ABSPATH . '/wp-admin/includes/file.php';
+if ( ! function_exists( 'WP_Filesystem' ) ) {
+    require_once ABSPATH . 'wp-admin/includes/file.php';
+}
+
 WP_Filesystem();
 
 settings_errors();
@@ -59,17 +62,23 @@ settings_errors();
 					<?php
 					$nb = 0;
 					if ( $wp_filesystem->exists( STATS4WP_PATH . 'changelog.txt' ) ) {
-						$file = $wp_filesystem->get_contents( STATS4WP_PATH . 'changelog.txt' );
-						while ( ! feof( $file ) ) {
-							$line = fgets( $file );
-							if ( preg_match( '/= (.*) =/', $line, $matches ) ) {
-										++$nb;
-										$ver = $matches[1];
-							} elseif ( preg_match( '/\*Release Date -(.*)\*/', $line, $matches ) ) {
-								++$nb;
-								echo '<dt><b>' . esc_html( $ver ) . '</b>: ' . esc_html( $matches[1] ) . '</dt>';
-							} elseif ( $nb > 2 ) {
-										echo '<dd>' . esc_html( $line ) . '</dd>';
+						$content = $wp_filesystem->get_contents( STATS4WP_PATH . 'changelog.txt' );
+
+						if ( $content !== false ) {
+							$lines = explode( "\n", $content );
+							$nb    = 0;
+							$ver   = '';
+							foreach ( $lines as $line ) {
+								$line = trim( $line );
+								if ( preg_match( '/= (.*) =/', $line, $matches ) ) {
+									++$nb;
+									$ver = $matches[1];
+								} elseif ( preg_match( '/\*Release Date -(.*)\*/', $line, $matches ) ) {
+									++$nb;
+									echo '<dt><b>' . esc_html( $ver ) . '</b>: ' . esc_html( $matches[1] ) . '</dt>';
+								} elseif ( $nb > 2 ) {
+									echo '<dd>' . esc_html( $line ) . '</dd>';
+								}
 							}
 						}
 					}

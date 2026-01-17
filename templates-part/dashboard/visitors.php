@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.26
  */
 
 
@@ -24,7 +24,8 @@ if ( DB::exist_row( 'visitor' ) ) {
         SUM(hits) as pages 
         FROM $wpdb->stats4wp_visitor
         WHERE device!='bot' 
-        AND last_counter BETWEEN %s AND %s",
+		AND last_counter >= %s
+  		AND last_counter <= %s",
 			array(
 				$param['from'],
 				$param['to'],
@@ -36,7 +37,8 @@ if ( DB::exist_row( 'visitor' ) ) {
 			"SELECT count(DISTINCT(ip)) as nb
         FROM $wpdb->stats4wp_visitor
         WHERE device!='bot' 
-        AND last_counter BETWEEN %s AND %s
+        AND last_counter >= %s
+  		AND last_counter <= %s
         AND IP not in (SELECT DISTINCT(ip) FROM $wpdb->stats4wp_visitor
             WHERE device!='bot' AND last_counter < %s)",
 			array(
@@ -48,11 +50,12 @@ if ( DB::exist_row( 'visitor' ) ) {
 	);
 	$bounce   = $wpdb->get_row(
 		$wpdb->prepare(
-			"SELECT count(*) as sessions  
+			"SELECT count(ID) as sessions  
         FROM $wpdb->stats4wp_visitor 
         WHERE device!='bot' 
         AND hits=1
-        AND last_counter BETWEEN %s AND %s",
+        AND last_counter >= %s
+  		AND last_counter <= %s",
 			array(
 				$param['from'],
 				$param['to'],

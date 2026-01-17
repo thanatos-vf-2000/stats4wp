@@ -4,7 +4,7 @@ Tags: analytics, stats, statistics, visit
 Requires at least: 5.2
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.4.21
+Stable tag: 1.4.23
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -103,11 +103,18 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.4.22 (2601-SFP1) =
-*Release Date - 03 January 2026*
+= 1.4.23 (2601-SFP2) =
+*Release Date - 17 January 2026*
 
-* Error: Images broken by gulp,
-* Update GeoIP Database 20260102.
+* Update GeoIP Database 20260116,
+* Error - Icon not display into Admin menu,
+* SQL optimisation,
+* Design - Update table css,
+* Error: Uncaught Error: feof(): Argument #1 ($stream) must be of type resource, string given (templates-part/settings/options.php),
+* Error - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''wp_stats4wp_visitor' WHERE device IN ('bot','') AND locati...' at line 1,
+* Error - Export CSV didn't work,
+* DAnn2012 - Fixed Functions (inc/Api/Callbacks/ManagerCallbacks.php  & templates-part/settings/tables.php),
+* Function _load_textdomain_just_in_time was called incorrectly. Translation loading for the stats4wp domain was triggered too early. This is usually an indicator for some code in the plugin or theme running too early. Translations should be loaded at the init action or later. Please see Debugging in WordPress for more information. (This message was added in version 6.7.0.).
 
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog

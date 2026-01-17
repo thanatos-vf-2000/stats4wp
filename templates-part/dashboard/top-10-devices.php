@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 
 
@@ -30,7 +30,7 @@ if ( DB::exist_row( 'visitor' ) ) {
 	}
 	$devices = $wpdb->get_results(
 		$wpdb->prepare(
-			"SELECT device, count(*) as nb
+			"SELECT device, count(ID) as nb
             FROM $wpdb->stats4wp_visitor
             where device!='bot' 
             AND last_counter BETWEEN %s AND %s 

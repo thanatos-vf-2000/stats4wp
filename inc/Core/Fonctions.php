@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.15
+ * @version 1.4.23
  */
 
 /**
@@ -12,4 +12,11 @@
 function stats4wp_filter_string_polyfill( string $string ): string {
 	$str = preg_replace( '/\x00|<[^>]*>?/', '', $string );
 	return str_replace( array( "'", '"' ), array( '&#39;', '&#34;' ), $str );
+}
+
+
+function stats4wp_t( $text,  $domain = 'stats4wp') {
+    return did_action( 'init' )
+        ? __( $text, $domain )
+        : $text;
 }

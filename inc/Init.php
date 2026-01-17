@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 
 namespace STATS4WP;
@@ -22,6 +22,7 @@ final class Init {
 	 */
 	public static function get_services() {
 		return array(
+			Core\I18n::class,
 			Core\SettingsLinks::class,
 			Core\Enqueue::class,
 			Stats\Page::class,

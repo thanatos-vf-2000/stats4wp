@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 
 namespace STATS4WP\Ui;
@@ -45,11 +45,13 @@ class DashBoard extends BaseController {
 	}
 
 	public function setPages() {
-		$icon_svg = STATS4WP_URL . 'assets/images/logo-end.png';
+		//$icon_svg = trailingslashit(STATS4WP_URL) . 'assets/images/logo-end.png';
+
+
 		if ( ! function_exists( 'get_plugin_data' ) ) {
 			include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
-		$plugin_data = get_plugin_data( STATS4WP_FILE );
+		$plugin_data = get_plugin_data( STATS4WP_FILE , false, false);
 		$this->pages = array(
 			array(
 				'page_title' => $plugin_data['Name'],
@@ -57,7 +59,7 @@ class DashBoard extends BaseController {
 				'capability' => 'manage_options',
 				'menu_slug'  => STATS4WP_NAME . '_plugin',
 				'callback'   => array( $this->callbacks, 'adminDashboard' ),
-				'icon_url'   => $icon_svg,
+				'icon_url'   => 'dashicons-chart-bar',
 				'position'   => 110,
 			),
 		);
@@ -79,7 +81,7 @@ class DashBoard extends BaseController {
 		$args = array(
 			array(
 				'id'       => STATS4WP_NAME . '_admin_index',
-				'title'    => __( 'Settings Manager', 'stats4wp' ),
+				'title'    => stats4wp_t( 'Settings Manager' ),
 				'callback' => array( $this->callbacks_mngr, 'adminIndexSectionManager' ),
 				'page'     => STATS4WP_NAME . '_plugin',
 			),

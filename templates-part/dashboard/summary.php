@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 
 
@@ -17,7 +17,7 @@ if ( ! isset( $wpdb->stats4wp_useronline ) ) {
 	$wpdb->stats4wp_useronline = DB::table( 'useronline' );
 }
 
-$user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM $wpdb->stats4wp_useronline" );
+$user_online = $wpdb->get_row( "SELECT COUNT(ID) as nb FROM $wpdb->stats4wp_useronline" );
 
 ?>
 <div id="stats4wp-summary-widget" class="postbox">
@@ -87,11 +87,12 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM $wpdb->stats4wp_usero
 					}
 					$summary_users = $wpdb->get_row(
 						$wpdb->prepare(
-							"SELECT count(*) as visitors,SUM(hits) as visits 
+							"SELECT count(ID) as visitors,SUM(hits) as visits 
 							FROM $wpdb->stats4wp_visitor 
 							WHERE device!='bot' 
 							AND location != 'local'
-							AND last_counter BETWEEN %s AND %s",
+							AND last_counter >= %s
+  							AND last_counter <= %s",
 							array(
 								$from,
 								$to,
@@ -172,7 +173,7 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM $wpdb->stats4wp_usero
 				$local_day       = gmdate( 'Y-m-d' );
 				$bot_today       = $wpdb->get_row(
 					$wpdb->prepare(
-						"SELECT count(*) as nb 
+						"SELECT count(ID) as nb 
                         FROM $wpdb->stats4wp_visitor
 						WHERE device!='bot' 
                         AND last_counter = %s 
@@ -186,7 +187,7 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM $wpdb->stats4wp_usero
 				$local_yesterday = gmdate( 'Y-m-d', strtotime( '-1 days' ) );
 				$bot_yesterday   = $wpdb->get_row(
 					$wpdb->prepare(
-						"SELECT count(*) as nb 
+						"SELECT count(ID) as nb 
 						FROM $wpdb->stats4wp_visitor
 						WHERE device!='bot' 
 						AND last_counter = %s 
@@ -200,7 +201,7 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM $wpdb->stats4wp_usero
 				$local_month     = gmdate( 'Y-m-d', strtotime( '-1 months' ) );
 				$bot_month       = $wpdb->get_row(
 					$wpdb->prepare(
-						"SELECT count(*) as nb 
+						"SELECT count(ID) as nb 
                     FROM $wpdb->stats4wp_visitor
 					WHERE device!='bot' 
                     AND last_counter > %s 
@@ -214,7 +215,7 @@ $user_online = $wpdb->get_row( "SELECT COUNT(*) as nb FROM $wpdb->stats4wp_usero
 				if ( 0 !== $bot_today->nb || 0 !== $bot_yesterday->nb || 0 !== $bot_month->nb ) {
 					echo '<tr>
                         <th>
-                            <img src="' . esc_attr( STATS4WP_URL ) . '/assets/images/search-engine/' . esc_attr( $search_local ) . '.png" alt="' . esc_attr( $title_local ) . '" class="stats4wp-engine-logo"> ' . esc_html( $title_local ) . ':</th>
+                            <img src="' . esc_attr( STATS4WP_URL ) . 'assets/images/search-engine/' . esc_attr( $search_local ) . '.png" alt="' . esc_attr( $title_local ) . '" class="stats4wp-engine-logo"> ' . esc_html( $title_local ) . ':</th>
                         <th class="th-center">
                             <span>' . esc_html( $bot_today->nb ) . '</span>
                         </th>

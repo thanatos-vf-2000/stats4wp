@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  *
  * Desciption: By Hour
  */
@@ -50,7 +50,8 @@ if ( DB::exist_row( 'visitor' ) ) {
         SELECT HOUR(hour) as hour, COUNT(*) AS nb 
         FROM {$wpdb->stats4wp_visitor}
         where device!='bot' 
-        AND last_counter BETWEEN %s AND %s
+        AND last_counter >= %s
+  		AND last_counter <= %s
         GROUP BY 1 ORDER by 1 ASC",
 			$param['from'],
 			$param['to']
@@ -118,7 +119,8 @@ if ( DB::exist_row( 'visitor' ) ) {
 			"SELECT DAYOFWEEK(last_counter) as d, HOUR(hour) as hour, COUNT(*) AS nb 
         FROM {$wpdb->stats4wp_visitor}
         where device!='bot' 
-        AND last_counter BETWEEN %s AND %s
+        AND last_counter >= %s
+  		AND last_counter <= %s
         GROUP BY 1,2 ORDER by 1 ASC",
 			$param['from'],
 			$param['to']

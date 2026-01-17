@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.17
+ * @version 1.4.23
  *
  * Desciption: Location Maps
  */
@@ -31,7 +31,8 @@ if ( ! isset( $wpdb->stats4wp_visitor ) ) {
 			"SELECT UPPER(language) as language, count(*) as nb FROM {$wpdb->stats4wp_visitor} 
     WHERE device NOT IN ('bot','')
     AND language not in ('','*','#','q=')
-    AND last_counter BETWEEN %s AND %s
+    AND last_counter >= %s
+  	AND last_counter <= %s
     GROUP BY language
     ORDER by nb DESC",
 			$param['from'],

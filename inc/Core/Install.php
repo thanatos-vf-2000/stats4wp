@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.4.23
  */
 namespace STATS4WP\Core;
 
@@ -72,8 +72,15 @@ class Install {
                         UAString varchar(190),
                         hits int(11),
 						PRIMARY KEY  (ID),
-						UNIQUE KEY date_ip_agent (last_counter,ip,agent(50),platform(50)),
-                        KEY `SELSTAT` (`device`, `last_counter`)
+						KEY key_referred (referred),
+						KEY key_agent (agent),
+						KEY key_platform (platform),
+						KEY key_engine (engine),
+						KEY key_device (device),
+						KEY key_last_counter (last_counter),
+						KEY key_location (location),
+						KEY key_SECTOPT (device, location, last_counter),
+						UNIQUE KEY date_ip_agent (last_counter,ip,agent(50),platform(50))
 					) {$collate}" );
 		dbDelta( $create_visitor_table );
 
