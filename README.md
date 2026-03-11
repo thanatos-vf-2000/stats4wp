@@ -11,7 +11,7 @@ Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, 
 Requires at least: 5.2
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.4.23
+Stable tag: 1.4.24
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
