@@ -9,9 +9,9 @@
 Contributors: vanhoucke
 Tags: analytics, wordpress analytics, stats, statistics, visit, visitors, hits, chart, browser, today, yesterday, week, month, year, total, post, page, sidebar, google, live visit, search word, agent, google analytics, webmasters, google webmasters, geoip, location
 Requires at least: 5.2
-Tested up to: 6.9
-Requires PHP: 8.0
-Stable tag: 1.4.24
+Tested up to: 7.1
+Requires PHP: 8.3
+Stable tag: 1.4.25
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.

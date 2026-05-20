@@ -5,6 +5,13 @@
 This file contains older changelog entries, so we can keep the size of the standard WordPress readme.txt file reasonable.
 For the latest changes, please see the "Changelog" section of the [readme.txt file](https://plugins.svn.wordpress.org/stats4wp/trunk/readme.txt).
 
+= 1.4.25 (2605-SFP1) =
+*Release Date - 20 May 2026*
+
+* Test up Wordpress 7.1-alpha-62388,
+* Requires PHP 8.3 (Minimum recommended version for Wordpress 7.0),
+* Update GeoIP Database 20260519.
+
 = 1.4.24 (2603-SFP1) =
 *Release Date - 11 March 2026*
 
