@@ -18,12 +18,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return array(
-	'install'          => '0',
-	'anonymize_ips'    => false,
-	'ip_method'        => 'REMOTE_ADDR',
-	'addsearchwords'   => false,
-	'store_ua'         => true,
-	'check_online'     => 120,
-	'top_page'         => 10,
-	'disableadminstat' => false,
+	'install'             => '0',
+	'anonymize_ips'       => false,
+	'ip_method'           => 'REMOTE_ADDR',
+	'addsearchwords'      => false,
+	'store_ua'            => true,
+	'check_online'        => 120,
+	'top_page'            => 10,
+	'disableadminstat'    => false,
+	'exclude_bots'        => false,
+	'exclude_roles'       => '',
+	'respect_dnt'         => false,
+	'data_retention_days' => 0,
 );

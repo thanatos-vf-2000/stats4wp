@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.5.0
  */
 namespace STATS4WP\Api;
 
@@ -10,6 +10,15 @@ use STATS4WP\Core\Options;
 class UserAgent {
 
 
+
+	/**
+	 * Cache of the parsed user agent for the current request, so that
+	 * get_user_agent() can safely be called several times (Page, Visitor,
+	 * bot/role exclusion checks...) without re-running the parser each time.
+	 *
+	 * @var array|null
+	 */
+	private static $cached_agent = null;
 
 	/**
 	 * Get User Agent
@@ -27,6 +36,10 @@ class UserAgent {
 	 */
 	public static function get_user_agent() {
 
+		if ( null !== self::$cached_agent ) {
+			return self::$cached_agent;
+		}
+
 		// Get Http User Agent
 		$user_agent = self::get_http_user_agent();
 
@@ -42,8 +55,11 @@ class UserAgent {
 			'device'              => ( isset( $result->device->type ) ) ? $result->device->type : _x( 'Unknown', 'Device', 'stats4wp' ),
 			'device-manufacturer' => ( isset( $result->device->manufacturer ) ) ? $result->device->manufacturer : _x( 'Unknown', 'Device', 'stats4wp' ),
 			'device-model'        => ( isset( $result->device->model ) ) ? $result->device->model : _x( 'Unknown', 'Device', 'stats4wp' ),
+			'is_bot'              => ( isset( $result->device->type ) && 'bot' === $result->device->type ),
 		);
 
-		return apply_filters( 'stats4wp_user_agent', $agent );
+		self::$cached_agent = apply_filters( 'stats4wp_user_agent', $agent );
+
+		return self::$cached_agent;
 	}
 }

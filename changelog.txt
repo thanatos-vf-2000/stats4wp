@@ -5,6 +5,20 @@
 This file contains older changelog entries, so we can keep the size of the standard WordPress readme.txt file reasonable.
 For the latest changes, please see the "Changelog" section of the [readme.txt file](https://plugins.svn.wordpress.org/stats4wp/trunk/readme.txt).
 
+= 1.5.0 =
+*Release Date - 05 July 2026*
+
+* Security fix: removed a possible SQL injection vector in the CSV export "year" filter,
+* Fix: CSV export no longer corrupts accented characters, quotes and ampersands (was wrongly passed through esc_html),
+* Fix: CSV export now properly quotes fields containing the separator, quotes or line breaks (RFC 4180),
+* New: option to exclude visits from selected logged-in roles (e.g. administrators) so site owners don't pollute their own stats,
+* New: option to fully exclude bots/crawlers from tracking (off by default, keeps existing "Bots" reporting untouched),
+* New: option to respect the browser "Do Not Track" (DNT) header,
+* New: optional automatic daily purge of old data based on a configurable retention period (in days),
+* Fix: IP anonymization now also works correctly for IPv6 addresses (previously IPv4 only),
+* Improvement: settings sanitization now properly validates numeric and list fields instead of storing raw input,
+* Update GeoIP Database 20260703.
+
 = 1.4.25 (2605-SFP1) =
 *Release Date - 20 May 2026*
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.15
+ * @version 1.5.0
  */
 namespace STATS4WP\Stats;
 
@@ -316,6 +316,12 @@ class Page {
 
 	public function page() {
 		global $wpdb;
+
+		// Skip known bots, excluded roles, and (optionally) DNT visitors,
+		// so the pages table stays consistent with the visitor table.
+		if ( CoreHelper::should_skip_tracking() ) {
+			return false;
+		}
 
 		/**
 		 *  Get Current WordPress Page

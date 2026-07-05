@@ -2,7 +2,7 @@
 /**
  *
  * @package STATS4WPPlugin
- * @version 1.4.23
+ * @version 1.5.0
  */
 namespace STATS4WP\Api\Callbacks;
 
@@ -20,10 +20,28 @@ class ManagerCallbacks extends BaseController {
 		foreach ( $this->managers as $key => $value ) {
 			if ( isset( $all_defaults[ $key ] ) ) {
 				$config = $all_defaults[ $key ];
-				if ( 'checkboxField' === $config['type'] ) {
-					$output[ $key ] = isset( $input[ $key ] ) ? true : false;
-				} else {
-					$output[ $key ] = $input[ $key ];
+				switch ( $config['type'] ) {
+					case 'checkboxField':
+						$output[ $key ] = isset( $input[ $key ] ) ? true : false;
+						break;
+					case 'TextField':
+						$raw = isset( $input[ $key ] ) ? $input[ $key ] : '';
+						// Numeric-only settings are stored as integers so
+						// they can be used safely in arithmetic/date logic.
+						if ( in_array( $key, array( 'check_online', 'top_page', 'data_retention_days' ), true ) ) {
+							$output[ $key ] = absint( $raw );
+						} else {
+							$output[ $key ] = sanitize_text_field( $raw );
+						}
+						break;
+					case 'listField':
+						$raw            = isset( $input[ $key ] ) ? sanitize_text_field( $input[ $key ] ) : '';
+						$choices        = isset( $config['choices'] ) ? $config['choices'] : array();
+						$output[ $key ] = array_key_exists( $raw, $choices ) ? $raw : $value;
+						break;
+					default:
+						$output[ $key ] = isset( $input[ $key ] ) ? $input[ $key ] : $value;
+						break;
 				}
 			}
 		}

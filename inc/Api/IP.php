@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.5.0
  */
 namespace STATS4WP\Api;
 
@@ -101,10 +101,41 @@ class IP {
 
 		// If the anonymize IP enabled for GDPR.
 		if ( Options::get_option( 'anonymize_ips' ) === true ) {
-			$user_ip = substr( $user_ip, 0, strrpos( $user_ip, '.' ) ) . '.0';
+			$user_ip = self::anonymize( $user_ip );
 		}
 
 		return $user_ip;
+	}
+
+	/**
+	 * Mask the last part of an IP address for GDPR compliance.
+	 *
+	 * IPv4: the last octet is zeroed (1.2.3.4 -> 1.2.3.0).
+	 * IPv6: everything after the first 3 groups is zeroed
+	 * (2001:db8:85a3::8a2e:370:7334 -> 2001:db8:85a3::), which matches the
+	 * masking level generally recommended for GDPR-compliant IP storage.
+	 *
+	 * @param  string $ip
+	 * @return string
+	 */
+	public static function anonymize( $ip ) {
+		if ( false !== strpos( $ip, ':' ) ) {
+			$packed = @inet_pton( $ip ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+			if ( false === $packed ) {
+				return $ip;
+			}
+			// Keep the first 48 bits (3 groups), zero the rest.
+			$mask      = str_repeat( "\xff", 6 ) . str_repeat( "\x00", 10 );
+			$anonymize = $packed & $mask;
+			return inet_ntop( $anonymize );
+		}
+
+		$last_dot = strrpos( $ip, '.' );
+		if ( false === $last_dot ) {
+			return $ip;
+		}
+
+		return substr( $ip, 0, $last_dot ) . '.0';
 	}
 
 	/**

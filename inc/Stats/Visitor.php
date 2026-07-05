@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.4.14
+ * @version 1.5.0
  */
 namespace STATS4WP\Stats;
 
@@ -14,6 +14,7 @@ use STATS4WP\Api\GeoIP;
 
 use STATS4WP\Core\DB;
 use STATS4WP\Core\Options;
+use STATS4WP\Core\CoreHelper;
 
 class Visitor {
 
@@ -28,6 +29,11 @@ class Visitor {
 
 	public function visitor() {
 		global $wpdb;
+
+		// Skip known bots, excluded roles, and (optionally) DNT visitors.
+		if ( CoreHelper::should_skip_tracking() ) {
+			return;
+		}
 
 		// Get User IP
 		$user_ip = IP::store_ip();

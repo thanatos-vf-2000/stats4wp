@@ -66,4 +66,28 @@ return array(
 		'section' => STATS4WP_NAME . '_admin_index',
 		'type'    => 'checkboxField',
 	),
+	'exclude_bots'        => array(
+		'title'   => stats4wp_t( 'Exclude bots & crawlers', 'stats4wp' ),
+		'message' => stats4wp_t( 'Stop recording visits from known bots/crawlers entirely (search engines, monitoring tools...). Off by default, since stats4wp already reports on bots separately in the "Bots" tab; enable this only if you want a smaller, bot-free database.', 'stats4wp' ),
+		'section' => STATS4WP_NAME . '_admin_index',
+		'type'    => 'checkboxField',
+	),
+	'exclude_roles'       => array(
+		'title'   => stats4wp_t( 'Exclude logged-in roles', 'stats4wp' ),
+		'message' => stats4wp_t( 'Comma-separated list of WordPress role slugs to exclude from stats, e.g. administrator,editor.', 'stats4wp' ),
+		'section' => STATS4WP_NAME . '_admin_index',
+		'type'    => 'TextField',
+	),
+	'respect_dnt'         => array(
+		'title'   => stats4wp_t( 'Respect "Do Not Track"', 'stats4wp' ),
+		'message' => stats4wp_t( 'Do not record visitors sending the Do Not Track (DNT) browser header.', 'stats4wp' ),
+		'section' => STATS4WP_NAME . '_admin_index',
+		'type'    => 'checkboxField',
+	),
+	'data_retention_days' => array(
+		'title'   => stats4wp_t( 'Automatic data retention (days)', 'stats4wp' ),
+		'message' => stats4wp_t( 'Automatically delete visitor/page rows older than this many days. Set to 0 to disable (default).', 'stats4wp' ),
+		'section' => STATS4WP_NAME . '_admin_index',
+		'type'    => 'TextField',
+	),
 );
