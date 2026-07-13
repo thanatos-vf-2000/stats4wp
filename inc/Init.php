@@ -1,7 +1,7 @@
 <?php
 /**
  * @package STATS4WPPlugin
- * @version 1.5.0
+ * @version 1.6.0
  */
 
 namespace STATS4WP;
@@ -26,6 +26,7 @@ final class Init {
 			Core\SettingsLinks::class,
 			Core\Enqueue::class,
 			Core\Cron::class,
+			Api\RestApi::class,
 			Stats\Page::class,
 			Stats\Visitor::class,
 			Stats\UserOnline::class,
@@ -35,6 +36,7 @@ final class Init {
 			Ui\Settings::class,
 			Ui\DashboardWidgetAdmin::class,
 			Ui\CSVExport::class,
+			Ui\ReportsSettings::class,
 			Widgets\CptVisitors::class,
 		);
 	}

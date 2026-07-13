@@ -9,7 +9,7 @@
  * @author    Franck VANHOUCKE <ct4gg@ginkgos.net>
  * @copyright 2021-2023 Copyright 2023, Inc. All rights reserved.
  * @license   GNU General Public License version 2 or later
- * @version   1.4.14 GIT:https://github.com/thanatos-vf-2000/WordPress
+ * @version   1.6.0 GIT:https://github.com/thanatos-vf-2000/stats4wp
  * @link      https://ginkgos.net
  */
 
@@ -18,16 +18,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 return array(
-	'install'             => '0',
-	'anonymize_ips'       => false,
-	'ip_method'           => 'REMOTE_ADDR',
-	'addsearchwords'      => false,
-	'store_ua'            => true,
-	'check_online'        => 120,
-	'top_page'            => 10,
-	'disableadminstat'    => false,
-	'exclude_bots'        => false,
-	'exclude_roles'       => '',
-	'respect_dnt'         => false,
-	'data_retention_days' => 0,
+	'install'               => '0',
+	'anonymize_ips'         => false,
+	'ip_method'             => 'REMOTE_ADDR',
+	'addsearchwords'        => false,
+	'store_ua'              => true,
+	'check_online'          => 120,
+	'top_page'              => 10,
+	'disableadminstat'      => false,
+	'exclude_bots'          => false,
+	'exclude_roles'         => '',
+	'respect_dnt'           => false,
+	'data_retention_days'   => 0,
+	'rest_api_enabled'      => false,
+	'rest_api_key'          => '',
+	'weekly_report_enabled' => false,
+	'weekly_report_email'   => '',
 );

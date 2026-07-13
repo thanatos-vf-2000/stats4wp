@@ -5,7 +5,17 @@
 This file contains older changelog entries, so we can keep the size of the standard WordPress readme.txt file reasonable.
 For the latest changes, please see the "Changelog" section of the [readme.txt file](https://plugins.svn.wordpress.org/stats4wp/trunk/readme.txt).
 
-= 1.5.0 =
+= 1.6.0 (2607-SFP2)=
+*Release Date - 13 July 2026*
+
+* Test up Wordpress 7.1-alpha-62633,
+* New: read-only REST API under /wp-json/stats4wp/v1/ (summary, top pages, top countries, top browsers, online visitors) to expose your stats to external tools. Disabled by default, protected by a per-site API key,
+* New: optional weekly email report (every Monday) summarizing visitors, visits, top pages and top countries for the last 7 days, with a "send a test report now" button,
+* New: "API & Reports" tab in Settings to manage/regenerate the API key and configure the weekly report,
+* Update GeoIP Database 20260710.
+
+
+= 1.5.0 (2607-SFP1)=
 *Release Date - 05 July 2026*
 
 * Security fix: removed a possible SQL injection vector in the CSV export "year" filter,

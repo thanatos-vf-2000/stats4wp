@@ -2,7 +2,7 @@
 /**
  *
  * @package STATS4WPPlugin
- * @version 1.5.0
+ * @version 1.6.0
  */
 namespace STATS4WP\Api\Callbacks;
 
@@ -30,6 +30,9 @@ class ManagerCallbacks extends BaseController {
 						// they can be used safely in arithmetic/date logic.
 						if ( in_array( $key, array( 'check_online', 'top_page', 'data_retention_days' ), true ) ) {
 							$output[ $key ] = absint( $raw );
+						} elseif ( 'weekly_report_email' === $key ) {
+							$raw            = sanitize_email( $raw );
+							$output[ $key ] = is_email( $raw ) ? $raw : '';
 						} else {
 							$output[ $key ] = sanitize_text_field( $raw );
 						}

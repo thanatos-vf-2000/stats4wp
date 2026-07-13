@@ -9,7 +9,7 @@
  * @author    Franck VANHOUCKE <ct4gg@ginkgos.net>
  * @copyright 2021-2023 Copyright 2023, Inc. All rights reserved.
  * @license   GNU General Public License version 2 or later
- * @version   1.4.14 GIT:https://github.com/thanatos-vf-2000/WordPress
+ * @version   1.6.0 GIT:https://github.com/thanatos-vf-2000/stats4wp
  * @link      https://ginkgos.net
  */
 
@@ -87,6 +87,31 @@ return array(
 	'data_retention_days' => array(
 		'title'   => stats4wp_t( 'Automatic data retention (days)', 'stats4wp' ),
 		'message' => stats4wp_t( 'Automatically delete visitor/page rows older than this many days. Set to 0 to disable (default).', 'stats4wp' ),
+		'section' => STATS4WP_NAME . '_admin_index',
+		'type'    => 'TextField',
+	),
+	'rest_api_enabled'      => array(
+		'title'   => stats4wp_t( 'Enable the REST API', 'stats4wp' ),
+		'message' => stats4wp_t( 'Expose read-only stats endpoints under /wp-json/stats4wp/v1/. See the "API & Reports" tab for your API key and usage examples.', 'stats4wp' ),
+		'section' => STATS4WP_NAME . '_admin_index',
+		'type'    => 'checkboxField',
+	),
+	'rest_api_key'          => array(
+		// Managed internally (generated/regenerated via the "API & Reports"
+		// tab), not shown as an editable field in the main settings list.
+		'title'   => stats4wp_t( 'REST API key', 'stats4wp' ),
+		'section' => STATS4WP_NAME . '_admin_index',
+		'type'    => 'internal',
+	),
+	'weekly_report_enabled' => array(
+		'title'   => stats4wp_t( 'Send a weekly email report', 'stats4wp' ),
+		'message' => stats4wp_t( 'Automatically email a summary of the last 7 days every Monday.', 'stats4wp' ),
+		'section' => STATS4WP_NAME . '_admin_index',
+		'type'    => 'checkboxField',
+	),
+	'weekly_report_email'   => array(
+		'title'   => stats4wp_t( 'Weekly report recipient', 'stats4wp' ),
+		'message' => stats4wp_t( 'Email address to send the weekly report to. Leave empty to use the site admin email.', 'stats4wp' ),
 		'section' => STATS4WP_NAME . '_admin_index',
 		'type'    => 'TextField',
 	),
