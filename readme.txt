@@ -2,9 +2,9 @@
 Contributors: vanhoucke
 Tags: analytics, stats, statistics, visit, rest api
 Requires at least: 5.2
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 8.3
-Stable tag: 1.6.0
+Stable tag: 1.6.1
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -124,14 +124,11 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.6.0 =
-*Release Date - 13 July 2026*
+= 1.6.1 =
+*Release Date - 5 September 2026*
 
-* Test up Wordpress 7.1-alpha-62633,
-* New: read-only REST API under /wp-json/stats4wp/v1/ (summary, top pages, top countries, top browsers, online visitors) to expose your stats to external tools. Disabled by default, protected by a per-site API key,
-* New: optional weekly email report (every Monday) summarizing visitors, visits, top pages and top countries for the last 7 days, with a "send a test report now" button,
-* New: "API & Reports" tab in Settings to manage/regenerate the API key and configure the weekly report,
-* Update GeoIP Database 20260710.
+* Test up Wordpress 7.2-alpha-63482,
+* Update GeoIP Database 20260904.
 
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
