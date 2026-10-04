@@ -4,7 +4,7 @@ Tags: analytics, stats, statistics, visit, rest api
 Requires at least: 5.2
 Tested up to: 7.2
 Requires PHP: 8.3
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 License: GPLv2
 
 This plugin gives you the complete information on your website's visitors.
@@ -124,11 +124,11 @@ Source: https://jvectormap.com/
 
 == Changelog ==
 
-= 1.6.1 =
-*Release Date - 5 September 2026*
+= 1.6.2 =
+*Release Date - 4 October 2026*
 
-* Test up Wordpress 7.2-alpha-63482,
-* Update GeoIP Database 20260904.
+* Test up Wordpress 7.2-alpha-64081,
+* Update GeoIP Database 20261002.
 
 
 See [changelog.txt](https://plugins.svn.wordpress.org/stats4wp/trunk/changelog.txt) for older changelog
